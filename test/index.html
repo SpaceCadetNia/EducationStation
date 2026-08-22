@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>EducationStation Test Pilots</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=78">
+  </head>
+  <body data-game="test">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen test-game">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="test-panel" aria-labelledby="test-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line" id="test-system">PROTOTYPE BAY</p>
+            <h1 id="test-title">Test Pilots</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Score <strong id="test-score">0</strong></span>
+            <span>Level <strong id="test-level">1</strong></span>
+          </div>
+        </div>
+        <div class="test-workspace" id="test-workspace"></div>
+        <p class="feedback" id="test-feedback" aria-live="polite">Select a prototype.</p>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=3"></script>
+    <script src="../shared/sounds.js?v=16"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/test-prototypes.js?v=64"></script>
+  </body>
+</html>

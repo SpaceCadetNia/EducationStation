@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Number Seeker</title>
+    <link rel="preload" href="../assets/sounds/title_music.mp3" as="audio" type="audio/mpeg">
+    <link rel="stylesheet" href="../shared/retro.css?v=58">
+  </head>
+  <body>
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen menu-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+
+      <header class="masthead">
+        <p class="system-line">PROGRAM 01 // MATH SCANNER ONLINE</p>
+        <h1>Number Seeker</h1>
+        <p class="tagline">Pick an operator and locate the missing number.</p>
+      </header>
+
+      <section class="program-grid operator-grid" aria-label="Number Seeker operators">
+        <a class="program-card" href="plus.html">
+          <span class="program-code">+</span>
+          <span class="program-title">Plus</span>
+          <span class="program-meta">Find addends and sums</span>
+        </a>
+        <a class="program-card" href="minus.html">
+          <span class="program-code">-</span>
+          <span class="program-title">Minus</span>
+          <span class="program-meta">Track the difference</span>
+        </a>
+        <a class="program-card" href="multiply.html">
+          <span class="program-code">x</span>
+          <span class="program-title">Multiply</span>
+          <span class="program-meta">Scan skip-count patterns</span>
+        </a>
+        <a class="program-card" href="divide.html">
+          <span class="program-code">÷</span>
+          <span class="program-title">Divide</span>
+          <span class="program-meta">Find quotients</span>
+        </a>
+      </section>
+    </main>
+
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+  </body>
+</html>

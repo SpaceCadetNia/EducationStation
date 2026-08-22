@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Passenger Counter</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=37">
+  </head>
+  <body data-game="passenger-counter">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen passenger-game">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="passenger-panel" aria-labelledby="game-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line">PROGRAM 02 // PLATFORM SCANNER</p>
+            <h1 id="game-title">Passenger Counter</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Round <strong id="round">1</strong></span>
+            <span>Score <strong id="score">0</strong></span>
+          </div>
+        </div>
+
+        <div class="passenger-scene" id="passenger-scene" aria-live="polite">
+          <img class="station-layer" src="../assets/images/space_train_station.png" alt="">
+          <div class="passenger-layer" id="passenger-layer"></div>
+          <img class="train-layer" id="train" src="../assets/images/space_train_top.png" alt="">
+          <div class="flash-message" id="flash-message" hidden>Count the passengers!</div>
+          <div class="stage-result" id="stage-result" hidden></div>
+          <button class="ready-field" type="button" id="ready-field">&gt;&gt; READY &lt;&lt;</button>
+        </div>
+
+        <section class="counter-console" id="counter-console" hidden>
+          <div class="counter-readout">
+            <p class="question" id="question">What is the net change of passengers?</p>
+            <output class="answer-display" id="answer-display">_</output>
+            <p class="result-line" id="result-line"></p>
+          </div>
+          <div class="keypad" aria-label="Passenger count keypad">
+            <button type="button" data-digit="1">1</button>
+            <button type="button" data-digit="2">2</button>
+            <button type="button" data-digit="3">3</button>
+            <button type="button" data-digit="4">4</button>
+            <button type="button" data-digit="5">5</button>
+            <button type="button" data-digit="6">6</button>
+            <button type="button" data-digit="7">7</button>
+            <button type="button" data-digit="8">8</button>
+            <button type="button" data-digit="9">9</button>
+            <button type="button" data-action="minus">-</button>
+            <button type="button" data-digit="0">0</button>
+            <button type="button" data-action="clear">CLR</button>
+            <button type="button" data-action="backspace">DEL</button>
+          </div>
+          <div class="counter-actions">
+            <button class="command-button" type="button" id="submit-answer">Submit</button>
+            <button class="command-button" type="button" id="next-round" hidden>Next</button>
+          </div>
+        </section>
+
+        <p class="feedback" id="feedback">Awaiting platform signal.</p>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js?v=13"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/passenger-counter.js?v=21"></script>
+  </body>
+</html>

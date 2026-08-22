@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>EducationStation</title>
+    <link rel="preload" href="assets/sounds/title_music.mp3" as="audio" type="audio/mpeg">
+    <link rel="stylesheet" href="shared/retro.css?v=35">
+  </head>
+  <body data-title-screen="launch" data-title-start-gate="true">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen menu-screen" data-menu-host>
+      <nav class="top-nav menu-back-nav" aria-label="Primary" hidden>
+        <a href="./" data-menu-home>EducationStation</a>
+      </nav>
+
+      <header class="masthead" data-menu-header>
+        <h1>EducationStation</h1>
+        <p class="tagline">Choose a learning program.</p>
+      </header>
+
+      <button class="start-field" type="button" data-start-field>&gt;&gt; START &lt;&lt;</button>
+
+      <section class="program-grid" aria-label="Learning activities" data-menu-grid hidden>
+        <a class="program-card" href="#number-seeker" data-menu-target="number-seeker">
+          <span class="program-code">01</span>
+          <span class="program-title">Number Seeker</span>
+          <span class="program-meta">Arithmetic missions: plus, minus, multiply, divide</span>
+        </a>
+      </section>
+    </main>
+
+    <script src="shared/stage.js?v=2"></script>
+    <script src="shared/sounds.js?v=4"></script>
+    <script src="shared/starfield.js?v=5"></script>
+    <script src="shared/menus.js?v=10"></script>
+  </body>
+</html>

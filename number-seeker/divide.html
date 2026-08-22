@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Number Seeker: Divide</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=58">
+  </head>
+  <body data-game="divide">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="game-panel" aria-labelledby="game-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line">OPERATOR // DIVIDE</p>
+            <h1 id="game-title">Number Seeker</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Score <strong id="score">0</strong></span>
+            <span>Streak <strong id="streak">0</strong></span>
+            <span class="supplies-track">Supplies <strong id="supplies"></strong></span>
+          </div>
+        </div>
+        <div class="equation" id="equation" aria-live="polite"></div>
+        <div class="choices" id="choices" aria-label="Answer choices"></div>
+        <p class="feedback" id="feedback" aria-live="polite">Seek the missing number.</p>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js?v=15"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/number-seeker.js?v=8"></script>
+  </body>
+</html>

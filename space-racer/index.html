@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Space Racer</title>
+      <link rel="stylesheet" href="../shared/retro.css?v=58">
+  </head>
+  <body data-game="space-racer">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen racer-game">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="racer-panel" aria-labelledby="game-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line">PROGRAM 09 // PITSTOP RALLY</p>
+            <h1 id="game-title">Space Racer</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Distance <strong id="racer-distance">0</strong></span>
+            <span>Fuel <strong id="racer-fuel">100</strong></span>
+            <span>Speed <strong id="racer-status-speed">1.0</strong>x</span>
+            <span>Shield <strong id="racer-shield">4</strong></span>
+          </div>
+        </div>
+
+        <div class="racer-track" id="racer-track">
+          <div class="racer-lanes" aria-hidden="true"></div>
+          <div class="racer-distance-overlay" aria-hidden="true">
+            <span>Distance</span>
+            <strong id="racer-distance-big">0</strong>
+          </div>
+          <button class="racer-pause-button" type="button" id="racer-pause" aria-label="Pause">II</button>
+          <div class="racer-station" id="racer-station" hidden>
+            <img src="../assets/images/station.png" alt="">
+          </div>
+          <div class="racer-ship-wrap shield-green" id="racer-ship-wrap">
+            <img class="racer-ship" id="racer-ship" src="../assets/images/ship_on.png" alt="">
+          </div>
+          <button class="ready-field" type="button" id="racer-ready">&gt;&gt; READY &lt;&lt;</button>
+        </div>
+
+        <div class="racer-console">
+          <div class="racer-steering-control">
+            <span>Turn</span>
+            <div class="racer-steer-pad" id="racer-steer-pad" aria-label="Turn indicator">
+              <span class="racer-steer-zero" aria-hidden="true"></span>
+              <span class="racer-steer-puck" id="racer-steer-puck" aria-hidden="true"></span>
+            </div>
+            <input class="racer-steer-slider" type="range" id="racer-position" min="-30" max="30" value="0" aria-label="Turn slider">
+          </div>
+          <div class="racer-gauges">
+            <span>Speed <strong id="racer-speed">1.0</strong>x</span>
+            <span>Next Pit <strong id="racer-next-pit">500</strong></span>
+          </div>
+          <div class="racer-fuel-meter" aria-label="Fuel meter">
+            <span id="racer-fuel-fill"></span>
+          </div>
+        </div>
+
+        <section class="pitstop-panel" id="pitstop-panel" hidden>
+          <div class="pitstop-card">
+            <p class="system-line">SPACE STATION PITSTOP</p>
+            <h2>Earn Supplies</h2>
+            <div class="pitstop-summary" id="pitstop-summary"></div>
+            <p class="pitstop-reward" id="pitstop-reward"></p>
+            <p class="pitstop-question" id="pitstop-question"></p>
+            <div class="pitstop-choices" id="pitstop-choices"></div>
+            <button class="command-button pitstop-launch" type="button" id="pitstop-launch">Launch</button>
+          </div>
+        </section>
+
+        <p class="feedback" id="racer-feedback" aria-live="polite">Ready at the starting gate.</p>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js?v=8"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/space-racer.js?v=9"></script>
+  </body>
+</html>
