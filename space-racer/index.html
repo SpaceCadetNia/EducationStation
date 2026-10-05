@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Space Racer</title>
-      <link rel="stylesheet" href="../shared/retro.css?v=58">
+      <link rel="stylesheet" href="../shared/retro.css?v=62">
   </head>
   <body data-game="space-racer">
     <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
@@ -20,9 +20,9 @@
           </div>
           <div class="scoreboard" aria-live="polite">
             <span>Distance <strong id="racer-distance">0</strong></span>
-            <span>Fuel <strong id="racer-fuel">100</strong></span>
-            <span>Speed <strong id="racer-status-speed">1.0</strong>x</span>
-            <span>Shield <strong id="racer-shield">4</strong></span>
+            <span class="hud-fuel">⛽ Fuel <strong id="racer-fuel">100</strong></span>
+            <span>⚡ Speed <strong id="racer-status-speed">1.0x</strong></span>
+            <span class="hud-shield"><span class="shield-boxes" id="racer-shield" role="img" aria-label="Shield 4 of 4"></span></span>
           </div>
         </div>
 
@@ -33,6 +33,10 @@
             <strong id="racer-distance-big">0</strong>
           </div>
           <button class="racer-pause-button" type="button" id="racer-pause" aria-label="Pause">II</button>
+          <div class="racer-station-warning" id="racer-station-warning" hidden aria-hidden="true">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M32 3 L61 53 L3 53 Z" fill="#ffd166" stroke="#05070a" stroke-width="4" stroke-linejoin="round"/><rect x="28" y="19" width="8" height="20" fill="#05070a"/><rect x="28" y="43" width="8" height="7" fill="#05070a"/></svg>
+            <span>Station</span>
+          </div>
           <div class="racer-station" id="racer-station" hidden>
             <img src="../assets/images/station.png" alt="">
           </div>
@@ -52,8 +56,8 @@
             <input class="racer-steer-slider" type="range" id="racer-position" min="-30" max="30" value="0" aria-label="Turn slider">
           </div>
           <div class="racer-gauges">
-            <span>Speed <strong id="racer-speed">1.0</strong>x</span>
-            <span>Next Pit <strong id="racer-next-pit">500</strong></span>
+            <span>⚡ Speed <strong id="racer-speed">1.0x</strong></span>
+            <span>Next Pit <strong id="racer-next-pit">15s</strong></span>
           </div>
           <div class="racer-fuel-meter" aria-label="Fuel meter">
             <span id="racer-fuel-fill"></span>
@@ -62,12 +66,22 @@
 
         <section class="pitstop-panel" id="pitstop-panel" hidden>
           <div class="pitstop-card">
-            <p class="system-line">SPACE STATION PITSTOP</p>
+            <p class="system-line">SPACE STATION PITSTOP // MATH LEVEL <span id="pitstop-level">0</span></p>
             <h2>Earn Supplies</h2>
             <div class="pitstop-summary" id="pitstop-summary"></div>
-            <p class="pitstop-reward" id="pitstop-reward"></p>
+            <div class="pitstop-picker" id="pitstop-picker" role="group" aria-label="Choose what to earn">
+              <span class="pitstop-picker-label">Earn</span>
+              <button type="button" class="cargo-pick" data-reward="fuel" aria-pressed="true">⛽ Fuel</button>
+              <button type="button" class="cargo-pick" data-reward="speed" aria-pressed="false">⚡ Speed</button>
+              <button type="button" class="cargo-pick" data-reward="shield" aria-pressed="false">🛡 Shield</button>
+            </div>
             <p class="pitstop-question" id="pitstop-question"></p>
             <div class="pitstop-choices" id="pitstop-choices"></div>
+            <p class="pitstop-result" id="pitstop-result" aria-live="polite"></p>
+            <div class="cargo-bay">
+              <span class="cargo-label">Cargo <strong id="cargo-count">0/5</strong></span>
+              <div class="cargo-slots" id="cargo-slots"></div>
+            </div>
             <button class="command-button pitstop-launch" type="button" id="pitstop-launch">Launch</button>
           </div>
         </section>
@@ -78,6 +92,6 @@
     <script src="../shared/stage.js?v=2"></script>
     <script src="../shared/sounds.js?v=8"></script>
     <script src="../shared/starfield.js?v=5"></script>
-    <script src="../shared/space-racer.js?v=9"></script>
+    <script src="../shared/space-racer.js?v=15"></script>
   </body>
 </html>

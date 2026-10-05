@@ -725,7 +725,7 @@ body[data-game="divide"] .game-screen {
   inset: 0;
   background-image: radial-gradient(circle, rgba(108, 255, 123, 0.72) 0 1px, transparent 1.5px);
   background-size: 46px 46px;
-  animation: racer-stars 1.2s linear infinite;
+  /* Scrolled from space-racer.js so it matches the ship's speed. */
 }
 
 .racer-paused .racer-lanes {
@@ -1038,6 +1038,281 @@ body[data-game="divide"] .game-screen {
   margin-top: 18px;
   border-color: var(--amber);
   color: var(--amber);
+}
+
+.pitstop-card h2 {
+  margin: 4px 0 10px;
+}
+
+.pitstop-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.pitstop-picker-label {
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.cargo-pick {
+  min-height: 40px;
+  padding: 6px 12px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  background: rgba(29, 187, 77, 0.12);
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cargo-pick[aria-pressed="true"] {
+  color: var(--black);
+  background: var(--green);
+  box-shadow: 0 0 12px rgba(108, 255, 123, 0.55);
+}
+
+.cargo-pick:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.cargo-pick:hover:not(:disabled),
+.cargo-pick:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.pitstop-question {
+  margin: 10px 0;
+}
+
+.pitstop-choices .command-button {
+  min-width: 90px;
+  min-height: 48px;
+  font-size: 1.4rem;
+}
+
+.pitstop-choices .command-button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.pitstop-choices .command-button.answer-correct {
+  opacity: 1;
+  color: var(--black);
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 16px rgba(108, 255, 123, 0.8);
+  animation: racer-answer-pop 0.35s ease-out;
+}
+
+.pitstop-choices .command-button.answer-wrong {
+  opacity: 1;
+  color: var(--black);
+  background: #ff3838;
+  border-color: #ff3838;
+  box-shadow: 0 0 16px rgba(255, 56, 56, 0.8);
+  animation: racer-answer-shake 0.4s steps(4, end);
+}
+
+.pitstop-result {
+  min-height: 1.6em;
+  margin: 10px 0 4px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pitstop-result.result-correct {
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(108, 255, 123, 0.7);
+}
+
+.pitstop-result.result-wrong {
+  color: #ff6b6b;
+  text-shadow: 0 0 12px rgba(255, 56, 56, 0.6);
+}
+
+.cargo-bay {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 2px dashed var(--blue);
+  background: rgba(98, 216, 255, 0.06);
+}
+
+.cargo-label {
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.cargo-label strong {
+  display: block;
+  color: var(--amber);
+  font-size: 1.2rem;
+}
+
+.cargo-slots {
+  display: grid;
+  grid-template-columns: repeat(5, 48px);
+  gap: 8px;
+}
+
+.cargo-slot {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(98, 216, 255, 0.45);
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 1.6rem;
+}
+
+.cargo-slot.filled {
+  border-color: var(--amber);
+  background: rgba(255, 209, 102, 0.12);
+  animation: racer-answer-pop 0.35s ease-out;
+}
+
+.pitstop-launch {
+  margin-top: 12px;
+}
+
+@keyframes racer-answer-pop {
+  0% { transform: scale(0.8); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+@keyframes racer-answer-shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.racer-station-warning {
+  position: absolute;
+  z-index: 5;
+  top: 96px;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: racer-warning-flash 0.5s steps(2, end) infinite;
+}
+
+.racer-station-warning svg {
+  filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.85));
+}
+
+.racer-station-warning span {
+  padding: 2px 6px;
+  color: var(--amber);
+  background: rgba(0, 0, 0, 0.7);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.racer-station-warning::after {
+  content: "";
+  position: absolute;
+  top: 84px;
+  left: 50%;
+  width: 2px;
+  height: 110px;
+  background: linear-gradient(var(--amber), transparent);
+  transform: translateX(-50%);
+}
+
+@keyframes racer-warning-flash {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.racer-game .scoreboard {
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.racer-game .scoreboard span {
+  white-space: nowrap;
+}
+
+.racer-game .mission-header .system-line {
+  white-space: nowrap;
+}
+
+.racer-game .scoreboard span {
+  padding: 8px 7px;
+}
+
+.pitstop-summary span {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: rgba(255, 209, 102, 0.08);
+}
+
+.pitstop-summary span.hud-fuel {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(98, 216, 255, 0.1);
+}
+
+.racer-game .scoreboard span.hud-empty,
+.pitstop-summary span.hud-empty {
+  border-color: #ff3838;
+  color: #ff6b6b;
+  animation: racer-warning-flash 0.6s steps(2, end) infinite;
+}
+
+.hud-shield {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hud-shield span.shield-boxes {
+  display: inline-flex;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.racer-game .hud-shield .shield-boxes span.shield-box {
+  --shield-color: var(--green);
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 2px solid var(--shield-color);
+  background: #000;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.racer-game .hud-shield .shield-boxes span.shield-box.filled {
+  background: var(--shield-color);
+  box-shadow: 0 0 8px var(--shield-color);
+}
+
+.racer-game .hud-shield .shield-boxes span.shield-level-1 { --shield-color: #ff3838; }
+.racer-game .hud-shield .shield-boxes span.shield-level-2 { --shield-color: #ff8a3d; }
+.racer-game .hud-shield .shield-boxes span.shield-level-3 { --shield-color: #ffd166; }
+.racer-game .hud-shield .shield-boxes span.shield-level-4 { --shield-color: #6cff7b; }
+
+.racer-game .scoreboard span.hud-shield,
+.pitstop-summary span.hud-shield {
+  padding: 4px 6px;
+}
+
+.racer-game .scoreboard {
+  font-size: 0.92rem;
 }
 
 @keyframes racer-stars {
@@ -1544,6 +1819,97 @@ body[data-game="divide"] .game-screen {
 
 .lunar-keys-field.keyboard-active .ascii-map {
   display: none;
+}
+
+.land-layout {
+  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.7fr);
+}
+
+.land-map-card {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+#land-map {
+  width: 100%;
+  max-height: 100%;
+  aspect-ratio: 8 / 5;
+  border: 2px solid var(--green);
+  background: rgba(0, 0, 0, 0.66);
+  image-rendering: pixelated;
+  touch-action: none;
+  cursor: crosshair;
+  box-shadow: inset 0 0 34px rgba(0, 0, 0, 0.72), 0 0 18px rgba(108, 255, 123, 0.28);
+}
+
+.land-control-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.land-control-card .prototype-big {
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+}
+
+.land-readout {
+  margin: 0;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.land-readout strong {
+  color: var(--amber);
+}
+
+.land-controls {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.land-legend {
+  display: grid;
+  gap: 8px;
+  color: var(--soft);
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  text-transform: uppercase;
+}
+
+.land-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.land-swatch {
+  display: inline-block;
+  width: 22px;
+  height: 14px;
+  border: 1px solid rgba(213, 255, 218, 0.65);
+  box-shadow: 0 0 8px rgba(108, 255, 123, 0.2);
+}
+
+.land-low {
+  background: #1d532d;
+}
+
+.land-high {
+  background: #eeda88;
+}
+
+.land-path {
+  background: #8b592d;
+}
+
+.land-water {
+  background: #25808f;
+}
+
+.land-note {
+  margin: 6px 0 0;
+  color: var(--amber);
+  line-height: 1.45;
 }
 
 .ascii-map,
@@ -2609,5 +2975,22 @@ body[data-game] .starfield {
 
   .game-screen .feedback {
     padding-right: 0;
+  }
+
+  .land-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .land-control-card {
+    gap: 8px;
+  }
+
+  .land-controls {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .land-note {
+    display: none;
   }
 }

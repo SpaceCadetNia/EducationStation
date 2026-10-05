@@ -18,7 +18,8 @@
     rhythm: ["Key Echo", "CASE RECALL"],
     bonds: ["Number Bonds", "SYNTHESIS CHAMBER"],
     radio: ["Radio Scope", "SIGNAL TRIANGULATION"],
-    packing: ["Cargo Fractions", "MANIFEST PACKER"]
+    packing: ["Cargo Fractions", "MANIFEST PACKER"],
+    land: ["Land Mission", "TERRAIN SURVEY"]
   };
 
   function play(name) {
@@ -327,6 +328,447 @@
     nextWord();
   }
 
+  function initLand() {
+    setHeader("land");
+    const world = {
+      biome: "grass",
+      seed: rand(1000, 999999),
+      width: 800,
+      height: 500,
+      x: 0,
+      y: 0,
+      speed: 0,
+      throttle: 0,
+      heading: -Math.PI / 2,
+      turn: 0
+    };
+    const palettes = {
+      grass: {
+        label: "Grass",
+        low: [25, 77, 43],
+        mid: [58, 134, 61],
+        high: [132, 184, 82],
+        accent: [42, 154, 94],
+        track: [71, 86, 43],
+        particle: [154, 225, 100]
+      },
+      desert: {
+        label: "Desert",
+        low: [151, 102, 48],
+        mid: [208, 168, 83],
+        high: [238, 214, 136],
+        accent: [184, 127, 59],
+        track: [133, 84, 42],
+        particle: [231, 199, 122]
+      }
+    };
+    const keys = {};
+    const particles = [];
+    const treads = [];
+    let lastFrame = performance.now();
+    let animationFrame = 0;
+    let running = true;
+    let touchBase = null;
+
+    workspace.innerHTML = [
+      '<div class="test-layout land-layout">',
+      '<div class="line-card land-map-card"><canvas id="land-map" width="' + world.width + '" height="' + world.height + '" aria-label="Procedural top view terrain driving field"></canvas></div>',
+      '<div class="line-card land-control-card">',
+      '<div class="prototype-big">LAND MISSION</div>',
+      '<p class="land-readout">Biome <strong id="land-biome">Grass</strong></p>',
+      '<p class="land-readout">Distance <strong id="land-distance">0</strong></p>',
+      '<p class="land-readout">Speed <strong id="land-speed">0</strong></p>',
+      '<p class="land-readout">Throttle <strong id="land-throttle">0%</strong></p>',
+      '<div class="test-controls land-controls">',
+      button("Grass", 'data-biome="grass"'),
+      button("Desert", 'data-biome="desert"'),
+      button("New Map", 'data-action="regenerate"'),
+      "</div>",
+      '<div class="land-legend"><span><i class="land-swatch land-low"></i>low ground</span><span><i class="land-swatch land-high"></i>high ground</span><span><i class="land-swatch land-path"></i>tire track</span><span><i class="land-swatch land-water"></i>water / oasis</span></div>',
+      '<p class="land-note">Hold forward to add throttle. Spacebar brakes. Steer with left/right, A/D, or drag inside the terrain window.</p>',
+      "</div></div>"
+    ].join("");
+
+    const canvas = document.getElementById("land-map");
+    const context = canvas.getContext("2d");
+    const biomeNode = document.getElementById("land-biome");
+    const distanceNode = document.getElementById("land-distance");
+    const speedNode = document.getElementById("land-speed");
+    const throttleNode = document.getElementById("land-throttle");
+    const buggy = new Image();
+    buggy.src = "../assets/images/buggy_top.png";
+    const terrainAtlas = new Image();
+    terrainAtlas.src = "../assets/images/terrain_texture_samples.png";
+    const terrainPixel = 6;
+    const atlasTile = 108;
+    const atlasStepX = 119;
+    const atlasBrush = 16;
+    const buggyWidth = 96;
+    const buggyHeight = buggyWidth * 1.5;
+    const rearAxleOffset = buggyHeight * 0.34;
+    const wheelSideOffset = buggyWidth * 0.25;
+    const wheelBase = 18;
+    const atlasRows = {
+      desert: 75,
+      grass: 244
+    };
+    const textureFamilies = {
+      grass: {
+        low: [tile("grass", 0), tile("grass", 5), tile("grass", 7)],
+        mid: [tile("grass", 0), tile("grass", 1), tile("grass", 5)],
+        high: [tile("grass", 2), tile("grass", 5), tile("grass", 7)],
+        route: [tile("grass", 3), tile("grass", 4), tile("grass", 8)],
+        water: [tile("desert", 7), tile("grass", 7), tile("grass", 8)]
+      },
+      desert: {
+        low: [tile("desert", 0), tile("desert", 1), tile("desert", 4)],
+        mid: [tile("desert", 0), tile("desert", 2), tile("desert", 5)],
+        high: [tile("desert", 3), tile("desert", 6), tile("desert", 9)],
+        route: [tile("desert", 2), tile("desert", 5), tile("desert", 8)],
+        water: [tile("desert", 7), tile("grass", 7), tile("grass", 2)]
+      }
+    };
+
+    function seededNoise(x, y, scale, salt) {
+      const value = Math.sin((x * 127.1 + y * 311.7 + world.seed * 0.013 + salt * 19.19) / scale) * 43758.5453;
+      return value - Math.floor(value);
+    }
+
+    function smoothNoise(x, y, scale, salt) {
+      const x0 = Math.floor(x / scale);
+      const y0 = Math.floor(y / scale);
+      const tx = x / scale - x0;
+      const ty = y / scale - y0;
+      const a = seededNoise(x0, y0, 1, salt);
+      const b = seededNoise(x0 + 1, y0, 1, salt);
+      const c = seededNoise(x0, y0 + 1, 1, salt);
+      const d = seededNoise(x0 + 1, y0 + 1, 1, salt);
+      const ux = tx * tx * (3 - 2 * tx);
+      const uy = ty * ty * (3 - 2 * ty);
+      return lerp(lerp(a, b, ux), lerp(c, d, ux), uy);
+    }
+
+    function terrainValue(x, y) {
+      const broad = smoothNoise(x, y, 28, 1);
+      const middle = smoothNoise(x, y, 12, 2);
+      const detail = smoothNoise(x, y, 5, 3);
+      const ridge = Math.abs(smoothNoise(x, y, 18, 4) - 0.5) * 2;
+      return broad * 0.46 + middle * 0.28 + detail * 0.16 + ridge * 0.1;
+    }
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function mixColor(a, b, t) {
+      return [
+        Math.round(lerp(a[0], b[0], t)),
+        Math.round(lerp(a[1], b[1], t)),
+        Math.round(lerp(a[2], b[2], t))
+      ];
+    }
+
+    function rgb(color) {
+      return "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")";
+    }
+
+    function tile(row, col) {
+      return {
+        x: 16 + col * atlasStepX,
+        y: atlasRows[row],
+        width: atlasTile,
+        height: atlasTile
+      };
+    }
+
+    function drawFrame(now) {
+      if (!running) return;
+      const dt = Math.min(2, Math.max(0.4, (now - lastFrame) / 16.67));
+      lastFrame = now;
+      updateVehicle(dt);
+      drawTerrain();
+      drawTreads(dt);
+      updateParticles(dt);
+      drawParticles();
+      drawBuggy();
+      updateLandReadouts();
+      animationFrame = window.requestAnimationFrame(drawFrame);
+    }
+
+    function updateVehicle(dt) {
+      const keyTurn = (keys.ArrowLeft || keys.a ? -1 : 0) + (keys.ArrowRight || keys.d ? 1 : 0);
+      const accelerating = keys.ArrowUp || keys.w;
+      const braking = keys[" "] || keys.Spacebar || keys.Space;
+      const maxSpeed = world.biome === "desert" ? 1.85 : 2.15;
+      const rollingDrag = world.biome === "desert" ? 0.001 : 0.0008;
+      world.turn = touchBase ? world.turn : keyTurn;
+      const speedRatio = Math.min(1, world.speed / maxSpeed);
+      const steerAuthority = 0.18 + speedRatio * 0.24;
+      const steerAngle = world.turn * steerAuthority;
+      if (accelerating) {
+        world.throttle = Math.min(1, world.throttle + 0.015 * dt);
+      } else {
+        world.throttle = Math.max(0, world.throttle - 0.008 * dt);
+      }
+      if (braking) {
+        world.throttle = Math.max(0, world.throttle - 0.05 * dt);
+        world.speed = Math.max(0, world.speed - 0.12 * dt);
+      }
+      world.speed += (world.throttle * maxSpeed - world.speed) * 0.018 * dt;
+      world.speed = Math.max(0, world.speed - rollingDrag * dt);
+      const drift = Math.max(0, speedRatio - 0.58) * Math.abs(world.turn);
+      const grip = 1 - drift * 0.65;
+      world.heading += (world.speed / wheelBase) * Math.tan(steerAngle) * grip * dt;
+      world.x += Math.cos(world.heading) * world.speed * dt;
+      world.y += Math.sin(world.heading) * world.speed * dt;
+      if (drift > 0) {
+        const slipDirection = -Math.sign(world.turn || 1);
+        const sideSlip = drift * world.speed * 0.72 * dt * slipDirection;
+        world.x += Math.cos(world.heading + Math.PI / 2) * sideSlip;
+        world.y += Math.sin(world.heading + Math.PI / 2) * sideSlip;
+      }
+      if (world.speed > 0.12) {
+        addTreadMarks();
+      }
+      if (world.speed > 0.18 && (Math.abs(world.turn) > 0.05 || Math.random() < world.speed / maxSpeed)) emitParticles();
+    }
+
+    function drawTerrain() {
+      const palette = palettes[world.biome];
+      context.imageSmoothingEnabled = false;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      const pixel = terrainPixel;
+      for (let y = 0; y < canvas.height; y += pixel) {
+        for (let x = 0; x < canvas.width; x += pixel) {
+          const wx = (x - canvas.width / 2) / pixel + world.x;
+          const wy = (y - canvas.height / 2) / pixel + world.y;
+          const elevation = terrainValue(wx, wy);
+          const moisture = smoothNoise(wx, wy, 16, 8);
+          const route = Math.abs(wy - (Math.sin((wx + world.seed * 0.001) * 0.12) * 12)) < 1.4;
+          const water = world.biome === "grass"
+            ? moisture > 0.76 && elevation < 0.6
+            : moisture > 0.86 && elevation < 0.52;
+          let color;
+          let textureGroup;
+          if (water) {
+            color = world.biome === "grass" ? [37, 128, 143] : [41, 143, 117];
+            textureGroup = "water";
+          } else if (route) {
+            color = palette.track;
+            textureGroup = "route";
+          } else if (elevation < 0.42) {
+            color = mixColor(palette.low, palette.mid, elevation / 0.42);
+            textureGroup = "low";
+          } else {
+            color = mixColor(palette.mid, palette.high, (elevation - 0.42) / 0.58);
+            textureGroup = elevation > 0.68 ? "high" : "mid";
+          }
+          if (!water && moisture > 0.7) {
+            color = mixColor(color, palette.accent, 0.24);
+          }
+          drawTerrainBrush(x, y, wx, wy, textureGroup, color);
+        }
+      }
+    }
+
+    function drawTerrainBrush(x, y, wx, wy, group, fallbackColor) {
+      if (!terrainAtlas.complete || !terrainAtlas.naturalWidth) {
+        context.fillStyle = rgb(fallbackColor);
+        context.fillRect(x, y, terrainPixel, terrainPixel);
+        return;
+      }
+      const family = textureFamilies[world.biome][group] || textureFamilies[world.biome].mid;
+      const cellX = Math.floor(wx);
+      const cellY = Math.floor(wy);
+      const tileNoise = seededNoise(Math.floor(cellX / 3), Math.floor(cellY / 3), 1, 21);
+      const sampleNoiseX = seededNoise(cellX, cellY, 1, 22);
+      const sampleNoiseY = seededNoise(cellX, cellY, 1, 23);
+      const sample = family[Math.min(family.length - 1, Math.floor(tileNoise * family.length))];
+      const sx = sample.x + Math.floor(sampleNoiseX * (sample.width - atlasBrush));
+      const sy = sample.y + Math.floor(sampleNoiseY * (sample.height - atlasBrush));
+      context.drawImage(terrainAtlas, sx, sy, atlasBrush, atlasBrush, x, y, terrainPixel, terrainPixel);
+    }
+
+    function wheelPoints() {
+      const pixel = terrainPixel;
+      const side = wheelSideOffset;
+      const forwardX = Math.cos(world.heading);
+      const forwardY = Math.sin(world.heading);
+      const sideX = Math.cos(world.heading + Math.PI / 2);
+      const sideY = Math.sin(world.heading + Math.PI / 2);
+      return [-1, 1].map((direction) => {
+        const screenX = canvas.width / 2 + sideX * side * direction;
+        const screenY = canvas.height / 2 + sideY * side * direction;
+        return {
+          x: screenX,
+          y: screenY,
+          worldX: world.x + (screenX - canvas.width / 2) / pixel,
+          worldY: world.y + (screenY - canvas.height / 2) / pixel,
+          side: direction
+        };
+      });
+    }
+
+    function addTreadMarks() {
+      if (Math.random() > Math.min(0.92, 0.24 + world.speed * 0.18)) return;
+      wheelPoints().forEach((wheel) => {
+        treads.push({
+          x: wheel.worldX + (Math.random() - 0.5) * 0.6,
+          y: wheel.worldY + (Math.random() - 0.5) * 0.6,
+          heading: world.heading,
+          size: 27.2 + Math.random() * 22.4,
+          alpha: (world.biome === "grass" ? 0.1 : 0.15) + Math.random() * 0.075,
+          life: 850
+        });
+      });
+      if (treads.length > 420) treads.splice(0, treads.length - 420);
+    }
+
+    function drawTreads(dt) {
+      const pixel = terrainPixel;
+      context.save();
+      treads.forEach((mark) => {
+        mark.life -= dt;
+        const sx = (mark.x - world.x) * pixel + canvas.width / 2;
+        const sy = (mark.y - world.y) * pixel + canvas.height / 2;
+        if (sx < -20 || sx > canvas.width + 20 || sy < -20 || sy > canvas.height + 20) return;
+        context.translate(sx, sy);
+        context.rotate(mark.heading);
+        context.globalAlpha = Math.max(0, Math.min(mark.alpha, mark.life / 850 * mark.alpha));
+        context.fillStyle = "rgba(0, 0, 0, 1)";
+        context.fillRect(-mark.size * 0.45, -mark.size * 0.18, mark.size * 0.9, mark.size * 0.36);
+        context.setTransform(1, 0, 0, 1, 0, 0);
+      });
+      context.restore();
+      for (let i = treads.length - 1; i >= 0; i -= 1) {
+        if (treads[i].life <= 0) treads.splice(i, 1);
+      }
+    }
+
+    function emitParticles() {
+      const palette = palettes[world.biome];
+      const spread = world.biome === "grass" ? 18 : 28;
+      const count = world.biome === "grass" ? 2 : 3;
+      wheelPoints().forEach((wheel) => {
+        for (let i = 0; i < count; i += 1) {
+          const side = (Math.random() - 0.5) * spread * 0.25;
+          const back = 4 + Math.random() * 18;
+          const px = wheel.x + Math.cos(world.heading + Math.PI / 2) * side - Math.cos(world.heading) * back;
+          const py = wheel.y + Math.sin(world.heading + Math.PI / 2) * side - Math.sin(world.heading) * back;
+          particles.push({
+            x: px,
+            y: py,
+            vx: -Math.cos(world.heading) * (0.5 + Math.random() * 1.4) + Math.cos(world.heading + Math.PI / 2) * wheel.side * (0.25 + Math.random() * 0.45),
+            vy: -Math.sin(world.heading) * (0.5 + Math.random() * 1.4) + Math.sin(world.heading + Math.PI / 2) * wheel.side * (0.25 + Math.random() * 0.45),
+            life: world.biome === "grass" ? 32 : 48,
+            maxLife: world.biome === "grass" ? 32 : 48,
+            size: world.biome === "grass" ? 2 + Math.random() * 3 : 4 + Math.random() * 8,
+            color: palette.particle
+          });
+        }
+      });
+      if (particles.length > 160) particles.splice(0, particles.length - 160);
+    }
+
+    function updateParticles(dt) {
+      for (let i = particles.length - 1; i >= 0; i -= 1) {
+        const particle = particles[i];
+        particle.x += particle.vx * dt;
+        particle.y += particle.vy * dt;
+        particle.life -= dt;
+        if (particle.life <= 0) particles.splice(i, 1);
+      }
+    }
+
+    function drawParticles() {
+      particles.forEach((particle) => {
+        const alpha = Math.max(0, particle.life / particle.maxLife);
+        context.globalAlpha = world.biome === "grass" ? alpha * 0.75 : alpha * 0.42;
+        context.fillStyle = rgb(particle.color);
+        context.beginPath();
+        context.arc(particle.x, particle.y, particle.size * (1.1 - alpha * 0.35), 0, Math.PI * 2);
+        context.fill();
+      });
+      context.globalAlpha = 1;
+    }
+
+    function drawBuggy() {
+      context.save();
+      context.translate(canvas.width / 2, canvas.height / 2);
+      context.rotate(world.heading + Math.PI / 2);
+      context.shadowColor = "rgba(0, 0, 0, 0.65)";
+      context.shadowBlur = 12;
+      context.shadowOffsetY = 8;
+      if (buggy.complete) {
+        context.drawImage(buggy, -buggyWidth / 2, -buggyHeight / 2 - rearAxleOffset, buggyWidth, buggyHeight);
+      } else {
+        context.fillStyle = "#6cff7b";
+        context.fillRect(-20, -64 - rearAxleOffset, 40, 96);
+      }
+      context.restore();
+    }
+
+    function updateLandReadouts() {
+      const distance = Math.round(Math.sqrt(world.x * world.x + world.y * world.y) * 3);
+      biomeNode.textContent = palettes[world.biome].label;
+      distanceNode.textContent = distance;
+      speedNode.textContent = (world.speed * 10).toFixed(0);
+      throttleNode.textContent = Math.round(world.throttle * 100) + "%";
+    }
+
+    workspace.querySelectorAll("[data-biome]").forEach((item) => {
+      item.addEventListener("click", function () {
+        world.biome = item.dataset.biome;
+        particles.length = 0;
+        treads.length = 0;
+        play("beep");
+        feedback.textContent = palettes[world.biome].label + " drive mode. Watch the trail change.";
+      });
+    });
+    workspace.querySelector('[data-action="regenerate"]').addEventListener("click", function () {
+      world.seed = rand(1000, 999999);
+      world.x = 0;
+      world.y = 0;
+      world.speed = 0;
+      world.throttle = 0;
+      particles.length = 0;
+      treads.length = 0;
+      play("beep_good");
+      feedback.textContent = "New terrain stream seeded.";
+    });
+    document.addEventListener("keydown", function (event) {
+      keys[event.key] = true;
+      if (event.key === " ") event.preventDefault();
+    });
+    document.addEventListener("keyup", function (event) {
+      keys[event.key] = false;
+      if (event.key === " ") event.preventDefault();
+    });
+    canvas.addEventListener("pointerdown", function (event) {
+      canvas.setPointerCapture(event.pointerId);
+      touchBase = { x: event.clientX, y: event.clientY };
+    });
+    canvas.addEventListener("pointermove", function (event) {
+      if (!touchBase) return;
+      const dx = event.clientX - touchBase.x;
+      world.turn = Math.max(-1, Math.min(1, dx / 90));
+    });
+    canvas.addEventListener("pointerup", function () {
+      touchBase = null;
+      world.turn = 0;
+    });
+    canvas.addEventListener("pointercancel", function () {
+      touchBase = null;
+      world.turn = 0;
+    });
+    feedback.textContent = "Hold forward to add throttle. Spacebar brakes.";
+    animationFrame = window.requestAnimationFrame(drawFrame);
+    window.addEventListener("beforeunload", function () {
+      running = false;
+      window.cancelAnimationFrame(animationFrame);
+    });
+  }
+
   function initRhythm() {
     setHeader("rhythm");
     const keys = ["a", "s", "d", "f", "j", "k", "l"];
@@ -395,7 +837,7 @@
         delay += line.length > 18 ? 1150 : 760;
       });
       window.setTimeout(function () {
-        play("workout_music_1");
+        play("workout_music_2");
         countdown(done);
       }, delay + 240);
     }
@@ -1386,6 +1828,6 @@
     feedback.textContent = "Load crates to match the fractional manifest.";
   }
 
-  const inits = { mastermind: initMastermind, typing: initTyping, rhythm: initRhythm, bonds: initBonds, radio: initRadio, packing: initPacking };
+  const inits = { mastermind: initMastermind, typing: initTyping, rhythm: initRhythm, bonds: initBonds, radio: initRadio, packing: initPacking, land: initLand };
   (inits[mode] || initMastermind)();
 })();

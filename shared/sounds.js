@@ -12,6 +12,8 @@
     beep: "beep.wav",
     good: "beep_good.wav",
     error: "error.wav",
+    land_down: "land_down.wav",
+    launch_up: "launch_up.wav",
     electric_charge: "electric_charge.wav",
     power_charge: "power_charge.wav",
     power_down: "power_down.wav",
@@ -28,11 +30,11 @@
     radio_static: "radio_static.wav",
     small_victory: "small_victory.wav",
     train_indicator: "train_indicator.wav",
-    workout_music_1: "workout_music_1.mp3"
+    workout_music_2: "workout_music_2.mp3"
   };
   const players = {};
   const radioDataNames = new Set(["radio_music_1", "radio_music_2", "radio_music_3", "radio_music_4", "radio_music_5", "radio_music_6", "radio_music_7", "radio_music_8", "radio_static"]);
-  const singleChannelSounds = new Set(["air_brakes", "electric_charge", "power_charge", "power_down", "radio_music_1", "radio_music_2", "radio_music_3", "radio_music_4", "radio_music_5", "radio_music_6", "radio_music_7", "radio_music_8", "radio_static", "train_indicator", "workout_music_1"]);
+  const singleChannelSounds = new Set(["air_brakes", "electric_charge", "land_down", "launch_up", "power_charge", "power_down", "radio_music_1", "radio_music_2", "radio_music_3", "radio_music_4", "radio_music_5", "radio_music_6", "radio_music_7", "radio_music_8", "radio_static", "train_indicator", "workout_music_2"]);
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   const audioBuffers = {};
   let audioContext = null;
@@ -50,8 +52,8 @@
   for (const [name, file] of Object.entries(sounds)) {
     const audio = new Audio(new URL("../assets/sounds/" + file, script.src).href);
     audio.preload = "auto";
-    audio.volume = name === "workout_music_1" ? 0.3 : name === "error" ? 0.55 : 0.42;
-    if (name === "workout_music_1") audio.loop = true;
+    audio.volume = name === "workout_music_2" ? 0.3 : name === "error" ? 0.55 : 0.42;
+    if (name === "workout_music_2") audio.loop = true;
     players[name] = audio;
     loadAudioBuffer(name, audio.src);
   }
@@ -75,7 +77,7 @@
       return source;
     }
 
-    const buffered = playBufferedSound(name);
+    const buffered = name === "workout_music_2" ? null : playBufferedSound(name);
     if (buffered) return buffered;
 
     if (singleChannelSounds.has(name)) {

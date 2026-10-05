@@ -80,6 +80,13 @@
           meta: "Prototype lab for experimental games",
           href: "#test",
           menuTarget: "test"
+        },
+        {
+          code: "10",
+          title: "Time to Launch",
+          meta: "Minutes before or after the hour: catch the ship",
+          href: "time-to-launch/index.html",
+          launch: true
         }
       ]
     },
@@ -105,7 +112,8 @@
       ariaLabel: "Prototype games",
       back: true,
       cards: [
-        { code: "TY", title: "Lunar Keys", meta: "Low-pressure typing harvest", href: "test/index.html?game=typing", launch: true }
+        { code: "TY", title: "Lunar Keys", meta: "Low-pressure typing harvest", href: "test/index.html?game=typing", launch: true },
+        { code: "LM", title: "Land Mission", meta: "Procedural top-view terrain scouting", href: "test/index.html?game=land", launch: true }
       ]
     }
   };

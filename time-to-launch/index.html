@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Time to Launch</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=37">
+    <link rel="stylesheet" href="../shared/time-to-launch.css?v=1">
+  </head>
+  <body data-game="time-to-launch">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen time-game">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="time-panel" aria-labelledby="game-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line">PROGRAM 10 // LAUNCH SCHEDULER</p>
+            <h1 id="game-title">Time to Launch</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Mission <strong id="tm-round">1</strong></span>
+            <span>Score <strong id="tm-score">0</strong></span>
+            <span>Streak <strong id="tm-streak">0</strong></span>
+          </div>
+        </div>
+
+        <div class="time-scene" id="tm-scene">
+          <canvas class="time-scene-canvas" id="tm-scene-canvas" aria-hidden="true"></canvas>
+          <div class="time-hud" id="tm-hud" hidden>
+            <canvas class="clock-canvas" id="tm-hud-clock" width="168" height="168" aria-hidden="true"></canvas>
+            <div class="time-hud-text">
+              <strong id="tm-hud-time">12:00 AM</strong>
+              <span id="tm-hud-phase">MIDNIGHT</span>
+            </div>
+          </div>
+          <button class="time-speed" type="button" id="tm-speed" hidden>Speed 1X</button>
+          <div class="time-phase-flash" id="tm-phase-flash" hidden></div>
+          <div class="stage-result time-result" id="tm-result" hidden></div>
+        </div>
+
+        <section class="time-console" id="tm-console">
+          <div class="time-card ship-card">
+            <p class="time-card-label">Ship docks at</p>
+            <canvas class="clock-canvas" id="tm-ship-clock" width="264" height="264" aria-label="Ship docking clock"></canvas>
+            <p class="ship-ampm" id="tm-ship-ampm">AM // MORNING</p>
+          </div>
+
+          <div class="time-card plan-card">
+            <p class="time-brief" id="tm-brief">When should the astronaut get to the launch pad?</p>
+            <div class="plan-row">
+              <span class="plan-label">Arrive</span>
+              <div class="plan-group" id="tm-minutes-group">
+                <button class="step-button" type="button" data-step="minutes" data-delta="-5" aria-label="Fewer minutes">-</button>
+                <output class="plan-value plan-minutes" id="tm-minutes">15</output>
+                <button class="step-button" type="button" data-step="minutes" data-delta="5" aria-label="More minutes">+</button>
+                <span class="plan-unit">minutes</span>
+              </div>
+            </div>
+            <div class="plan-row">
+              <div class="plan-group dir-group" id="tm-dir-group">
+                <button class="dir-button" type="button" data-dir="before" aria-pressed="true">Before</button>
+                <button class="dir-button" type="button" data-dir="after" aria-pressed="false">After</button>
+              </div>
+              <div class="plan-group" id="tm-hour-group">
+                <button class="step-button" type="button" data-step="hour" data-delta="-1" aria-label="Earlier hour">-</button>
+                <output class="plan-value plan-hour" id="tm-hour">3:00 PM</output>
+                <button class="step-button" type="button" data-step="hour" data-delta="1" aria-label="Later hour">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="time-card launch-card">
+            <button class="command-button launch-button" type="button" id="tm-launch">Run the day</button>
+            <button class="command-button launch-button" type="button" id="tm-next" hidden>Next mission</button>
+          </div>
+        </section>
+
+        <p class="feedback" id="tm-feedback">Read the ship clock. Plan the astronaut's arrival.</p>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js?v=14"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/time-to-launch.js?v=2"></script>
+  </body>
+</html>

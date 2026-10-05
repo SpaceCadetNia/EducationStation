@@ -2,6 +2,7 @@
   if (document.body.dataset.game !== "space-racer") return;
 
   const track = document.getElementById("racer-track");
+  const lanes = track.querySelector(".racer-lanes");
   const ready = document.getElementById("racer-ready");
   const pauseButton = document.getElementById("racer-pause");
   const slider = document.getElementById("racer-position");
@@ -10,8 +11,12 @@
   const shipWrap = document.getElementById("racer-ship-wrap");
   const ship = document.getElementById("racer-ship");
   const station = document.getElementById("racer-station");
+  const stationWarning = document.getElementById("racer-station-warning");
   const pitstop = document.getElementById("pitstop-panel");
-  const pitReward = document.getElementById("pitstop-reward");
+  const picker = document.getElementById("pitstop-picker");
+  const pitResult = document.getElementById("pitstop-result");
+  const cargoSlots = document.getElementById("cargo-slots");
+  const cargoCount = document.getElementById("cargo-count");
   const question = document.getElementById("pitstop-question");
   const choices = document.getElementById("pitstop-choices");
   const launchButton = document.getElementById("pitstop-launch");
@@ -25,16 +30,45 @@
   const nextPitNode = document.getElementById("racer-next-pit");
   const fuelFill = document.getElementById("racer-fuel-fill");
   const pitSummary = document.getElementById("pitstop-summary");
+  const pitLevel = document.getElementById("pitstop-level");
 
   const obstacles = [];
-  const pitInterval = 500;
+  const MAX_FUEL = 100;
+  const FUEL_DRAIN = 0.006; // fuel per ms, the same at every speed
+  const WARNING_MS = 2000; // flash the station position this long before it appears
+  const HEADINGS = [-60, -40, -20, 0, 20, 40, 60];
+  const PERSONALITIES = {
+    cruiser: { speed: [0.8, 1.0], turnEvery: [2600, 5000], maxStep: 1, turnRate: 70, range: 1 },
+    weaver: { speed: [0.85, 1.1], turnEvery: [700, 1500], maxStep: 1, turnRate: 140, range: 2 },
+    drifter: { speed: [0.5, 0.7], turnEvery: [1400, 2800], maxStep: 2, turnRate: 60, range: 3 },
+    hotshot: { speed: [1.2, 1.45], turnEvery: [1800, 3600], maxStep: 2, turnRate: 220, range: 2 }
+  };
+  const PIT_TANK_SHARE = 0.9; // next station arrives when a full tank is 90% used
+  const CARGO_LIMIT = 5;
+  const MAX_SHIELD = 4;
+  const SHIP_DENSITY = 0.7;
+  const SCROLL_RATE = 0.0005; // background travel per ms, as a share of track height, at 1x
+  const STAR_TILE = 46; // px, matches .racer-lanes background-size
+  const GRID_TILE = 34; // px, matches the track's horizontal grid lines
+  const VISITS_PER_LEVEL = 3;
+  const MAX_LEVEL = 10;
+  const FUEL_ITEM = 35;
+  const SPEED_ITEM = 0.22;
+  const STATION_DOCK_Y = 40; // stationY where the docking window opens
+  const STATION_START_Y = -46;
+  const REWARDS = {
+    fuel: { icon: "⛽", label: "Fuel" },
+    speed: { icon: "⚡", label: "Speed" },
+    shield: { icon: "🛡", label: "Shield" }
+  };
   let running = false;
   let paused = false;
   let lastTime = 0;
   let spawnTimer = 0;
   let distance = 0;
-  let nextPit = pitInterval;
-  let fuel = 100;
+  let legElapsed = 0;
+  let legDuration = 0;
+  let fuel = MAX_FUEL;
   let speedBoost = 1;
   let shield = 4;
   let shipX = 50;
@@ -42,7 +76,16 @@
   let problem = null;
   let inPitstop = false;
   let stationActive = false;
-  let stationY = -42;
+  let scrollOffset = 0;
+  let warningActive = false;
+  let warningElapsed = 0;
+  let outOfFuelNoted = false;
+  let stationY = STATION_START_Y;
+  let selectedReward = "fuel";
+  let cargo = [];
+  let stationVisits = 0;
+  let answerLocked = false;
+  let answerTimer = 0;
   let stationX = 50;
   let pointerActive = false;
   let pointerBaseX = 0;
@@ -68,14 +111,24 @@
     return Math.max(min, Math.min(max, value));
   }
 
+  // Space dust and grid lines stream past at the ship's real speed
+  // (slower when coasting with no fuel, faster with speed boosts).
+  function scrollBackground(delta, speed) {
+    const height = track.clientHeight || 400;
+    scrollOffset = (scrollOffset + delta * SCROLL_RATE * speed * height) % (STAR_TILE * GRID_TILE);
+    lanes.style.backgroundPosition = "0 " + (scrollOffset % STAR_TILE).toFixed(1) + "px";
+    track.style.backgroundPosition = "0 " + (scrollOffset % GRID_TILE).toFixed(1) + "px, 0 0, 0 0";
+  }
+
   function reset() {
     clearObstacles();
     distance = 0;
-    nextPit = pitInterval;
-    fuel = 100;
+    fuel = MAX_FUEL;
     speedBoost = 1;
-    shield = 4;
+    shield = MAX_SHIELD;
+    stationVisits = 0;
     shipX = 50;
+    startLeg();
     pointerActive = false;
     pointerTurn = 0;
     pointerControl = null;
@@ -89,6 +142,8 @@
     running = true;
     inPitstop = false;
     stationActive = false;
+    hideWarning();
+    outOfFuelNoted = false;
     station.hidden = true;
     pitstop.hidden = true;
     track.classList.remove("racer-paused");
@@ -110,10 +165,13 @@
     distanceBigNode.textContent = distanceValue;
     fuelNode.textContent = Math.max(0, Math.floor(fuel));
     if (fuelFill) fuelFill.style.width = Math.max(0, Math.min(100, fuel)) + "%";
-    shieldNode.textContent = shield;
-    statusSpeedNode.textContent = currentSpeed().toFixed(1);
-    speedNode.textContent = currentSpeed().toFixed(1);
-    nextPitNode.textContent = stationActive ? "DOCK" : Math.max(0, Math.floor(nextPit - distance));
+    shieldNode.innerHTML = shieldBoxesHtml();
+    shieldNode.setAttribute("aria-label", "Shield " + shield + " of " + MAX_SHIELD);
+    statusSpeedNode.textContent = speedBoost.toFixed(1) + "x";
+    speedNode.textContent = speedBoost.toFixed(1) + "x";
+    track.classList.toggle("racer-no-fuel", fuel <= 0);
+    fuelNode.parentElement.classList.toggle("hud-empty", fuel <= 0);
+    nextPitNode.textContent = stationActive || inPitstop ? "DOCK" : Math.max(0, Math.ceil(Math.round(legDuration - legElapsed) / 1000)) + "s";
     shipWrap.classList.remove("shield-green", "shield-yellow", "shield-red", "shield-critical");
     shipWrap.classList.add(shield >= 4 ? "shield-green" : shield === 3 ? "shield-yellow" : shield === 2 ? "shield-red" : "shield-critical");
   }
@@ -159,14 +217,81 @@
     if (!pointerActive) updateSteerPuck(Math.abs(keyboardTurn) > 0.01 || keys.left || keys.right ? keyboardTurn : sliderTurn);
   }
 
+  // Stations arrive on a timer, not by distance: a full tank lasts just
+  // past the next station, so anything less than full means a slowdown.
+  function fullTankMs() {
+    return MAX_FUEL / FUEL_DRAIN;
+  }
+
+  function startLeg() {
+    legElapsed = 0;
+    legDuration = PIT_TANK_SHARE * fullTankMs();
+  }
+
+  function stationApproachMs(speed) {
+    return (STATION_DOCK_Y - STATION_START_Y) / (0.012 * (0.75 + speed * 0.32));
+  }
+
+  function trackAspect() {
+    const width = track.clientWidth || 1;
+    return (track.clientHeight || 1) / width;
+  }
+
+  function between(range) {
+    return range[0] + Math.random() * (range[1] - range[0]);
+  }
+
+  function pickPersonality() {
+    const roll = Math.random();
+    if (roll < 0.3) return "cruiser";
+    if (roll < 0.6) return "weaver";
+    if (roll < 0.85) return "drifter";
+    return "hotshot";
+  }
+
+  // Like skiers on a slope: each ship holds a heading for a while, then
+  // picks a new one nearby. Mostly downhill, sometimes a wide sideways cut.
+  function chooseHeading(obstacle, forceDir) {
+    const p = PERSONALITIES[obstacle.kind];
+    const center = 3;
+    let index = HEADINGS.indexOf(obstacle.targetHeading);
+    if (index < 0) index = center;
+    let step = rand(1, p.maxStep) * (Math.random() < 0.5 ? -1 : 1);
+    // Pull back toward straight down so ships keep coming at you.
+    if (Math.abs(index + step - center) > p.range) step = index > center ? -1 : 1;
+    if (forceDir) step = forceDir * Math.max(1, Math.abs(step));
+    obstacle.targetHeading = HEADINGS[clamp(center - p.range, center + p.range, index + step)];
+    obstacle.nextTurn = between(p.turnEvery);
+  }
+
   function spawnObstacle() {
     const node = document.createElement("div");
     node.className = "racer-obstacle";
-    node.style.left = rand(8, 92) + "%";
-    node.style.top = "-12%";
     node.innerHTML = '<img src="../assets/images/ship_off.png" alt="">';
+    const kind = pickPersonality();
+    const p = PERSONALITIES[kind];
+    const range = HEADINGS.slice(3 - p.range, 4 + p.range);
+    const heading = range[rand(0, range.length - 1)];
+    const obstacle = {
+      node,
+      kind,
+      y: -12,
+      x: rand(8, 92),
+      heading,
+      targetHeading: heading,
+      speedFactor: between(p.speed),
+      nextTurn: between(p.turnEvery) * 0.6,
+      hit: false
+    };
     track.appendChild(node);
-    obstacles.push({ node, y: -12, x: Number.parseFloat(node.style.left), hit: false });
+    obstacles.push(obstacle);
+    placeObstacle(obstacle);
+  }
+
+  function placeObstacle(obstacle) {
+    obstacle.node.style.left = obstacle.x + "%";
+    obstacle.node.style.top = obstacle.y + "%";
+    obstacle.node.style.transform = "translateX(-50%) rotate(" + obstacle.heading.toFixed(1) + "deg)";
   }
 
   function step(now) {
@@ -181,14 +306,26 @@
       shipX = Math.max(6, Math.min(94, shipX + steering * delta * 0.026));
       updateShip();
       distance += delta * 0.035 * speed;
-      fuel = Math.max(0, fuel - delta * 0.006 * speedBoost);
+      fuel = Math.max(0, fuel - delta * FUEL_DRAIN);
+      if (fuel <= 0 && !outOfFuelNoted) {
+        outOfFuelNoted = true;
+        feedback.textContent = "Out of fuel! Coasting slowly to the next station.";
+      }
       spawnTimer -= delta;
       if (spawnTimer <= 0) {
         spawnObstacle();
-        spawnTimer = Math.max(520, 1300 - distance * 0.7);
+        // Dividing by SHIP_DENSITY spawns 30% fewer ships than before.
+        spawnTimer = Math.max(520, 1300 - distance * 0.7) / SHIP_DENSITY;
       }
+      scrollBackground(delta, speed);
       moveObstacles(delta, speed, now);
-      if (distance >= nextPit && !stationActive && !inPitstop) deployStation();
+      legElapsed += delta;
+      if (!stationActive && !inPitstop && !warningActive &&
+        legElapsed >= legDuration - stationApproachMs(speed) - WARNING_MS) showWarning();
+      if (warningActive) {
+        warningElapsed += delta;
+        if (warningElapsed >= WARNING_MS) deployStation();
+      }
       moveStation(delta, speed);
       updateHud();
     }
@@ -197,10 +334,21 @@
   }
 
   function moveObstacles(delta, speed, now) {
+    const aspect = trackAspect();
     for (let index = obstacles.length - 1; index >= 0; index -= 1) {
       const obstacle = obstacles[index];
-      obstacle.y += delta * 0.025 * (1.2 + speed * 0.5);
-      obstacle.node.style.top = obstacle.y + "%";
+      const p = PERSONALITIES[obstacle.kind];
+      obstacle.nextTurn -= delta;
+      if (obstacle.x < 10 && obstacle.targetHeading <= 0) chooseHeading(obstacle, 1);
+      else if (obstacle.x > 90 && obstacle.targetHeading >= 0) chooseHeading(obstacle, -1);
+      else if (obstacle.nextTurn <= 0) chooseHeading(obstacle);
+      const turn = (delta / 1000) * p.turnRate;
+      obstacle.heading += clamp(-turn, turn, obstacle.targetHeading - obstacle.heading);
+      const radians = (obstacle.heading * Math.PI) / 180;
+      const base = delta * 0.025 * (1.2 + speed * 0.5) * obstacle.speedFactor;
+      obstacle.y += base * (0.55 + 0.45 * Math.cos(radians));
+      obstacle.x = clamp(3, 97, obstacle.x + base * Math.sin(radians) * aspect * 1.1);
+      placeObstacle(obstacle);
 
       if (!obstacle.hit && obstacle.y > 69 && obstacle.y < 87 && Math.abs(obstacle.x - shipX) < 9) {
         obstacle.hit = true;
@@ -216,14 +364,28 @@
 
   function deployStation() {
     stationActive = true;
-    stationY = -46;
-    stationX = 50;
-    nextPit += pitInterval;
+    stationY = STATION_START_Y;
+    hideWarning();
     station.hidden = false;
     station.style.left = stationX + "%";
     station.style.top = stationY + "%";
     feedback.textContent = "Station ahead. Steer into it to dock.";
+  }
+
+  function showWarning() {
+    warningActive = true;
+    warningElapsed = 0;
+    stationX = rand(22, 78);
+    stationWarning.style.left = stationX + "%";
+    stationWarning.hidden = false;
+    feedback.textContent = "Station coming! Get under the warning sign.";
     playSound("train_indicator");
+  }
+
+  function hideWarning() {
+    warningActive = false;
+    warningElapsed = 0;
+    stationWarning.hidden = true;
   }
 
   function moveStation(delta, speed) {
@@ -231,8 +393,7 @@
     stationY += delta * 0.012 * (0.75 + speed * 0.32);
     station.style.top = stationY + "%";
 
-    const stationCenterY = stationY + 18;
-    if (stationCenterY > 58 && stationCenterY < 88 && Math.abs(stationX - shipX) < 24) {
+    if (shipTouchesStation()) {
       dockPitstop();
       return;
     }
@@ -240,8 +401,27 @@
     if (stationY > 120) {
       stationActive = false;
       station.hidden = true;
+      startLeg();
       feedback.textContent = "Station missed. Keep racing to the next dock.";
     }
+  }
+
+  // Dock only when the ship actually overlaps the station artwork.
+  // station.png has transparent margins: the ring spans ~14%-86% of its width.
+  function insetRect(rect, left, top, right, bottom) {
+    return {
+      left: rect.left + rect.width * left,
+      right: rect.right - rect.width * right,
+      top: rect.top + rect.height * top,
+      bottom: rect.bottom - rect.height * bottom
+    };
+  }
+
+  function shipTouchesStation() {
+    const art = station.querySelector("img") || station;
+    const s = insetRect(art.getBoundingClientRect(), 0.15, 0.08, 0.15, 0.1);
+    const p = insetRect(ship.getBoundingClientRect(), 0.18, 0.12, 0.18, 0.12);
+    return p.left < s.right && p.right > s.left && p.top < s.bottom && p.bottom > s.top;
   }
 
   function hitShield(now) {
@@ -267,6 +447,7 @@
     slider.value = 0;
     ship.src = "../assets/images/ship_off.png";
     station.hidden = true;
+    hideWarning();
     track.classList.remove("racer-paused");
     pauseButton.textContent = "II";
     feedback.textContent = "Race over. Distance " + Math.floor(distance) + ". Press READY to restart.";
@@ -294,64 +475,225 @@
     updateSteerPuck(0);
     updateShip();
     playSound("powerup_2");
+    cargo = [];
+    stationVisits += 1;
+    pitLevel.textContent = mathLevel();
+    answerLocked = false;
+    pitResult.textContent = "";
+    pitResult.className = "pitstop-result";
+    if (fuel >= MAX_FUEL && selectedReward === "fuel") selectedReward = "speed";
     updatePitSummary();
+    updatePicker();
+    renderCargo();
     buildProblem();
-    feedback.textContent = "Pitstop docked. Solve as many as you like, then launch.";
+    feedback.textContent = "Pitstop docked. Pick what to earn. Cargo holds " + CARGO_LIMIT + " items.";
+  }
+
+  // ---------- Math levels ----------
+  // Every 3 station visits unlocks a new problem type. Each problem is drawn
+  // from the newest level and the two before it.
+  function mathLevel() {
+    return Math.min(MAX_LEVEL, Math.floor(Math.max(0, stationVisits - 1) / VISITS_PER_LEVEL));
+  }
+
+  // "Up to N" = the N-times tables: one factor 2..N, the other 2..10
+  // (2..12 for the 12s). No x1 or x0 problems.
+  function timesTable(maxFactor) {
+    const table = rand(2, maxFactor);
+    const other = rand(2, maxFactor === 12 ? 12 : 10);
+    const pair = Math.random() < 0.5 ? [table, other] : [other, table];
+    return { text: pair[0] + " × " + pair[1], answer: pair[0] * pair[1] };
+  }
+
+  function sumOf(count) {
+    const terms = Array.from({ length: count }, () => rand(1, 9));
+    return { text: terms.join(" + "), answer: terms.reduce((total, n) => total + n, 0) };
+  }
+
+  function mixedChain(allowNegative) {
+    const count = rand(3, 4);
+    let total = rand(2, 9);
+    let text = String(total);
+    for (let index = 1; index < count; index += 1) {
+      const n = rand(1, 9);
+      const subtract = Math.random() < 0.5;
+      if (subtract && (allowNegative || total - n >= 0)) {
+        total -= n;
+        text += " - " + n;
+      } else {
+        total += n;
+        text += " + " + n;
+      }
+    }
+    if (allowNegative && total >= 0 && Math.random() < 0.5) {
+      const n = total + rand(1, 6);
+      total -= n;
+      text += " - " + n;
+    }
+    return { text, answer: total };
+  }
+
+  const PROBLEM_LEVELS = [
+    () => { const a = rand(1, 9); const b = rand(1, 9); return { text: a + " + " + b, answer: a + b }; },
+    () => timesTable(3),
+    () => { const a = rand(10, 89); const b = rand(10, 99 - a); return { text: a + " + " + b, answer: a + b }; },
+    () => timesTable(6),
+    () => timesTable(9),
+    () => { const a = rand(1, 9); const b = rand(0, a); return { text: a + " - " + b, answer: a - b }; },
+    () => sumOf(3),
+    () => timesTable(12),
+    () => sumOf(4),
+    () => mixedChain(false),
+    () => mixedChain(true)
+  ];
+
+  function makeProblem() {
+    const level = mathLevel();
+    const pick = rand(Math.max(0, level - 2), level);
+    return PROBLEM_LEVELS[pick]();
   }
 
   function buildProblem() {
-    const a = rand(2, 12);
-    const b = rand(2, 12);
-    const useMultiply = distance > 1200 && Math.random() > 0.45;
-    const answer = useMultiply ? a * b : a + b;
-    const prompt = useMultiply ? a + " x " + b : a + " + " + b;
-    const options = [answer, answer + rand(1, 4), Math.max(0, answer - rand(1, 4)), answer + rand(5, 9)]
-      .sort(() => Math.random() - 0.5);
-    const rewardType = choice(["fuel", "speed", "shield"]);
-    problem = { answer, rewardType };
-    pitReward.textContent = rewardType === "fuel" ? "⛽ Earn Fuel" : rewardType === "speed" ? "⚡ Earn Speed" : "🛡 Earn Shield";
-    question.textContent = prompt + " = ?";
+    const made = makeProblem();
+    const answer = made.answer;
+    const options = [answer];
+    let guard = 0;
+    while (options.length < 4 && guard < 100) {
+      guard += 1;
+      let wrong = answer + (Math.random() < 0.5 ? -1 : 1) * rand(1, Math.max(4, Math.min(12, Math.round(Math.abs(answer) / 4) + 3)));
+      if (answer >= 0) wrong = Math.max(0, wrong);
+      if (!options.includes(wrong)) options.push(wrong);
+    }
+    options.sort(() => Math.random() - 0.5);
+    problem = { answer };
+    question.textContent = made.text + " = ?";
     choices.innerHTML = options.map((value) => '<button type="button" class="command-button" data-answer="' + value + '">' + value + "</button>").join("");
+  }
+
+  function shieldBoxesHtml() {
+    const boxes = [];
+    for (let level = 1; level <= MAX_SHIELD; level += 1) {
+      const filled = level <= shield;
+      boxes.push('<span class="shield-box shield-level-' + level + (filled ? " filled" : "") + '"></span>');
+    }
+    return boxes.join("");
   }
 
   function choice(values) {
     return values[rand(0, values.length - 1)];
   }
 
+  // Same labels, icons and numbers as the race HUD.
   function updatePitSummary() {
     pitSummary.innerHTML = [
-      '<span>⛽ Fuel <strong>' + Math.floor(fuel) + "</strong></span>",
-      '<span>⚡ Speed <strong>' + speedBoost.toFixed(1) + "x</strong></span>",
-      '<span>🛡 Shield <strong>' + shield + "</strong></span>"
+      '<span class="hud-fuel' + (fuel <= 0 ? " hud-empty" : "") + '">⛽ Fuel <strong>' + Math.max(0, Math.floor(fuel)) + "</strong></span>",
+      "<span>⚡ Speed <strong>" + speedBoost.toFixed(1) + "x</strong></span>",
+      '<span class="hud-shield"><span class="shield-boxes" role="img" aria-label="Shield ' + shield + " of " + MAX_SHIELD + '">' + shieldBoxesHtml() + "</span></span>"
     ].join("");
   }
 
+  function cargoFull() {
+    return cargo.length >= CARGO_LIMIT;
+  }
+
+  function rewardAvailable(type) {
+    if (type === "fuel") return fuel < MAX_FUEL;
+    if (type === "shield") return shield < MAX_SHIELD;
+    return true;
+  }
+
+  function updatePicker() {
+    if (!rewardAvailable(selectedReward)) {
+      selectedReward = ["fuel", "speed", "shield"].find(rewardAvailable) || "speed";
+    }
+    picker.querySelectorAll("[data-reward]").forEach(function (button) {
+      const type = button.dataset.reward;
+      button.setAttribute("aria-pressed", String(type === selectedReward));
+      button.disabled = !rewardAvailable(type) || cargoFull();
+      const full = (type === "fuel" && fuel >= MAX_FUEL) || (type === "shield" && shield >= MAX_SHIELD);
+      button.textContent = REWARDS[type].icon + " " + (full ? (type === "fuel" ? "Tank Full" : "Shields Full") : REWARDS[type].label);
+    });
+  }
+
+  function renderCargo() {
+    const slots = [];
+    for (let index = 0; index < CARGO_LIMIT; index += 1) {
+      const item = cargo[index];
+      slots.push(item
+        ? '<span class="cargo-slot filled cargo-' + item + '" title="' + REWARDS[item].label + '">' + REWARDS[item].icon + "</span>"
+        : '<span class="cargo-slot"></span>');
+    }
+    cargoSlots.innerHTML = slots.join("");
+    cargoCount.textContent = cargo.length + "/" + CARGO_LIMIT;
+  }
+
+  function applyReward(type) {
+    if (type === "fuel") fuel = Math.min(MAX_FUEL, fuel + FUEL_ITEM);
+    else if (type === "speed") speedBoost += SPEED_ITEM;
+    else shield = Math.min(MAX_SHIELD, shield + 1);
+  }
+
+  function showCargoFull() {
+    question.textContent = "Cargo full!";
+    choices.innerHTML = "";
+    feedback.textContent = "Cargo bay full. Launch when ready.";
+    launchButton.focus({ preventScroll: true });
+  }
+
+  picker.addEventListener("click", function (event) {
+    const button = event.target.closest("[data-reward]");
+    if (!button || button.disabled) return;
+    selectedReward = button.dataset.reward;
+    playSound("beep");
+    updatePicker();
+  });
+
   choices.addEventListener("click", function (event) {
     const button = event.target.closest("[data-answer]");
-    if (!button || !problem) return;
+    if (!button || !problem || answerLocked || cargoFull()) return;
+    answerLocked = true;
     const value = Number(button.dataset.answer);
-    if (value === problem.answer) {
-      if (problem.rewardType === "fuel") {
-        fuel += 35;
-      } else if (problem.rewardType === "speed") {
-        speedBoost += 0.22;
-      } else {
-        shield += 1;
-      }
+    const correct = value === problem.answer;
+    choices.querySelectorAll("[data-answer]").forEach(function (option) {
+      option.disabled = true;
+      if (Number(option.dataset.answer) === problem.answer) option.classList.add("answer-correct");
+    });
+    if (!correct) button.classList.add("answer-wrong");
+
+    if (correct) {
+      const type = selectedReward;
+      applyReward(type);
+      cargo.push(type);
       playSound("small_victory");
-      feedback.textContent = problem.rewardType === "fuel" ? "Fuel loaded. Solve again or launch." : problem.rewardType === "speed" ? "Speed tuned. Solve again or launch." : "Shield layer added. Solve again or launch.";
+      pitResult.textContent = "✓ Correct! +" + REWARDS[type].icon + " " + REWARDS[type].label;
+      pitResult.className = "pitstop-result result-correct";
+      feedback.textContent = REWARDS[type].label + " loaded into cargo.";
+      renderCargo();
       updateHud();
       updatePitSummary();
-      buildProblem();
-      return;
+    } else {
+      playSound("error");
+      pitResult.textContent = "✗ Not quite. " + question.textContent.replace("?", problem.answer);
+      pitResult.className = "pitstop-result result-wrong";
+      feedback.textContent = "No cargo this time. Try the next one.";
     }
-    playSound("error");
-    feedback.textContent = "Not quite. Try this station problem.";
-    buildProblem();
+
+    answerTimer = window.setTimeout(function () {
+      answerLocked = false;
+      pitResult.textContent = "";
+      pitResult.className = "pitstop-result";
+      updatePicker();
+      if (cargoFull()) showCargoFull();
+      else buildProblem();
+    }, correct ? 1300 : 2000);
   });
 
   function resumeRace() {
+    window.clearTimeout(answerTimer);
+    answerLocked = false;
     problem = null;
+    startLeg();
+    outOfFuelNoted = false;
     pitstop.hidden = true;
     station.hidden = true;
     inPitstop = false;
@@ -466,6 +808,7 @@
     window.requestAnimationFrame(step);
   });
 
+  startLeg();
   updateShip();
   updateHud();
 })();
