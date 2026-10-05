@@ -94,13 +94,38 @@
       return source;
     }
 
-    const audio = source.cloneNode();
+    const audio = pooledPlayer(name, source);
     audio.volume = source.volume;
+    try {
+      audio.currentTime = 0;
+    } catch (error) {
+      // Some browsers reject currentTime changes before metadata is ready.
+    }
     audio.play().catch(function () {
       // Browsers may block sound until a user gesture. The click that called us
       // usually unlocks it, and failures here should never block play.
     });
     return audio;
+  }
+
+  // HTMLAudio fallback: reuse a few players per sound instead of cloning a
+  // new <audio> element on every beep. Unlimited clones pile up over a long
+  // session (e.g. Key Echo beeps 15+ times per level) and make the page lag.
+  const POOL_SIZE = 4;
+  const pools = {};
+  function pooledPlayer(name, source) {
+    const pool = pools[name] || (pools[name] = { players: [], next: 0 });
+    const idle = pool.players.find((audio) => audio.paused || audio.ended);
+    if (idle) return idle;
+    if (pool.players.length < POOL_SIZE) {
+      const audio = source.cloneNode();
+      pool.players.push(audio);
+      return audio;
+    }
+    const oldest = pool.players[pool.next];
+    pool.next = (pool.next + 1) % POOL_SIZE;
+    oldest.pause();
+    return oldest;
   }
 
   function stopRadioData() {
@@ -290,6 +315,17 @@
     if (isStartGated && !musicStarted) return;
     sessionStorage.setItem(musicKey, String(music.currentTime || 0));
   }
+
+  // An AudioContext made before the first tap/key starts "suspended", and
+  // nothing resumed it on pages that never called unlockAudio(), so every
+  // sound fell back to HTMLAudio. Resume it on any user gesture.
+  function resumeOnGesture() {
+    const context = audioContext;
+    if (context && context.state !== "running") unlockAudio();
+  }
+  ["pointerdown", "keydown", "touchend"].forEach(function (type) {
+    window.addEventListener(type, resumeOnGesture, { capture: true, passive: true });
+  });
 
   document.addEventListener("educationstation:sound", function (event) {
     play(event.detail && event.detail.name);
