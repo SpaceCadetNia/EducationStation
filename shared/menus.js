@@ -87,6 +87,13 @@
           meta: "Minutes before or after the hour: catch the ship",
           href: "time-to-launch/index.html",
           launch: true
+        },
+        {
+          code: "11",
+          title: "Vowel Customs",
+          meta: "Translate alien travelers: long and short vowel sounds",
+          href: "vowel-customs/index.html",
+          launch: true
         }
       ]
     },

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Vowel Customs</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=63">
+    <link rel="stylesheet" href="../shared/vowel-customs.css?v=4">
+  </head>
+  <body data-game="vowel-customs">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen customs-game">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="customs-panel" aria-labelledby="game-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line">PROGRAM 11 // CUSTOMS TRANSLATOR</p>
+            <h1 id="game-title">Vowel Customs</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Stage <strong id="vc-stage">Short</strong> <small id="vc-progress">0/6</small></span>
+            <span>Score <strong id="vc-score">0</strong></span>
+            <span>Streak <strong id="vc-streak">0</strong></span>
+          </div>
+        </div>
+
+        <div class="customs-stage">
+          <div class="customs-scene" id="vc-scene">
+            <img class="customs-layer" src="../assets/images/arrival_background.png" alt="">
+            <img class="customs-pax" id="vc-pax" alt="" hidden>
+            <img class="customs-layer customs-front" src="../assets/images/arrival_foreground.png" alt="">
+
+            <div class="customs-bubble" id="vc-bubble" hidden>
+              <p class="customs-sentence" id="vc-sentence"></p>
+            </div>
+
+            <div class="customs-translator" id="vc-translator" hidden>
+              <div class="translator-top">
+                <span class="translator-label">Translator</span>
+                <span class="translator-word" id="vc-word" aria-live="polite"></span>
+                <button class="translator-hear" type="button" id="vc-hear-word" aria-label="Hear the word">🔊 Word</button>
+                <button class="translator-hear" type="button" id="vc-hear-sentence" aria-label="Hear the sentence">🔊 Sentence</button>
+                <button class="translator-hear translator-hint" type="button" id="vc-hint">💡 Hint</button>
+              </div>
+              <p class="translator-prompt" id="vc-prompt">Which vowel sound do you hear?</p>
+              <p class="translator-hint-text" id="vc-hint-text" aria-live="polite" hidden></p>
+              <div class="vowel-rows" id="vc-choices"></div>
+              <div class="translator-result" id="vc-result" aria-live="polite"></div>
+              <button class="command-button translator-next" type="button" id="vc-next" hidden>Next passenger</button>
+            </div>
+
+            <svg class="customs-link" id="vc-link" aria-hidden="true" hidden>
+              <path id="vc-link-path" pathLength="1"></path>
+              <circle id="vc-link-start" r="5"></circle>
+              <circle id="vc-link-end" r="5"></circle>
+            </svg>
+
+            <div class="customs-stamp" id="vc-stamp" hidden>Approved</div>
+            <button class="ready-field" type="button" id="vc-ready">&gt;&gt; OPEN BOOTH &lt;&lt;</button>
+          </div>
+        </div>
+
+        <p class="feedback" id="vc-feedback">Passengers are waiting. Open the booth.</p>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js?v=18"></script>
+    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/vowel-customs.js?v=4"></script>
+  </body>
+</html>

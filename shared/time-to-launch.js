@@ -100,6 +100,28 @@
   loadSprite("shipOff", "ship_off.png");
   loadSprite("astro", "passenger.png");
 
+  // A different astronaut each mission, from figure_sprites.png.
+  let figures = [];
+  let figureIndex = -1;
+  if (window.EducationStationSprites) {
+    window.EducationStationSprites.loadFigures().then(function (list) {
+      figures = list;
+      pickFigure();
+      if (mode !== "sim") render();
+    }).catch(function () {
+      // Fall back to passenger.png.
+    });
+  }
+
+  function pickFigure() {
+    if (!figures.length) return;
+    let next = rand(0, figures.length - 1);
+    if (figures.length > 1) {
+      while (next === figureIndex) next = rand(0, figures.length - 1);
+    }
+    figureIndex = next;
+  }
+
   function loadSprite(name, file) {
     const image = new Image();
     image.addEventListener("load", function () {
@@ -191,6 +213,7 @@
 
   function startMission() {
     mission = makeMission();
+    pickFigure();
     mode = "setup";
     simTime = 0;
     fired = new Set();
@@ -654,9 +677,15 @@
   }
 
   function drawAstronaut(t, L) {
-    const img = sprites.astro;
     const s = astronautState(t);
-    if (!img || !s) return;
+    if (!s) return;
+    const figure = figures[figureIndex];
+    if (figure) {
+      drawFigure(figure, t, L, s);
+      return;
+    }
+    const img = sprites.astro;
+    if (!img) return;
     const bodyH = L.ch * 0.1 * s.scale;
     const scale = bodyH / (ASTRO_FRAME.bottom - ASTRO_FRAME.top);
     const footX = L.cx + L.cw * s.x;
@@ -671,6 +700,20 @@
       ASTRO_FRAME.w * scale,
       ASTRO_FRAME.h * scale
     );
+    ctx.restore();
+  }
+
+  function drawFigure(figure, t, L, s) {
+    // Most figures are 228px tall in the sheet; taller ones carry an antenna.
+    const unit = (L.ch * 0.115 * s.scale) / 228;
+    const w = figure.width * unit;
+    const h = figure.height * unit;
+    const footX = L.cx + L.cw * s.x;
+    let footY = L.cy + L.ch * s.y;
+    if (s.walking) footY -= Math.abs(Math.sin(t * 2.4)) * h * 0.08;
+    ctx.save();
+    ctx.globalAlpha = clamp(s.alpha, 0, 1);
+    ctx.drawImage(figure.canvas, footX - w / 2, footY - h, w, h);
     ctx.restore();
   }
 

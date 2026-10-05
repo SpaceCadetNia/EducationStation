@@ -43,6 +43,18 @@
     drifter: { speed: [0.5, 0.7], turnEvery: [1400, 2800], maxStep: 2, turnRate: 60, range: 3 },
     hotshot: { speed: [1.2, 1.45], turnEvery: [1800, 3600], maxStep: 2, turnRate: 220, range: 2 }
   };
+  // Turn signals: ships blink toward their new heading before they turn.
+  const SIGNAL_MS = 900;
+  const EDGE_SIGNAL_MS = 550;
+  // What comes down the track. Ships steer (with signals); rocks and
+  // satellites just float and spin.
+  const OBSTACLE_MIX = [
+    { type: "ship", weight: 55 },
+    { type: "rockLarge", weight: 8, group: "rocksLarge", size: [70, 88], drift: [0.45, 0.6], spin: 18 },
+    { type: "rockMedium", weight: 13, group: "rocksMedium", size: [48, 60], drift: [0.5, 0.75], spin: 30 },
+    { type: "rockSmall", weight: 12, group: "rocksSmall", size: [24, 34], drift: [0.6, 0.9], spin: 50 },
+    { type: "satellite", weight: 12, group: "satellites", size: [62, 78], drift: [0.45, 0.65], spin: 10 }
+  ];
   const PIT_TANK_SHARE = 0.9; // next station arrives when a full tank is 90% used
   const CARGO_LIMIT = 5;
   const MAX_SHIELD = 4;
@@ -76,6 +88,7 @@
   let problem = null;
   let inPitstop = false;
   let stationActive = false;
+  let spriteGroups = null;
   let scrollOffset = 0;
   let warningActive = false;
   let warningElapsed = 0;
@@ -251,7 +264,8 @@
 
   // Like skiers on a slope: each ship holds a heading for a while, then
   // picks a new one nearby. Mostly downhill, sometimes a wide sideways cut.
-  function chooseHeading(obstacle, forceDir) {
+  // Pick the next heading, but don't turn yet: blink a signal first.
+  function planTurn(obstacle, forceDir) {
     const p = PERSONALITIES[obstacle.kind];
     const center = 3;
     let index = HEADINGS.indexOf(obstacle.targetHeading);
@@ -260,38 +274,102 @@
     // Pull back toward straight down so ships keep coming at you.
     if (Math.abs(index + step - center) > p.range) step = index > center ? -1 : 1;
     if (forceDir) step = forceDir * Math.max(1, Math.abs(step));
-    obstacle.targetHeading = HEADINGS[clamp(center - p.range, center + p.range, index + step)];
+    const next = HEADINGS[clamp(center - p.range, center + p.range, index + step)];
     obstacle.nextTurn = between(p.turnEvery);
+    if (next === obstacle.targetHeading) return;
+    obstacle.pendingHeading = next;
+    obstacle.signal = forceDir ? EDGE_SIGNAL_MS : SIGNAL_MS;
+    obstacle.node.classList.toggle("signal-right", next > obstacle.heading);
+    obstacle.node.classList.toggle("signal-left", next < obstacle.heading);
+  }
+
+  function updateSignal(obstacle, delta) {
+    if (obstacle.pendingHeading === null) return;
+    obstacle.signal -= delta;
+    if (obstacle.signal > 0) return;
+    obstacle.targetHeading = obstacle.pendingHeading;
+    obstacle.pendingHeading = null;
+    obstacle.node.classList.remove("signal-left", "signal-right");
+  }
+
+  function pickObstacleType() {
+    const total = OBSTACLE_MIX.reduce((sum, item) => sum + item.weight, 0);
+    let roll = Math.random() * total;
+    for (const item of OBSTACLE_MIX) {
+      roll -= item.weight;
+      if (roll <= 0) return item;
+    }
+    return OBSTACLE_MIX[0];
+  }
+
+  function spriteFrom(group) {
+    const list = spriteGroups && spriteGroups[group];
+    if (!list || !list.length) return null;
+    const sprite = list[rand(0, list.length - 1)];
+    return sprite.url ? sprite : null;
   }
 
   function spawnObstacle() {
     const node = document.createElement("div");
     node.className = "racer-obstacle";
-    node.innerHTML = '<img src="../assets/images/ship_off.png" alt="">';
-    const kind = pickPersonality();
-    const p = PERSONALITIES[kind];
-    const range = HEADINGS.slice(3 - p.range, 4 + p.range);
-    const heading = range[rand(0, range.length - 1)];
-    const obstacle = {
-      node,
-      kind,
-      y: -12,
-      x: rand(8, 92),
-      heading,
-      targetHeading: heading,
-      speedFactor: between(p.speed),
-      nextTurn: between(p.turnEvery) * 0.6,
-      hit: false
-    };
+    const spec = pickObstacleType();
+    const isShip = spec.type === "ship";
+    let sprite = null;
+    if (isShip) sprite = spriteFrom(Math.random() < 0.5 ? "shipsA" : "shipsB");
+    else sprite = spriteFrom(spec.group);
+    // Until the sprite sheet loads, everything is a classic ship.
+    const ship = isShip || !sprite;
+    const src = sprite ? sprite.url : "../assets/images/ship_off.png";
+    node.innerHTML = '<img src="' + src + '" alt="">' +
+      (ship ? '<span class="racer-blinker left"></span><span class="racer-blinker right"></span>' : "");
+    node.classList.add(ship ? "obstacle-ship" : "obstacle-float");
+
+    let obstacle;
+    if (ship) {
+      const kind = pickPersonality();
+      const p = PERSONALITIES[kind];
+      const range = HEADINGS.slice(3 - p.range, 4 + p.range);
+      const heading = range[rand(0, range.length - 1)];
+      node.style.width = (sprite ? rand(50, 60) : 58) + "px";
+      obstacle = {
+        node, ship: true, kind,
+        y: -12, x: rand(8, 92),
+        heading, targetHeading: heading, pendingHeading: null, signal: 0,
+        speedFactor: between(p.speed),
+        nextTurn: between(p.turnEvery) * 0.6,
+        hit: false
+      };
+    } else {
+      node.style.width = rand(spec.size[0], spec.size[1]) + "px";
+      obstacle = {
+        node, ship: false, kind: spec.type,
+        y: -14, x: rand(6, 94),
+        heading: rand(-15, 15), spinAngle: rand(0, 359),
+        spin: (Math.random() < 0.5 ? -1 : 1) * between([spec.spin * 0.4, spec.spin]),
+        speedFactor: between(spec.drift),
+        hit: false
+      };
+    }
     track.appendChild(node);
     obstacles.push(obstacle);
     placeObstacle(obstacle);
   }
 
   function placeObstacle(obstacle) {
+    const angle = obstacle.ship ? obstacle.heading : obstacle.spinAngle;
     obstacle.node.style.left = obstacle.x + "%";
     obstacle.node.style.top = obstacle.y + "%";
-    obstacle.node.style.transform = "translateX(-50%) rotate(" + obstacle.heading.toFixed(1) + "deg)";
+    obstacle.node.style.transform = "translateX(-50%) rotate(" + angle.toFixed(1) + "deg)";
+  }
+
+  // Collide on the sprite artwork, trimmed a little so grazes don't count.
+  function obstacleHitsShip(obstacle) {
+    if (obstacle.y < 45 || obstacle.y > 100) return false;
+    const art = obstacle.node.querySelector("img") || obstacle.node;
+    const trim = obstacle.ship ? 0.2 : 0.22;
+    const o = insetRect(art.getBoundingClientRect(), trim, trim, trim, trim);
+    const p = insetRect(ship.getBoundingClientRect(), 0.2, 0.12, 0.2, 0.12);
+    return p.left < o.right && p.right > o.left && p.top < o.bottom && p.bottom > o.top;
   }
 
   function step(now) {
@@ -337,20 +415,28 @@
     const aspect = trackAspect();
     for (let index = obstacles.length - 1; index >= 0; index -= 1) {
       const obstacle = obstacles[index];
-      const p = PERSONALITIES[obstacle.kind];
-      obstacle.nextTurn -= delta;
-      if (obstacle.x < 10 && obstacle.targetHeading <= 0) chooseHeading(obstacle, 1);
-      else if (obstacle.x > 90 && obstacle.targetHeading >= 0) chooseHeading(obstacle, -1);
-      else if (obstacle.nextTurn <= 0) chooseHeading(obstacle);
-      const turn = (delta / 1000) * p.turnRate;
-      obstacle.heading += clamp(-turn, turn, obstacle.targetHeading - obstacle.heading);
+      if (obstacle.ship) {
+        const p = PERSONALITIES[obstacle.kind];
+        obstacle.nextTurn -= delta;
+        updateSignal(obstacle, delta);
+        if (obstacle.pendingHeading === null) {
+          if (obstacle.x < 10 && obstacle.targetHeading <= 0) planTurn(obstacle, 1);
+          else if (obstacle.x > 90 && obstacle.targetHeading >= 0) planTurn(obstacle, -1);
+          else if (obstacle.nextTurn <= 0) planTurn(obstacle);
+        }
+        const turn = (delta / 1000) * p.turnRate;
+        obstacle.heading += clamp(-turn, turn, obstacle.targetHeading - obstacle.heading);
+      } else {
+        obstacle.spinAngle += (delta / 1000) * obstacle.spin;
+      }
       const radians = (obstacle.heading * Math.PI) / 180;
       const base = delta * 0.025 * (1.2 + speed * 0.5) * obstacle.speedFactor;
       obstacle.y += base * (0.55 + 0.45 * Math.cos(radians));
       obstacle.x = clamp(3, 97, obstacle.x + base * Math.sin(radians) * aspect * 1.1);
+      if (!obstacle.ship && (obstacle.x <= 3 || obstacle.x >= 97)) obstacle.heading = -obstacle.heading;
       placeObstacle(obstacle);
 
-      if (!obstacle.hit && obstacle.y > 69 && obstacle.y < 87 && Math.abs(obstacle.x - shipX) < 9) {
+      if (!obstacle.hit && obstacleHitsShip(obstacle)) {
         obstacle.hit = true;
         hitShield(now);
       }
@@ -807,6 +893,14 @@
     playSound("powerup_3");
     window.requestAnimationFrame(step);
   });
+
+  if (window.EducationStationSprites) {
+    window.EducationStationSprites.loadObjects().then(function (groups) {
+      spriteGroups = groups;
+    }).catch(function () {
+      // Keep the classic ship sprite if the sheet can't load.
+    });
+  }
 
   startLeg();
   updateShip();
