@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Đọc Bài - Language Garden</title>
+    <link rel="stylesheet" href="../../../shared/retro.css?v=63">
+    <link rel="stylesheet" href="../../shared/language.css?v=2">
+    <link rel="stylesheet" href="reader.css?v=3">
+  </head>
+  <body class="language-theme" data-game="vn-reader">
+    <main class="screen reader-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../../index.html#vn">Tiếng Việt</a>
+      </nav>
+
+      <header class="reader-header">
+        <div>
+          <p class="system-line">ĐỌC BÀI // READ ALONG</p>
+          <h1 id="rd-title">Bài 1</h1>
+        </div>
+        <div class="reader-tools">
+          <label class="tool-chip">Tốc độ
+            <input type="range" id="rd-rate" min="0.5" max="1.2" step="0.05" value="0.8" aria-label="Speaking speed">
+            <span id="rd-rate-label">0.8×</span>
+          </label>
+          <button class="tool-chip" type="button" id="rd-english" aria-pressed="true">English: on</button>
+          <button class="tool-chip" type="button" id="rd-voice-btn" aria-expanded="false">🔈 <span id="rd-voice-name">…</span></button>
+        </div>
+      </header>
+
+      <section class="reader-card" aria-live="polite">
+        <span class="reader-num" id="rd-num">1</span>
+        <p class="reader-vi" id="rd-vi"></p>
+        <p class="reader-en" id="rd-en"></p>
+        <p class="reader-gloss" id="rd-gloss" aria-live="polite" hidden></p>
+        <p class="reader-tip">Chạm vào một chữ để nghe. Tap a word to hear it.</p>
+      </section>
+
+      <div class="reader-controls">
+        <button class="ctl" type="button" id="rd-prev" aria-label="Previous sentence">◀</button>
+        <button class="ctl ctl-main" type="button" id="rd-play">▶ Đọc câu</button>
+        <button class="ctl" type="button" id="rd-next" aria-label="Next sentence">▶</button>
+        <button class="ctl ctl-words" type="button" id="rd-words" title="Read word by word">▶ Từng chữ</button>
+        <button class="ctl ctl-all" type="button" id="rd-all">▶▶ Đọc hết</button>
+      </div>
+
+      <nav class="reader-list" id="rd-list" aria-label="Sentences"></nav>
+
+      <div class="voice-panel" id="rd-voice-panel" hidden>
+        <h2>Giọng đọc · Voice check</h2>
+        <label>Giọng đọc · Reader <select id="rd-source"></select></label>
+        <p id="rd-source-status"></p>
+        <hr>
+        <p><strong>Computer voice</strong> (used when there is no recording)</p>
+        <p id="rd-voice-status"></p>
+        <label>Voice <select id="rd-voice-select"></select></label>
+        <button class="ctl" type="button" id="rd-voice-test">▶ Test: “Xin chào, em bé.”</button>
+        <details>
+          <summary>All voices on this device</summary>
+          <ul id="rd-voice-all"></ul>
+        </details>
+        <button class="ctl" type="button" id="rd-voice-close">Close</button>
+      </div>
+    </main>
+
+    <script src="../../../shared/stage.js?v=2"></script>
+    <script src="../../../shared/sounds.js?v=18"></script>
+    <script src="../data/lessons.js?v=2"></script>
+    <script src="../data/glossary.js?v=1"></script>
+    <script src="../audio/manifest.js" onerror="void 0"></script>
+    <script src="reader.js?v=5"></script>
+  </body>
+</html>

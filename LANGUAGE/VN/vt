@@ -1,0 +1,9 @@
+#!/bin/zsh
+# Shortcut for tools/make_voices.py. Run from anywhere: ./vt --only sample1b
+cd "${0:A:h}"
+export PATH="$HOME/.local/bin:$PATH"
+unset VIRTUAL_ENV
+PY="$(uv python find --python-preference only-managed 3.12 2>/dev/null)"
+if [ -z "$PY" ]; then uv python install 3.12 && PY="$(uv python find --python-preference only-managed 3.12)"; fi
+exec uv run --no-project --python "$PY" --with vieneu --with "librosa==0.11.0" --with "numba<0.68" \
+  python tools/make_voices.py "$@"

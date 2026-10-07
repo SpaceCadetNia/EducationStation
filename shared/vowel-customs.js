@@ -26,6 +26,24 @@
   const scoreNode = $("vc-score");
   const streakNode = $("vc-streak");
 
+  // Older Safari (iPadOS 15 and earlier) has no container-query units, so the
+  // CSS width min(100cqw, 150cqh) is dropped and the scene collapses to a dot.
+  // Size the 3:2 scene from its holder here instead.
+  if (!(window.CSS && CSS.supports && CSS.supports("width", "1cqw"))) {
+    const holder = scene.parentElement;
+    const fitScene = function () {
+      const w = holder.clientWidth;
+      const h = holder.clientHeight;
+      if (!w || !h) return;
+      const width = Math.floor(Math.min(w, h * 1.5));
+      scene.style.width = width + "px";
+      scene.style.height = Math.floor(width / 1.5) + "px";
+    };
+    if (window.ResizeObserver) new ResizeObserver(fitScene).observe(holder);
+    window.addEventListener("resize", fitScene);
+    fitScene();
+  }
+
   // ---------- Vowel sounds ----------
   // Lowercase key = short vowel, uppercase key = long vowel.
   const SOUNDS = {

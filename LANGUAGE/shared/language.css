@@ -1,0 +1,254 @@
+/* Language Garden theme.
+   Loaded after ../shared/retro.css so the proven 1024x768 stage (stage.js),
+   top-nav, START gate and program-card layout are reused as-is; this file
+   only swaps the space look for a warm paper-and-garden one. */
+
+body.language-theme {
+  --paper: #fbf4e4;
+  --paper-deep: #f1e4c6;
+  --ink: #2f2a24;
+  --ink-soft: #6b5d4b;
+  --jade: #2e7d5b;
+  --jade-soft: #d7eadb;
+  --lotus: #d9577a;
+  --lantern: #c8382c;
+  --gold: #e3a52b;
+
+  /* retro.css variable names, remapped */
+  --green: var(--jade);
+  --green-dim: #8fbf9f;
+  --amber: var(--lantern);
+  --blue: var(--ink-soft);
+  --black: #e9dcbc;
+
+  color: var(--ink);
+  font-family: "Avenir Next", "Avenir", "Trebuchet MS", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(217, 87, 122, 0.10) 0 120px, transparent 121px),
+    radial-gradient(circle at 88% 82%, rgba(46, 125, 91, 0.12) 0 160px, transparent 161px),
+    radial-gradient(rgba(107, 93, 75, 0.10) 1px, transparent 1.5px) 0 0 / 22px 22px,
+    #e9dcbc;
+}
+
+/* no CRT scanlines here */
+body.language-theme::after {
+  display: none;
+}
+
+.language-theme .screen.language-menu {
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 40%),
+    var(--paper);
+  box-shadow: 0 6px 0 var(--paper-deep), 0 10px 0 rgba(47, 42, 36, 0.25), 0 18px 40px rgba(47, 42, 36, 0.18);
+  justify-content: flex-start;
+  gap: 26px;
+  padding-top: clamp(22px, 5vh, 44px);
+}
+
+/* back link: same position and role as the space menu, softer look */
+.language-theme .top-nav {
+  margin-bottom: 0;
+}
+
+.language-theme .top-nav a {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0 3px 0 var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.language-theme .top-nav a::before {
+  content: "\2190  ";
+}
+
+.language-theme .top-nav a:hover,
+.language-theme .top-nav a:focus-visible,
+.language-theme .program-card:hover,
+.language-theme .program-card:focus-visible,
+.language-theme .start-field:hover,
+.language-theme .start-field:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.language-theme h1 {
+  color: var(--jade);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  text-shadow: 3px 3px 0 var(--jade-soft);
+  letter-spacing: -0.01em;
+}
+
+.language-theme .system-line {
+  color: var(--lantern);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.language-theme .tagline {
+  color: var(--ink-soft);
+  text-transform: none;
+  font-weight: 600;
+}
+
+.language-theme .start-field {
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  color: var(--paper);
+  background: var(--jade);
+  box-shadow: 0 5px 0 var(--ink);
+  padding: 14px 34px;
+  margin-top: 30px;
+  animation: lang-bob 1.8s ease-in-out infinite;
+}
+
+.language-theme .start-field:hover,
+.language-theme .start-field:focus-visible {
+  color: var(--paper);
+  border-color: var(--ink);
+  background: #256b4d;
+}
+
+.language-theme .start-field.starting {
+  color: var(--ink);
+  background: var(--gold);
+  border-color: var(--ink);
+  animation: lang-pop 0.9s ease-out;
+}
+
+/* cards: same grid/sizes as the space menu */
+.language-theme .program-card {
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  color: var(--ink);
+  background: #fffaf0;
+  box-shadow: 0 5px 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.language-theme a.program-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--ink);
+}
+
+.language-theme a.program-card:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.language-theme .program-card.launching {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--gold);
+  animation: lang-pop 0.65s ease-out;
+}
+
+.language-theme .program-card.locked {
+  opacity: 0.55;
+  border-style: dashed;
+  box-shadow: none;
+  cursor: default;
+}
+
+.language-theme .program-code {
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  color: var(--paper);
+  background: var(--lantern);
+  font-weight: 800;
+  font-size: 1.45rem;
+}
+
+.language-theme .program-card.locked .program-code {
+  background: var(--ink-soft);
+}
+
+.language-theme .program-title {
+  color: var(--jade);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.language-theme .program-meta {
+  color: var(--ink-soft);
+  text-transform: none;
+  font-size: 1rem;
+}
+
+/* decorative lanterns along the bottom of the stage */
+.lang-lanterns {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  display: flex;
+  justify-content: center;
+  gap: 90px;
+  pointer-events: none;
+}
+
+.lang-lanterns span {
+  position: relative;
+  width: 54px;
+  height: 66px;
+  border: 3px solid var(--ink);
+  border-radius: 45% 45% 40% 40%;
+  background: radial-gradient(circle at 50% 40%, #ffd98a, var(--lantern) 70%);
+  animation: lang-sway 3.2s ease-in-out infinite;
+  transform-origin: 50% -30px;
+}
+
+.lang-lanterns span:nth-child(2) {
+  background: radial-gradient(circle at 50% 40%, #fff1b0, var(--gold) 70%);
+  animation-delay: -1.1s;
+}
+
+.lang-lanterns span:nth-child(3) {
+  background: radial-gradient(circle at 50% 40%, #ffd0dc, var(--lotus) 70%);
+  animation-delay: -2.2s;
+}
+
+.lang-lanterns span::before,
+.lang-lanterns span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.lang-lanterns span::before { top: -18px; height: 15px; }
+.lang-lanterns span::after { bottom: -16px; height: 13px; }
+
+@keyframes lang-sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@keyframes lang-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes lang-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-lanterns span,
+  .language-theme .start-field,
+  .language-theme .program-card.launching { animation: none; }
+}
+
+.language-theme .program-card.locked:hover {
+  outline: none;
+}

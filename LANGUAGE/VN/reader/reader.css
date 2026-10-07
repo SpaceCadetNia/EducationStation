@@ -1,0 +1,363 @@
+/* Read-along player. Uses the 1024x768 stage from stage.js and the
+   Language Garden palette from ../../shared/language.css. */
+
+.language-theme .screen.reader-screen {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 14px;
+  padding: 56px 28px 22px;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 40%), var(--paper);
+  box-shadow: 0 6px 0 var(--paper-deep), 0 10px 0 rgba(47, 42, 36, 0.25), 0 18px 40px rgba(47, 42, 36, 0.18);
+}
+
+/* small back link, top-left: same cue as the space game screens */
+.reader-screen .top-nav {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  margin: 0;
+}
+
+.reader-screen .top-nav a {
+  min-height: 0;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+}
+
+.reader-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.reader-header h1 {
+  margin: 2px 0 0;
+  font-size: 2.6rem;
+}
+
+.reader-header .system-line {
+  font-size: 0.9rem;
+}
+
+.reader-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 8px;
+}
+
+.tool-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 4px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: #fffaf0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tool-chip input[type="range"] {
+  width: 110px;
+  accent-color: var(--jade);
+}
+
+.tool-chip.warn {
+  background: #ffe1d9;
+  border-color: var(--lantern);
+  color: var(--lantern);
+}
+
+#rd-voice-name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* the big sentence card */
+.reader-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 0;
+  padding: 20px 30px;
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  background: #fffaf0;
+  box-shadow: 0 5px 0 var(--ink);
+  text-align: center;
+}
+
+.reader-num {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  color: var(--paper);
+  background: var(--lantern);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.reader-vi {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4.2rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.reader-vi .word {
+  appearance: none;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 12px;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+.reader-vi .word:hover {
+  background: var(--jade-soft);
+}
+
+.reader-vi .word.speaking {
+  background: var(--gold);
+  transform: translateY(-3px);
+}
+
+.focus {
+  color: var(--lantern);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.reader-en {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.35rem;
+  font-style: italic;
+}
+
+.reader-tip {
+  position: absolute;
+  bottom: 10px;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* controls */
+.reader-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ctl {
+  min-height: 52px;
+  min-width: 64px;
+  padding: 8px 18px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: #fffaf0;
+  box-shadow: 0 4px 0 var(--ink);
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ctl:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--ink);
+}
+
+.ctl:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ctl-main {
+  min-width: 200px;
+  color: var(--paper);
+  background: var(--jade);
+}
+
+.ctl-all.active,
+body.is-speaking .ctl-main {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.ctl:focus-visible,
+.tool-chip:focus-visible,
+.list-item:focus-visible,
+.reader-vi .word:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* sentence list: 3 x 3 */
+.reader-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 6px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  color: var(--ink);
+  background: #fffaf0;
+  font: 700 1.1rem/1.1 Georgia, "Times New Roman", serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.list-item.current {
+  background: var(--jade-soft);
+  box-shadow: inset 0 0 0 2px var(--jade);
+}
+
+.list-num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--paper);
+  background: var(--ink-soft);
+  font: 800 0.85rem/1 "Avenir Next", "Avenir", sans-serif;
+}
+
+.list-item.current .list-num {
+  background: var(--lantern);
+}
+
+/* voice check panel */
+.voice-panel {
+  position: absolute;
+  right: 24px;
+  top: 112px;
+  z-index: 10;
+  display: grid;
+  gap: 10px;
+  width: 440px;
+  max-height: 560px;
+  overflow: auto;
+  padding: 18px;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  background: #fffaf0;
+  box-shadow: 0 6px 0 var(--ink), 0 20px 40px rgba(0, 0, 0, 0.2);
+  font-size: 0.95rem;
+}
+
+.voice-panel h2 {
+  margin: 0;
+  color: var(--jade);
+  font-family: Georgia, serif;
+}
+
+.voice-panel p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.voice-panel select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px;
+  font: inherit;
+}
+
+.voice-panel ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.voice-panel li.is-vi {
+  color: var(--jade);
+  font-weight: 800;
+}
+
+.voice-panel hr {
+  width: 100%;
+  margin: 4px 0;
+  border: 0;
+  border-top: 2px dashed var(--paper-deep);
+}
+
+/* English matching + meanings */
+.reader-en .en-part {
+  border-radius: 6px;
+  padding: 0 2px;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.reader-en .en-hit {
+  color: var(--ink);
+  background: var(--gold);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.reader-vi .word.picked {
+  box-shadow: inset 0 -5px 0 var(--gold);
+}
+
+.reader-gloss {
+  margin: 0;
+  max-width: 80%;
+  padding: 8px 16px;
+  border: 2px dashed var(--ink-soft);
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--jade-soft);
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.reader-gloss b {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--jade);
+}
+
+.gloss-note {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}

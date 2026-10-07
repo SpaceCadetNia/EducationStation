@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Language Garden</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=63">
+    <link rel="stylesheet" href="shared/language.css?v=2">
+  </head>
+  <!-- data-game keeps sounds.js from starting the space title music on this menu. -->
+  <body class="language-theme" data-game="language-menu">
+    <main class="screen menu-screen language-menu" data-lang-host>
+      <nav class="top-nav" aria-label="Primary" hidden>
+        <a href="#home" data-lang-back>Languages</a>
+      </nav>
+
+      <header class="masthead" data-lang-header>
+        <h1>Language Garden</h1>
+        <p class="tagline">Choose a language.</p>
+      </header>
+
+      <button class="start-field" type="button" data-lang-start>&gt;&gt; START &lt;&lt;</button>
+
+      <section class="program-grid" aria-label="Languages" data-lang-grid hidden></section>
+
+      <div class="lang-lanterns" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </main>
+
+    <script src="../shared/stage.js?v=2"></script>
+    <script src="../shared/sounds.js?v=18"></script>
+    <script src="shared/language-menu.js?v=3"></script>
+  </body>
+</html>
