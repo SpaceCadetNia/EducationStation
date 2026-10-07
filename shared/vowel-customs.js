@@ -236,10 +236,29 @@
     window.setTimeout(pickVoice, 800);
   }
 
+  // iPad/iPhone Safari only lets a page talk after it has spoken once inside a
+  // tap. The game's first word is spoken a few seconds after OPEN BOOTH (after
+  // the passenger walks up), outside the tap, so it was silently dropped.
+  // Speaking a silent utterance during the tap unlocks speech for the session.
+  let speechUnlocked = false;
+  function unlockSpeech() {
+    if (speechUnlocked || !("speechSynthesis" in window)) return;
+    try {
+      const primer = new SpeechSynthesisUtterance(" ");
+      primer.volume = 0;
+      window.speechSynthesis.speak(primer);
+      speechUnlocked = true;
+    } catch (error) {
+      // ignore
+    }
+  }
+
   function speak(text, rate) {
     if (!("speechSynthesis" in window)) return;
     try {
-      window.speechSynthesis.cancel();
+      // Safari can drop an utterance queued right after cancel(), so only
+      // cancel when something is actually playing.
+      if (window.speechSynthesis.speaking || window.speechSynthesis.pending) window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       if (voice) utterance.voice = voice;
       utterance.lang = "en-US";
@@ -481,6 +500,7 @@
     if (button) choose(button.dataset.sound);
   });
   nextButton.addEventListener("click", leaveAndNext);
+  document.addEventListener("pointerdown", unlockSpeech, { once: true, capture: true });
 
   // Hint: the classroom name for the sound ("long e", "short o").
   // A correct answer after a hint scores 5 instead of 10.
@@ -502,6 +522,7 @@
   });
   ready.addEventListener("click", function () {
     ready.hidden = true;
+    unlockSpeech();
     try {
       if (window.EducationStationSound && window.EducationStationSound.unlockAudio) {
         window.EducationStationSound.unlockAudio();

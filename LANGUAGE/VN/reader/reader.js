@@ -160,7 +160,8 @@
   function speak(text, opts) {
     if (!synth) return;
     opts = opts || {};
-    synth.cancel();
+    // Safari can drop an utterance queued right after cancel(); only cancel if busy.
+    if (synth.speaking || synth.pending) synth.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "vi-VN";
     if (voice) u.voice = voice;
