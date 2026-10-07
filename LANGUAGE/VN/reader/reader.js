@@ -453,7 +453,11 @@
   applyEnglish();
   loadVoices();
   setupSources();
-  if (synth && "onvoiceschanged" in synth) synth.addEventListener("voiceschanged", loadVoices);
+  if (synth) {
+    // Older iPad Safari: speechSynthesis is not an EventTarget (no addEventListener).
+    if (typeof synth.addEventListener === "function") synth.addEventListener("voiceschanged", loadVoices);
+    else synth.onvoiceschanged = loadVoices;
+  }
   // Some browsers fill the voice list late without firing voiceschanged.
   window.setTimeout(loadVoices, 600);
   window.setTimeout(loadVoices, 2000);

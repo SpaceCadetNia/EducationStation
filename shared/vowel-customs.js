@@ -228,7 +228,12 @@
   }
   if ("speechSynthesis" in window) {
     pickVoice();
-    window.speechSynthesis.addEventListener("voiceschanged", pickVoice);
+    // Older iPad Safari: speechSynthesis is not an EventTarget, so
+    // addEventListener would throw and stop the rest of the game from wiring up.
+    const synth = window.speechSynthesis;
+    if (typeof synth.addEventListener === "function") synth.addEventListener("voiceschanged", pickVoice);
+    else synth.onvoiceschanged = pickVoice;
+    window.setTimeout(pickVoice, 800);
   }
 
   function speak(text, rate) {
@@ -497,8 +502,12 @@
   });
   ready.addEventListener("click", function () {
     ready.hidden = true;
-    if (window.EducationStationSound && window.EducationStationSound.unlockAudio) {
-      window.EducationStationSound.unlockAudio();
+    try {
+      if (window.EducationStationSound && window.EducationStationSound.unlockAudio) {
+        window.EducationStationSound.unlockAudio();
+      }
+    } catch (error) {
+      // Sound is a bonus; never let it block the game.
     }
     feedback.textContent = stage().intro;
     updateHud();
