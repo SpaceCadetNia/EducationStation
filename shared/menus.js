@@ -173,6 +173,9 @@
       started = true;
       startField.disabled = true;
       startField.classList.add("starting");
+      if (window.EducationStationSound && window.EducationStationSound.primeMusic) {
+        window.EducationStationSound.primeMusic(); // must run inside the tap (iPad)
+      }
       playMenuSound("powerup_3");
 
       window.setTimeout(function () {

@@ -237,20 +237,15 @@
   }
 
   // iPad/iPhone Safari only lets a page talk after it has spoken once inside a
-  // tap. The game's first word is spoken a few seconds after OPEN BOOTH (after
-  // the passenger walks up), outside the tap, so it was silently dropped.
-  // Speaking a silent utterance during the tap unlocks speech for the session.
+  // tap. The first word comes a few seconds after OPEN BOOTH (the passenger
+  // walks up first), outside the tap, so it was dropped. Saying a short,
+  // audible line during the tap unlocks speech for the session (a silent or
+  // blank utterance is not enough on older iPads).
   let speechUnlocked = false;
   function unlockSpeech() {
-    if (speechUnlocked || !("speechSynthesis" in window)) return;
-    try {
-      const primer = new SpeechSynthesisUtterance(" ");
-      primer.volume = 0;
-      window.speechSynthesis.speak(primer);
-      speechUnlocked = true;
-    } catch (error) {
-      // ignore
-    }
+    if (speechUnlocked) return;
+    speechUnlocked = true;
+    speak("Booth open.", 0.95);
   }
 
   function speak(text, rate) {
@@ -500,7 +495,6 @@
     if (button) choose(button.dataset.sound);
   });
   nextButton.addEventListener("click", leaveAndNext);
-  document.addEventListener("pointerdown", unlockSpeech, { once: true, capture: true });
 
   // Hint: the classroom name for the sound ("long e", "short o").
   // A correct answer after a hint scores 5 instead of 10.

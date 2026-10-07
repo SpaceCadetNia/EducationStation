@@ -259,11 +259,43 @@
       }
     }
 
+    music.muted = false;
     music.play().catch(function () {
       musicStarted = false;
-      if (isStartGated) return;
+      if (isStartGated) {
+        // Still blocked (e.g. older iPad Safari): start on the next tap instead.
+        ["touchend", "click", "keydown"].forEach(function (type) {
+          window.addEventListener(type, function retry() {
+            ["touchend", "click", "keydown"].forEach((t) => window.removeEventListener(t, retry, true));
+            startMusic();
+          }, { capture: true });
+        });
+        return;
+      }
       bindMusicUnlock();
     });
+  }
+
+  // iPad Safari only lets an <audio> element start playing from inside a tap.
+  // The START button starts the music 2 s after the tap, so it was blocked.
+  // Calling primeMusic() inside the tap plays it muted for a moment, which
+  // unlocks the element so the later startMusic() is allowed.
+  let musicPrimed = false;
+  function primeMusic() {
+    if (musicPrimed || !isMenu) return;
+    musicPrimed = true;
+    try {
+      music.muted = true;
+      const attempt = music.play();
+      const done = function () {
+        if (!musicStarted) music.pause();
+        music.muted = false;
+      };
+      if (attempt && attempt.then) attempt.then(done, function () { music.muted = false; });
+      else done();
+    } catch (error) {
+      music.muted = false;
+    }
   }
 
   function stopMusic() {
@@ -341,7 +373,7 @@
   }
 
   try {
-    window.EducationStationSound = { play, startMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
+    window.EducationStationSound = { play, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
   } catch (error) {
     // Some embedded browser surfaces lock global objects. The event listener
     // above is the supported path for game scripts.
