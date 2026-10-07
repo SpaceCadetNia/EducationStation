@@ -1,7 +1,7 @@
 """Generate Vietnamese lesson audio with VieNeu-TTS (runs on the Mac, offline after first download).
 
 For every voice below, writes one clip per sentence and per unique word of each
-lesson in data/lessons.js to audio/<voice-id>/<lesson-id>/, then rewrites
+lesson in lessons/lessons.js to audio/<voice-id>/<lesson-id>/, then rewrites
 audio/manifest.js so the reader can play them.
 
 Voices:
@@ -26,7 +26,7 @@ from pathlib import Path
 VN = Path(__file__).resolve().parent.parent
 SAMPLES = VN / "voice-samples"
 AUDIO = VN / "audio"
-LESSONS_JS = VN / "data" / "lessons.js"
+LESSONS_JS = VN / "lessons" / "lessons.js"
 SAMPLE_EXT = {".m4a", ".wav", ".mp3", ".aiff", ".aif", ".caf"}
 # Built-in Southern (miền Nam) voices: (id, preset name, label)
 PRESETS = []
