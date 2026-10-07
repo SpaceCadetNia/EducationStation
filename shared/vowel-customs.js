@@ -347,6 +347,39 @@
     return lastPax;
   }
 
+  // Passenger art is large (about 2 MB each). Load and decode the next image
+  // before showing it, otherwise the previous passenger flashes while the new
+  // file loads (very visible on iPad). The upcoming passenger is also fetched
+  // in the background while the current round is played.
+  const paxCache = {};
+  function paxSrc(n) {
+    return "../assets/images/pax_" + n + ".png";
+  }
+  function loadPax(n) {
+    if (!paxCache[n]) {
+      paxCache[n] = new Promise(function (resolve) {
+        const img = new Image();
+        let settled = false;
+        const finish = function () { if (!settled) { settled = true; resolve(); } };
+        img.onload = function () {
+          if (img.decode) img.decode().then(finish, finish);
+          else finish();
+        };
+        img.onerror = finish;
+        window.setTimeout(finish, 4000); // never stall the game on a slow network
+        img.src = paxSrc(n);
+      });
+    }
+    return paxCache[n];
+  }
+  function upcomingPax() {
+    if (!paxBag.length) {
+      paxBag = Array.from({ length: PAX_COUNT }, (_, i) => i + 1).sort(() => Math.random() - 0.5);
+      if (paxBag[0] === lastPax) paxBag.push(paxBag.shift());
+    }
+    return paxBag[0];
+  }
+
   function updateHud() {
     stageNode.textContent = stage().name;
     progressNode.textContent = Number.isFinite(stage().goal) ? stageCorrect + "/" + stage().goal : "";
@@ -392,7 +425,14 @@
     hintButton.disabled = false;
 
     // Walk up from the far end of the hall to the window.
-    pax.src = "../assets/images/pax_" + pickPax() + ".png";
+    pax.hidden = true;
+    pax.className = "customs-pax pax-far";
+    const paxNumber = pickPax();
+    await loadPax(paxNumber);
+    pax.src = paxSrc(paxNumber);
+    if (pax.decode) {
+      try { await pax.decode(); } catch (error) { /* show it anyway */ }
+    }
     pax.hidden = false;
     pax.className = "customs-pax pax-far";
     void pax.offsetWidth;
@@ -421,6 +461,7 @@
     showLink();
     feedback.textContent = "Say the word. Which vowel sound is in it?";
     speak(word, 0.8);
+    loadPax(upcomingPax()); // fetch the next traveler while this one is answered
     busy = false;
   }
 
