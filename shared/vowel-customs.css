@@ -67,7 +67,8 @@
   z-index: 2;
   left: 62%;
   top: 8%;
-  height: 132%;
+  /* 112% (was 132%): head stays put, about 15% more of the body shows above the counter. */
+  height: 112%;
   transform: translateX(-50%);
   transform-origin: 50% 0;
   pointer-events: none;
