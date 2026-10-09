@@ -58,6 +58,7 @@
         {
           code: "06",
           title: "Cargo Fractions",
+          stars: ["cargo-fractions"],
           meta: "Pack crates to match fractional manifests",
           href: "test/index.html?game=packing",
           launch: true
@@ -72,31 +73,32 @@
         {
           code: "08",
           title: "Key Echo",
+          stars: ["key-echo"],
           meta: "Recall keyboard sequences with letter case",
           href: "test/index.html?game=rhythm",
           launch: true
         },
         {
           code: "09",
-          title: "Test Pilots",
-          stars: ["lunar-keys"],
-          meta: "Prototype lab for experimental games",
-          href: "#test",
-          menuTarget: "test"
-        },
-        {
-          code: "10",
           title: "Time to Launch",
           meta: "Minutes before or after the hour: catch the ship",
           href: "time-to-launch/index.html",
           launch: true
         },
         {
-          code: "11",
+          code: "10",
           title: "Vowel Customs",
           meta: "Translate alien travelers: long and short vowel sounds",
           href: "vowel-customs/index.html",
           launch: true
+        },
+        {
+          code: "N",
+          title: "Test Pilots",
+          stars: ["lunar-keys"],
+          meta: "Prototype lab for experimental games",
+          href: "#test",
+          menuTarget: "test"
         }
       ]
     },

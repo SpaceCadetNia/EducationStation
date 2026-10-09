@@ -785,6 +785,44 @@
 
   function initRhythm() {
     setHeader("rhythm");
+    const totalLevels = 10;
+    let finished = false;
+    if (window.EducationStationReward) window.EducationStationReward.init("key-echo");
+
+    function showLevel() {
+      levelNode.textContent = Math.min(level, totalLevels) + "/" + totalLevels;
+    }
+
+    // Shown before the cue on the last two levels.
+    function milestoneMessage() {
+      if (level === totalLevels - 1) return { text: "ALMOST THERE!", className: "echo-almost" };
+      if (level === totalLevels) return { text: "FINISH LINE!", className: "echo-finish" };
+      return null;
+    }
+
+    if (new URLSearchParams(window.location.search).has("debug")) {
+      window.KeyEchoDebug = {
+        setLevel: function (n) { setLevel(n); showLevel(); },
+        get sequence() { return sequence; }
+      };
+    }
+
+    function finishKeyEcho() {
+      finished = true;
+      listening = false;
+      cueing = true;
+      feedback.textContent = "Good workout! All " + totalLevels + " levels cleared.";
+      const sound = window.EducationStationSound;
+      if (sound && sound.stop) sound.stop("workout_music_2");
+      if (window.EducationStationReward) {
+        window.EducationStationReward.celebrate({
+          title: "Good Workout!",
+          lines: ["All " + totalLevels + " echoes matched", "Score " + score]
+        });
+      } else {
+        play("small_victory");
+      }
+    }
     const keys = ["a", "s", "d", "f", "j", "k", "l"];
     const beatMs = 560;
     const coachLines = ["HELLO!", "I AM SIMON", "AND I SAY", "ARE YOU READY FOR A WORKOUT?", "FOLLOW ME!"];
@@ -887,6 +925,21 @@
         });
         return;
       }
+      const milestone = milestoneMessage();
+      if (milestone) {
+        cueing = true;
+        const coach = document.getElementById("echo-coach");
+        coach.textContent = milestone.text;
+        coach.className = "key-echo-coach " + milestone.className;
+        feedback.textContent = level === totalLevels ? "Last one! Finish line ahead." : "Almost there! Two more to go.";
+        play(level === totalLevels ? "powerup_3" : "powerup_2");
+        window.setTimeout(function () {
+          coach.className = "key-echo-coach";
+          cueing = false;
+          countdown(playCue);
+        }, 1900);
+        return;
+      }
       countdown(playCue);
     }
 
@@ -969,6 +1022,13 @@
         updateStats(speed);
         setScore(10);
         setLevel(level + 1);
+        if (level > totalLevels) {
+          showLevel();
+          levelNode.textContent = totalLevels + "/" + totalLevels;
+          finishKeyEcho();
+          return;
+        }
+        showLevel();
         play("small_victory");
         flashPraise();
         sequence = makeSequence(Math.min(7, 3 + level));
@@ -981,7 +1041,9 @@
       }
     }
 
-    document.getElementById("play-cue").addEventListener("click", startCueFlow);
+    document.getElementById("play-cue").addEventListener("click", function () {
+      if (!finished) startCueFlow();
+    });
     captureInput.addEventListener("input", function () {
       const typed = captureInput.value;
       if (!typed) return;
@@ -990,13 +1052,14 @@
     document.addEventListener("keydown", function (event) {
       if (event.key === "Enter" && !listening) {
         event.preventDefault();
-        startCueFlow();
+        if (!finished) startCueFlow();
         return;
       }
       if (event.target === captureInput) return;
       handleEchoKey(event.key);
     });
     show();
+    showLevel();
   }
 
   function initBonds() {
@@ -1759,98 +1822,265 @@
 
   function initPacking() {
     setHeader("packing");
-    let manifest = null;
-    let counts = { water: 0, equipment: 0, food: 0 };
+    // Story: an email arrives at the loadmaster's desk asking for a cargo mix,
+    // the kid loads the crates, sends a report, and gets a reply email.
+    const TYPES = [
+      { key: "water", label: "Water", icon: "💧" },
+      { key: "equipment", label: "Equipment", icon: "🔧" },
+      { key: "food", label: "Food", icon: "🍎" }
+    ];
+    const MIXES = [
+      { total: 10, water: 30, equipment: 50, food: 20 },
+      { total: 12, water: 25, equipment: 50, food: 25 },
+      { total: 15, water: 40, equipment: 20, food: 40 },
+      { total: 20, water: 20, equipment: 40, food: 40 },
+      { total: 8, water: 25, equipment: 50, food: 25 },
+      { total: 10, water: 10, equipment: 60, food: 30 },
+      { total: 20, water: 25, equipment: 25, food: 50 },
+      { total: 16, water: 25, equipment: 50, food: 25 },
+      { total: 5, water: 20, equipment: 40, food: 40 },
+      { total: 12, water: 50, equipment: 25, food: 25 }
+    ];
+    const FRACTIONS = { 10: "1/10", 20: "1/5", 25: "1/4", 30: "3/10", 40: "2/5", 50: "1/2", 60: "3/5", 75: "3/4" };
+    const SENDERS = [
+      { name: "Rin Okafor", role: "Cargo Office", address: "rin.okafor@station7.space", sign: "Rin" },
+      { name: "Captain Vega", role: "Bridge", address: "captain.vega@station7.space", sign: "Captain Vega" },
+      { name: "Dr. Mae Osei", role: "Science Lab", address: "mae.osei@station7.space", sign: "Dr. Osei" },
+      { name: "Chef Tomas", role: "Galley", address: "tomas.galley@station7.space", sign: "Chef Tomas" }
+    ];
+    const REASONS = [
+      "We're heading out to the Ice Moon tomorrow.",
+      "The supply run to Outpost Juniper leaves tonight.",
+      "Our mining crew on the asteroid belt is running low.",
+      "The research team on Mars Base is waiting for supplies."
+    ];
 
-    function newManifest() {
-      const options = [
-        { total: 10, water: 30, equipment: 50, food: 20 },
-        { total: 12, water: 25, equipment: 50, food: 25 },
-        { total: 15, water: 40, equipment: 20, food: 40 },
-        { total: 20, water: 20, equipment: 40, food: 40 }
-      ];
-      const option = choice(options);
-      manifest = {
-        total: option.total,
-        percent: { water: option.water, equipment: option.equipment, food: option.food },
-        crates: {
-          water: option.total * option.water / 100,
-          equipment: option.total * option.equipment / 100,
-          food: option.total * option.food / 100
-        }
-      };
-      counts = { water: 0, equipment: 0, food: 0 };
-      draw();
+    const totalLevels = 5;
+    let email = null;
+    let loaded = [];
+    if (window.EducationStationReward) window.EducationStationReward.init("cargo-fractions");
+
+    function showLevel() {
+      levelNode.textContent = Math.min(level, totalLevels) + "/" + totalLevels;
+    }
+    let inbox = 0;
+    const history = []; // earlier emails, shown read (greyed) under the new one
+    let flight = rand(20, 80);
+
+    workspace.classList.add("desk-workspace");
+    workspace.innerHTML = [
+      '<div class="desk-screen" id="desk-screen"></div>',
+      '<div class="desk-controls" id="desk-controls"></div>'
+    ].join("");
+    const screen = document.getElementById("desk-screen");
+    const controls = document.getElementById("desk-controls");
+
+    function clockTime() {
+      const now = new Date();
+      const h = now.getHours() % 12 || 12;
+      return h + ":" + String(now.getMinutes()).padStart(2, "0") + (now.getHours() < 12 ? " AM" : " PM");
     }
 
-    function draw() {
-      workspace.innerHTML = [
-        '<div class="line-card"><div class="prototype-big">TOTAL CRATES: ' + manifest.total + "</div>",
-        '<div class="manifest-grid"><div><strong>Goal (%)</strong><span>Water ' + manifest.percent.water + "%</span><span>Equipment " + manifest.percent.equipment + "%</span><span>Food " + manifest.percent.food + "%</span></div>",
-        '<div id="cargo-counts"></div></div>',
-        '<div class="test-controls">',
-        button("Water", 'data-cargo="water"'),
-        button("Equipment", 'data-cargo="equipment"'),
-        button("Food", 'data-cargo="food"'),
-        button("Undo", 'data-action="undo"'),
-        button("Check", 'data-action="check"'),
-        '</div><div class="cargo-results" id="cargo-results"></div></div>'
+    function amountText(percent) {
+      if (email.style === "fraction" && FRACTIONS[percent]) return FRACTIONS[percent];
+      return percent + "%";
+    }
+
+    function makeEmail() {
+      const mix = choice(MIXES);
+      const sender = choice(SENDERS);
+      flight += rand(1, 7);
+      const style = level <= 2 ? "percent" : (Math.random() < 0.5 ? "fraction" : "percent");
+      const crates = {};
+      TYPES.forEach((type) => { crates[type.key] = mix.total * mix[type.key] / 100; });
+      return { mix, sender, crates, style, flight, reason: choice(REASONS), time: clockTime() };
+    }
+
+    function mixList() {
+      return TYPES.map((type) => "<li><strong>" + amountText(email.mix[type.key]) + "</strong> " + type.label.toLowerCase() + "</li>").join("");
+    }
+
+    // ---------- Screens ----------
+    function showInbox() {
+      inbox += 1;
+      email = makeEmail();
+      loaded = [];
+      screen.innerHTML = [
+        '<div class="mail-app">',
+        '<div class="mail-bar"><span class="mail-logo">✉ StationMail</span><span class="mail-user">loadmaster@station7.space</span></div>',
+        '<div class="mail-body">',
+        '<div class="mail-side"><span class="mail-folder active">Inbox <b>1</b></span><span class="mail-folder">Sent</span><span class="mail-folder">Archive</span></div>',
+        '<div class="mail-list">',
+        '<button type="button" class="mail-item unread" id="mail-open">',
+        '<span class="mail-dot"></span>',
+        '<span class="mail-from">' + email.sender.name + '</span>',
+        '<span class="mail-subject">Cargo for Flight ' + email.flight + '</span>',
+        '<span class="mail-preview">Hi Loadmaster, ' + email.reason + "…</span>",
+        '<span class="mail-time">' + email.time + "</span>",
+        "</button>",
+        history.length ? history.map(function (old) {
+          return '<div class="mail-item read" aria-disabled="true">' +
+            '<span class="mail-from">' + old.sender.name + "</span>" +
+            '<span class="mail-subject">Cargo for Flight ' + old.flight + "</span>" +
+            '<span class="mail-preview">' + (old.ok ? "✓ Loaded and launched" : "✗ Some crates were off") + "</span>" +
+            '<span class="mail-time">' + old.time + "</span></div>";
+        }).join("") : '<p class="mail-older">No other messages.</p>',
+        "</div></div></div>"
       ].join("");
-      workspace.querySelectorAll("[data-cargo]").forEach((item) => {
+      // Same place as every other step: one action button on the desk.
+      controls.innerHTML = button("Open mail", 'data-action="open"');
+      controls.querySelector('[data-action="open"]').addEventListener("click", showEmail);
+      play("good");
+      feedback.textContent = "You have new mail! Press Open mail to read it.";
+      document.getElementById("mail-open").addEventListener("click", showEmail);
+    }
+
+    function showEmail() {
+      play("beep");
+      screen.innerHTML = [
+        '<div class="mail-app">',
+        '<div class="mail-bar"><span class="mail-logo">✉ StationMail</span><span class="mail-user">loadmaster@station7.space</span></div>',
+        '<div class="mail-read">',
+        '<p class="mail-subject-big">Cargo for Flight ' + email.flight + "</p>",
+        '<p class="mail-head"><b>From:</b> ' + email.sender.name + " (" + email.sender.role + ") &lt;" + email.sender.address + "&gt;</p>",
+        '<p class="mail-head"><b>To:</b> Loadmaster (you)</p>',
+        '<p class="mail-head"><b>Sent:</b> Today, ' + email.time + "</p>",
+        '<div class="mail-text">',
+        "<p>Hi Loadmaster,</p>",
+        "<p>" + email.reason + " The captain wants the <strong>" + email.mix.total + " crates</strong> on Flight " + email.flight + " to be:</p>",
+        '<ul class="mail-mix">' + mixList() + "</ul>",
+        "<p>Could you make sure that's what gets loaded? Thanks!</p>",
+        "<p>— " + email.sender.sign + "</p>",
+        "</div></div></div>"
+      ].join("");
+      controls.innerHTML = button("Next: Load the cargo", 'data-action="load"');
+      controls.querySelector('[data-action="load"]').addEventListener("click", showLoading);
+      feedback.textContent = "Read the email. How many crates of each kind is that?";
+    }
+
+    function showLoading() {
+      play("beep");
+      screen.innerHTML = [
+        '<div class="bay-app">',
+        '<div class="mail-bar"><span class="mail-logo">▣ Cargo Bay // Flight ' + email.flight + '</span><span class="mail-user" id="bay-count"></span></div>',
+        '<div class="bay-body">',
+        '<div class="bay-note"><b>From ' + email.sender.sign + ':</b><ul class="mail-mix">' + mixList() + '</ul><span>of ' + email.mix.total + " crates</span></div>",
+        '<div class="bay-rack" id="bay-rack"></div>',
+        "</div>",
+        '<div class="bay-tally" id="bay-tally"></div>',
+        "</div>"
+      ].join("");
+      controls.innerHTML = TYPES.map((type) =>
+        '<button type="button" class="command-button desk-crate crate-' + type.key + '" data-cargo="' + type.key + '"><span>' + type.icon + "</span>" + type.label + "</button>"
+      ).join("") +
+        button("↩ Undo", 'data-action="undo"') +
+        button("Send report", 'data-action="send"');
+      controls.querySelectorAll("[data-cargo]").forEach(function (item) {
         item.addEventListener("click", function () {
-          const loaded = counts.water + counts.equipment + counts.food;
-          if (loaded >= manifest.total) return;
-          counts[item.dataset.cargo] += 1;
+          if (loaded.length >= email.mix.total) {
+            feedback.textContent = "The bay is full. Undo a crate or send your report.";
+            play("error");
+            return;
+          }
+          loaded.push(item.dataset.cargo);
           play("beep");
-          update();
+          drawBay();
         });
       });
-      workspace.querySelector('[data-action="undo"]').addEventListener("click", function () {
-        counts = { water: 0, equipment: 0, food: 0 };
-        update();
+      controls.querySelector('[data-action="undo"]').addEventListener("click", function () {
+        if (!loaded.length) return;
+        loaded.pop();
+        play("beep");
+        drawBay();
       });
-      workspace.querySelector('[data-action="check"]').addEventListener("click", check);
-      update();
+      controls.querySelector('[data-action="send"]').addEventListener("click", sendReport);
+      feedback.textContent = "Load " + email.mix.total + " crates, then send your report.";
+      drawBay();
     }
 
-    function cargoBoxes(values) {
-      return ["water", "equipment", "food"].map((type) => {
-        const boxes = Array.from({ length: values[type] }, () => '<span class="cargo-box cargo-' + type + '"></span>').join("");
-        return '<div class="cargo-line"><span>' + type + " " + values[type] + '</span><div class="cargo-boxes">' + boxes + "</div></div>";
+    function tally() {
+      const counts = { water: 0, equipment: 0, food: 0 };
+      loaded.forEach((key) => { counts[key] += 1; });
+      return counts;
+    }
+
+    function drawBay() {
+      const rack = document.getElementById("bay-rack");
+      rack.innerHTML = Array.from({ length: email.mix.total }, function (_, i) {
+        const key = loaded[i];
+        const type = TYPES.find((t) => t.key === key);
+        return '<span class="bay-slot' + (key ? " filled crate-" + key : "") + '">' + (type ? type.icon : "") + "</span>";
       }).join("");
+      rack.style.setProperty("--cols", email.mix.total > 12 ? 10 : email.mix.total > 6 ? 6 : 5);
+      const counts = tally();
+      document.getElementById("bay-tally").innerHTML = TYPES.map((type) =>
+        '<span class="crate-' + type.key + '">' + type.icon + " " + type.label + " <b>" + counts[type.key] + "</b></span>"
+      ).join("");
+      document.getElementById("bay-count").textContent = loaded.length + " / " + email.mix.total + " loaded";
+      const send = controls.querySelector('[data-action="send"]');
+      if (send) send.disabled = loaded.length !== email.mix.total;
     }
 
-    function showResults(ok) {
-      const results = document.getElementById("cargo-results");
-      results.innerHTML = [
-        '<div class="cargo-result-grid">',
-        '<div><strong>Expected (Answer)</strong>' + cargoBoxes(manifest.crates) + "</div>",
-        '<div><strong>Delivered (You Loaded)</strong>' + cargoBoxes(counts) + "</div>",
-        "</div>",
-        button("Next", 'data-action="next"')
-      ].join("");
-      results.querySelector('[data-action="next"]').addEventListener("click", newManifest);
-      feedback.textContent = ok ? "Manifest matched. Review the cargo, then press Next." : "Manifest mismatch. Compare expected and delivered, then press Next.";
-    }
-
-    function update() {
-      document.getElementById("cargo-counts").innerHTML = "<strong>Loaded (crates)</strong><span>Water " + counts.water + "</span><span>Equipment " + counts.equipment + "</span><span>Food " + counts.food + "</span>";
-    }
-
-    function check() {
-      const ok = counts.water === manifest.crates.water && counts.equipment === manifest.crates.equipment && counts.food === manifest.crates.food;
-      if (ok) {
+    function sendReport() {
+      if (loaded.length !== email.mix.total) return;
+      const counts = tally();
+      const rows = TYPES.map(function (type) {
+        const want = email.crates[type.key];
+        const ok = counts[type.key] === want;
+        // The two numbers to compare sit in matching boxes, side by side.
+        return '<tr class="' + (ok ? "row-ok" : "row-bad") + '"><td>' + type.icon + " " + type.label + "</td>" +
+          '<td class="check-math">' + amountText(email.mix[type.key]) + " of " + email.mix.total + " =</td>" +
+          '<td><span class="num-box">' + want + '</span></td>' +
+          '<td><span class="num-box">' + counts[type.key] + "</span></td>" +
+          '<td class="check-mark">' + (ok ? "✓" : "✗") + "</td></tr>";
+      }).join("");
+      const allOk = TYPES.every((type) => counts[type.key] === email.crates[type.key]);
+      history.unshift({ sender: email.sender, flight: email.flight, time: email.time, ok: allOk });
+      const finished = allOk && level >= totalLevels;
+      if (allOk) {
         setScore(20);
         setLevel(level + 1);
+        showLevel();
+        if (finished) levelNode.textContent = totalLevels + "/" + totalLevels;
         play("small_victory");
       } else {
         play("error");
       }
-      showResults(ok);
+      screen.innerHTML = [
+        '<div class="mail-app">',
+        '<div class="mail-bar"><span class="mail-logo">✉ StationMail</span><span class="mail-user">loadmaster@station7.space</span></div>',
+        '<div class="mail-read">',
+        '<p class="mail-subject-big">Re: Cargo for Flight ' + email.flight + "</p>",
+        '<p class="mail-head"><b>From:</b> ' + email.sender.name + " &lt;" + email.sender.address + "&gt;</p>",
+        '<div class="mail-text">',
+        "<p>" + (allOk
+          ? "Thanks, Loadmaster! I checked the bay and it's exactly right. Flight " + email.flight + " is cleared for launch. 🚀"
+          : "Hmm, I checked the bay and a few crates are off. Here's what I found:") + "</p>",
+        '<table class="mail-check"><tr><th>Cargo</th><th></th><th>Asked for</th><th>You loaded</th><th></th></tr>' + rows + "</table>",
+        allOk ? "" : "<p>No problem, the next flight is waiting. Let's try again!</p>",
+        "<p>— " + email.sender.sign + "</p>",
+        "</div></div></div>"
+      ].join("");
+      if (finished) {
+        controls.innerHTML = button("Finish shift", 'data-action="finish"');
+        controls.querySelector('[data-action="finish"]').addEventListener("click", function () {
+          if (window.EducationStationReward) {
+            window.EducationStationReward.celebrate({
+              title: "Shift Complete!",
+              lines: ["All " + totalLevels + " flights loaded", "Score " + score]
+            });
+          }
+        });
+        feedback.textContent = "That was the last flight! Press Finish shift.";
+        return;
+      }
+      controls.innerHTML = button("Next email", 'data-action="next"');
+      controls.querySelector('[data-action="next"]').addEventListener("click", showInbox);
+      feedback.textContent = allOk ? "Report accepted! Check your inbox for the next job." : "Compare what was asked with what you loaded, then try the next email.";
     }
 
-    newManifest();
-    feedback.textContent = "Load crates to match the fractional manifest.";
+    showLevel();
+    showInbox();
   }
 
   const inits = { mastermind: initMastermind, typing: initTyping, rhythm: initRhythm, bonds: initBonds, radio: initRadio, packing: initPacking, land: initLand };

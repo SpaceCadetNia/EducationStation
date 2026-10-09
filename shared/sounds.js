@@ -258,6 +258,18 @@
     song = { stop() { audio.pause(); } };
   }
 
+  // Stop a looping sound such as the Key Echo workout music.
+  function stop(name) {
+    const audio = players[name];
+    if (!audio) return;
+    audio.pause();
+    try {
+      audio.currentTime = 0;
+    } catch (error) {
+      // Not loaded yet; nothing is playing.
+    }
+  }
+
   function stopSong() {
     if (song) song.stop();
     song = null;
@@ -419,7 +431,7 @@
   }
 
   try {
-    window.EducationStationSound = { play, playSong, stopSong, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
+    window.EducationStationSound = { play, stop, playSong, stopSong, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
   } catch (error) {
     // Some embedded browser surfaces lock global objects. The event listener
     // above is the supported path for game scripts.
