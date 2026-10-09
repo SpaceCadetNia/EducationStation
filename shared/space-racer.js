@@ -23,6 +23,9 @@
   const feedback = document.getElementById("racer-feedback");
   const distanceNode = document.getElementById("racer-distance");
   const distanceBigNode = document.getElementById("racer-distance-big");
+  const recordNode = document.getElementById("racer-record");
+  const Reward = window.EducationStationReward;
+  let bestDistance = Reward ? Reward.record("space-racer") : 0;
   const fuelNode = document.getElementById("racer-fuel");
   const shieldNode = document.getElementById("racer-shield");
   const statusSpeedNode = document.getElementById("racer-status-speed");
@@ -176,6 +179,7 @@
     const distanceValue = Math.floor(distance);
     distanceNode.textContent = distanceValue;
     distanceBigNode.textContent = distanceValue;
+    updateRecord(distanceValue);
     fuelNode.textContent = Math.max(0, Math.floor(fuel));
     if (fuelFill) fuelFill.style.width = Math.max(0, Math.min(100, fuel)) + "%";
     shieldNode.innerHTML = shieldBoxesHtml();
@@ -521,7 +525,27 @@
     if (shield <= 0) endRace();
   }
 
+  // Record distance: shown under the big distance number, saved on this device.
+  function updateRecord(current) {
+    if (!recordNode) return;
+    const beating = bestDistance > 0 && current > bestDistance;
+    const shown = Math.max(bestDistance, current);
+    recordNode.hidden = !bestDistance && !beating;
+    recordNode.textContent = beating ? "New record!" : "Record " + shown;
+    recordNode.classList.toggle("new-record", beating);
+  }
+
+  function saveRecord() {
+    if (!Reward) return false;
+    const isNew = Reward.saveRecord("space-racer", Math.floor(distance));
+    if (isNew) bestDistance = Math.floor(distance);
+    return isNew;
+  }
+
+  window.addEventListener("pagehide", saveRecord);
+
   function endRace() {
+    const newRecord = saveRecord();
     running = false;
     paused = true;
     inPitstop = false;
@@ -536,7 +560,8 @@
     hideWarning();
     track.classList.remove("racer-paused");
     pauseButton.textContent = "II";
-    feedback.textContent = "Race over. Distance " + Math.floor(distance) + ". Press READY to restart.";
+    feedback.textContent = (newRecord ? "New record! " : "Race over. ") + "Distance " + Math.floor(distance) + ". Press READY to restart.";
+    updateRecord(Math.floor(distance));
     ready.hidden = false;
     ready.textContent = ">> RESTART <<";
   }
@@ -827,7 +852,9 @@
 
   function movePointerTurn(event) {
     if (!pointerActive) return;
-    pointerTurn = clamp(-1, 1, (event.clientX - pointerBaseX) / 110);
+    // clientX is in screen pixels; divide by the stage scale so steering feels the same on any screen.
+    const fit = (window.EducationStationStage && window.EducationStationStage.fit) || 1;
+    pointerTurn = clamp(-1, 1, (event.clientX - pointerBaseX) / (110 * fit));
     updateSteerPuck(pointerTurn);
     updateShip();
   }

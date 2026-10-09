@@ -217,6 +217,52 @@
     });
   }
 
+  // Celebration song: Web Audio when it's unlocked (works after any earlier
+  // tap, even outside a tap on iPad), otherwise the plain audio element.
+  let song = null;
+  function playSong(name) {
+    stopSong();
+    const context = getAudioContext();
+    const buffer = audioBuffers[name];
+    if (context && buffer && context.state === "running") {
+      const source = context.createBufferSource();
+      const gain = context.createGain();
+      source.buffer = buffer;
+      gain.gain.value = 0.5;
+      source.connect(gain);
+      gain.connect(context.destination);
+      source.start(0);
+      song = {
+        stop() {
+          try {
+            gain.gain.setTargetAtTime(0, context.currentTime, 0.2);
+            source.stop(context.currentTime + 0.8);
+          } catch (error) {
+            // Already stopped.
+          }
+        }
+      };
+      return;
+    }
+    const audio = players[name];
+    if (!audio) return;
+    try {
+      audio.currentTime = 0;
+    } catch (error) {
+      // Metadata not ready yet; it starts from the top anyway.
+    }
+    audio.volume = 0.5;
+    audio.play().catch(function () {
+      // Blocked until a tap; the celebration still shows.
+    });
+    song = { stop() { audio.pause(); } };
+  }
+
+  function stopSong() {
+    if (song) song.stop();
+    song = null;
+  }
+
   function playBufferedSound(name) {
     const context = getAudioContext();
     const buffer = audioBuffers[name];
@@ -373,7 +419,7 @@
   }
 
   try {
-    window.EducationStationSound = { play, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
+    window.EducationStationSound = { play, playSong, stopSong, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
   } catch (error) {
     // Some embedded browser surfaces lock global objects. The event listener
     // above is the supported path for game scripts.

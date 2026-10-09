@@ -6,12 +6,12 @@
     <title>Đọc Bài - Language Garden</title>
     <link rel="stylesheet" href="../../../shared/retro.css?v=63">
     <link rel="stylesheet" href="../../shared/language.css?v=2">
-    <link rel="stylesheet" href="reader.css?v=3">
+    <link rel="stylesheet" href="reader.css?v=6">
   </head>
   <body class="language-theme" data-game="vn-reader">
     <main class="screen reader-screen">
       <nav class="top-nav" aria-label="Primary">
-        <a href="../../index.html#vn">Tiếng Việt</a>
+        <a href="../../index.html#vn">Tiếng Việt 2</a>
       </nav>
 
       <header class="reader-header">
@@ -20,12 +20,10 @@
           <h1 id="rd-title">Bài 1</h1>
         </div>
         <div class="reader-tools">
-          <label class="tool-chip">Tốc độ
-            <input type="range" id="rd-rate" min="0.5" max="1.2" step="0.05" value="0.8" aria-label="Speaking speed">
-            <span id="rd-rate-label">0.8×</span>
+          <label class="tool-chip">Bài
+            <select id="rd-lesson" aria-label="Lesson"></select>
           </label>
           <button class="tool-chip" type="button" id="rd-english" aria-pressed="true">English: on</button>
-          <button class="tool-chip" type="button" id="rd-voice-btn" aria-expanded="false">🔈 <span id="rd-voice-name">…</span></button>
         </div>
       </header>
 
@@ -47,28 +45,14 @@
 
       <nav class="reader-list" id="rd-list" aria-label="Sentences"></nav>
 
-      <div class="voice-panel" id="rd-voice-panel" hidden>
-        <h2>Giọng đọc · Voice check</h2>
-        <label>Giọng đọc · Reader <select id="rd-source"></select></label>
-        <p id="rd-source-status"></p>
-        <hr>
-        <p><strong>Computer voice</strong> (used when there is no recording)</p>
-        <p id="rd-voice-status"></p>
-        <label>Voice <select id="rd-voice-select"></select></label>
-        <button class="ctl" type="button" id="rd-voice-test">▶ Test: “Xin chào, em bé.”</button>
-        <details>
-          <summary>All voices on this device</summary>
-          <ul id="rd-voice-all"></ul>
-        </details>
-        <button class="ctl" type="button" id="rd-voice-close">Close</button>
-      </div>
     </main>
 
     <script src="../../../shared/stage.js?v=2"></script>
     <script src="../../../shared/sounds.js?v=19"></script>
-    <script src="../lessons/lessons.js?v=3"></script>
-    <script src="../lessons/glossary.js?v=2"></script>
-    <script src="../audio/manifest.js" onerror="void 0"></script>
-    <script src="reader.js?v=7"></script>
+    <script src="../lessons/lessons.js?v=10"></script>
+    <script src="../lessons/glossary.js?v=7"></script>
+    <!-- manifest changes whenever ./vt makes new clips: always fetch a fresh copy -->
+    <script>document.write('<script src="../audio/manifest.js?t=' + Date.now() + '"><\/script>');</script>
+    <script src="reader.js?v=11"></script>
   </body>
 </html>

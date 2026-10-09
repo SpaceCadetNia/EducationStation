@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Đọc Thơ - Language Garden</title>
+    <link rel="stylesheet" href="../../../shared/retro.css?v=63">
+    <link rel="stylesheet" href="../../shared/language.css?v=2">
+    <link rel="stylesheet" href="poem.css?v=3">
+  </head>
+  <body class="language-theme" data-game="vn-poem">
+    <main class="screen poem-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../../index.html#vn">Tiếng Việt 2</a>
+      </nav>
+
+      <header class="poem-header">
+        <div>
+          <p class="system-line" id="pm-page">THƠ // TRANG 21</p>
+          <h1><span class="bi-vi">Đọc Thơ</span><span class="bi-en">Poem Reader</span></h1>
+        </div>
+        <label class="tool-chip">Bài
+          <select id="pm-poem" aria-label="Poem"></select>
+        </label>
+      </header>
+
+      <div class="poem-split">
+        <!-- left: the poem -->
+        <section class="poem-left">
+          <div class="poem-card">
+            <h2 class="poem-title" id="pm-title"></h2>
+            <p class="poem-title-en" id="pm-title-en"></p>
+            <ol class="poem-lines" id="pm-lines"></ol>
+            <p class="poem-source" id="pm-source"></p>
+          </div>
+          <div class="poem-controls">
+            <button type="button" class="ctl" id="pm-prev" aria-label="Previous line">▲</button>
+            <button type="button" class="ctl ctl-main" id="pm-line"><span class="bi-vi">▶ Đọc dòng</span><span class="bi-en">Read line</span></button>
+            <button type="button" class="ctl" id="pm-next" aria-label="Next line">▼</button>
+            <button type="button" class="ctl ctl-all" id="pm-all"><span class="bi-vi">▶▶ Đọc cả bài</span><span class="bi-en">Read the poem</span></button>
+          </div>
+        </section>
+
+        <!-- right: info and translations -->
+        <aside class="poem-right" aria-live="polite">
+          <div class="info-block" id="pm-line-info" hidden>
+            <p class="info-label"><span class="bi-vi" id="pm-line-label">Dòng 1</span><span class="bi-en" id="pm-line-label-en">Line 1</span></p>
+            <p class="info-vi" id="pm-info-vi"></p>
+            <p class="info-en" id="pm-info-en"></p>
+            <ul class="info-words" id="pm-words"></ul>
+            <div class="info-notes" id="pm-notes"></div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script src="../../../shared/stage.js?v=2"></script>
+    <script src="../../../shared/sounds.js?v=19"></script>
+    <script src="../lessons/poems.js?v=3"></script>
+    <script src="../lessons/glossary.js?v=7"></script>
+    <!-- manifest changes whenever ./vt makes new clips: always fetch a fresh copy -->
+    <script>document.write('<script src="../audio/manifest.js?t=' + Date.now() + '"><\/script>');</script>
+    <script src="../shared/vn-voice.js?v=2"></script>
+    <script src="poem.js?v=2"></script>
+  </body>
+</html>

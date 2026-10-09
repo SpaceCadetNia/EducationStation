@@ -1,0 +1,104 @@
+/* Đọc Thơ — poem reader. Split layout on the 1024x768 stage:
+   poem on the left, info and translations on the right. */
+
+.language-theme .screen.poem-screen {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 10px;
+  padding: 52px 26px 18px;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 40%), var(--paper);
+  box-shadow: 0 6px 0 var(--paper-deep), 0 10px 0 rgba(47, 42, 36, 0.25), 0 18px 40px rgba(47, 42, 36, 0.18);
+}
+
+.poem-screen .top-nav { position: absolute; left: 14px; top: 12px; margin: 0; }
+.poem-screen .top-nav a { min-height: 0; padding: 5px 12px; font-size: 0.8rem; }
+
+/* Vietnamese on top, English underneath */
+.bi-vi, .bi-en { display: block; }
+.bi-en { font-style: italic; font-weight: 500; color: var(--ink-soft); font-size: 0.85em; }
+
+.poem-header { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.poem-header h1 { margin: 2px 0 0; font-size: 2.3rem; line-height: 1; }
+.poem-header h1 .bi-en { font-family: "Avenir Next", "Avenir", sans-serif; font-size: 1rem; text-shadow: none; margin-top: 4px; }
+.poem-header .system-line { font-size: 0.85rem; }
+
+.tool-chip {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 4px 12px;
+  border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); background: #fffaf0;
+  font-family: inherit; font-size: 0.9rem; font-weight: 700;
+}
+.tool-chip select { font: inherit; font-weight: 600; border: 0; background: transparent; color: var(--ink); }
+
+.poem-split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; min-height: 0; }
+
+/* ---------- left ---------- */
+.poem-left { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; min-height: 0; }
+.poem-card {
+  min-height: 0; overflow: auto; padding: 18px 22px; border: 3px solid var(--ink); border-radius: 20px;
+  background: #fffaf0; box-shadow: 0 5px 0 var(--ink);
+}
+.poem-title { margin: 0; text-align: center; font-family: Georgia, "Times New Roman", serif; font-size: 2.2rem; color: var(--jade); }
+.poem-title-en { margin: 0 0 10px; text-align: center; font-style: italic; color: var(--ink-soft); }
+.poem-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.pm-line {
+  display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; padding: 4px 8px;
+  border-radius: 12px; cursor: pointer;
+}
+.pm-line.is-current { background: var(--jade-soft); box-shadow: inset 4px 0 0 var(--jade); }
+.pm-num {
+  display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  color: var(--paper); background: var(--ink-soft); font-weight: 800; font-size: 0.85rem;
+}
+.pm-line.is-current .pm-num { background: var(--lantern); }
+.pm-text { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; line-height: 1.3; color: var(--ink); }
+.pm-word {
+  appearance: none; padding: 0 3px; border: 0; border-radius: 8px; background: transparent;
+  color: inherit; font: inherit; cursor: pointer;
+}
+.pm-word:hover { background: rgba(46, 125, 91, 0.12); }
+.pm-word.is-picked { background: var(--gold); }
+.poem-source { margin: 10px 0 0; text-align: right; font-style: italic; color: var(--ink-soft); font-size: 0.9rem; }
+
+.poem-controls { display: flex; justify-content: center; gap: 10px; }
+.ctl {
+  min-height: 52px; min-width: 56px; padding: 6px 16px; border: 3px solid var(--ink); border-radius: 999px;
+  color: var(--ink); background: #fffaf0; box-shadow: 0 4px 0 var(--ink); font-family: inherit;
+  font-size: 1.05rem; font-weight: 800; line-height: 1.1; cursor: pointer;
+}
+.ctl:disabled { opacity: 0.4; cursor: default; }
+.ctl:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.ctl .bi-en { font-size: 0.72rem; color: inherit; opacity: 0.85; }
+.ctl-main { color: var(--paper); background: var(--jade); }
+.ctl-all.active { background: var(--gold); }
+
+/* ---------- right ---------- */
+.poem-right {
+  min-height: 0; overflow: auto; display: grid; align-content: start; gap: 12px; padding: 16px 18px;
+  border: 3px solid var(--ink); border-radius: 20px; background: #fffaf0;
+}
+.info-block { display: grid; gap: 6px; }
+.info-label { margin: 0; color: var(--lantern); font-weight: 800; letter-spacing: 0.04em; }
+.info-label .bi-en { font-size: 0.8rem; letter-spacing: 0; color: var(--ink-soft); }
+.info-vi { margin: 0; font-family: Georgia, serif; font-size: 1.7rem; font-weight: 700; color: var(--ink); }
+.info-en { margin: 0; font-style: italic; color: var(--ink-soft); font-size: 1.2rem; }
+.info-en mark { padding: 0 4px; border-radius: 6px; background: var(--gold); color: var(--ink); font-style: normal; font-weight: 800; }
+
+.info-words { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; }
+.info-words li {
+  display: grid; grid-template-columns: 110px 1fr; gap: 10px; align-items: baseline; padding: 4px 10px;
+  border-radius: 10px; cursor: pointer;
+}
+.info-words li:nth-child(odd) { background: rgba(241, 228, 198, 0.45); }
+.info-words li.is-phrase .w-vi { color: var(--lantern); }
+.info-words li.is-picked { background: var(--gold); }
+.w-vi { font-family: Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--jade); }
+.w-en { color: var(--ink); font-size: 0.98rem; }
+
+.info-notes .note { margin: 6px 0 0; padding: 6px 10px; border-left: 4px solid var(--lantern); background: #fff2e8; border-radius: 6px; }
+
+.pm-line:focus-visible, .pm-word:focus-visible, .ctl:focus-visible, .info-words li:focus-visible {
+  outline: 3px solid var(--gold); outline-offset: 2px;
+}

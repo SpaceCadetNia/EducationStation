@@ -23,7 +23,7 @@ def load_js(path, start_char):
     text = path.read_text(encoding="utf-8")
     text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
     body = text[text.index(start_char): text.rindex("]" if start_char == "[" else "}") + 1]
-    body = re.sub(r'(?<=[{,\s])([A-Za-z_]\w*)\s*:', r'"\1":', body)  # quote bare keys
+    body = re.sub(r'([{,]\s*)([A-Za-z_]\w*)\s*:', r'\1"\2":', body)  # quote bare keys after { or ,
     body = re.sub(r",\s*([\]}])", r"\1", body)                          # trailing commas
     return json.loads(body)
 
@@ -34,6 +34,11 @@ def words_of(sentence):
 
 def main():
     lessons = load_js(VN / "lessons" / "lessons.js", "[")
+    # Workbook pages (Chọn Từ game) add their filled-in sentences too.
+    sys.path.insert(0, str(VN / "tools"))
+    sys.dont_write_bytecode = True
+    from make_voices import workbook_as_lessons, poems_as_lessons
+    lessons += workbook_as_lessons() + poems_as_lessons()
     gloss = load_js(VN / "lessons" / "glossary.js", "{")
     words = {nfc(k): v for k, v in gloss.get("words", {}).items()}
     phrases = {nfc(k): v for k, v in gloss.get("phrases", {}).items()}
@@ -54,6 +59,8 @@ def main():
     # align: every Vietnamese word should point at English text that really exists
     align_problems = []
     for lesson in lessons:
+        if "align" not in lesson:
+            continue  # workbook pages: no per-word English alignment
         align = lesson.get("align") or []
         for i, sent in enumerate(lesson["sentences"]):
             a = align[i] if i < len(align) else {}

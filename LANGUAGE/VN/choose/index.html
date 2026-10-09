@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Chọn Từ - Language Garden</title>
+    <link rel="stylesheet" href="../../../shared/retro.css?v=63">
+    <link rel="stylesheet" href="../../shared/language.css?v=2">
+    <link rel="stylesheet" href="choose.css?v=7">
+  </head>
+  <body class="language-theme" data-game="vn-choose">
+    <main class="screen choose-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../../index.html#vn">Tiếng Việt 2</a>
+      </nav>
+
+      <header class="choose-header">
+        <div>
+          <p class="system-line" id="ch-page">BÀI LÀM // TRANG 150</p>
+          <h1>Chọn Từ</h1>
+        </div>
+        <div class="choose-tools">
+          <label class="tool-chip">Bài
+            <select id="ch-set" aria-label="Workbook page"></select>
+          </label>
+          <div class="mode-toggle" role="group" aria-label="Mode">
+            <button type="button" class="mode-btn" data-mode="learn" aria-pressed="true"><span class="bi-vi">Học</span><span class="bi-en">Learn</span></button>
+            <button type="button" class="mode-btn" data-mode="practice" aria-pressed="false"><span class="bi-vi">Luyện tập</span><span class="bi-en">Practice</span></button>
+          </div>
+          <span class="score-chip" id="ch-score" hidden>Đúng <strong id="ch-correct">0</strong>/<strong id="ch-total">0</strong></span>
+        </div>
+      </header>
+
+      <p class="choose-instructions"><span class="bi-vi" id="ch-instr-vi"></span><span class="bi-en" id="ch-instr-en"></span></p>
+
+      <section class="choose-card" aria-live="polite">
+        <span class="choose-num" id="ch-num">1/5</span>
+        <p class="choose-kind" id="ch-kind" hidden></p>
+        <button type="button" class="hear-btn" id="ch-hear" aria-label="Hear the sentence" hidden>🔊</button>
+        <p class="choose-sentence" id="ch-sentence"></p>
+        <p class="choose-en" id="ch-en"></p>
+        <p class="choose-verdict" id="ch-verdict" hidden></p>
+        <p class="choose-gloss" id="ch-gloss" hidden></p>
+      </section>
+
+      <div class="choose-options" id="ch-options"></div>
+
+      <div class="choose-nav">
+        <button type="button" class="ctl" id="ch-prev" aria-label="Previous">◀</button>
+        <p class="choose-prompt" id="ch-prompt"></p>
+        <button type="button" class="ctl ctl-main" id="ch-next"><span class="bi-vi">Tiếp ▶</span><span class="bi-en">Next</span></button>
+      </div>
+
+      <div class="choose-done" id="ch-done" hidden>
+        <h2 class="bi"><span class="bi-vi">Xong rồi!</span><span class="bi-en">Done!</span></h2>
+        <p class="done-score"><span class="bi-vi"><strong id="ch-done-correct">0</strong> / <strong id="ch-done-total">0</strong> đúng</span><span class="bi-en">correct</span></p>
+        <button type="button" class="ctl ctl-main" id="ch-again"><span class="bi-vi">Chơi lại</span><span class="bi-en">Play again</span></button>
+      </div>
+    </main>
+
+    <script src="../../../shared/stage.js?v=2"></script>
+    <script src="../../../shared/sounds.js?v=19"></script>
+    <script src="../lessons/workbook.js?v=2"></script>
+    <script src="../lessons/glossary.js?v=7"></script>
+    <!-- manifest changes whenever ./vt makes new clips: always fetch a fresh copy -->
+    <script>document.write('<script src="../audio/manifest.js?t=' + Date.now() + '"><\/script>');</script>
+    <script src="../shared/vn-voice.js?v=2"></script>
+    <script src="choose.js?v=6"></script>
+  </body>
+</html>

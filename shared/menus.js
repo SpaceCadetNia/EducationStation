@@ -21,6 +21,7 @@
         {
           code: "01",
           title: "Number Seeker",
+          stars: ["number-seeker-plus", "number-seeker-minus", "number-seeker-multiply", "number-seeker-divide"],
           meta: "Arithmetic missions: plus, minus, multiply, divide",
           href: "#number-seeker",
           menuTarget: "number-seeker"
@@ -35,6 +36,7 @@
         {
           code: "03",
           title: "Space Racer",
+          record: "space-racer",
           meta: "Dodge ships and earn pitstop boosts with math",
           href: "space-racer/index.html",
           launch: true
@@ -77,6 +79,7 @@
         {
           code: "09",
           title: "Test Pilots",
+          stars: ["lunar-keys"],
           meta: "Prototype lab for experimental games",
           href: "#test",
           menuTarget: "test"
@@ -105,10 +108,10 @@
       ariaLabel: "Number Seeker operators",
       back: true,
       cards: [
-        { code: "+", title: "Plus", meta: "Find addends and sums", href: "number-seeker/plus.html", launch: true },
-        { code: "-", title: "Minus", meta: "Track the difference", href: "number-seeker/minus.html", launch: true },
-        { code: "x", title: "Multiply", meta: "Scan skip-count patterns", href: "number-seeker/multiply.html", launch: true },
-        { code: "÷", title: "Divide", meta: "Find quotients", href: "number-seeker/divide.html", launch: true }
+        { code: "+", title: "Plus", meta: "Find addends and sums", href: "number-seeker/plus.html", launch: true, stars: ["number-seeker-plus"] },
+        { code: "-", title: "Minus", meta: "Track the difference", href: "number-seeker/minus.html", launch: true, stars: ["number-seeker-minus"] },
+        { code: "x", title: "Multiply", meta: "Scan skip-count patterns", href: "number-seeker/multiply.html", launch: true, stars: ["number-seeker-multiply"] },
+        { code: "÷", title: "Divide", meta: "Find quotients", href: "number-seeker/divide.html", launch: true, stars: ["number-seeker-divide"] }
       ]
     },
     test: {
@@ -119,7 +122,7 @@
       ariaLabel: "Prototype games",
       back: true,
       cards: [
-        { code: "TY", title: "Lunar Keys", meta: "Low-pressure typing harvest", href: "test/index.html?game=typing", launch: true },
+        { code: "TY", title: "Lunar Keys", meta: "Low-pressure typing harvest", href: "test/index.html?game=typing", launch: true, stars: ["lunar-keys"] },
         { code: "LM", title: "Land Mission", meta: "Procedural top-view terrain scouting", href: "test/index.html?game=land", launch: true }
       ]
     }
@@ -142,13 +145,26 @@
     history.replaceState(null, "", screenName === "home" ? location.pathname : "#" + screenName);
   }
 
+  // Stars earned (hidden until there is at least one) or a record distance.
+  function rewardBadge(card) {
+    const reward = window.EducationStationReward;
+    if (!reward) return "";
+    if (card.record) {
+      const best = reward.record(card.record);
+      return best ? '<span class="star-badge">Record ' + best + "</span>" : "";
+    }
+    if (!card.stars) return "";
+    const count = reward.starsFor(card.stars);
+    return count ? '<span class="star-badge">★ ' + count + "</span>" : "";
+  }
+
   function renderCard(card) {
     const menuTarget = card.menuTarget ? ' data-menu-target="' + card.menuTarget + '"' : "";
     const launch = card.launch ? " data-launch-target" : "";
     return [
       '<a class="program-card" href="' + card.href + '" title=""' + menuTarget + launch + ">",
       '<span class="program-code">' + card.code + "</span>",
-      '<span class="program-title">' + card.title + "</span>",
+      '<span class="program-title">' + card.title + rewardBadge(card) + "</span>",
       '<span class="program-meta">' + card.meta + "</span>",
       "</a>"
     ].join("");

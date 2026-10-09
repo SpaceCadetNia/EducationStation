@@ -285,6 +285,8 @@
     positionLink();
     void link.getBoundingClientRect();
     link.classList.add("link-drawn");
+    // The translator slides up as it opens; re-attach once it settles.
+    window.setTimeout(positionLink, 350);
   }
 
   function hideLink() {

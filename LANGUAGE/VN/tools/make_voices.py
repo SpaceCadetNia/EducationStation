@@ -1,7 +1,8 @@
 """Generate Vietnamese lesson audio with VieNeu-TTS (runs on the Mac, offline after first download).
 
 For every voice below, writes one clip per sentence and per unique word of each
-lesson in lessons/lessons.js to audio/<voice-id>/<lesson-id>/, then rewrites
+lesson in lessons/lessons.js (and every filled-in sentence of each workbook page
+in lessons/workbook.js) to audio/<voice-id>/<lesson-id>/, then rewrites
 audio/manifest.js so the reader can play them.
 
 Voices:
@@ -27,6 +28,8 @@ VN = Path(__file__).resolve().parent.parent
 SAMPLES = VN / "voice-samples"
 AUDIO = VN / "audio"
 LESSONS_JS = VN / "lessons" / "lessons.js"
+WORKBOOK_JS = VN / "lessons" / "workbook.js"
+POEMS_JS = VN / "lessons" / "poems.js"
 SAMPLE_EXT = {".m4a", ".wav", ".mp3", ".aiff", ".aif", ".caf"}
 # Built-in Southern (miền Nam) voices: (id, preset name, label)
 PRESETS = []
@@ -44,7 +47,45 @@ def load_lessons():
     body = text[text.index("[") : text.rindex("]") + 1]
     body = re.sub(r"(\{|,)\s*([A-Za-z_]\w*)\s*:", r'\1 "\2":', body)  # quote keys
     body = re.sub(r",\s*([\]}])", r"\1", body)  # trailing commas
-    return json.loads(body)
+    return json.loads(body) + workbook_as_lessons() + poems_as_lessons()
+
+
+def fill_blank(sentence, option):
+    """Workbook sentence with the blank filled; same rule as the Chọn Từ game."""
+    if sentence.startswith("___"):
+        option = option[:1].upper() + option[1:]
+    return sentence.replace("___", option, 1)
+
+
+def poems_as_lessons():
+    """Each poem becomes a pseudo-lesson: one clip per line (s01 = line 1)."""
+    if not POEMS_JS.exists():
+        return []
+    text = POEMS_JS.read_text(encoding="utf-8")
+    text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
+    poems = json.loads(text[text.index("[") : text.rindex("]") + 1])
+    return [{"id": p["id"], "title": p.get("title", p["id"]),
+             "sentences": [[nfc(line["vi"]), line.get("en", "")] for line in p["lines"]]}
+            for p in poems]
+
+
+def workbook_as_lessons():
+    """Each workbook page becomes a pseudo-lesson whose 'sentences' are every
+    filled-in variant, in order (item 1 option 1, item 1 option 2, item 2 ...).
+    The game finds a clip by that flat index."""
+    if not WORKBOOK_JS.exists():
+        return []
+    text = WORKBOOK_JS.read_text(encoding="utf-8")
+    text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
+    sets = json.loads(text[text.index("[") : text.rindex("]") + 1])
+    out = []
+    for ws in sets:
+        sentences = []
+        for item in ws["items"]:
+            for opt in item["options"]:
+                sentences.append([nfc(fill_blank(item["sentence"], opt["vi"])), opt.get("result", "")])
+        out.append({"id": ws["id"], "title": ws.get("title", ws["id"]), "sentences": sentences})
+    return out
 
 
 def words_of(sentence):
@@ -293,6 +334,7 @@ def check_existing(lessons):
 def spoken_text(sent):
     """Text sent to the TTS: optional 3rd item in a lesson sentence overrides the shown text."""
     text = nfc((sent[2] if len(sent) > 2 and sent[2] else sent[0]).strip())
+    text = text.rstrip(",;:")  # poem lines ending in a comma are spoken as a full stop
     return text if text[-1:] in ".!?" else text + "."
 
 

@@ -427,7 +427,9 @@
 
   // ---------- Rendering ----------
   function sizeCanvas() {
-    const ratio = Math.min(2, window.devicePixelRatio || 1);
+    // Include the stage scale so the canvas stays sharp when the stage is enlarged.
+    const fit = (window.EducationStationStage && window.EducationStationStage.fit) || 1;
+    const ratio = Math.min(3, (window.devicePixelRatio || 1) * Math.max(1, fit));
     const cssW = Math.max(1, sceneBox.clientWidth);
     const cssH = Math.max(1, sceneBox.clientHeight);
     const w = Math.round(cssW * ratio);

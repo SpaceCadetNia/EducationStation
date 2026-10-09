@@ -329,7 +329,17 @@
       '<p class="summary-line">Supplies Loaded <strong>' + (currentSupplyIcons() || "None") + "</strong></p>",
       '<p class="summary-line">Best Streak <strong>' + bestStreak + "</strong></p>"
     ].join("");
-    feedback.textContent = "Return to Number Seeker for another mission.";
+    feedback.textContent = "Mission complete! Every supply is loaded.";
+    if (window.EducationStationReward) {
+      window.EducationStationReward.celebrate({
+        title: "Mission Complete!",
+        lines: [
+          "Final score " + score,
+          "Supplies " + (currentSupplyIcons() || "none"),
+          "Best streak " + bestStreak
+        ]
+      });
+    }
   }
 
   function moveSelection(delta) {
@@ -352,6 +362,12 @@
   });
 
   document.title = "Number Seeker: " + symbols[mode];
+  if (window.EducationStationReward) window.EducationStationReward.init("number-seeker-" + mode);
+  // Test hook: ?debug exposes a shortcut to the finale.
+  if (new URLSearchParams(window.location.search).has("debug")) {
+    window.NumberSeekerDebug = { finish: showSummary };
+  }
+
   updateSupplies();
   nextProblem();
 })();

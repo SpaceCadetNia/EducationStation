@@ -192,6 +192,8 @@
 
   function initTyping() {
     setHeader("typing");
+    if (window.EducationStationReward) window.EducationStationReward.init("lunar-keys");
+    document.addEventListener("lunarkeys:finish", function () { finishTypingRun(); });
     const wordSets = {
       a: ["alien", "atlas"],
       b: ["base", "beacon"],
@@ -272,8 +274,15 @@
       input.value = "";
       input.disabled = true;
       updateTypingStatus();
-      play("small_victory");
       feedback.textContent = "Lunar Keys complete. Take a rest point.";
+      if (window.EducationStationReward) {
+        window.EducationStationReward.celebrate({
+          title: "Lunar Keys Complete!",
+          lines: ["All " + totalRounds + " resources harvested", "Score " + score]
+        });
+      } else {
+        play("small_victory");
+      }
     }
 
     function nextWord() {
@@ -326,6 +335,10 @@
       field.classList.remove("keyboard-active");
     });
     nextWord();
+  }
+
+  if (mode === "typing" && new URLSearchParams(window.location.search).has("debug")) {
+    window.LunarKeysDebug = { finish: function () { document.dispatchEvent(new CustomEvent("lunarkeys:finish")); } };
   }
 
   function initLand() {
@@ -751,7 +764,8 @@
     canvas.addEventListener("pointermove", function (event) {
       if (!touchBase) return;
       const dx = event.clientX - touchBase.x;
-      world.turn = Math.max(-1, Math.min(1, dx / 90));
+      const fit = (window.EducationStationStage && window.EducationStationStage.fit) || 1;
+      world.turn = Math.max(-1, Math.min(1, dx / (90 * fit)));
     });
     canvas.addEventListener("pointerup", function () {
       touchBase = null;
@@ -1199,6 +1213,9 @@
       const flyer = document.createElement("span");
       flyer.className = "bond-flyer";
       flyer.textContent = value;
+      // The flyer lives outside the scaled stage, so match the stage scale.
+      const fit = (window.EducationStationStage && window.EducationStationStage.fit) || 1;
+      flyer.style.transform = "translate(-50%, -50%) scale(" + fit + ")";
       flyer.style.left = sourceRect.left + sourceRect.width / 2 + "px";
       flyer.style.top = sourceRect.top + sourceRect.height / 2 + "px";
       document.body.appendChild(flyer);
@@ -1518,13 +1535,21 @@
       receiverSignal.textContent = drawWave(receiverAmplitude, signalFrequency(freePlay ? signalSource.tune : Number(range.value)), 0.65 - coherence * 0.35);
     }
 
+    // Layout size of the scope, ignoring the stage's scale transform.
+    // (getBoundingClientRect is in scaled screen pixels, but the circle and
+    // ray are sized in layout pixels, so mixing them put the circle at the
+    // wrong distance whenever the stage was scaled.)
+    function scopeSize() {
+      return { width: scopeGrid.clientWidth, height: scopeGrid.clientHeight };
+    }
+
     function scopeRadiusPx() {
-      const rect = scopeGrid.getBoundingClientRect();
+      const rect = scopeSize();
       return Math.min(rect.width * 0.46, rect.height * 0.92);
     }
 
     function scopePoint(pointAngle, pointTune) {
-      const rect = scopeGrid.getBoundingClientRect();
+      const rect = scopeSize();
       const radians = pointAngle * Math.PI / 180;
       const dx = -Math.cos(radians);
       const dy = -Math.sin(radians);

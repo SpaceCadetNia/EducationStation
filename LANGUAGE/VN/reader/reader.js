@@ -3,7 +3,8 @@
 // browser's speechSynthesis in vi-VN. Reads one sentence, all sentences, or a
 // single tapped word, highlighting the word being spoken.
 (function () {
-  const lesson = (window.VN_LESSONS || [])[0];
+  const lessons = window.VN_LESSONS || [];
+  let lesson = lessons[0]; // chosen from the "Bài" menu at start
   const synth = window.speechSynthesis;
   const $ = (id) => document.getElementById(id);
   const els = {
@@ -13,9 +14,14 @@
     voiceBtn: $("rd-voice-btn"), voiceName: $("rd-voice-name"), panel: $("rd-voice-panel"),
     status: $("rd-voice-status"), select: $("rd-voice-select"), allVoices: $("rd-voice-all"),
     test: $("rd-voice-test"), close: $("rd-voice-close"),
-    source: $("rd-source"), sourceStatus: $("rd-source-status")
+    source: $("rd-source"), sourceStatus: $("rd-source-status"),
+    lesson: $("rd-lesson")
   };
-  const recorded = ((window.VN_AUDIO && window.VN_AUDIO.voices) || []).filter((v) => v.lessons && v.lessons[lesson.id]);
+  // The speed and voice controls were removed (one fixed speed, one recorded
+  // voice). Their elements no longer exist; stand-ins keep the shared code simple.
+  Object.keys(els).forEach(function (k) { if (!els[k]) els[k] = document.createElement("span"); });
+  const RATE = 0.8; // computer voice speed; recorded clips play at normal speed
+  const recorded = ((window.VN_AUDIO && window.VN_AUDIO.voices) || []).filter((v) => v.lessons && Object.keys(v.lessons).length);
   const player = new Audio();
   player.preload = "auto";
   if ("preservesPitch" in player) player.preservesPitch = true;
@@ -120,6 +126,7 @@
     const rec = currentRecorded();
     if (!rec) return null;
     const data = rec.lessons[lesson.id];
+    if (!data) return null; // no clips for this page yet: computer voice
     const path = kind === "sentence" ? data.sentences[key] : data.words[key];
     return path ? "../audio/" + encodeURI(path) : null;
   }
@@ -135,7 +142,7 @@
       if (player.duration) opts.onTime(player.currentTime / player.duration);
     } : null;
     player.src = url;
-    player.playbackRate = Math.max(0.5, Number(els.rate.value) / 0.8);
+    player.playbackRate = 1;
     document.body.classList.add("is-speaking");
     const p = player.play();
     if (p && p.catch) p.catch(function () { clearSpeaking(); if (opts.onerror) opts.onerror(); });
@@ -165,7 +172,7 @@
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "vi-VN";
     if (voice) u.voice = voice;
-    u.rate = Number(els.rate.value);
+    u.rate = RATE;
     u.onboundary = opts.onboundary || null;
     u.onend = function () { clearSpeaking(); if (opts.onend) opts.onend(); };
     u.onerror = function () { clearSpeaking(); playingAll = false; updateAllButton(); };
@@ -396,12 +403,6 @@
     else speak(plain);
   });
 
-  els.rate.value = store.get("rate") || els.rate.value;
-  els.rateLabel.textContent = Number(els.rate.value).toFixed(2).replace(/0$/, "") + "×";
-  els.rate.addEventListener("input", function () {
-    els.rateLabel.textContent = Number(els.rate.value).toFixed(2).replace(/0$/, "") + "×";
-    store.set("rate", els.rate.value);
-  });
 
   function applyEnglish() {
     els.english.textContent = "English: " + (showEnglish ? "on" : "off");
@@ -416,26 +417,6 @@
     applyEnglish();
   });
 
-  els.voiceBtn.addEventListener("click", function () {
-    beep();
-    loadVoices();
-    els.panel.hidden = !els.panel.hidden;
-    els.voiceBtn.setAttribute("aria-expanded", String(!els.panel.hidden));
-  });
-  els.close.addEventListener("click", function () { els.panel.hidden = true; els.voiceBtn.setAttribute("aria-expanded", "false"); });
-  els.select.addEventListener("change", function () {
-    voice = voices.find((v) => v.voiceURI === els.select.value) || voice;
-    if (voice) store.set("voice", voice.voiceURI);
-    updateVoiceStatus(voices.filter(isVietnamese).length);
-  });
-  els.test.addEventListener("click", function () { speak("Xin chào, em bé."); });
-  els.source.addEventListener("change", function () {
-    stopAll();
-    source = els.source.value;
-    store.set("source", source);
-    updateSourceLabel();
-  });
-
   document.addEventListener("keydown", function (e) {
     if (e.target.matches("input, select")) return;
     if (e.key === "ArrowRight") go(index + 1, true);
@@ -447,10 +428,24 @@
 
   new MutationObserver(syncEnglish).observe(els.vi, { subtree: true, attributes: true, attributeFilter: ["class"] });
 
+  // ---------- lessons ----------
+  function setLesson(i) {
+    stopAll();
+    lesson = lessons[i] || lessons[0];
+    store.set("lesson", lesson.id);
+    index = 0;
+    els.title.textContent = (lesson.short || lesson.title) + (lesson.focus ? " · " + lesson.focus : "");
+    renderList();
+    render();
+  }
+  els.lesson.innerHTML = lessons.map((l, i) => '<option value="' + i + '">' + escapeHtml(l.title) + "</option>").join("");
+  els.lesson.disabled = lessons.length < 2;
+  els.lesson.addEventListener("change", function () { setLesson(Number(els.lesson.value)); });
+
   // ---------- start ----------
-  els.title.textContent = lesson.title + (lesson.focus ? " · " + lesson.focus : "");
-  renderList();
-  render();
+  const savedLesson = lessons.findIndex((l) => l.id === store.get("lesson"));
+  els.lesson.value = String(savedLesson >= 0 ? savedLesson : 0);
+  setLesson(savedLesson >= 0 ? savedLesson : 0);
   applyEnglish();
   loadVoices();
   setupSources();

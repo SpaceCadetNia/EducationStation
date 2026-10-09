@@ -89,12 +89,31 @@
     const station = assets.station;
     if (!station) return;
 
-    const maxWidth = Math.min(window.innerWidth * 0.52, 720);
+    // Decoration only: draw it in the empty space beside the game screen.
+    // If the screen fills the window, skip it rather than letting it peek
+    // out from behind (or show through) the game.
+    const screen = document.querySelector(".screen");
+    const rect = screen ? screen.getBoundingClientRect() : null;
+    let areaX = 0;
+    let areaWidth = window.innerWidth;
+    if (rect && rect.width > 0) {
+      const leftGap = rect.left;
+      const rightGap = window.innerWidth - rect.right;
+      if (Math.max(leftGap, rightGap) < 160) return;
+      if (rightGap >= leftGap - 4) {
+        areaX = rect.right;
+        areaWidth = rightGap;
+      } else {
+        areaWidth = leftGap;
+      }
+    }
+    const pad = Math.max(12, areaWidth * 0.06);
+    const maxWidth = Math.min(areaWidth - pad * 2, window.innerWidth * 0.52, 720);
     const maxHeight = Math.min(window.innerHeight * 0.58, 430);
     const scale = Math.min(maxWidth / station.width, maxHeight / station.height);
     const width = station.width * scale;
     const height = station.height * scale;
-    const x = window.innerWidth - width - Math.max(18, window.innerWidth * 0.04);
+    const x = areaX + (areaWidth - width) / 2;
     const y = Math.max(18, window.innerHeight * 0.06);
 
     ctx.save();

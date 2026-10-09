@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Space Racer</title>
-      <link rel="stylesheet" href="../shared/retro.css?v=63">
+      <link rel="stylesheet" href="../shared/retro.css?v=70">
   </head>
   <body data-game="space-racer">
     <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
@@ -31,6 +31,7 @@
           <div class="racer-distance-overlay" aria-hidden="true">
             <span>Distance</span>
             <strong id="racer-distance-big">0</strong>
+            <span class="racer-record" id="racer-record" hidden></span>
           </div>
           <button class="racer-pause-button" type="button" id="racer-pause" aria-label="Pause">II</button>
           <div class="racer-station-warning" id="racer-station-warning" hidden aria-hidden="true">
@@ -89,10 +90,11 @@
         <p class="feedback" id="racer-feedback" aria-live="polite">Ready at the starting gate.</p>
       </section>
     </main>
-    <script src="../shared/stage.js?v=2"></script>
-    <script src="../shared/sounds.js?v=19"></script>
-    <script src="../shared/starfield.js?v=5"></script>
+    <script src="../shared/stage.js?v=3"></script>
+    <script src="../shared/sounds.js?v=20"></script>
+    <script src="../shared/starfield.js?v=6"></script>
     <script src="../shared/sprites.js?v=1"></script>
-    <script src="../shared/space-racer.js?v=16"></script>
+    <script src="../shared/reward.js?v=1"></script>
+    <script src="../shared/space-racer.js?v=18"></script>
   </body>
 </html>

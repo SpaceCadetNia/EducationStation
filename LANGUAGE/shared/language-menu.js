@@ -25,9 +25,9 @@
       back: null, // Language Garden is its own top level: no link out to EducationStation
       cards: [
         {
-          code: "VI",
-          title: "Tiếng Việt",
-          meta: "Vietnamese homework games",
+          code: "VI2",
+          title: "Tiếng Việt 2",
+          meta: "Năm thứ hai · Vietnamese, year 2",
           href: "#vn",
           menuTarget: "vn"
         },
@@ -40,8 +40,8 @@
       ]
     },
     vn: {
-      system: "TIẾNG VIỆT // VIETNAMESE",
-      title: "Tiếng Việt",
+      system: "TIẾNG VIỆT 2 // VIETNAMESE YEAR 2",
+      title: "Tiếng Việt 2",
       tagline: "Chọn một trò chơi. Pick a game.",
       gridClass: "program-grid operator-grid",
       ariaLabel: "Vietnamese games",
@@ -52,6 +52,20 @@
           title: "Đọc Bài",
           meta: "Read along: hear each sentence, tap words",
           href: "VN/reader/index.html",
+          launch: true
+        },
+        {
+          code: "02",
+          title: "Chọn Từ",
+          meta: "Workbook pages: pick the word that fits",
+          href: "VN/choose/index.html",
+          launch: true
+        },
+        {
+          code: "03",
+          title: "Đọc Thơ",
+          meta: "Poems line by line, with meanings",
+          href: "VN/poem/index.html",
           launch: true
         }
       ]
