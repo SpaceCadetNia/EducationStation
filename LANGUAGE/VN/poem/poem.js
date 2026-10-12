@@ -2,7 +2,7 @@
 // translations on the right. Clips come from ../audio (tools/make_voices.py
 // treats each poem line as a sentence); the computer voice fills any gap.
 (function () {
-  const poems = window.VN_POEMS || [];
+  const poems = window.VNBook.pick(window.VN_POEMS); // this book only
   const glossary = window.VN_GLOSSARY || { words: {}, phrases: {} };
   const voice = window.VNVoice;
   const $ = (id) => document.getElementById(id);
@@ -39,6 +39,7 @@
     els.title.textContent = poem.title;
     els.titleEn.textContent = poem.titleEn || "";
     els.source.textContent = poem.source ? "(" + poem.source + ")" : "";
+    els.lines.classList.toggle("is-prose", Boolean(poem.prose)); // reading passages: smaller text
     els.lines.innerHTML = poem.lines.map(function (line, i) {
       const words = tokens(line.vi).map((w) =>
         '<button type="button" class="pm-word" data-word="' + escapeHtml(w) + '">' + escapeHtml(w) + "</button>").join(" ");
@@ -181,7 +182,7 @@
   function setPoem(i) {
     stopAll();
     poem = poems[i] || poems[0];
-    store.set("poem", poem.id);
+    store.set(window.VNBook.key("poem"), poem.id);
     current = 0; // start on line 1 so the info panel is never empty
     pickedWord = null;
     renderPoem();
@@ -193,7 +194,7 @@
   if (!poems.length) { els.title.textContent = "No poems yet."; return; }
   els.poem.innerHTML = poems.map((p, i) => '<option value="' + i + '">Trang ' + p.page + " · " + escapeHtml(p.title) + "</option>").join("");
   els.poem.disabled = poems.length < 2;
-  const saved = poems.findIndex((p) => p.id === store.get("poem"));
+  const saved = poems.findIndex((p) => p.id === store.get(window.VNBook.key("poem")));
   els.poem.value = String(saved >= 0 ? saved : 0);
   setPoem(saved >= 0 ? saved : 0);
 })();

@@ -3,7 +3,7 @@
 //        free navigation, nothing is locked.
 // PRACTICE: pick once per sentence; counts correct / total.
 (function () {
-  const sets = window.VN_WORKBOOK || [];
+  const sets = window.VNBook.pick(window.VN_WORKBOOK); // this book only
   const glossary = window.VN_GLOSSARY || { words: {}, phrases: {} };
   const voice = window.VNVoice;
   const $ = (id) => document.getElementById(id);
@@ -70,14 +70,14 @@
   function setupSets() {
     els.set.innerHTML = sets.map((s, i) =>
       '<option value="' + i + '">Trang ' + s.page + " · " + escapeHtml(s.title) + "</option>").join("");
-    const saved = sets.findIndex((s) => s.id === store.get("set"));
+    const saved = sets.findIndex((s) => s.id === store.get(window.VNBook.key("set")));
     els.set.value = String(saved >= 0 ? saved : 0);
     els.set.disabled = sets.length < 2;
   }
 
   function startSet() {
     set = sets[Number(els.set.value) || 0];
-    store.set("set", set.id);
+    store.set(window.VNBook.key("set"), set.id);
     els.page.textContent = set.title.toUpperCase() + " // TRANG " + set.page;
     els.instrVi.textContent = set.instructions || "";
     els.instrEn.textContent = set.instructionsEn || "";
@@ -115,6 +115,22 @@
     return hl && r.indexOf(hl) !== -1 ? r.replace(hl, '<mark class="' + (o.correct ? "is-good" : "is-bad") + '">' + hl + "</mark>") : r;
   }
 
+  // Right/wrong labels depend on the page: "fit" (word bank), "best"
+  // (pick the best ending), default (makes sense or not).
+  function verdictHtml(good) {
+    if (set.verdict === "best") return good ? bi("✓ Đúng nhất", "Best answer") : bi("✗ Chưa đúng nhất", "Not the best answer");
+    if (set.verdict === "fit") return good ? bi("✓ Đúng rồi", "That's the one") : bi("✗ Chưa đúng", "Not this one");
+    return good ? bi("✓ Hợp nghĩa", "Makes sense") : bi("✗ Không hợp nghĩa", "Doesn't make sense");
+  }
+
+  // Longer sentences and options get smaller text so they fit the card.
+  function sizeText(item) {
+    const longest = Math.max.apply(null, item.options.map((o, i) => filled(item, i).length));
+    els.sentence.classList.toggle("is-long", longest > 30 && longest <= 48);
+    els.sentence.classList.toggle("is-xlong", longest > 48);
+    els.options.classList.toggle("is-long", item.options.length > 3 || item.options.some((o) => o.vi.length > 12));
+  }
+
   function renderItem() {
     const item = set.items[index];
     picked = null;
@@ -132,6 +148,7 @@
     els.gloss.hidden = true;
     els.hear.hidden = true;
     const optOrder = mode === "practice" ? order[index] : item.options.map((_, i) => i);
+    sizeText(item);
     els.options.innerHTML = optOrder.map((i) =>
       '<button type="button" class="ch-option" data-opt="' + i + '">' +
       '<span class="opt-vi">' + escapeHtml(item.options[i].vi) + "</span>" +
@@ -156,7 +173,8 @@
           bi("Đọc lại cả câu", "Read the whole sentence again");
       } else {
         els.prompt.innerHTML = tried.size === 0 ? bi("Chọn một từ", "Pick a word") :
-          all ? bi("Từ nào hợp nghĩa?", "Which one makes sense?") : bi("Thử từ kia", "Now try the other one");
+          all ? (set.verdict === "best" ? bi("Câu nào đúng nhất?", "Which one is best?") : bi("Từ nào hợp nghĩa?", "Which one makes sense?")) :
+          item.options.length > 2 ? bi("Thử từ khác", "Try another one") : bi("Thử từ kia", "Now try the other one");
       }
     } else {
       els.next.disabled = !answered;
@@ -180,7 +198,7 @@
     els.verdict.hidden = false;
     els.verdict.className = "choose-verdict " + (o.correct ? "is-good" : "is-bad");
     els.verdict.innerHTML = item.kind === "b" ? bi("Câu mẫu", "Sample sentence") :
-      o.correct ? bi("✓ Hợp nghĩa", "Makes sense") : bi("✗ Không hợp nghĩa", "Doesn't make sense");
+      verdictHtml(o.correct);
     els.gloss.hidden = true;
     els.hear.hidden = false;
     els.options.querySelectorAll(".ch-option").forEach((b) => b.classList.toggle("is-picked", Number(b.dataset.opt) === opt));

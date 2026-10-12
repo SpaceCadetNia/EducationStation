@@ -102,3 +102,8 @@
 .pm-line:focus-visible, .pm-word:focus-visible, .ctl:focus-visible, .info-words li:focus-visible {
   outline: 3px solid var(--gold); outline-offset: 2px;
 }
+
+/* reading passages (prose) use smaller text so long lines fit */
+.poem-lines.is-prose .pm-text { font-size: 1.35rem; line-height: 1.45; }
+.poem-lines.is-prose .pm-line { align-items: start; }
+.poem-lines.is-prose .pm-num { margin-top: 4px; }

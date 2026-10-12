@@ -97,6 +97,19 @@ context). Per line: `vi`, `en`, `align` (word → English
 copied exactly) and optional `notes` (the workbook footnotes, `vi` + `en`).
 `./vt` makes one clip per line; `tools/glossary.py` checks the poem's words.
 
+### Books (Tiếng Việt 2 / Tiếng Việt 3)
+
+Every lesson, workbook set and poem belongs to one book. No `book` field means
+Year 2; add `"book": 3` for Year 3 (VanLang03_v9.pdf, PDF page = book page + 16).
+`shared/vn-book.js` reads `?book=3` from the URL, keeps only that book's entries,
+saves the last choice per book, and points the back link at `#vn3` or `#vn`.
+The language menu's Tiếng Việt 3 screen links to the games with `?book=3`, so
+Year 3 pages never show up in Year 2 and vice versa.
+
+Workbook sets take a `verdict`: `"fit"` (✓ Đúng rồi / ✗ Chưa đúng) for word banks,
+`"best"` (Đúng nhất) for "chọn câu đúng nhất", default is Hợp nghĩa. Poems that
+are really prose (a Tập đọc passage) take `"prose": true` for smaller text.
+
 ## 2. Record voice samples (only for a new cloned voice)
 
 See `voice-samples/README.md`. In short: quiet room, phone voice memo,

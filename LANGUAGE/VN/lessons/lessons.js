@@ -3,6 +3,8 @@
 // and align: one object per sentence mapping each Vietnamese word (lowercase)
 // to the English text it matches, a string or a list of strings copied exactly
 // from the English. Words with no English equivalent can be left out.
+// "book": 3 marks Tiếng Việt 3 pages (no "book" = Tiếng Việt 2); each menu
+// only shows its own book.
 // Keep text in NFC (normal typing is fine). Check with: python3 tools/glossary.py
 window.VN_LESSONS = [
   {
@@ -107,6 +109,28 @@ window.VN_LESSONS = [
     ]
   },
   {
+    id: "vl2-p31",
+    title: "Ráp vần khi · Trang 31",
+    short: "Trang 31",
+    page: 31,
+    pdfPage: 47,
+    focus: "kh",
+    sentences: [
+      ["Chớ khi kẻ nghèo khó", "Don't look down on poor people."],
+      ["Khí cầu bay theo gió", "The balloon flies with the wind."],
+      ["Gặp khó vẫn cười khì", "Even in trouble, still chuckle."],
+      ["Con khỉ giỏi trèo cây", "The monkey is good at climbing trees."],
+      ["Chỉ có tài dụ khị", "Only good at sweet-talking."]
+    ],
+    align: [
+      { "chớ": "Don't", "khi": "look down on", "kẻ": "people", "nghèo": "poor", "khó": "poor" },
+      { "khí": "The balloon", "cầu": "The balloon", "bay": "flies", "theo": "with", "gió": "the wind" },
+      { "gặp": "in", "khó": "trouble", "vẫn": "still", "cười": "chuckle", "khì": "chuckle" },
+      { "con": "The", "khỉ": "monkey", "giỏi": "good at", "trèo": "climbing", "cây": "trees" },
+      { "chỉ": "Only", "có": "good at", "tài": "good at", "dụ": "sweet-talking", "khị": "sweet-talking" }
+    ]
+  },
+  {
     id: "hw3-p151",
     title: "Bài làm #3 · Trang 151",
     short: "Trang 151",
@@ -140,6 +164,51 @@ window.VN_LESSONS = [
       { "bỏ": "Put", "cà": "the eggplants", "vô": "in", "giỏ": "the basket" },
       { "giỏ": "The basket", "có": "has", "cà": "eggplants", "bể": "squashed" },
       { "đồng": "The clock", "hồ": "The clock", "chỉ": "shows", "ba": "three o'clock", "giờ": "three o'clock" }
+    ]
+  },
+  {
+    id: "hw4-p153",
+    title: "Bài làm #4 · Trang 153",
+    short: "Trang 153",
+    page: 153,
+    pdfPage: 169,
+    focus: "gi",
+    sentences: [
+      ["Bà đã già", "Grandma is already old."],
+      ["Chú chỉ chỏ", "Uncle points here and there."],
+      ["Chi đi ăn giỗ", "Chi goes to a memorial feast."],
+      ["Chả giò, chả quế", "Egg rolls and cinnamon pork sausage."],
+      ["Cụ già giỗ tổ", "The old man honours the ancestors' memorial day."]
+    ],
+    align: [
+      { "bà": "Grandma", "đã": "already", "già": "old" },
+      { "chú": "Uncle", "chỉ": "points here and there", "chỏ": "points here and there" },
+      { "chi": "Chi", "đi": "goes to", "ăn": "a memorial feast", "giỗ": "a memorial feast" },
+      { "chả": "Egg rolls", "giò": "Egg rolls", "quế": "cinnamon" },
+      { "cụ": "The old man", "già": "The old man", "giỗ": "the ancestors' memorial day", "tổ": "the ancestors' memorial day" }
+    ]
+  },
+  {
+    id: "v3-hw4-p119",
+    book: 3,
+    title: "Bài làm #4 · Trang 119",
+    short: "Trang 119",
+    page: 119,
+    pdfPage: 135,
+    focus: "",
+    sentences: [
+      ["Nệm êm", "A soft mattress."],
+      ["Cà tím", "Eggplant."],
+      ["Chim kên kên", "A vulture."],
+      ["Em hái sim chín", "I pick ripe rose-myrtle berries."],
+      ["Chim én bay sát mặt đất", "Swallows fly close to the ground."]
+    ],
+    align: [
+      { "nệm": "mattress", "êm": "soft" },
+      { "cà": "Eggplant", "tím": "Eggplant" },
+      { "chim": "A vulture", "kên": "A vulture" },
+      { "em": "I", "hái": "pick", "sim": "rose-myrtle berries", "chín": "ripe" },
+      { "chim": "Swallows", "én": "Swallows", "bay": "fly", "sát": "close to", "mặt": "the ground", "đất": "the ground" }
     ]
   }
 ];

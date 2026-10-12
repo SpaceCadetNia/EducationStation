@@ -3,7 +3,7 @@
 // browser's speechSynthesis in vi-VN. Reads one sentence, all sentences, or a
 // single tapped word, highlighting the word being spoken.
 (function () {
-  const lessons = window.VN_LESSONS || [];
+  const lessons = window.VNBook.pick(window.VN_LESSONS); // this book only
   let lesson = lessons[0]; // chosen from the "Bài" menu at start
   const synth = window.speechSynthesis;
   const $ = (id) => document.getElementById(id);
@@ -432,7 +432,7 @@
   function setLesson(i) {
     stopAll();
     lesson = lessons[i] || lessons[0];
-    store.set("lesson", lesson.id);
+    store.set(window.VNBook.key("lesson"), lesson.id);
     index = 0;
     els.title.textContent = (lesson.short || lesson.title) + (lesson.focus ? " · " + lesson.focus : "");
     renderList();
@@ -443,7 +443,7 @@
   els.lesson.addEventListener("change", function () { setLesson(Number(els.lesson.value)); });
 
   // ---------- start ----------
-  const savedLesson = lessons.findIndex((l) => l.id === store.get("lesson"));
+  const savedLesson = lessons.findIndex((l) => l.id === store.get(window.VNBook.key("lesson")));
   els.lesson.value = String(savedLesson >= 0 ? savedLesson : 0);
   setLesson(savedLesson >= 0 ? savedLesson : 0);
   applyEnglish();

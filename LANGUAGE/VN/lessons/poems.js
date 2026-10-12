@@ -1,7 +1,8 @@
 // Poems for Đọc Thơ (poem reader). Strict JSON (quoted keys) so the Python
 // tools can read it. Per line: "vi", "en" (translation of the line) and
 // "align" (Vietnamese word -> English text copied exactly from "en").
-// "notes" are the workbook footnotes, shown with the line they belong to.
+// "book": 3 = Tiếng Việt 3 (none = Tiếng Việt 2); "prose": true = a reading
+// passage (smaller text). "notes" are the workbook footnotes, shown with the line they belong to.
 window.VN_POEMS = [
   {
     "id": "poem-em-yeu-men",
@@ -43,6 +44,134 @@ window.VN_POEMS = [
       { "vi": "Là con mèo mun.", "en": "Is the black cat.",
         "align": { "là": "Is", "con": "the", "mèo": "cat", "mun": "black" },
         "notes": [ { "vi": "Mèo mun: Mèo có lông màu đen.", "en": "Mèo mun: a cat with black fur." } ] }
+    ]
+  },
+  {
+    "id": "poem-ke-kho",
+    "title": "Kẻ Khó",
+    "titleEn": "The Poor",
+    "source": "",
+    "page": 33,
+    "pdfPage": 49,
+    "lines": [
+      { "vi": "Kẻ khó xót xa,", "en": "The poor suffer bitterly,",
+        "align": { "kẻ": "The poor", "khó": "The poor", "xót": "suffer bitterly", "xa": "suffer bitterly" } },
+      { "vi": "Đâu có cửa nhà!", "en": "They have no home at all!",
+        "align": { "đâu": "no", "có": "have", "cửa": "home", "nhà": "home" } },
+      { "vi": "Ra đường lam lũ.", "en": "Out on the street, worn and ragged.",
+        "align": { "ra": "Out on", "đường": "the street", "lam": "worn and ragged", "lũ": "worn and ragged" } },
+      { "vi": "Áo quần không đủ.", "en": "Not enough clothes to wear.",
+        "align": { "áo": "clothes", "quần": "clothes", "không": "Not", "đủ": "enough" } },
+      { "vi": "Lạnh ho khù khụ.", "en": "Cold, coughing hard.",
+        "align": { "lạnh": "Cold", "ho": "coughing", "khù": "hard", "khụ": "hard" } },
+      { "vi": "Ai nhủ lòng thương?", "en": "Who will open their heart to them?",
+        "align": { "ai": "Who", "nhủ": "will open", "lòng": "their heart", "thương": "to them" } }
+    ]
+  },
+  {
+    "id": "v3-poem-quy-men-me-cha",
+    "book": 3,
+    "title": "Quý Mến Mẹ Cha",
+    "titleEn": "Cherishing Mom and Dad",
+    "source": "Tập đọc",
+    "page": 20,
+    "pdfPage": 36,
+    "prose": true,
+    "lines": [
+      {
+        "vi": "Từ sáng sớm, cha mẹ Mai đã phải thức dậy đi làm.",
+        "en": "From early morning, Mai's parents have to get up and go to work.",
+        "align": {
+          "từ": "From",
+          "sáng": "early morning",
+          "sớm": "early morning",
+          "cha": "parents",
+          "mẹ": "parents",
+          "mai": "Mai's",
+          "đã": "have to",
+          "phải": "have to",
+          "thức": "get up",
+          "dậy": "get up",
+          "đi": "go to work",
+          "làm": "go to work"
+        }
+      },
+      {
+        "vi": "Chiều về đến nhà, mẹ sắp đặt việc làm có thứ tự.",
+        "en": "In the afternoon, back home, Mom arranges the chores in good order.",
+        "align": {
+          "chiều": "In the afternoon",
+          "về": "back home",
+          "đến": "back home",
+          "nhà": "back home",
+          "mẹ": "Mom",
+          "sắp": "arranges",
+          "đặt": "arranges",
+          "việc": "the chores",
+          "làm": "the chores",
+          "có": "in good order",
+          "thứ": "in good order",
+          "tự": "in good order"
+        }
+      },
+      {
+        "vi": "Nào nấu ăn, giặt áo quần. Nào nhắc nhở các em làm bài.",
+        "en": "She cooks and washes the clothes. She reminds the children to do their homework.",
+        "align": {
+          "nấu": "cooks",
+          "ăn": "cooks",
+          "giặt": "washes",
+          "áo": "the clothes",
+          "quần": "the clothes",
+          "nhắc": "reminds",
+          "nhở": "reminds",
+          "các": "the children",
+          "em": "the children",
+          "làm": "do their homework",
+          "bài": "do their homework"
+        }
+      },
+      {
+        "vi": "Cha hãy còn ở sở. Vất vả vì con cái mà cha mẹ vẫn vui.",
+        "en": "Dad is still at work. They work hard for their children, yet they are still happy.",
+        "align": {
+          "cha": "Dad",
+          "hãy": "still",
+          "còn": "still",
+          "ở": "at work",
+          "sở": "at work",
+          "vất": "work hard",
+          "vả": "work hard",
+          "vì": "for",
+          "con": "their children",
+          "cái": "their children",
+          "mà": "yet",
+          "vẫn": "still",
+          "vui": "happy"
+        },
+        "notes": [
+          {
+            "vi": "Vất vả: Khó nhọc vì phải bỏ nhiều sức lực và tâm trí.",
+            "en": "Vất vả: hard, tiring work that takes a lot of strength and care."
+          },
+          {
+            "vi": "Con cái: Các con.",
+            "en": "Con cái: one's children."
+          }
+        ]
+      },
+      {
+        "vi": "Em rất quý mến mẹ cha.",
+        "en": "I truly cherish my mother and father.",
+        "align": {
+          "em": "I",
+          "rất": "truly",
+          "quý": "cherish",
+          "mến": "cherish",
+          "mẹ": "my mother",
+          "cha": "father"
+        }
+      }
     ]
   }
 ];

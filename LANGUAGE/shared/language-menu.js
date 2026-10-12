@@ -32,6 +32,13 @@
           menuTarget: "vn"
         },
         {
+          code: "VI3",
+          title: "Tiếng Việt 3",
+          meta: "Năm thứ ba · Vietnamese, year 3",
+          href: "#vn3",
+          menuTarget: "vn3"
+        },
+        {
           code: "+",
           title: "More Soon",
           meta: "New languages will grow here",
@@ -66,6 +73,37 @@
           title: "Đọc Thơ",
           meta: "Poems line by line, with meanings",
           href: "VN/poem/index.html",
+          launch: true
+        }
+      ]
+    },
+    vn3: {
+      system: "TIẾNG VIỆT 3 // VIETNAMESE YEAR 3",
+      title: "Tiếng Việt 3",
+      tagline: "Chọn một trò chơi. Pick a game.",
+      gridClass: "program-grid operator-grid",
+      ariaLabel: "Vietnamese games",
+      back: { label: "Languages", href: "#home", menuTarget: "home" },
+      cards: [
+        {
+          code: "01",
+          title: "Đọc Bài",
+          meta: "Read along: hear each sentence, tap words",
+          href: "VN/reader/index.html?book=3",
+          launch: true
+        },
+        {
+          code: "02",
+          title: "Chọn Từ",
+          meta: "Workbook pages: pick the word that fits",
+          href: "VN/choose/index.html?book=3",
+          launch: true
+        },
+        {
+          code: "03",
+          title: "Đọc Thơ",
+          meta: "Poems line by line, with meanings",
+          href: "VN/poem/index.html?book=3",
           launch: true
         }
       ]
