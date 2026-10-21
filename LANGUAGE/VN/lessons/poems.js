@@ -2,7 +2,8 @@
 // tools can read it. Per line: "vi", "en" (translation of the line) and
 // "align" (Vietnamese word -> English text copied exactly from "en").
 // "book": 3 = Tiếng Việt 3 (none = Tiếng Việt 2); "prose": true = a reading
-// passage (smaller text). "notes" are the workbook footnotes, shown with the line they belong to.
+// passage (smaller text). "say" = text the voice tool speaks instead of "vi"
+// (a respelling or extra comma when the recording gets a word wrong). "notes" are the workbook footnotes, shown with the line they belong to.
 window.VN_POEMS = [
   {
     "id": "poem-em-yeu-men",
@@ -62,7 +63,7 @@ window.VN_POEMS = [
         "align": { "ra": "Out on", "đường": "the street", "lam": "worn and ragged", "lũ": "worn and ragged" } },
       { "vi": "Áo quần không đủ.", "en": "Not enough clothes to wear.",
         "align": { "áo": "clothes", "quần": "clothes", "không": "Not", "đủ": "enough" } },
-      { "vi": "Lạnh ho khù khụ.", "en": "Cold, coughing hard.",
+      { "vi": "Lạnh ho khù khụ.", "en": "Cold, coughing hard.", "say": "Lạnh, ho khù khụ.",
         "align": { "lạnh": "Cold", "ho": "coughing", "khù": "hard", "khụ": "hard" } },
       { "vi": "Ai nhủ lòng thương?", "en": "Who will open their heart to them?",
         "align": { "ai": "Who", "nhủ": "will open", "lòng": "their heart", "thương": "to them" } }

@@ -74,6 +74,13 @@
           meta: "Poems line by line, with meanings",
           href: "VN/poem/index.html",
           launch: true
+        },
+        {
+          code: "04",
+          title: "Nghĩa Là Gì?",
+          meta: "What does it mean? Pick the English meaning",
+          href: "VN/meaning/index.html",
+          launch: true
         }
       ]
     },

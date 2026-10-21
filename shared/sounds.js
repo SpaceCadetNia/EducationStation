@@ -14,7 +14,9 @@
     error: "error.wav",
     land_down: "land_down.wav",
     launch_up: "launch_up.wav",
+    metro_beep: "metro_beep.wav",
     electric_charge: "electric_charge.wav",
+    engine_loop: "engine_loop.wav",
     power_charge: "power_charge.wav",
     power_down: "power_down.wav",
     powerup_2: "powerup_2.wav",
@@ -270,6 +272,76 @@
     }
   }
 
+  // A sound you can stop (and shape) while it plays, e.g. a car engine.
+  // options: { loop, volume, rate }. Returns { stop(fade), ramp(volume, rate, seconds) }.
+  function start(name, options) {
+    const opts = options || {};
+    const volume = opts.volume == null ? 0.42 : opts.volume;
+    const context = getAudioContext();
+    const buffer = audioBuffers[name];
+    if (context && buffer && context.state === "running") {
+      const source = context.createBufferSource();
+      const gain = context.createGain();
+      source.buffer = buffer;
+      source.loop = Boolean(opts.loop);
+      source.playbackRate.value = opts.rate || 1;
+      gain.gain.value = volume;
+      source.connect(gain);
+      gain.connect(context.destination);
+      source.start(0);
+      let stopped = false;
+      return {
+        ramp(toVolume, toRate, seconds) {
+          if (stopped) return;
+          const now = context.currentTime;
+          const t = seconds || 0.2;
+          gain.gain.cancelScheduledValues(now);
+          gain.gain.setValueAtTime(gain.gain.value, now);
+          gain.gain.linearRampToValueAtTime(toVolume, now + t);
+          if (toRate) {
+            source.playbackRate.cancelScheduledValues(now);
+            source.playbackRate.setValueAtTime(source.playbackRate.value, now);
+            source.playbackRate.linearRampToValueAtTime(toRate, now + t);
+          }
+        },
+        stop(fade) {
+          if (stopped) return;
+          stopped = true;
+          const now = context.currentTime;
+          const t = fade == null ? 0.12 : fade;
+          try {
+            gain.gain.cancelScheduledValues(now);
+            gain.gain.setValueAtTime(gain.gain.value, now);
+            gain.gain.linearRampToValueAtTime(0, now + t);
+            source.stop(now + t + 0.05);
+          } catch (error) {
+            // Already stopped.
+          }
+        }
+      };
+    }
+    const audio = players[name];
+    if (!audio) return { ramp() {}, stop() {} };
+    audio.loop = Boolean(opts.loop);
+    audio.volume = volume;
+    try {
+      audio.playbackRate = opts.rate || 1;
+      audio.currentTime = 0;
+    } catch (error) {
+      // Metadata not ready yet.
+    }
+    audio.play().catch(function () {
+      // Blocked until a tap.
+    });
+    return {
+      ramp(toVolume) { audio.volume = Math.max(0, Math.min(1, toVolume)); },
+      stop() {
+        audio.pause();
+        audio.loop = false;
+      }
+    };
+  }
+
   function stopSong() {
     if (song) song.stop();
     song = null;
@@ -431,7 +503,7 @@
   }
 
   try {
-    window.EducationStationSound = { play, stop, playSong, stopSong, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
+    window.EducationStationSound = { play, start, stop, playSong, stopSong, startMusic, primeMusic, stopMusic, fadeMusicOut, unlockAudio, getRadioAmplitude };
   } catch (error) {
     // Some embedded browser surfaces lock global objects. The event listener
     // above is the supported path for game scripts.

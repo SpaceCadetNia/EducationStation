@@ -355,6 +355,329 @@ window.VN_WORKBOOK = [
     ]
   },
   {
+    "id": "hw5-p158",
+    "title": "Bài làm ở nhà #5",
+    "page": 158,
+    "pdfPage": 174,
+    "verdict": "fit",
+    "instructions": "Em khoanh tròn từ trong ngoặc đơn rồi điền vào chỗ trống mỗi câu cho hợp nghĩa.",
+    "instructionsEn": "Circle the word in the brackets that fits, and fill in the blank.",
+    "items": [
+      {
+        "sentence": "Cô em ca ___.",
+        "options": [
+          {
+            "vi": "khe khẽ",
+            "en": "softly",
+            "result": "My aunt sings softly.",
+            "hl": "softly",
+            "correct": true
+          },
+          {
+            "vi": "ca sĩ",
+            "en": "singer",
+            "result": "My aunt sings singer?",
+            "hl": "singer",
+            "correct": false
+          },
+          {
+            "vi": "khò khè",
+            "en": "wheezing",
+            "result": "My aunt sings wheezing?",
+            "hl": "wheezing",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "___ ăn khế.",
+        "options": [
+          {
+            "vi": "khù khờ",
+            "en": "simple-minded",
+            "result": "Simple-minded eats starfruit?",
+            "hl": "Simple-minded",
+            "correct": false
+          },
+          {
+            "vi": "Khỉ già",
+            "en": "old monkey",
+            "result": "The old monkey eats starfruit.",
+            "hl": "The old monkey",
+            "correct": true
+          },
+          {
+            "vi": "khò khò",
+            "en": "snoring",
+            "result": "Snoring eats starfruit?",
+            "hl": "Snoring",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "Cụ già ho ___.",
+        "options": [
+          {
+            "vi": "to quá",
+            "en": "so loud",
+            "result": "The old man coughs so loud?",
+            "hl": "so loud",
+            "correct": false
+          },
+          {
+            "vi": "khù khụ",
+            "en": "hard and deep (coughing)",
+            "result": "The old man coughs hard and deep.",
+            "hl": "hard and deep",
+            "correct": true
+          },
+          {
+            "vi": "bé quá",
+            "en": "so small",
+            "result": "The old man coughs so small?",
+            "hl": "so small",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "Em chớ có khi ___.",
+        "options": [
+          {
+            "vi": "kẻ khó",
+            "en": "poor people",
+            "result": "You must never look down on poor people.",
+            "hl": "poor people",
+            "correct": true
+          },
+          {
+            "vi": "về quê",
+            "en": "going to the countryside",
+            "result": "You must never look down on going to the countryside?",
+            "hl": "going to the countryside",
+            "correct": false
+          },
+          {
+            "vi": "đi chợ",
+            "en": "going to the market",
+            "result": "You must never look down on going to the market?",
+            "hl": "going to the market",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "Ăn no dễ ___.",
+        "options": [
+          {
+            "vi": "ho khù khụ",
+            "en": "cough hard",
+            "result": "After a big meal, it's easy to cough hard?",
+            "hl": "cough hard",
+            "correct": false
+          },
+          {
+            "vi": "ghê sợ",
+            "en": "get scared",
+            "result": "After a big meal, it's easy to get scared?",
+            "hl": "get scared",
+            "correct": false
+          },
+          {
+            "vi": "ngủ khò",
+            "en": "fall sound asleep",
+            "result": "After a big meal, it's easy to fall sound asleep.",
+            "hl": "fall sound asleep",
+            "correct": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hw5-p159",
+    "title": "Bài làm ở nhà #5 · Cột A, Cột B",
+    "page": 159,
+    "pdfPage": 175,
+    "verdict": "fit",
+    "instructions": "Em khoanh tròn từ bên cột A hoặc cột B rồi điền vào chỗ trống mỗi câu cho hợp nghĩa.",
+    "instructionsEn": "Pick the word from column A or column B that fits the blank.",
+    "items": [
+      {
+        "sentence": "Chi làm bài ___.",
+        "options": [
+          {
+            "vi": "khá",
+            "en": "fairly well",
+            "result": "Chi does her homework fairly well.",
+            "hl": "fairly well",
+            "correct": true
+          },
+          {
+            "vi": "khà",
+            "en": "ahh (a satisfied sigh)",
+            "result": "Chi does her homework ahh?",
+            "hl": "ahh",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "Chớ ___ kẻ khó.",
+        "options": [
+          {
+            "vi": "khi",
+            "en": "to look down on",
+            "result": "Don't look down on poor people.",
+            "hl": "look down on",
+            "correct": true
+          },
+          {
+            "vi": "khỉ",
+            "en": "monkey",
+            "result": "Don't monkey poor people?",
+            "hl": "monkey",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "Khỉ già ăn ___.",
+        "options": [
+          {
+            "vi": "khế",
+            "en": "starfruit",
+            "result": "The old monkey eats starfruit.",
+            "hl": "starfruit",
+            "correct": true
+          },
+          {
+            "vi": "khề",
+            "en": "(a slow drawl)",
+            "result": "The old monkey eats a drawl?",
+            "hl": "a drawl",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "sentence": "Mẹ bé Tý ___ cá.",
+        "options": [
+          {
+            "vi": "khỏ",
+            "en": "(not a word)",
+            "result": "Little Tý's mom khỏ the fish?",
+            "hl": "khỏ",
+            "correct": false
+          },
+          {
+            "vi": "kho",
+            "en": "to braise",
+            "result": "Little Tý's mom braises fish.",
+            "hl": "braises",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "sentence": "Chú Tư ăn cá ___.",
+        "options": [
+          {
+            "vi": "khố",
+            "en": "loincloth",
+            "result": "Uncle Tư eats loincloth fish?",
+            "hl": "loincloth",
+            "correct": false
+          },
+          {
+            "vi": "khô",
+            "en": "dried",
+            "result": "Uncle Tư eats dried fish.",
+            "hl": "dried",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "sentence": "Tủ hư có ___ hở.",
+        "options": [
+          {
+            "vi": "khê",
+            "en": "burnt (rice)",
+            "result": "The broken cabinet has a burnt opening?",
+            "hl": "burnt",
+            "correct": false
+          },
+          {
+            "vi": "khe",
+            "en": "gap, crack",
+            "result": "The broken cabinet has a gap.",
+            "hl": "a gap",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "sentence": "Ăn no dễ ngủ ___.",
+        "options": [
+          {
+            "vi": "khó",
+            "en": "hard, difficult",
+            "result": "After a big meal, it's easy to sleep with difficulty?",
+            "hl": "with difficulty",
+            "correct": false
+          },
+          {
+            "vi": "khò",
+            "en": "soundly (snoring)",
+            "result": "After a big meal, it's easy to sleep soundly.",
+            "hl": "soundly",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "sentence": "Cô Ba ca ___ khẽ.",
+        "options": [
+          {
+            "vi": "khé",
+            "en": "sharp, harsh",
+            "result": "Aunt Ba sings sharply softly?",
+            "hl": "sharply",
+            "correct": false
+          },
+          {
+            "vi": "khe",
+            "en": "(khe khẽ = softly)",
+            "result": "Aunt Ba sings softly.",
+            "hl": "softly",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "sentence": "Kẻ khó ___ sở.",
+        "options": [
+          {
+            "vi": "khổ",
+            "en": "to suffer (khổ sở = miserable)",
+            "result": "Poor people are miserable.",
+            "hl": "miserable",
+            "correct": true
+          },
+          {
+            "vi": "khố",
+            "en": "loincloth",
+            "result": "Poor people are loincloth-sở?",
+            "hl": "loincloth",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "v3-hw4-p117a",
     "book": 3,
     "title": "Điền vào chỗ trống",

@@ -189,6 +189,28 @@ window.VN_LESSONS = [
     ]
   },
   {
+    id: "hw5-p157",
+    title: "Bài làm #5 · Trang 157",
+    short: "Trang 157",
+    page: 157,
+    pdfPage: 173,
+    focus: "kh",
+    sentences: [
+      ["Khò khè", "Wheezing."],
+      ["Khù khụ", "Coughing hard and deep."],
+      ["Khỉ già ăn khế", "The old monkey eats starfruit."],
+      ["Mợ Hai ca khe khẽ", "Aunt Hai sings softly."],
+      ["An ủi kẻ khù khờ", "Comfort the simple-minded person."]
+    ],
+    align: [
+      { "khò": "Wheezing", "khè": "Wheezing" },
+      { "khù": "Coughing hard and deep", "khụ": "Coughing hard and deep" },
+      { "khỉ": "The old monkey", "già": "old", "ăn": "eats", "khế": "starfruit" },
+      { "mợ": "Aunt", "hai": "Hai", "ca": "sings", "khe": "softly", "khẽ": "softly" },
+      { "an": "Comfort", "ủi": "Comfort", "kẻ": "person", "khù": "simple-minded", "khờ": "simple-minded" }
+    ]
+  },
+  {
     id: "v3-hw4-p119",
     book: 3,
     title: "Bài làm #4 · Trang 119",

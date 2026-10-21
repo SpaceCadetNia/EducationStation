@@ -37,8 +37,8 @@ def main():
     # Workbook pages (Chọn Từ game) add their filled-in sentences too.
     sys.path.insert(0, str(VN / "tools"))
     sys.dont_write_bytecode = True
-    from make_voices import workbook_as_lessons, poems_as_lessons
-    lessons += workbook_as_lessons() + poems_as_lessons()
+    from make_voices import workbook_as_lessons, poems_as_lessons, meanings_as_lessons
+    lessons += workbook_as_lessons() + poems_as_lessons() + meanings_as_lessons()
     gloss = load_js(VN / "lessons" / "glossary.js", "{")
     words = {nfc(k): v for k, v in gloss.get("words", {}).items()}
     phrases = {nfc(k): v for k, v in gloss.get("phrases", {}).items()}

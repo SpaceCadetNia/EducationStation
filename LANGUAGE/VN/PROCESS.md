@@ -97,6 +97,23 @@ context). Per line: `vi`, `en`, `align` (word → English
 copied exactly) and optional `notes` (the workbook footnotes, `vi` + `en`).
 `./vt` makes one clip per line; `tools/glossary.py` checks the poem's words.
 
+### Phrase clips
+
+The red multi-word entries in Đọc Thơ's word list (glossary phrases such as
+"khù khụ") get their own clip in each poem's `words/` folder when you run `./vt`.
+Until a phrase has a clip, the game plays its words' clips one after another.
+
+### Meanings (Nghĩa Là Gì?)
+
+`lessons/meanings.js`: sets of Vietnamese terms (`vi`) with their English meaning
+(`en`). The game shows a term and four English choices: the right one plus three
+other terms' meanings from the same set (or the term's own `distractors`).
+Practice explains every pick (a wrong pick says which term it belongs to); Quiz
+shuffles the terms, scores one pick each and lists the misses at the end. After
+answering, the term is broken into glossary words/phrases, or into its own
+`parts` when given (whole sentences use the page's two halves). `./vt` records a
+clip per term; `tools/glossary.py` checks the words.
+
 ### Books (Tiếng Việt 2 / Tiếng Việt 3)
 
 Every lesson, workbook set and poem belongs to one book. No `book` field means
@@ -214,6 +231,8 @@ The model can occasionally get a tone or word wrong. In order of effort:
    store it as a third item on that sentence in `lessons/lessons.js`, e.g.
    `["Ghe ghé vô bờ", "The boat comes to the shore.", "Ghe ghé, vô bờ."]`.
    The game still shows the first item; only the audio uses the third.
+   Poem lines and Nghĩa Là Gì? terms take a `"say"` field for the same thing
+   (e.g. Kẻ Khó line 5 is spoken as "Lạnh, ho khù khụ." so "Lạnh" isn't misread).
 3. If single words are right but the sentence is wrong, the model is slipping on
    context: try steadier takes, `./vt --sentence bai-1:8 --takes 3 --temperature 0.4`.
 4. Try another voice for comparison (`--only <voice>`).

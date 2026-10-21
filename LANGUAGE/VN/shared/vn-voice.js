@@ -12,6 +12,7 @@
   let ttsVoice = null;
   let rate = 1;
   let unlocked = false;
+  let phraseTurn = 0; // bumped by stop() so a playing phrase stops chaining
 
   function loadTtsVoice() {
     if (!synth) return;
@@ -38,7 +39,8 @@
     return path ? new URL("../audio/" + encodeURI(path), base).href : null;
   }
 
-  function stop() {
+  // halt whatever is playing (say() uses this; it doesn't cancel a phrase chain)
+  function halt() {
     player.pause();
     if (synth && (synth.speaking || synth.pending)) synth.cancel();
   }
@@ -59,17 +61,22 @@
     }
   }
 
+  // public stop: also ends a phrase that is playing word by word
+  function stop() { phraseTurn += 1; halt(); }
+
   // Play a clip, or speak `text` with the computer voice if there is no clip.
   function say(url, text, onend) {
-    stop();
+    halt();
     if (!url) { speakTts(text, onend); return; }
+    let fellBack = false; // onerror and a rejected play() can both fire: fall back once
+    const fallback = function () { if (!fellBack) { fellBack = true; speakTts(text, onend); } };
     player.muted = false;
     player.onended = function () { if (onend) onend(); };
-    player.onerror = function () { speakTts(text, onend); };
+    player.onerror = fallback;
     player.src = url;
     player.playbackRate = rate;
     const p = player.play();
-    if (p && p.catch) p.catch(function () { speakTts(text, onend); });
+    if (p && p.catch) p.catch(fallback);
   }
 
   // Call inside the first tap: unlocks the audio element and speech on iPad.
@@ -91,8 +98,20 @@
   }
 
   window.VNVoice = {
-    sentence: function (setId, index, text, onend) { say(clipFor(setId, "sentence", index), text, onend); },
-    word: function (setId, word, onend) { say(clipFor(setId, "word", word), word, onend); },
+    sentence: function (setId, index, text, onend) { phraseTurn += 1; say(clipFor(setId, "sentence", index), text, onend); },
+    word: function (setId, word, onend) {
+      const url = clipFor(setId, "word", word);
+      const parts = String(word).split(/\s+/).filter(Boolean);
+      if (url || parts.length < 2) { phraseTurn += 1; say(url, word, onend); return; }
+      // A phrase without its own clip: play each word's recorded clip in turn
+      // (the computer voice only fills in a word that has no clip).
+      const myTurn = ++phraseTurn;
+      (function next(i) {
+        if (myTurn !== phraseTurn) return;   // another sound started
+        if (i >= parts.length) { if (onend) onend(); return; }
+        say(clipFor(setId, "word", parts[i]), parts[i], function () { next(i + 1); });
+      })(0);
+    },
     hasClips: function (setId) { return Boolean(voiceData && voiceData.lessons && voiceData.lessons[setId]); },
     voiceName: function () { return voiceData ? voiceData.label : (ttsVoice ? ttsVoice.name : "Computer voice"); },
     setRate: function (r) { rate = r; },

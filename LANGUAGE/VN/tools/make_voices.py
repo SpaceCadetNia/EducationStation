@@ -30,6 +30,7 @@ AUDIO = VN / "audio"
 LESSONS_JS = VN / "lessons" / "lessons.js"
 WORKBOOK_JS = VN / "lessons" / "workbook.js"
 POEMS_JS = VN / "lessons" / "poems.js"
+MEANINGS_JS = VN / "lessons" / "meanings.js"
 SAMPLE_EXT = {".m4a", ".wav", ".mp3", ".aiff", ".aif", ".caf"}
 # Built-in Southern (miền Nam) voices: (id, preset name, label)
 PRESETS = []
@@ -47,7 +48,7 @@ def load_lessons():
     body = text[text.index("[") : text.rindex("]") + 1]
     body = re.sub(r"(\{|,)\s*([A-Za-z_]\w*)\s*:", r'\1 "\2":', body)  # quote keys
     body = re.sub(r",\s*([\]}])", r"\1", body)  # trailing commas
-    return json.loads(body) + workbook_as_lessons() + poems_as_lessons()
+    return json.loads(body) + workbook_as_lessons() + poems_as_lessons() + meanings_as_lessons()
 
 
 def fill_blank(sentence, option):
@@ -64,9 +65,23 @@ def poems_as_lessons():
     text = POEMS_JS.read_text(encoding="utf-8")
     text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
     poems = json.loads(text[text.index("[") : text.rindex("]") + 1])
-    return [{"id": p["id"], "title": p.get("title", p["id"]),
-             "sentences": [[nfc(line["vi"]), line.get("en", "")] for line in p["lines"]]}
+    return [{"id": p["id"], "title": p.get("title", p["id"]), "poem": True,
+             "sentences": [[nfc(line["vi"]), line.get("en", "")] + ([nfc(line["say"])] if line.get("say") else [])
+                           for line in p["lines"]]}
             for p in poems]
+
+
+def meanings_as_lessons():
+    """Each Nghĩa Là Gì? set becomes a pseudo-lesson: one clip per term (s01 = term 1)."""
+    if not MEANINGS_JS.exists():
+        return []
+    text = MEANINGS_JS.read_text(encoding="utf-8")
+    text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
+    sets = json.loads(text[text.index("[") : text.rindex("]") + 1])
+    return [{"id": s["id"], "title": s.get("title", s["id"]),
+             "sentences": [[nfc(t["vi"]), t.get("en", "")] + ([nfc(t["say"])] if t.get("say") else [])
+                           for t in s["terms"]]}
+            for s in sets]
 
 
 def workbook_as_lessons():
@@ -86,6 +101,38 @@ def workbook_as_lessons():
                 sentences.append([nfc(fill_blank(item["sentence"], opt["vi"])), opt.get("result", "")])
         out.append({"id": ws["id"], "title": ws.get("title", ws["id"]), "sentences": sentences})
     return out
+
+
+GLOSSARY_JS = VN / "lessons" / "glossary.js"
+
+
+def glossary_phrases():
+    """Phrases from lessons/glossary.js (the red multi-word entries in the games)."""
+    if not GLOSSARY_JS.exists():
+        return []
+    text = GLOSSARY_JS.read_text(encoding="utf-8")
+    text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
+    body = text[text.index("{") : text.rindex("}") + 1]
+    body = re.sub(r'([{,]\s*)([A-Za-z_]\w*)\s*:', r'\1"\2":', body)
+    body = re.sub(r",\s*([\]}])", r"\1", body)
+    return [nfc(k) for k in json.loads(body).get("phrases", {})]
+
+
+def phrases_in(lesson, phrases):
+    """Glossary phrases that appear in this lesson's sentences, in order."""
+    found = []
+    for sent in lesson["sentences"]:
+        ws = words_of(sent[0])
+        for ph in phrases:
+            parts = ph.split()
+            if ph not in found and any(ws[i:i + len(parts)] == parts for i in range(len(ws) - len(parts) + 1)):
+                found.append(ph)
+    return found
+
+
+def word_key(stem):
+    """Same key as the games (vn-voice.js key()): letters/digits only, lowercase."""
+    return nfc(re.sub(r"[^\w]|_", "", stem).lower())
 
 
 def words_of(sentence):
@@ -226,6 +273,7 @@ def main():
         write_manifest(lessons)
         return
 
+    phrases = glossary_phrases()
     for vid, label, kw in voices:
         print(f"\n== {label} ==", flush=True)
         for lesson in lessons:
@@ -241,6 +289,9 @@ def main():
                         seen.append(w)
             for w in seen:
                 jobs.append((out / "words", w, w + "."))
+            # multi-word glossary phrases (the red entries in Đọc Thơ's word list)
+            for ph in (phrases_in(lesson, phrases) if lesson.get("poem") else []):
+                jobs.append((out / "words", ph, ph + "."))
             for folder, stem, text in jobs:
                 if find_clip(folder, stem) and not args.redo:
                     continue
@@ -405,7 +456,7 @@ def write_manifest(lessons):
             words = {}
             for c in sorted((ldir / "words").glob("*")):
                 if c.suffix in (".m4a", ".wav"):
-                    words[nfc(c.stem)] = rel(c)
+                    words[word_key(c.stem)] = rel(c)
             entry["lessons"][lesson["id"]] = {"sentences": sentences, "words": words}
         if entry["lessons"]:
             voices.append(entry)

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Skip Express</title>
+    <link rel="stylesheet" href="../shared/retro.css?v=76">
+    <link rel="stylesheet" href="../shared/skip-express.css?v=2">
+  </head>
+  <body data-game="skip-express">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <main class="screen game-screen skip-game">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">EducationStation</a>
+      </nav>
+      <section class="skip-panel" aria-labelledby="game-title">
+        <div class="mission-header">
+          <div>
+            <p class="system-line">PROGRAM 11 // TRANSIT DISPATCH</p>
+            <h1 id="game-title">Skip Express</h1>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <span>Level <strong id="se-trip">1/10</strong></span>
+            <span>Moves <strong id="se-moves">0</strong></span>
+            <span>Score <strong id="se-score">0</strong></span>
+          </div>
+        </div>
+
+        <div class="se-ticket">
+          <div class="se-address se-from"><small>From</small><strong id="se-from">#0</strong></div>
+          <div class="se-progress" aria-hidden="true">
+            <div class="se-progress-track" id="se-progress-track">
+              <div class="se-progress-fill" id="se-progress-fill"></div>
+              <div class="se-progress-dot" id="se-progress-dot"></div>
+            </div>
+          </div>
+          <div class="se-address se-to"><small>To</small><strong id="se-to">#0</strong></div>
+        </div>
+
+        <div class="se-map">
+          <div class="se-lane-labels" aria-hidden="true">
+            <div class="se-lane-label lane-walk"><strong>Walk</strong><span>+1</span></div>
+            <div class="se-lane-label lane-car"><strong>Car</strong><span>+5</span></div>
+            <div class="se-lane-label lane-train"><strong>Train</strong><span>+10</span></div>
+            <div class="se-lane-label lane-ship"><strong>Ship</strong><span>+100</span></div>
+          </div>
+          <div class="se-view" id="se-view">
+            <div class="se-world" id="se-world"></div>
+            <div class="se-overlay" id="se-overlay" hidden>
+              <div class="se-card">
+                <p class="se-card-kicker" id="se-card-kicker">Trip 1/5</p>
+                <h2 id="se-card-title">Ticket</h2>
+                <div class="se-card-body" id="se-card-body"></div>
+                <button class="command-button se-card-button" type="button" id="se-card-button">Start trip</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="se-log" id="se-log" aria-label="Route so far"></div>
+
+        <div class="se-controls">
+          <p class="feedback se-feedback" id="se-feedback">Get the astronaut to the address.</p>
+          <div class="se-pad">
+            <button class="se-btn se-back" type="button" id="se-back" aria-label="Go back"><span class="se-arrow">&#9664;</span><span id="se-back-label">Back &minus;1</span></button>
+            <button class="se-btn se-up" type="button" id="se-up" aria-label="Up a lane"><span class="se-arrow">&#9650;</span><span>Up</span></button>
+            <button class="se-btn se-down" type="button" id="se-down" aria-label="Down a lane"><span class="se-arrow">&#9660;</span><span>Down</span></button>
+            <button class="se-btn se-go" type="button" id="se-go" aria-label="Go right"><span class="se-arrow">&#9654;</span><span id="se-go-label">Walk +1</span></button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="../shared/stage.js?v=3"></script>
+    <script src="../shared/sounds.js?v=23"></script>
+    <script src="../shared/starfield.js?v=6"></script>
+    <script src="../shared/sprites.js?v=1"></script>
+    <script src="../shared/reward.js?v=1"></script>
+    <script src="../shared/skip-express.js?v=6"></script>
+  </body>
+</html>

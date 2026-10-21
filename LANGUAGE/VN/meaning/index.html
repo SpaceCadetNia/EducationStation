@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Nghĩa Là Gì? - Language Garden</title>
+    <link rel="stylesheet" href="../../../shared/retro.css?v=63">
+    <link rel="stylesheet" href="../../shared/language.css?v=2">
+    <link rel="stylesheet" href="../choose/choose.css?v=9">
+    <link rel="stylesheet" href="meaning.css?v=2">
+  </head>
+  <body class="language-theme" data-game="vn-meaning">
+    <main class="screen choose-screen meaning-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../../index.html#vn">Tiếng Việt 2</a>
+      </nav>
+
+      <header class="choose-header">
+        <div>
+          <p class="system-line" id="mn-page">TỪ NGỮ // TRANG 155</p>
+          <h1>Nghĩa Là Gì?</h1>
+        </div>
+        <div class="choose-tools">
+          <label class="tool-chip">Bài
+            <select id="mn-set" aria-label="Workbook page"></select>
+          </label>
+          <div class="mode-toggle" role="group" aria-label="Mode">
+            <button type="button" class="mode-btn" data-mode="practice" aria-pressed="true"><span class="bi-vi">Luyện tập</span><span class="bi-en">Practice</span></button>
+            <button type="button" class="mode-btn" data-mode="quiz" aria-pressed="false"><span class="bi-vi">Đố vui</span><span class="bi-en">Quiz</span></button>
+          </div>
+          <span class="score-chip" id="mn-score" hidden>Đúng <strong id="mn-correct">0</strong>/<strong id="mn-total">0</strong></span>
+        </div>
+      </header>
+
+      <p class="choose-instructions"><span class="bi-vi" id="mn-instr-vi"></span><span class="bi-en" id="mn-instr-en"></span></p>
+
+      <section class="choose-card meaning-card" aria-live="polite">
+        <span class="choose-num" id="mn-num">1/16</span>
+        <button type="button" class="hear-btn" id="mn-hear" aria-label="Hear it">🔊</button>
+        <p class="meaning-term" id="mn-term"></p>
+        <p class="choose-verdict" id="mn-verdict" hidden></p>
+        <p class="meaning-explain" id="mn-explain" hidden></p>
+        <div class="meaning-parts" id="mn-parts" hidden></div>
+        <p class="choose-gloss" id="mn-gloss" hidden></p>
+      </section>
+
+      <div class="meaning-answers" id="mn-answers"></div>
+
+      <div class="choose-nav">
+        <button type="button" class="ctl" id="mn-prev" aria-label="Previous">◀</button>
+        <p class="choose-prompt" id="mn-prompt"></p>
+        <button type="button" class="ctl ctl-main" id="mn-next"><span class="bi-vi">Tiếp ▶</span><span class="bi-en">Next</span></button>
+      </div>
+
+      <div class="choose-done meaning-done" id="mn-done" hidden>
+        <h2 class="bi"><span class="bi-vi">Xong rồi!</span><span class="bi-en">Done!</span></h2>
+        <p class="done-score"><span class="bi-vi"><strong id="mn-done-correct">0</strong> / <strong id="mn-done-total">0</strong> đúng</span><span class="bi-en">correct</span></p>
+        <div class="meaning-missed" id="mn-missed" hidden></div>
+        <button type="button" class="ctl ctl-main" id="mn-again"><span class="bi-vi">Chơi lại</span><span class="bi-en">Play again</span></button>
+      </div>
+    </main>
+
+    <script src="../../../shared/stage.js?v=2"></script>
+    <script src="../../../shared/sounds.js?v=19"></script>
+    <script src="../lessons/meanings.js?v=2"></script>
+    <script src="../lessons/glossary.js?v=11"></script>
+    <!-- manifest changes whenever ./vt makes new clips: always fetch a fresh copy -->
+    <script>document.write('<script src="../audio/manifest.js?t=' + Date.now() + '"><\/script>');</script>
+    <script src="../shared/vn-voice.js?v=3"></script>
+    <script src="../shared/vn-book.js?v=1"></script>
+    <script src="meaning.js?v=2"></script>
+  </body>
+</html>

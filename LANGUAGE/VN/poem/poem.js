@@ -168,7 +168,7 @@
     stopAll();
     const k = li.dataset.word;
     if (k.indexOf(" ") === -1) { select(current, k); }
-    voice.word(poem.id, k); // phrases fall back to the computer voice
+    voice.word(poem.id, k); // a phrase plays its own clip, or its words one by one
   });
   els.line.addEventListener("click", function () { voice.unlock(); stopAll(); if (current >= 0) { select(current); sayLine(current); } });
   els.prev.addEventListener("click", function () { voice.unlock(); stopAll(); beep(); if (current > 0) { select(current - 1); sayLine(current); } });

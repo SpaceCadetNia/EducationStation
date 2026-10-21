@@ -1,0 +1,713 @@
+/* Skip Express (PROGRAM 11) */
+
+.skip-game {
+  padding: 14px 20px 12px;
+  background: rgba(4, 10, 24, 0.95);
+}
+
+.skip-game .top-nav {
+  margin-bottom: 6px;
+}
+
+.skip-panel {
+  display: grid;
+  flex: 1;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  gap: 8px;
+  min-height: 0;
+}
+
+.skip-panel .mission-header h1 {
+  margin: 4px 0 0;
+  font-size: 2.3rem;
+}
+
+.skip-panel .scoreboard span {
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+/* ---------- Ticket: from / to and progress ---------- */
+.se-ticket {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid #33465c;
+  background: #0b1524;
+}
+
+.se-address {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.se-address small {
+  color: #8798ab;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.se-address strong {
+  min-width: 78px;
+  padding: 2px 10px;
+  border: 2px solid #8798ab;
+  color: #f1f5f9;
+  background: #141f30;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.se-to strong {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.se-progress-track {
+  position: relative;
+  height: 10px;
+  border: 1px solid #33465c;
+  background: #121c2b;
+}
+
+.se-progress-fill {
+  height: 100%;
+  width: 0;
+  background: #3d6b4a;
+  transition: width 0.4s ease-out;
+}
+
+.se-progress-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--amber);
+  transition: left 0.4s ease-out;
+}
+
+/* ---------- Map ---------- */
+.se-map {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  min-height: 0;
+  border: 3px double #4a5d74;
+  background: #070d18;
+}
+
+.se-lane-labels {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  border-right: 2px solid #33465c;
+  background: #0d1626;
+}
+
+.se-lane-label {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+  border-bottom: 1px solid #1f2c3d;
+  text-transform: uppercase;
+}
+
+.se-lane-label strong {
+  font-size: 1.05rem;
+}
+
+.se-lane-label span {
+  padding: 0 8px;
+  color: #070d18;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.lane-walk strong { color: #cbd5e1; }
+.lane-walk span { background: #cbd5e1; }
+.lane-car strong { color: var(--amber); }
+.lane-car span { background: var(--amber); }
+.lane-train strong { color: var(--blue); }
+.lane-train span { background: var(--blue); }
+.lane-ship strong { color: #c4a7ff; }
+.lane-ship span { background: #c4a7ff; }
+
+.se-view {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.se-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+}
+
+.se-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #1f2c3d;
+}
+
+/* Walk: pavement */
+.band-walk {
+  background:
+    linear-gradient(#182233, #182233) 0 calc(50% + 12px) / 100% 4px no-repeat,
+    #101927;
+}
+
+/* Car: road with a dashed centre line */
+.band-car {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 209, 102, 0.35) 0 18px, transparent 18px 40px) 0 50% / 100% 2px no-repeat,
+    #131820;
+}
+
+/* Train: two rails and sleepers */
+.band-train {
+  background:
+    linear-gradient(#3b4c62, #3b4c62) 0 calc(50% - 8px) / 100% 2px no-repeat,
+    linear-gradient(#3b4c62, #3b4c62) 0 calc(50% + 8px) / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, #1d2838 0 6px, transparent 6px 20px) 0 50% / 100% 24px no-repeat,
+    #0e1520;
+}
+
+/* Ship: a dark space lane */
+.band-ship {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px) 0 0 / 53px 37px,
+    radial-gradient(circle, rgba(196, 167, 255, 0.35) 0 1px, transparent 1.5px) 21px 17px / 71px 43px,
+    #080a18;
+}
+
+/* Transfer links between lanes */
+.se-link {
+  position: absolute;
+  width: 2px;
+  margin-left: -1px;
+  background: repeating-linear-gradient(#2c3b50 0 5px, transparent 5px 9px);
+}
+
+.se-link.open {
+  width: 4px;
+  margin-left: -2px;
+  background: repeating-linear-gradient(var(--amber) 0 6px, transparent 6px 10px);
+  box-shadow: 0 0 8px rgba(255, 209, 102, 0.6);
+}
+
+/* Stops */
+.se-node {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: #3a4a5f;
+}
+
+.se-node-label {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #8191a5;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.node-walk {
+  top: auto;
+  width: 2px;
+  height: 14px;
+  margin: -7px 0 0 -1px;
+  border-radius: 0;
+  background: #4b5c72;
+}
+
+.node-walk.node-ten {
+  height: 22px;
+  margin-top: -11px;
+  background: #8191a5;
+}
+
+.node-walk .se-node-label {
+  top: 18px;
+}
+
+.node-walk.node-ten .se-node-label {
+  top: 22px;
+  color: #cbd5e1;
+}
+
+.node-car,
+.node-train,
+.node-ship {
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  background: #0b1220;
+}
+
+.node-car { color: #8a7440; }
+.node-train { color: #3f7590; }
+.node-ship {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border-radius: 50%;
+  color: #6f5c9c;
+}
+
+.node-car .se-node-label,
+.node-train .se-node-label,
+.node-ship .se-node-label {
+  top: 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: currentColor;
+}
+
+.node-ship .se-node-label {
+  top: 32px;
+}
+
+/* Stops the rider has reached stay lit; the current one glows. */
+.se-node.lit { background: #0b1220; }
+.node-walk.lit { background: #cbd5e1; }
+.node-walk.lit .se-node-label { color: #f1f5f9; }
+.node-car.lit { color: var(--amber); }
+.node-train.lit { color: var(--blue); }
+.node-ship.lit { color: #c4a7ff; }
+
+.se-node.here {
+  z-index: 3;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 0 16px currentColor;
+}
+
+.node-walk.here {
+  box-shadow: none;
+  background: #fff;
+}
+
+.se-node.here .se-node-label {
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.se-node.ping::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  animation: se-ping 0.6s ease-out forwards;
+}
+
+.node-walk.ping::after {
+  display: none;
+}
+
+@keyframes se-ping {
+  from { transform: scale(0.6); opacity: 1; }
+  to { transform: scale(2.4); opacity: 0; }
+}
+
+/* Start / destination: circles around the address */
+.se-ring {
+  position: absolute;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  margin: -16px 0 0 -25px;
+  border: 3px solid #8798ab;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.se-ring-goal {
+  border-color: var(--green);
+  box-shadow: 0 0 12px rgba(108, 255, 123, 0.6), inset 0 0 8px rgba(108, 255, 123, 0.35);
+}
+
+/* Stops in the lower lanes have their number under the square. */
+.se-ring-goal.ring-car,
+.se-ring-goal.ring-train,
+.se-ring-goal.ring-ship {
+  width: 58px;
+  height: 58px;
+  margin: -22px 0 0 -29px;
+}
+
+.se-goal-reached {
+  animation: se-goal 0.6s ease-in-out 3;
+}
+
+@keyframes se-goal {
+  50% { box-shadow: 0 0 30px 8px rgba(108, 255, 123, 0.9); }
+}
+
+/* ---------- Rider and vehicles ---------- */
+.se-rider {
+  position: absolute;
+  z-index: 5;
+  width: 0;
+  height: 0;
+  transition-property: left, top;
+  transition-timing-function: ease-in-out;
+}
+
+.se-badge {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  z-index: 2;
+  padding: 1px 8px;
+  border: 2px solid #fff;
+  color: #070d18;
+  background: #cbd5e1;
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.riding-walk .se-badge { bottom: 34px; }
+.riding-car .se-badge { background: var(--amber); }
+.riding-train .se-badge { background: var(--blue); }
+.riding-ship .se-badge { background: #c4a7ff; bottom: 40px; }
+
+.se-vehicle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.se-vehicle img {
+  display: block;
+}
+
+.riding-walk .se-walker,
+.riding-car .se-car,
+.riding-train .se-train,
+.riding-ship .se-ship {
+  display: block;
+  animation: se-pop 0.32s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+
+@keyframes se-pop {
+  from { transform: var(--se-place) scale(0); opacity: 0; }
+  to { transform: var(--se-place) scale(1); opacity: 1; }
+}
+
+/* Astronaut stands on the pavement */
+.se-walker {
+  --se-place: translate(-50%, -78%);
+  transform: var(--se-place);
+}
+
+.se-figure {
+  height: 58px;
+  width: auto;
+}
+
+.se-figure-missing {
+  width: 30px;
+  height: 46px;
+  border-radius: 14px 14px 6px 6px;
+  background: radial-gradient(circle at 50% 30%, #3b82f6 0 9px, #e2e8f0 10px);
+}
+
+/* Top-down art faces up: turn it to face right. */
+.se-car {
+  --se-place: translate(-50%, -50%);
+  transform: var(--se-place);
+  width: 108px;
+  height: 72px;
+}
+
+.se-car img {
+  width: 72px;
+  height: 108px;
+  transform: translate(18px, -18px) rotate(90deg);
+}
+
+.se-train {
+  --se-place: translate(-88%, -50%);
+  transform: var(--se-place);
+}
+
+.se-train img {
+  width: 200px;
+  height: auto;
+}
+
+.se-ship {
+  --se-place: translate(-58%, -50%);
+  transform: var(--se-place);
+  width: 96px;
+  height: 96px;
+}
+
+.se-ship img {
+  width: 96px;
+  height: 96px;
+  transform: rotate(90deg);
+}
+
+/* Heading back to the left: turn the car and the ship around. */
+.facing-left .se-car img {
+  transform: translate(18px, -18px) rotate(-90deg);
+}
+
+.facing-left .se-car {
+  --se-place: translate(-50%, -50%);
+}
+
+.facing-left .se-ship {
+  --se-place: translate(-42%, -50%);
+}
+
+.facing-left .se-ship img {
+  transform: rotate(-90deg);
+}
+
+.se-rider.se-shake .se-vehicle {
+  animation: se-shake 0.35s steps(4, end);
+}
+
+@keyframes se-shake {
+  0%, 100% { transform: var(--se-place) translateX(0); }
+  25% { transform: var(--se-place) translateX(-6px); }
+  75% { transform: var(--se-place) translateX(6px); }
+}
+
+/* ---------- Ticket card overlay ---------- */
+.se-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 8, 16, 0.72);
+}
+
+.se-overlay[hidden] {
+  display: none;
+}
+
+.se-card {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  min-width: 420px;
+  padding: 18px 28px;
+  border: 2px solid #8798ab;
+  background: #0f1928;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.se-card-kicker {
+  margin: 0;
+  color: #8798ab;
+  text-transform: uppercase;
+}
+
+.se-card h2 {
+  margin: 0;
+  color: #f1f5f9;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+
+.se-card-body p {
+  margin: 4px 0;
+}
+
+.se-card-route {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.se-chip {
+  padding: 2px 14px;
+  border: 2px solid #8798ab;
+  color: #f1f5f9;
+  background: #141f30;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.se-chip-goal {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.se-card-arrow {
+  color: #8798ab;
+  font-size: 1.8rem;
+}
+
+.se-card-tip {
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
+
+.se-card-result {
+  color: var(--amber);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.se-card-button {
+  min-width: 200px;
+  min-height: 52px;
+  font-size: 1.2rem;
+}
+
+/* ---------- Route log ---------- */
+.se-log {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 36px;
+  padding: 0 8px;
+  overflow: hidden;
+  border: 1px solid #1f2c3d;
+  background: #0b1320;
+  white-space: nowrap;
+}
+
+.se-log-seg {
+  display: flex;
+  flex: none;
+  gap: 3px;
+  align-items: center;
+}
+
+.se-log-mode {
+  margin-right: 2px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.se-log-num {
+  padding: 0 5px;
+  color: #070d18;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.seg-walk .se-log-mode { color: #cbd5e1; }
+.seg-walk .se-log-num { background: #cbd5e1; }
+.seg-car .se-log-mode { color: var(--amber); }
+.seg-car .se-log-num { background: var(--amber); }
+.seg-train .se-log-mode { color: var(--blue); }
+.seg-train .se-log-num { background: var(--blue); }
+.seg-ship .se-log-mode { color: #c4a7ff; }
+.seg-ship .se-log-num { background: #c4a7ff; }
+
+.se-log-arrow {
+  flex: none;
+  color: #56677d;
+}
+
+/* ---------- Controls ---------- */
+.se-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.se-feedback {
+  min-height: 0;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.se-feedback.se-warn { color: #ff8a80; }
+.se-feedback.se-good { color: var(--green); }
+
+.se-pad {
+  display: flex;
+  gap: 8px;
+}
+
+.se-btn {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 2px;
+  min-width: 96px;
+  height: 82px;
+  border: 2px solid #8798ab;
+  border-radius: 6px;
+  color: #f1f5f9;
+  background: #182436;
+  font-family: inherit;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.se-btn .se-arrow {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.se-btn:active {
+  transform: translateY(2px);
+  background: #22324a;
+}
+
+.se-btn.se-dim {
+  opacity: 0.4;
+}
+
+.se-go {
+  min-width: 170px;
+  border-width: 3px;
+}
+
+.se-back {
+  min-width: 120px;
+}
+
+.se-btn.go-walk { border-color: #cbd5e1; }
+.se-btn.go-car { border-color: var(--amber); color: var(--amber); }
+.se-btn.go-train { border-color: var(--blue); color: var(--blue); }
+.se-btn.go-ship { border-color: #c4a7ff; color: #c4a7ff; }
+
+.se-back.go-walk,
+.se-back.go-car,
+.se-back.go-train,
+.se-back.go-ship {
+  border-width: 2px;
+}
+
+.se-car img,
+.se-ship img {
+  transition: transform 0.25s ease-in-out;
+}

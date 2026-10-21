@@ -93,6 +93,14 @@
           launch: true
         },
         {
+          code: "11",
+          title: "Skip Express",
+          stars: ["skip-express"],
+          meta: "Walk by 1s, drive by 5s, ride by 10s, fly by 100s",
+          href: "skip-express/index.html",
+          launch: true
+        },
+        {
           code: "N",
           title: "Test Pilots",
           stars: ["lunar-keys"],
