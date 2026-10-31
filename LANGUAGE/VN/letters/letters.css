@@ -1,0 +1,90 @@
+/* Ghép Chữ — builds on ../choose/choose.css (stage, header, card, nav, done). */
+
+.language-theme .screen.choose-screen.letters-screen { grid-template-rows: auto auto minmax(0, 1fr) auto auto; gap: 10px; }
+
+/* the letter pair(s) taught: c + h = ch (chờ) */
+.lt-build { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.lt-pair {
+  display: inline-flex; align-items: baseline; gap: 12px; padding: 4px 22px; border: 3px solid var(--ink);
+  border-radius: 999px; background: #fffaf0; box-shadow: 0 4px 0 var(--ink); color: var(--ink);
+  font-family: inherit; cursor: pointer;
+}
+.lt-pair:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.lt-pair .lt-parts { font-size: 1.6rem; font-weight: 800; color: var(--ink-soft); }
+.lt-pair .lt-result { font-family: Georgia, serif; font-size: 2.3rem; font-weight: 700; color: var(--lantern); }
+.lt-pair .lt-sound { font-size: 1.05rem; font-style: italic; color: var(--ink-soft); }
+
+/* card */
+.lt-card { min-height: 0; padding: 14px 70px; gap: 10px; overflow-y: auto; justify-content: safe center; }
+.lt-box { margin: 0; font-family: Georgia, serif; font-size: 1.5rem; color: var(--ink-soft); }
+.lt-box b { color: var(--lantern); }
+.lt-box mark { padding: 0 6px; border-radius: 8px; background: var(--gold); color: var(--ink); }
+.lt-sentence { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 6px 18px; }
+.lt-word {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px 6px; border: 0; border-radius: 12px;
+  background: transparent; color: var(--ink); font-family: inherit; cursor: pointer;
+}
+.lt-word:hover, .lt-word.is-tapped { background: var(--jade-soft); }
+.lt-word .w-vi { font-family: Georgia, "Times New Roman", serif; font-size: 3rem; line-height: 1.15; }
+.lt-word .w-en { font-size: 1rem; font-style: italic; color: var(--ink-soft); max-width: 190px; line-height: 1.15; }
+.lt-sentence.is-long .w-vi { font-size: 2.1rem; }
+.lt-word u { text-decoration: none; box-shadow: inset 0 -4px 0 var(--lantern); }
+.lt-word .lt-v { padding: 0 3px; border-radius: 8px; background: var(--gold); }
+.lt-word .lt-blank { display: inline-block; min-width: 0.9em; border-bottom: 4px dashed var(--ink-soft); color: transparent; }
+.lt-word .lt-fill { padding: 0 3px; border-radius: 8px; animation: lang-pop 0.4s ease-out; }
+.lt-word .lt-fill.is-good { background: #cfeedd; }
+.lt-word .lt-fill.is-bad { background: #ffe0d6; }
+.lt-card .choose-en { font-size: 1.2rem; }
+.lt-card .choose-verdict { font-size: 0.95rem; }
+
+/* six vowel buttons, like the workbook picture boxes */
+.lt-choices { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; padding: 0 6px; }
+.lt-choice {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; min-height: 84px;
+  padding: 6px 4px; border: 3px solid var(--ink); border-radius: 18px; background: #fffaf0; color: var(--ink);
+  box-shadow: 0 5px 0 var(--ink); cursor: pointer; font-family: inherit;
+}
+.lt-choice:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
+.lt-choice .c-num { font-size: 0.8rem; font-weight: 800; color: var(--ink-soft); }
+.lt-choice .c-pair { font-family: Georgia, serif; font-size: 1.15rem; color: var(--ink-soft); }
+.lt-choice .c-vowel { font-family: Georgia, serif; font-size: 2.3rem; font-weight: 700; color: var(--jade); line-height: 1.05; }
+.lt-choice.is-picked { background: var(--gold); }
+.lt-choice.is-right { background: #cfeedd; border-color: var(--jade); }
+.lt-choice.is-wrong { background: #ffe0d6; border-color: var(--lantern); }
+.lt-choice.is-dim { opacity: 0.5; }
+.lt-choice:focus-visible, .lt-pair:focus-visible, .lt-word:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* quiz results */
+.meaning-missed {
+  max-width: 760px; max-height: 300px; overflow-y: auto; padding: 10px 18px; border: 2px dashed var(--ink-soft);
+  border-radius: 14px; background: #fffaf0; text-align: left;
+}
+.meaning-missed h3 { margin: 0 0 6px; font-size: 1rem; text-align: center; }
+.meaning-missed ul { margin: 0; padding: 0; list-style: none; }
+.meaning-missed li { padding: 3px 0; font-size: 1.05rem; }
+.meaning-missed li b { font-family: Georgia, serif; color: var(--jade); }
+.letters-screen .choose-nav { position: relative; z-index: 2; }
+
+
+/* box line: ch + à = chà, spelling, Bài Bốn's words */
+.lt-box { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.lt-eq { font-size: 1.6rem; color: var(--ink-soft); }
+.lt-eq b { font-size: 2.1rem; color: var(--lantern); }
+.lt-spell { font-family: inherit; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); }
+.lt-learnwords { font-size: 1.15rem; font-weight: 700; color: var(--jade); }
+.lt-rule { max-width: 680px; font-family: inherit; font-size: 1rem; line-height: 1.3; }
+.lt-rule .bi-en { font-size: 0.9rem; }
+.lt-dots { font-family: Georgia, serif; font-size: 2.4rem; color: var(--ink-soft); align-self: flex-start; }
+.lt-note { margin: 0; padding: 4px 12px; border: 2px dashed var(--ink-soft); border-radius: 12px; background: var(--jade-soft); font-size: 0.95rem; line-height: 1.3; }
+.lt-note .bi-en { font-size: 0.85rem; }
+.lt-word .lt-blank { display: inline-block; min-width: 2.2em; border-bottom: 4px dashed var(--ink-soft); color: transparent; }
+.lt-choice .c-word { font-family: Georgia, serif; font-size: 1.1rem; color: var(--ink-soft); }
+.lt-sentence.is-long .w-vi { font-size: 2.1rem; }
+.lt-choice .c-word { line-height: 1.15; text-align: center; }
+.lt-choices.is-phrases .c-vowel { font-size: 1.5rem; }
+/* quiz-only: keep the sentence, verdict and footnote inside the card */
+.lt-card { gap: 6px; padding-top: 10px; padding-bottom: 10px; }
+.lt-word .w-vi { font-size: 2.6rem; }
+.lt-sentence.is-long .w-vi { font-size: 2rem; }
+.lt-eq { font-size: 1.35rem; }
+.lt-eq b { font-size: 1.8rem; }

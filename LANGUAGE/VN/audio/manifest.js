@@ -6,1029 +6,2467 @@ window.VN_AUDIO = {
       "label": "Sample3",
       "lessons": {
         "bai-1": {
+          "title": "Bài 1",
           "sentences": [
-            "sample3/bai-1/s01.m4a",
-            "sample3/bai-1/s02.m4a",
-            "sample3/bai-1/s03.m4a",
-            "sample3/bai-1/s04.m4a",
-            "sample3/bai-1/s05.m4a",
-            "sample3/bai-1/s06.m4a",
-            "sample3/bai-1/s07.m4a",
-            "sample3/bai-1/s08.m4a",
-            "sample3/bai-1/s09.m4a"
+            "sample3/bai-1/s01.m4a?v=1791344397",
+            "sample3/bai-1/s02.m4a?v=1791344687",
+            "sample3/bai-1/s03.m4a?v=1791344817",
+            "sample3/bai-1/s04.m4a?v=1791344398",
+            "sample3/bai-1/s05.m4a?v=1791344398",
+            "sample3/bai-1/s06.m4a?v=1791344398",
+            "sample3/bai-1/s07.m4a?v=1791344398",
+            "sample3/bai-1/s08.m4a?v=1791344399",
+            "sample3/bai-1/s09.m4a?v=1791344598"
+          ],
+          "texts": [
+            [
+              "Ba đi ghe",
+              "Ba đi ghe."
+            ],
+            [
+              "Má ghì em bé",
+              "Má ghì em bé."
+            ],
+            [
+              "Ghê sợ hổ dữ",
+              "Ghê sợ hổ dữ."
+            ],
+            [
+              "Em ngồi ghế",
+              "Em ngồi ghế."
+            ],
+            [
+              "Ghi vô sổ",
+              "Ghi vô sổ."
+            ],
+            [
+              "Ghe ghé vô bờ",
+              "Ghe ghé vô bờ."
+            ],
+            [
+              "Ghi ơn cha mẹ",
+              "Ghi ơn cha mẹ."
+            ],
+            [
+              "Ghẹ bò trên cát",
+              "Ghẹ bò trên cát."
+            ],
+            [
+              "Ghê sợ ghẻ lở",
+              "Ghê sợ ghẻ lở."
+            ]
           ],
           "words": {
-            "ba": "sample3/bai-1/words/ba.m4a",
-            "bé": "sample3/bai-1/words/bé.m4a",
-            "bò": "sample3/bai-1/words/bò.m4a",
-            "bờ": "sample3/bai-1/words/bờ.m4a",
-            "cha": "sample3/bai-1/words/cha.m4a",
-            "cát": "sample3/bai-1/words/cát.m4a",
-            "dữ": "sample3/bai-1/words/dữ.m4a",
-            "em": "sample3/bai-1/words/em.m4a",
-            "ghe": "sample3/bai-1/words/ghe.m4a",
-            "ghi": "sample3/bai-1/words/ghi.m4a",
-            "ghé": "sample3/bai-1/words/ghé.m4a",
-            "ghê": "sample3/bai-1/words/ghê.m4a",
-            "ghì": "sample3/bai-1/words/ghì.m4a",
-            "ghẹ": "sample3/bai-1/words/ghẹ.m4a",
-            "ghẻ": "sample3/bai-1/words/ghẻ.m4a",
-            "ghế": "sample3/bai-1/words/ghế.m4a",
-            "hổ": "sample3/bai-1/words/hổ.m4a",
-            "lở": "sample3/bai-1/words/lở.m4a",
-            "má": "sample3/bai-1/words/má.m4a",
-            "mẹ": "sample3/bai-1/words/mẹ.m4a",
-            "ngồi": "sample3/bai-1/words/ngồi.m4a",
-            "sổ": "sample3/bai-1/words/sổ.m4a",
-            "sợ": "sample3/bai-1/words/sợ.m4a",
-            "trên": "sample3/bai-1/words/trên.m4a",
-            "vô": "sample3/bai-1/words/vô.m4a",
-            "đi": "sample3/bai-1/words/đi.m4a",
-            "ơn": "sample3/bai-1/words/ơn.m4a"
+            "ba": "sample3/bai-1/words/ba.m4a?v=1791344399",
+            "bé": "sample3/bai-1/words/bé.m4a?v=1791344400",
+            "bò": "sample3/bai-1/words/bò.m4a?v=1791344403",
+            "bờ": "sample3/bai-1/words/bờ.m4a?v=1791344402",
+            "cha": "sample3/bai-1/words/cha.m4a?v=1791344402",
+            "cát": "sample3/bai-1/words/cát.m4a?v=1791344403",
+            "dữ": "sample3/bai-1/words/dữ.m4a?v=1791344401",
+            "em": "sample3/bai-1/words/em.m4a?v=1791344400",
+            "ghe": "sample3/bai-1/words/ghe.m4a?v=1791344400",
+            "ghi": "sample3/bai-1/words/ghi.m4a?v=1791344400",
+            "ghé": "sample3/bai-1/words/ghé.m4a?v=1793415417",
+            "ghê": "sample3/bai-1/words/ghê.m4a?v=1793415417",
+            "ghì": "sample3/bai-1/words/ghì.m4a?v=1791344687",
+            "ghẹ": "sample3/bai-1/words/ghẹ.m4a?v=1791344403",
+            "ghẻ": "sample3/bai-1/words/ghẻ.m4a?v=1793415417",
+            "ghế": "sample3/bai-1/words/ghế.m4a?v=1793415094",
+            "hổ": "sample3/bai-1/words/hổ.m4a?v=1791344401",
+            "lở": "sample3/bai-1/words/lở.m4a?v=1791344404",
+            "má": "sample3/bai-1/words/má.m4a?v=1791344400",
+            "mẹ": "sample3/bai-1/words/mẹ.m4a?v=1791344403",
+            "ngồi": "sample3/bai-1/words/ngồi.m4a?v=1791344401",
+            "sổ": "sample3/bai-1/words/sổ.m4a?v=1791344402",
+            "sợ": "sample3/bai-1/words/sợ.m4a?v=1791344400",
+            "trên": "sample3/bai-1/words/trên.m4a?v=1791344403",
+            "vô": "sample3/bai-1/words/vô.m4a?v=1791344401",
+            "đi": "sample3/bai-1/words/đi.m4a?v=1791344399",
+            "ơn": "sample3/bai-1/words/ơn.m4a?v=1791344402"
           }
         },
         "vl2-p18": {
+          "title": "Ráp vần gia · Trang 18",
           "sentences": [
-            "sample3/vl2-p18/s01.m4a",
-            "sample3/vl2-p18/s02.m4a",
-            "sample3/vl2-p18/s03.m4a",
-            "sample3/vl2-p18/s04.m4a",
-            "sample3/vl2-p18/s05.m4a",
-            "sample3/vl2-p18/s06.m4a"
+            "sample3/vl2-p18/s01.m4a?v=1791505148",
+            "sample3/vl2-p18/s02.m4a?v=1791505148",
+            "sample3/vl2-p18/s03.m4a?v=1791505148",
+            "sample3/vl2-p18/s04.m4a?v=1791505149",
+            "sample3/vl2-p18/s05.m4a?v=1791505149",
+            "sample3/vl2-p18/s06.m4a?v=1791505149"
+          ],
+          "texts": [
+            [
+              "Chú em là sử gia",
+              "Chú em là sử gia."
+            ],
+            [
+              "Giá nhà lên cao quá",
+              "Giá nhà lên cao quá."
+            ],
+            [
+              "Ông bà em đã già",
+              "Ông bà em đã già."
+            ],
+            [
+              "Chớ mua lầm đồ giả",
+              "Chớ mua lầm đồ giả."
+            ],
+            [
+              "Lấy chày để giã gạo",
+              "Lấy chày để giã gạo."
+            ],
+            [
+              "Cái giạ để đong lúa",
+              "Cái giạ để đong lúa."
+            ]
           ],
           "words": {
-            "bà": "sample3/vl2-p18/words/bà.m4a",
-            "cao": "sample3/vl2-p18/words/cao.m4a",
-            "chày": "sample3/vl2-p18/words/chày.m4a",
-            "chú": "sample3/vl2-p18/words/chú.m4a",
-            "chớ": "sample3/vl2-p18/words/chớ.m4a",
-            "cái": "sample3/vl2-p18/words/cái.m4a",
-            "em": "sample3/vl2-p18/words/em.m4a",
-            "gia": "sample3/vl2-p18/words/gia.m4a",
-            "già": "sample3/vl2-p18/words/già.m4a",
-            "giá": "sample3/vl2-p18/words/giá.m4a",
-            "giã": "sample3/vl2-p18/words/giã.m4a",
-            "giạ": "sample3/vl2-p18/words/giạ.m4a",
-            "giả": "sample3/vl2-p18/words/giả.m4a",
-            "gạo": "sample3/vl2-p18/words/gạo.m4a",
-            "là": "sample3/vl2-p18/words/là.m4a",
-            "lên": "sample3/vl2-p18/words/lên.m4a",
-            "lúa": "sample3/vl2-p18/words/lúa.m4a",
-            "lấy": "sample3/vl2-p18/words/lấy.m4a",
-            "lầm": "sample3/vl2-p18/words/lầm.m4a",
-            "mua": "sample3/vl2-p18/words/mua.m4a",
-            "nhà": "sample3/vl2-p18/words/nhà.m4a",
-            "quá": "sample3/vl2-p18/words/quá.m4a",
-            "sử": "sample3/vl2-p18/words/sử.m4a",
-            "ông": "sample3/vl2-p18/words/ông.m4a",
-            "đong": "sample3/vl2-p18/words/đong.m4a",
-            "đã": "sample3/vl2-p18/words/đã.m4a",
-            "để": "sample3/vl2-p18/words/để.m4a",
-            "đồ": "sample3/vl2-p18/words/đồ.m4a"
+            "bà": "sample3/vl2-p18/words/bà.m4a?v=1791505152",
+            "cao": "sample3/vl2-p18/words/cao.m4a?v=1791505151",
+            "chày": "sample3/vl2-p18/words/chày.m4a?v=1791505154",
+            "chú": "sample3/vl2-p18/words/chú.m4a?v=1791505149",
+            "chớ": "sample3/vl2-p18/words/chớ.m4a?v=1791505152",
+            "cái": "sample3/vl2-p18/words/cái.m4a?v=1791505155",
+            "em": "sample3/vl2-p18/words/em.m4a?v=1791505150",
+            "gia": "sample3/vl2-p18/words/gia.m4a?v=1791505150",
+            "già": "sample3/vl2-p18/words/già.m4a?v=1791505152",
+            "giá": "sample3/vl2-p18/words/giá.m4a?v=1791505150",
+            "giã": "sample3/vl2-p18/words/giã.m4a?v=1791505154",
+            "giạ": "sample3/vl2-p18/words/giạ.m4a?v=1791505155",
+            "giả": "sample3/vl2-p18/words/giả.m4a?v=1791505153",
+            "gạo": "sample3/vl2-p18/words/gạo.m4a?v=1791505155",
+            "là": "sample3/vl2-p18/words/là.m4a?v=1791505150",
+            "lên": "sample3/vl2-p18/words/lên.m4a?v=1791505151",
+            "lúa": "sample3/vl2-p18/words/lúa.m4a?v=1791505155",
+            "lấy": "sample3/vl2-p18/words/lấy.m4a?v=1791505154",
+            "lầm": "sample3/vl2-p18/words/lầm.m4a?v=1791505153",
+            "mua": "sample3/vl2-p18/words/mua.m4a?v=1791505153",
+            "nhà": "sample3/vl2-p18/words/nhà.m4a?v=1791505151",
+            "quá": "sample3/vl2-p18/words/quá.m4a?v=1791505151",
+            "sử": "sample3/vl2-p18/words/sử.m4a?v=1791505150",
+            "ông": "sample3/vl2-p18/words/ông.m4a?v=1791505152",
+            "đong": "sample3/vl2-p18/words/đong.m4a?v=1791505155",
+            "đã": "sample3/vl2-p18/words/đã.m4a?v=1791505152",
+            "để": "sample3/vl2-p18/words/để.m4a?v=1791505154",
+            "đồ": "sample3/vl2-p18/words/đồ.m4a?v=1791505153"
           }
         },
         "vl2-p19": {
+          "title": "Ráp vần gio · Trang 19",
           "sentences": [
-            "sample3/vl2-p19/s01.m4a",
-            "sample3/vl2-p19/s02.m4a",
-            "sample3/vl2-p19/s03.m4a",
-            "sample3/vl2-p19/s04.m4a"
+            "sample3/vl2-p19/s01.m4a?v=1791505156",
+            "sample3/vl2-p19/s02.m4a?v=1791505156",
+            "sample3/vl2-p19/s03.m4a?v=1791505157",
+            "sample3/vl2-p19/s04.m4a?v=1791505157"
+          ],
+          "texts": [
+            [
+              "Em thích ăn bánh gio",
+              "Em thích ăn bánh gio."
+            ],
+            [
+              "Hôm nay có gió to",
+              "Hôm nay có gió to."
+            ],
+            [
+              "Bánh mì có kẹp giò",
+              "Bánh mì có kẹp giò."
+            ],
+            [
+              "Hái hoa để vào giỏ",
+              "Hái hoa để vào giỏ."
+            ]
           ],
           "words": {
-            "bánh": "sample3/vl2-p19/words/bánh.m4a",
-            "có": "sample3/vl2-p19/words/có.m4a",
-            "em": "sample3/vl2-p19/words/em.m4a",
-            "gio": "sample3/vl2-p19/words/gio.m4a",
-            "giò": "sample3/vl2-p19/words/giò.m4a",
-            "gió": "sample3/vl2-p19/words/gió.m4a",
-            "giỏ": "sample3/vl2-p19/words/giỏ.m4a",
-            "hoa": "sample3/vl2-p19/words/hoa.m4a",
-            "hái": "sample3/vl2-p19/words/hái.m4a",
-            "hôm": "sample3/vl2-p19/words/hôm.m4a",
-            "kẹp": "sample3/vl2-p19/words/kẹp.m4a",
-            "mì": "sample3/vl2-p19/words/mì.m4a",
-            "nay": "sample3/vl2-p19/words/nay.m4a",
-            "thích": "sample3/vl2-p19/words/thích.m4a",
-            "to": "sample3/vl2-p19/words/to.m4a",
-            "vào": "sample3/vl2-p19/words/vào.m4a",
-            "ăn": "sample3/vl2-p19/words/ăn.m4a",
-            "để": "sample3/vl2-p19/words/để.m4a"
+            "bánh": "sample3/vl2-p19/words/bánh.m4a?v=1791505158",
+            "có": "sample3/vl2-p19/words/có.m4a?v=1791505159",
+            "em": "sample3/vl2-p19/words/em.m4a?v=1791505157",
+            "gio": "sample3/vl2-p19/words/gio.m4a?v=1791505158",
+            "giò": "sample3/vl2-p19/words/giò.m4a?v=1791505159",
+            "gió": "sample3/vl2-p19/words/gió.m4a?v=1791505159",
+            "giỏ": "sample3/vl2-p19/words/giỏ.m4a?v=1791505160",
+            "hoa": "sample3/vl2-p19/words/hoa.m4a?v=1791505160",
+            "hái": "sample3/vl2-p19/words/hái.m4a?v=1791505160",
+            "hôm": "sample3/vl2-p19/words/hôm.m4a?v=1791505158",
+            "kẹp": "sample3/vl2-p19/words/kẹp.m4a?v=1791505159",
+            "mì": "sample3/vl2-p19/words/mì.m4a?v=1791505159",
+            "nay": "sample3/vl2-p19/words/nay.m4a?v=1791505158",
+            "thích": "sample3/vl2-p19/words/thích.m4a?v=1791505157",
+            "to": "sample3/vl2-p19/words/to.m4a?v=1791505159",
+            "vào": "sample3/vl2-p19/words/vào.m4a?v=1791505160",
+            "ăn": "sample3/vl2-p19/words/ăn.m4a?v=1791505157",
+            "để": "sample3/vl2-p19/words/để.m4a?v=1791505160"
           }
         },
         "vl2-p22": {
+          "title": "Bài làm trong lớp · Trang 22",
           "sentences": [
-            "sample3/vl2-p22/s01.m4a",
-            "sample3/vl2-p22/s02.m4a",
-            "sample3/vl2-p22/s03.m4a",
-            "sample3/vl2-p22/s04.m4a",
-            "sample3/vl2-p22/s05.m4a",
-            "sample3/vl2-p22/s06.m4a",
-            "sample3/vl2-p22/s07.m4a",
-            "sample3/vl2-p22/s08.m4a",
-            "sample3/vl2-p22/s09.m4a"
+            "sample3/vl2-p22/s01.m4a?v=1791506101",
+            "sample3/vl2-p22/s02.m4a?v=1791506101",
+            "sample3/vl2-p22/s03.m4a?v=1791506101",
+            "sample3/vl2-p22/s04.m4a?v=1791506101",
+            "sample3/vl2-p22/s05.m4a?v=1791506102",
+            "sample3/vl2-p22/s06.m4a?v=1791506102",
+            "sample3/vl2-p22/s07.m4a?v=1791506102",
+            "sample3/vl2-p22/s08.m4a?v=1791506103",
+            "sample3/vl2-p22/s09.m4a?v=1791506103"
+          ],
+          "texts": [
+            [
+              "Bà em đã già",
+              "Bà em đã già."
+            ],
+            [
+              "Bé từ giã mẹ",
+              "Bé từ giã mẹ."
+            ],
+            [
+              "Bà lễ tổ",
+              "Bà lễ tổ."
+            ],
+            [
+              "Gió to đổ cây",
+              "Gió to đổ cây."
+            ],
+            [
+              "Em giả bộ ngủ",
+              "Em giả bộ ngủ."
+            ],
+            [
+              "Xe cũ giá rẻ",
+              "Xe cũ giá rẻ."
+            ],
+            [
+              "Chi ăn giá",
+              "Chi ăn giá."
+            ],
+            [
+              "Tú ăn chả giò",
+              "Tú ăn chả giò."
+            ],
+            [
+              "Ba giờ đúng",
+              "Ba giờ đúng."
+            ]
           ],
           "words": {
-            "ba": "sample3/vl2-p22/words/ba.m4a",
-            "bà": "sample3/vl2-p22/words/bà.m4a",
-            "bé": "sample3/vl2-p22/words/bé.m4a",
-            "bộ": "sample3/vl2-p22/words/bộ.m4a",
-            "chi": "sample3/vl2-p22/words/chi.m4a",
-            "chả": "sample3/vl2-p22/words/chả.m4a",
-            "cây": "sample3/vl2-p22/words/cây.m4a",
-            "cũ": "sample3/vl2-p22/words/cũ.m4a",
-            "em": "sample3/vl2-p22/words/em.m4a",
-            "già": "sample3/vl2-p22/words/già.m4a",
-            "giá": "sample3/vl2-p22/words/giá.m4a",
-            "giã": "sample3/vl2-p22/words/giã.m4a",
-            "giò": "sample3/vl2-p22/words/giò.m4a",
-            "gió": "sample3/vl2-p22/words/gió.m4a",
-            "giả": "sample3/vl2-p22/words/giả.m4a",
-            "giờ": "sample3/vl2-p22/words/giờ.m4a",
-            "lễ": "sample3/vl2-p22/words/lễ.m4a",
-            "mẹ": "sample3/vl2-p22/words/mẹ.m4a",
-            "ngủ": "sample3/vl2-p22/words/ngủ.m4a",
-            "rẻ": "sample3/vl2-p22/words/rẻ.m4a",
-            "to": "sample3/vl2-p22/words/to.m4a",
-            "tú": "sample3/vl2-p22/words/tú.m4a",
-            "tổ": "sample3/vl2-p22/words/tổ.m4a",
-            "từ": "sample3/vl2-p22/words/từ.m4a",
-            "xe": "sample3/vl2-p22/words/xe.m4a",
-            "ăn": "sample3/vl2-p22/words/ăn.m4a",
-            "đã": "sample3/vl2-p22/words/đã.m4a",
-            "đúng": "sample3/vl2-p22/words/đúng.m4a",
-            "đổ": "sample3/vl2-p22/words/đổ.m4a"
+            "ba": "sample3/vl2-p22/words/ba.m4a?v=1791506108",
+            "bà": "sample3/vl2-p22/words/bà.m4a?v=1791506103",
+            "bé": "sample3/vl2-p22/words/bé.m4a?v=1791506104",
+            "bộ": "sample3/vl2-p22/words/bộ.m4a?v=1791506106",
+            "chi": "sample3/vl2-p22/words/chi.m4a?v=1791506107",
+            "chả": "sample3/vl2-p22/words/chả.m4a?v=1791506108",
+            "cây": "sample3/vl2-p22/words/cây.m4a?v=1791506106",
+            "cũ": "sample3/vl2-p22/words/cũ.m4a?v=1791506107",
+            "em": "sample3/vl2-p22/words/em.m4a?v=1791506103",
+            "già": "sample3/vl2-p22/words/già.m4a?v=1791506104",
+            "giá": "sample3/vl2-p22/words/giá.m4a?v=1791506107",
+            "giã": "sample3/vl2-p22/words/giã.m4a?v=1791506104",
+            "giò": "sample3/vl2-p22/words/giò.m4a?v=1791506108",
+            "gió": "sample3/vl2-p22/words/gió.m4a?v=1791506105",
+            "giả": "sample3/vl2-p22/words/giả.m4a?v=1791506106",
+            "giờ": "sample3/vl2-p22/words/giờ.m4a?v=1791506109",
+            "lễ": "sample3/vl2-p22/words/lễ.m4a?v=1791506105",
+            "mẹ": "sample3/vl2-p22/words/mẹ.m4a?v=1791506104",
+            "ngủ": "sample3/vl2-p22/words/ngủ.m4a?v=1791506106",
+            "rẻ": "sample3/vl2-p22/words/rẻ.m4a?v=1791506107",
+            "to": "sample3/vl2-p22/words/to.m4a?v=1791506105",
+            "tú": "sample3/vl2-p22/words/tú.m4a?v=1791506108",
+            "tổ": "sample3/vl2-p22/words/tổ.m4a?v=1791506105",
+            "từ": "sample3/vl2-p22/words/từ.m4a?v=1791506104",
+            "xe": "sample3/vl2-p22/words/xe.m4a?v=1791506107",
+            "ăn": "sample3/vl2-p22/words/ăn.m4a?v=1791506107",
+            "đã": "sample3/vl2-p22/words/đã.m4a?v=1791506103",
+            "đúng": "sample3/vl2-p22/words/đúng.m4a?v=1791506109",
+            "đổ": "sample3/vl2-p22/words/đổ.m4a?v=1791506105"
           }
         },
         "vl2-p31": {
+          "title": "Ráp vần khi · Trang 31",
           "sentences": [
-            "sample3/vl2-p31/s01.m4a",
-            "sample3/vl2-p31/s02.m4a",
-            "sample3/vl2-p31/s03.m4a",
-            "sample3/vl2-p31/s04.m4a",
-            "sample3/vl2-p31/s05.m4a"
+            "sample3/vl2-p31/s01.m4a?v=1791825101",
+            "sample3/vl2-p31/s02.m4a?v=1791825102",
+            "sample3/vl2-p31/s03.m4a?v=1791825102",
+            "sample3/vl2-p31/s04.m4a?v=1791825102",
+            "sample3/vl2-p31/s05.m4a?v=1791825103"
+          ],
+          "texts": [
+            [
+              "Chớ khi kẻ nghèo khó",
+              "Chớ khi kẻ nghèo khó."
+            ],
+            [
+              "Khí cầu bay theo gió",
+              "Khí cầu bay theo gió."
+            ],
+            [
+              "Gặp khó vẫn cười khì",
+              "Gặp khó vẫn cười khì."
+            ],
+            [
+              "Con khỉ giỏi trèo cây",
+              "Con khỉ giỏi trèo cây."
+            ],
+            [
+              "Chỉ có tài dụ khị",
+              "Chỉ có tài dụ khị."
+            ]
           ],
           "words": {
-            "bay": "sample3/vl2-p31/words/bay.m4a",
-            "chỉ": "sample3/vl2-p31/words/chỉ.m4a",
-            "chớ": "sample3/vl2-p31/words/chớ.m4a",
-            "con": "sample3/vl2-p31/words/con.m4a",
-            "cây": "sample3/vl2-p31/words/cây.m4a",
-            "có": "sample3/vl2-p31/words/có.m4a",
-            "cười": "sample3/vl2-p31/words/cười.m4a",
-            "cầu": "sample3/vl2-p31/words/cầu.m4a",
-            "dụ": "sample3/vl2-p31/words/dụ.m4a",
-            "gió": "sample3/vl2-p31/words/gió.m4a",
-            "giỏi": "sample3/vl2-p31/words/giỏi.m4a",
-            "gặp": "sample3/vl2-p31/words/gặp.m4a",
-            "khi": "sample3/vl2-p31/words/khi.m4a",
-            "khì": "sample3/vl2-p31/words/khì.m4a",
-            "khí": "sample3/vl2-p31/words/khí.m4a",
-            "khó": "sample3/vl2-p31/words/khó.m4a",
-            "khỉ": "sample3/vl2-p31/words/khỉ.m4a",
-            "khị": "sample3/vl2-p31/words/khị.m4a",
-            "kẻ": "sample3/vl2-p31/words/kẻ.m4a",
-            "nghèo": "sample3/vl2-p31/words/nghèo.m4a",
-            "theo": "sample3/vl2-p31/words/theo.m4a",
-            "trèo": "sample3/vl2-p31/words/trèo.m4a",
-            "tài": "sample3/vl2-p31/words/tài.m4a",
-            "vẫn": "sample3/vl2-p31/words/vẫn.m4a"
+            "bay": "sample3/vl2-p31/words/bay.m4a?v=1791825104",
+            "chỉ": "sample3/vl2-p31/words/chỉ.m4a?v=1791825107",
+            "chớ": "sample3/vl2-p31/words/chớ.m4a?v=1791825103",
+            "con": "sample3/vl2-p31/words/con.m4a?v=1791825106",
+            "cây": "sample3/vl2-p31/words/cây.m4a?v=1791825107",
+            "có": "sample3/vl2-p31/words/có.m4a?v=1791825107",
+            "cười": "sample3/vl2-p31/words/cười.m4a?v=1791825105",
+            "cầu": "sample3/vl2-p31/words/cầu.m4a?v=1791825104",
+            "dụ": "sample3/vl2-p31/words/dụ.m4a?v=1791825107",
+            "gió": "sample3/vl2-p31/words/gió.m4a?v=1791825105",
+            "giỏi": "sample3/vl2-p31/words/giỏi.m4a?v=1791825106",
+            "gặp": "sample3/vl2-p31/words/gặp.m4a?v=1791825105",
+            "khi": "sample3/vl2-p31/words/khi.m4a?v=1791825103",
+            "khì": "sample3/vl2-p31/words/khì.m4a?v=1791825105",
+            "khí": "sample3/vl2-p31/words/khí.m4a?v=1791825104",
+            "khó": "sample3/vl2-p31/words/khó.m4a?v=1791825104",
+            "khỉ": "sample3/vl2-p31/words/khỉ.m4a?v=1791825106",
+            "khị": "sample3/vl2-p31/words/khị.m4a?v=1791825107",
+            "kẻ": "sample3/vl2-p31/words/kẻ.m4a?v=1791825103",
+            "nghèo": "sample3/vl2-p31/words/nghèo.m4a?v=1793415094",
+            "theo": "sample3/vl2-p31/words/theo.m4a?v=1791825104",
+            "trèo": "sample3/vl2-p31/words/trèo.m4a?v=1791825106",
+            "tài": "sample3/vl2-p31/words/tài.m4a?v=1791825107",
+            "vẫn": "sample3/vl2-p31/words/vẫn.m4a?v=1791825105"
           }
         },
         "hw3-p151": {
+          "title": "Bài làm #3 · Trang 151",
           "sentences": [
-            "sample3/hw3-p151/s01.m4a",
-            "sample3/hw3-p151/s02.m4a",
-            "sample3/hw3-p151/s03.m4a",
-            "sample3/hw3-p151/s04.m4a",
-            "sample3/hw3-p151/s05.m4a",
-            "sample3/hw3-p151/s06.m4a",
-            "sample3/hw3-p151/s07.m4a",
-            "sample3/hw3-p151/s08.m4a",
-            "sample3/hw3-p151/s09.m4a",
-            "sample3/hw3-p151/s10.m4a",
-            "sample3/hw3-p151/s11.m4a",
-            "sample3/hw3-p151/s12.m4a"
+            "sample3/hw3-p151/s01.m4a?v=1791418263",
+            "sample3/hw3-p151/s02.m4a?v=1791418263",
+            "sample3/hw3-p151/s03.m4a?v=1791418263",
+            "sample3/hw3-p151/s04.m4a?v=1791418264",
+            "sample3/hw3-p151/s05.m4a?v=1791418264",
+            "sample3/hw3-p151/s06.m4a?v=1791418264",
+            "sample3/hw3-p151/s07.m4a?v=1791418265",
+            "sample3/hw3-p151/s08.m4a?v=1791418265",
+            "sample3/hw3-p151/s09.m4a?v=1791418265",
+            "sample3/hw3-p151/s10.m4a?v=1791418265",
+            "sample3/hw3-p151/s11.m4a?v=1791418266",
+            "sample3/hw3-p151/s12.m4a?v=1791418266"
+          ],
+          "texts": [
+            [
+              "Em ăn chả giò",
+              "Em ăn chả giò."
+            ],
+            [
+              "Chả giò to quá",
+              "Chả giò to quá."
+            ],
+            [
+              "Tú có giò chả",
+              "Tú có giò chả."
+            ],
+            [
+              "Có chó giữ nhà",
+              "Có chó giữ nhà."
+            ],
+            [
+              "Gió to đổ cây",
+              "Gió to đổ cây."
+            ],
+            [
+              "Gió hú ghê sợ",
+              "Gió hú ghê sợ."
+            ],
+            [
+              "Dì Ba đã già",
+              "Dì Ba đã già."
+            ],
+            [
+              "Cụ già đi bộ",
+              "Cụ già đi bộ."
+            ],
+            [
+              "Bé giả bộ té",
+              "Bé giả bộ té."
+            ],
+            [
+              "Bỏ cà vô giỏ",
+              "Bỏ cà vô giỏ."
+            ],
+            [
+              "Giỏ có cà bể",
+              "Giỏ có cà bể."
+            ],
+            [
+              "Đồng hồ chỉ ba giờ",
+              "Đồng hồ chỉ ba giờ."
+            ]
           ],
           "words": {
-            "ba": "sample3/hw3-p151/words/ba.m4a",
-            "bé": "sample3/hw3-p151/words/bé.m4a",
-            "bể": "sample3/hw3-p151/words/bể.m4a",
-            "bỏ": "sample3/hw3-p151/words/bỏ.m4a",
-            "bộ": "sample3/hw3-p151/words/bộ.m4a",
-            "chó": "sample3/hw3-p151/words/chó.m4a",
-            "chả": "sample3/hw3-p151/words/chả.m4a",
-            "chỉ": "sample3/hw3-p151/words/chỉ.m4a",
-            "cà": "sample3/hw3-p151/words/cà.m4a",
-            "cây": "sample3/hw3-p151/words/cây.m4a",
-            "có": "sample3/hw3-p151/words/có.m4a",
-            "cụ": "sample3/hw3-p151/words/cụ.m4a",
-            "dì": "sample3/hw3-p151/words/dì.m4a",
-            "em": "sample3/hw3-p151/words/em.m4a",
-            "ghê": "sample3/hw3-p151/words/ghê.m4a",
-            "già": "sample3/hw3-p151/words/già.m4a",
-            "giò": "sample3/hw3-p151/words/giò.m4a",
-            "gió": "sample3/hw3-p151/words/gió.m4a",
-            "giả": "sample3/hw3-p151/words/giả.m4a",
-            "giỏ": "sample3/hw3-p151/words/giỏ.m4a",
-            "giờ": "sample3/hw3-p151/words/giờ.m4a",
-            "giữ": "sample3/hw3-p151/words/giữ.m4a",
-            "hú": "sample3/hw3-p151/words/hú.m4a",
-            "hồ": "sample3/hw3-p151/words/hồ.m4a",
-            "nhà": "sample3/hw3-p151/words/nhà.m4a",
-            "quá": "sample3/hw3-p151/words/quá.m4a",
-            "sợ": "sample3/hw3-p151/words/sợ.m4a",
-            "to": "sample3/hw3-p151/words/to.m4a",
-            "té": "sample3/hw3-p151/words/té.m4a",
-            "tú": "sample3/hw3-p151/words/tú.m4a",
-            "vô": "sample3/hw3-p151/words/vô.m4a",
-            "ăn": "sample3/hw3-p151/words/ăn.m4a",
-            "đi": "sample3/hw3-p151/words/đi.m4a",
-            "đã": "sample3/hw3-p151/words/đã.m4a",
-            "đồng": "sample3/hw3-p151/words/đồng.m4a",
-            "đổ": "sample3/hw3-p151/words/đổ.m4a"
+            "ba": "sample3/hw3-p151/words/ba.m4a?v=1791418270",
+            "bé": "sample3/hw3-p151/words/bé.m4a?v=1791418271",
+            "bể": "sample3/hw3-p151/words/bể.m4a?v=1791418273",
+            "bỏ": "sample3/hw3-p151/words/bỏ.m4a?v=1791418272",
+            "bộ": "sample3/hw3-p151/words/bộ.m4a?v=1791418271",
+            "chó": "sample3/hw3-p151/words/chó.m4a?v=1791418268",
+            "chả": "sample3/hw3-p151/words/chả.m4a?v=1791418267",
+            "chỉ": "sample3/hw3-p151/words/chỉ.m4a?v=1791418273",
+            "cà": "sample3/hw3-p151/words/cà.m4a?v=1791418272",
+            "cây": "sample3/hw3-p151/words/cây.m4a?v=1791418269",
+            "có": "sample3/hw3-p151/words/có.m4a?v=1791418268",
+            "cụ": "sample3/hw3-p151/words/cụ.m4a?v=1791418271",
+            "dì": "sample3/hw3-p151/words/dì.m4a?v=1791418270",
+            "em": "sample3/hw3-p151/words/em.m4a?v=1791418266",
+            "ghê": "sample3/hw3-p151/words/ghê.m4a?v=1793415095",
+            "già": "sample3/hw3-p151/words/già.m4a?v=1791418270",
+            "giò": "sample3/hw3-p151/words/giò.m4a?v=1791418267",
+            "gió": "sample3/hw3-p151/words/gió.m4a?v=1791418268",
+            "giả": "sample3/hw3-p151/words/giả.m4a?v=1791418271",
+            "giỏ": "sample3/hw3-p151/words/giỏ.m4a?v=1791418273",
+            "giờ": "sample3/hw3-p151/words/giờ.m4a?v=1791418273",
+            "giữ": "sample3/hw3-p151/words/giữ.m4a?v=1791418268",
+            "hú": "sample3/hw3-p151/words/hú.m4a?v=1791418269",
+            "hồ": "sample3/hw3-p151/words/hồ.m4a?v=1791418273",
+            "nhà": "sample3/hw3-p151/words/nhà.m4a?v=1791418268",
+            "quá": "sample3/hw3-p151/words/quá.m4a?v=1791418267",
+            "sợ": "sample3/hw3-p151/words/sợ.m4a?v=1791418270",
+            "to": "sample3/hw3-p151/words/to.m4a?v=1791418267",
+            "té": "sample3/hw3-p151/words/té.m4a?v=1791418271",
+            "tú": "sample3/hw3-p151/words/tú.m4a?v=1791418267",
+            "vô": "sample3/hw3-p151/words/vô.m4a?v=1791418272",
+            "ăn": "sample3/hw3-p151/words/ăn.m4a?v=1791418267",
+            "đi": "sample3/hw3-p151/words/đi.m4a?v=1791418271",
+            "đã": "sample3/hw3-p151/words/đã.m4a?v=1791418270",
+            "đồng": "sample3/hw3-p151/words/đồng.m4a?v=1791418273",
+            "đổ": "sample3/hw3-p151/words/đổ.m4a?v=1791418269"
           }
         },
         "hw4-p153": {
+          "title": "Bài làm #4 · Trang 153",
           "sentences": [
-            "sample3/hw4-p153/s01.m4a",
-            "sample3/hw4-p153/s02.m4a",
-            "sample3/hw4-p153/s03.m4a",
-            "sample3/hw4-p153/s04.m4a",
-            "sample3/hw4-p153/s05.m4a"
+            "sample3/hw4-p153/s01.m4a?v=1791825108",
+            "sample3/hw4-p153/s02.m4a?v=1791825108",
+            "sample3/hw4-p153/s03.m4a?v=1791825108",
+            "sample3/hw4-p153/s04.m4a?v=1791825109",
+            "sample3/hw4-p153/s05.m4a?v=1791825109"
+          ],
+          "texts": [
+            [
+              "Bà đã già",
+              "Bà đã già."
+            ],
+            [
+              "Chú chỉ chỏ",
+              "Chú chỉ chỏ."
+            ],
+            [
+              "Chi đi ăn giỗ",
+              "Chi đi ăn giỗ."
+            ],
+            [
+              "Chả giò, chả quế",
+              "Chả giò, chả quế."
+            ],
+            [
+              "Cụ già giỗ tổ",
+              "Cụ già giỗ tổ."
+            ]
           ],
           "words": {
-            "bà": "sample3/hw4-p153/words/bà.m4a",
-            "chi": "sample3/hw4-p153/words/chi.m4a",
-            "chú": "sample3/hw4-p153/words/chú.m4a",
-            "chả": "sample3/hw4-p153/words/chả.m4a",
-            "chỉ": "sample3/hw4-p153/words/chỉ.m4a",
-            "chỏ": "sample3/hw4-p153/words/chỏ.m4a",
-            "cụ": "sample3/hw4-p153/words/cụ.m4a",
-            "già": "sample3/hw4-p153/words/già.m4a",
-            "giò": "sample3/hw4-p153/words/giò.m4a",
-            "giỗ": "sample3/hw4-p153/words/giỗ.m4a",
-            "quế": "sample3/hw4-p153/words/quế.m4a",
-            "tổ": "sample3/hw4-p153/words/tổ.m4a",
-            "ăn": "sample3/hw4-p153/words/ăn.m4a",
-            "đi": "sample3/hw4-p153/words/đi.m4a",
-            "đã": "sample3/hw4-p153/words/đã.m4a"
+            "bà": "sample3/hw4-p153/words/bà.m4a?v=1791825109",
+            "chi": "sample3/hw4-p153/words/chi.m4a?v=1791825110",
+            "chú": "sample3/hw4-p153/words/chú.m4a?v=1791825110",
+            "chả": "sample3/hw4-p153/words/chả.m4a?v=1791825111",
+            "chỉ": "sample3/hw4-p153/words/chỉ.m4a?v=1791825110",
+            "chỏ": "sample3/hw4-p153/words/chỏ.m4a?v=1791825110",
+            "cụ": "sample3/hw4-p153/words/cụ.m4a?v=1791825112",
+            "già": "sample3/hw4-p153/words/già.m4a?v=1791825110",
+            "giò": "sample3/hw4-p153/words/giò.m4a?v=1791825111",
+            "giỗ": "sample3/hw4-p153/words/giỗ.m4a?v=1791825111",
+            "quế": "sample3/hw4-p153/words/quế.m4a?v=1791825112",
+            "tổ": "sample3/hw4-p153/words/tổ.m4a?v=1791825112",
+            "ăn": "sample3/hw4-p153/words/ăn.m4a?v=1791825111",
+            "đi": "sample3/hw4-p153/words/đi.m4a?v=1791825110",
+            "đã": "sample3/hw4-p153/words/đã.m4a?v=1791825109"
           }
         },
         "hw5-p157": {
+          "title": "Bài làm #5 · Trang 157",
           "sentences": [
-            "sample3/hw5-p157/s01.m4a",
-            "sample3/hw5-p157/s02.m4a",
-            "sample3/hw5-p157/s03.m4a",
-            "sample3/hw5-p157/s04.m4a",
-            "sample3/hw5-p157/s05.m4a"
+            "sample3/hw5-p157/s01.m4a?v=1792112990",
+            "sample3/hw5-p157/s02.m4a?v=1792112990",
+            "sample3/hw5-p157/s03.m4a?v=1792112990",
+            "sample3/hw5-p157/s04.m4a?v=1792112990",
+            "sample3/hw5-p157/s05.m4a?v=1792112991"
+          ],
+          "texts": [
+            [
+              "Khò khè",
+              "Khò khè."
+            ],
+            [
+              "Khù khụ",
+              "Khù khụ."
+            ],
+            [
+              "Khỉ già ăn khế",
+              "Khỉ già ăn khế."
+            ],
+            [
+              "Mợ Hai ca khe khẽ",
+              "Mợ Hai ca khe khẽ."
+            ],
+            [
+              "An ủi kẻ khù khờ",
+              "An ủi kẻ khù khờ."
+            ]
           ],
           "words": {
-            "an": "sample3/hw5-p157/words/an.m4a",
-            "ca": "sample3/hw5-p157/words/ca.m4a",
-            "già": "sample3/hw5-p157/words/già.m4a",
-            "hai": "sample3/hw5-p157/words/hai.m4a",
-            "khe": "sample3/hw5-p157/words/khe.m4a",
-            "khè": "sample3/hw5-p157/words/khè.m4a",
-            "khò": "sample3/hw5-p157/words/khò.m4a",
-            "khù": "sample3/hw5-p157/words/khù.m4a",
-            "khẽ": "sample3/hw5-p157/words/khẽ.m4a",
-            "khế": "sample3/hw5-p157/words/khế.m4a",
-            "khỉ": "sample3/hw5-p157/words/khỉ.m4a",
-            "khờ": "sample3/hw5-p157/words/khờ.m4a",
-            "khụ": "sample3/hw5-p157/words/khụ.m4a",
-            "kẻ": "sample3/hw5-p157/words/kẻ.m4a",
-            "mợ": "sample3/hw5-p157/words/mợ.m4a",
-            "ăn": "sample3/hw5-p157/words/ăn.m4a",
-            "ủi": "sample3/hw5-p157/words/ủi.m4a"
+            "an": "sample3/hw5-p157/words/an.m4a?v=1792112993",
+            "ca": "sample3/hw5-p157/words/ca.m4a?v=1792112993",
+            "già": "sample3/hw5-p157/words/già.m4a?v=1792112992",
+            "hai": "sample3/hw5-p157/words/hai.m4a?v=1792112993",
+            "khe": "sample3/hw5-p157/words/khe.m4a?v=1792112993",
+            "khè": "sample3/hw5-p157/words/khè.m4a?v=1792112991",
+            "khò": "sample3/hw5-p157/words/khò.m4a?v=1792112991",
+            "khù": "sample3/hw5-p157/words/khù.m4a?v=1792112991",
+            "khẽ": "sample3/hw5-p157/words/khẽ.m4a?v=1792112993",
+            "khế": "sample3/hw5-p157/words/khế.m4a?v=1792112992",
+            "khỉ": "sample3/hw5-p157/words/khỉ.m4a?v=1792112992",
+            "khờ": "sample3/hw5-p157/words/khờ.m4a?v=1792112994",
+            "khụ": "sample3/hw5-p157/words/khụ.m4a?v=1792112991",
+            "kẻ": "sample3/hw5-p157/words/kẻ.m4a?v=1792112994",
+            "mợ": "sample3/hw5-p157/words/mợ.m4a?v=1792112992",
+            "ăn": "sample3/hw5-p157/words/ăn.m4a?v=1792112992",
+            "ủi": "sample3/hw5-p157/words/ủi.m4a?v=1792112994"
           }
         },
         "v3-hw4-p119": {
+          "title": "Bài làm #4 · Trang 119",
           "sentences": [
-            "sample3/v3-hw4-p119/s01.m4a",
-            "sample3/v3-hw4-p119/s02.m4a",
-            "sample3/v3-hw4-p119/s03.m4a",
-            "sample3/v3-hw4-p119/s04.m4a",
-            "sample3/v3-hw4-p119/s05.m4a"
+            "sample3/v3-hw4-p119/s01.m4a?v=1791825112",
+            "sample3/v3-hw4-p119/s02.m4a?v=1791825112",
+            "sample3/v3-hw4-p119/s03.m4a?v=1791825113",
+            "sample3/v3-hw4-p119/s04.m4a?v=1791825113",
+            "sample3/v3-hw4-p119/s05.m4a?v=1791825113"
+          ],
+          "texts": [
+            [
+              "Nệm êm",
+              "Nệm êm."
+            ],
+            [
+              "Cà tím",
+              "Cà tím."
+            ],
+            [
+              "Chim kên kên",
+              "Chim kên kên."
+            ],
+            [
+              "Em hái sim chín",
+              "Em hái sim chín."
+            ],
+            [
+              "Chim én bay sát mặt đất",
+              "Chim én bay sát mặt đất."
+            ]
           ],
           "words": {
-            "bay": "sample3/v3-hw4-p119/words/bay.m4a",
-            "chim": "sample3/v3-hw4-p119/words/chim.m4a",
-            "chín": "sample3/v3-hw4-p119/words/chín.m4a",
-            "cà": "sample3/v3-hw4-p119/words/cà.m4a",
-            "em": "sample3/v3-hw4-p119/words/em.m4a",
-            "hái": "sample3/v3-hw4-p119/words/hái.m4a",
-            "kên": "sample3/v3-hw4-p119/words/kên.m4a",
-            "mặt": "sample3/v3-hw4-p119/words/mặt.m4a",
-            "nệm": "sample3/v3-hw4-p119/words/nệm.m4a",
-            "sim": "sample3/v3-hw4-p119/words/sim.m4a",
-            "sát": "sample3/v3-hw4-p119/words/sát.m4a",
-            "tím": "sample3/v3-hw4-p119/words/tím.m4a",
-            "én": "sample3/v3-hw4-p119/words/én.m4a",
-            "êm": "sample3/v3-hw4-p119/words/êm.m4a",
-            "đất": "sample3/v3-hw4-p119/words/đất.m4a"
+            "bay": "sample3/v3-hw4-p119/words/bay.m4a?v=1791825115",
+            "chim": "sample3/v3-hw4-p119/words/chim.m4a?v=1791825114",
+            "chín": "sample3/v3-hw4-p119/words/chín.m4a?v=1791825115",
+            "cà": "sample3/v3-hw4-p119/words/cà.m4a?v=1791825114",
+            "em": "sample3/v3-hw4-p119/words/em.m4a?v=1791825115",
+            "hái": "sample3/v3-hw4-p119/words/hái.m4a?v=1791825115",
+            "kên": "sample3/v3-hw4-p119/words/kên.m4a?v=1791825114",
+            "mặt": "sample3/v3-hw4-p119/words/mặt.m4a?v=1791825116",
+            "nệm": "sample3/v3-hw4-p119/words/nệm.m4a?v=1791825114",
+            "sim": "sample3/v3-hw4-p119/words/sim.m4a?v=1791825115",
+            "sát": "sample3/v3-hw4-p119/words/sát.m4a?v=1791825116",
+            "tím": "sample3/v3-hw4-p119/words/tím.m4a?v=1791825114",
+            "én": "sample3/v3-hw4-p119/words/én.m4a?v=1791825115",
+            "êm": "sample3/v3-hw4-p119/words/êm.m4a?v=1791825114",
+            "đất": "sample3/v3-hw4-p119/words/đất.m4a?v=1791825116"
           }
         },
         "vl2-p20": {
+          "title": "Em tập đặt câu",
           "sentences": [
-            "sample3/vl2-p20/s01.m4a",
-            "sample3/vl2-p20/s02.m4a",
-            "sample3/vl2-p20/s03.m4a",
-            "sample3/vl2-p20/s04.m4a",
-            "sample3/vl2-p20/s05.m4a",
-            "sample3/vl2-p20/s06.m4a",
-            "sample3/vl2-p20/s07.m4a",
-            "sample3/vl2-p20/s08.m4a",
-            "sample3/vl2-p20/s09.m4a",
-            "sample3/vl2-p20/s10.m4a"
+            "sample3/vl2-p20/s01.m4a?v=1791506109",
+            "sample3/vl2-p20/s02.m4a?v=1791506109",
+            "sample3/vl2-p20/s03.m4a?v=1791506110",
+            "sample3/vl2-p20/s04.m4a?v=1791506110",
+            "sample3/vl2-p20/s05.m4a?v=1791506110",
+            "sample3/vl2-p20/s06.m4a?v=1791506111",
+            "sample3/vl2-p20/s07.m4a?v=1791506111",
+            "sample3/vl2-p20/s08.m4a?v=1791506111",
+            "sample3/vl2-p20/s09.m4a?v=1791506112",
+            "sample3/vl2-p20/s10.m4a?v=1791506112"
+          ],
+          "texts": [
+            [
+              "Ba bà già đi chợ.",
+              "Ba bà già đi chợ."
+            ],
+            [
+              "Ông bà em đã già.",
+              "Ông bà em đã già."
+            ],
+            [
+              "Chi từ giã mẹ cha.",
+              "Chi từ giã mẹ cha."
+            ],
+            [
+              "Em giả bộ ngủ.",
+              "Em giả bộ ngủ."
+            ],
+            [
+              "Bố mẹ đi ăn giỗ.",
+              "Bố mẹ đi ăn giỗ."
+            ],
+            [
+              "Hôm nay em đi ăn giỗ.",
+              "Hôm nay em đi ăn giỗ."
+            ],
+            [
+              "Gió to đổ nhà.",
+              "Gió to đổ nhà."
+            ],
+            [
+              "Bánh mì có kẹp giò chả.",
+              "Bánh mì có kẹp giò chả."
+            ],
+            [
+              "Đồ cũ giá rẻ rề.",
+              "Đồ cũ giá rẻ rề."
+            ],
+            [
+              "Xe ô tô cũ giá rẻ.",
+              "Xe ô tô cũ giá rẻ."
+            ]
           ],
           "words": {
-            "ba": "sample3/vl2-p20/words/ba.m4a",
-            "bà": "sample3/vl2-p20/words/bà.m4a",
-            "bánh": "sample3/vl2-p20/words/bánh.m4a",
-            "bố": "sample3/vl2-p20/words/bố.m4a",
-            "bộ": "sample3/vl2-p20/words/bộ.m4a",
-            "cha": "sample3/vl2-p20/words/cha.m4a",
-            "chi": "sample3/vl2-p20/words/chi.m4a",
-            "chả": "sample3/vl2-p20/words/chả.m4a",
-            "chợ": "sample3/vl2-p20/words/chợ.m4a",
-            "có": "sample3/vl2-p20/words/có.m4a",
-            "cũ": "sample3/vl2-p20/words/cũ.m4a",
-            "em": "sample3/vl2-p20/words/em.m4a",
-            "già": "sample3/vl2-p20/words/già.m4a",
-            "giá": "sample3/vl2-p20/words/giá.m4a",
-            "giã": "sample3/vl2-p20/words/giã.m4a",
-            "giò": "sample3/vl2-p20/words/giò.m4a",
-            "gió": "sample3/vl2-p20/words/gió.m4a",
-            "giả": "sample3/vl2-p20/words/giả.m4a",
-            "giỗ": "sample3/vl2-p20/words/giỗ.m4a",
-            "hôm": "sample3/vl2-p20/words/hôm.m4a",
-            "kẹp": "sample3/vl2-p20/words/kẹp.m4a",
-            "mì": "sample3/vl2-p20/words/mì.m4a",
-            "mẹ": "sample3/vl2-p20/words/mẹ.m4a",
-            "nay": "sample3/vl2-p20/words/nay.m4a",
-            "ngủ": "sample3/vl2-p20/words/ngủ.m4a",
-            "nhà": "sample3/vl2-p20/words/nhà.m4a",
-            "rẻ": "sample3/vl2-p20/words/rẻ.m4a",
-            "rề": "sample3/vl2-p20/words/rề.m4a",
-            "to": "sample3/vl2-p20/words/to.m4a",
-            "tô": "sample3/vl2-p20/words/tô.m4a",
-            "từ": "sample3/vl2-p20/words/từ.m4a",
-            "xe": "sample3/vl2-p20/words/xe.m4a",
-            "ô": "sample3/vl2-p20/words/ô.m4a",
-            "ông": "sample3/vl2-p20/words/ông.m4a",
-            "ăn": "sample3/vl2-p20/words/ăn.m4a",
-            "đi": "sample3/vl2-p20/words/đi.m4a",
-            "đã": "sample3/vl2-p20/words/đã.m4a",
-            "đồ": "sample3/vl2-p20/words/đồ.m4a",
-            "đổ": "sample3/vl2-p20/words/đổ.m4a"
+            "ba": "sample3/vl2-p20/words/ba.m4a?v=1791506112",
+            "bà": "sample3/vl2-p20/words/bà.m4a?v=1791506113",
+            "bánh": "sample3/vl2-p20/words/bánh.m4a?v=1791506117",
+            "bố": "sample3/vl2-p20/words/bố.m4a?v=1791506115",
+            "bộ": "sample3/vl2-p20/words/bộ.m4a?v=1791506115",
+            "cha": "sample3/vl2-p20/words/cha.m4a?v=1791506115",
+            "chi": "sample3/vl2-p20/words/chi.m4a?v=1791506114",
+            "chả": "sample3/vl2-p20/words/chả.m4a?v=1791506118",
+            "chợ": "sample3/vl2-p20/words/chợ.m4a?v=1791506113",
+            "có": "sample3/vl2-p20/words/có.m4a?v=1791506117",
+            "cũ": "sample3/vl2-p20/words/cũ.m4a?v=1791506118",
+            "em": "sample3/vl2-p20/words/em.m4a?v=1791506113",
+            "già": "sample3/vl2-p20/words/già.m4a?v=1791506113",
+            "giá": "sample3/vl2-p20/words/giá.m4a?v=1791506118",
+            "giã": "sample3/vl2-p20/words/giã.m4a?v=1791506114",
+            "giò": "sample3/vl2-p20/words/giò.m4a?v=1791506118",
+            "gió": "sample3/vl2-p20/words/gió.m4a?v=1791506116",
+            "giả": "sample3/vl2-p20/words/giả.m4a?v=1791506115",
+            "giỗ": "sample3/vl2-p20/words/giỗ.m4a?v=1791506116",
+            "hôm": "sample3/vl2-p20/words/hôm.m4a?v=1791506116",
+            "kẹp": "sample3/vl2-p20/words/kẹp.m4a?v=1791506117",
+            "mì": "sample3/vl2-p20/words/mì.m4a?v=1791506117",
+            "mẹ": "sample3/vl2-p20/words/mẹ.m4a?v=1791506114",
+            "nay": "sample3/vl2-p20/words/nay.m4a?v=1791506116",
+            "ngủ": "sample3/vl2-p20/words/ngủ.m4a?v=1791506115",
+            "nhà": "sample3/vl2-p20/words/nhà.m4a?v=1791506117",
+            "rẻ": "sample3/vl2-p20/words/rẻ.m4a?v=1791506119",
+            "rề": "sample3/vl2-p20/words/rề.m4a?v=1791506119",
+            "to": "sample3/vl2-p20/words/to.m4a?v=1791506116",
+            "tô": "sample3/vl2-p20/words/tô.m4a?v=1791506119",
+            "từ": "sample3/vl2-p20/words/từ.m4a?v=1791506114",
+            "xe": "sample3/vl2-p20/words/xe.m4a?v=1791506119",
+            "ô": "sample3/vl2-p20/words/ô.m4a?v=1791506119",
+            "ông": "sample3/vl2-p20/words/ông.m4a?v=1791506113",
+            "ăn": "sample3/vl2-p20/words/ăn.m4a?v=1791506115",
+            "đi": "sample3/vl2-p20/words/đi.m4a?v=1791506113",
+            "đã": "sample3/vl2-p20/words/đã.m4a?v=1791506114",
+            "đồ": "sample3/vl2-p20/words/đồ.m4a?v=1791506118",
+            "đổ": "sample3/vl2-p20/words/đổ.m4a?v=1791506117"
+          }
+        },
+        "vl2-p32": {
+          "title": "Em tập đặt câu",
+          "sentences": [
+            "sample3/vl2-p32/s01.m4a?v=1792897900",
+            "sample3/vl2-p32/s02.m4a?v=1792897900",
+            "sample3/vl2-p32/s03.m4a?v=1792897901",
+            "sample3/vl2-p32/s04.m4a?v=1792897901",
+            "sample3/vl2-p32/s05.m4a?v=1792897901",
+            "sample3/vl2-p32/s06.m4a?v=1792897902",
+            "sample3/vl2-p32/s07.m4a?v=1792897902",
+            "sample3/vl2-p32/s08.m4a?v=1792897902",
+            "sample3/vl2-p32/s09.m4a?v=1792897903",
+            "sample3/vl2-p32/s10.m4a?v=1792897903"
+          ],
+          "texts": [
+            [
+              "Cha mẹ em lo cho kẻ khó.",
+              "Cha mẹ em lo cho kẻ khó."
+            ],
+            [
+              "Kẻ khó không có cửa nhà.",
+              "Kẻ khó không có cửa nhà."
+            ],
+            [
+              "Chị Chi ca khe khẽ.",
+              "Chị Chi ca khe khẽ."
+            ],
+            [
+              "Khe khẽ, em đi ra cửa.",
+              "Khe khẽ, em đi ra cửa."
+            ],
+            [
+              "Khỉ già ăn khế.",
+              "Khỉ già ăn khế."
+            ],
+            [
+              "Khỉ già trèo cây.",
+              "Khỉ già trèo cây."
+            ],
+            [
+              "Cụ Cả đã già khụ.",
+              "Cụ Cả đã già khụ."
+            ],
+            [
+              "Già khụ, cụ vẫn đi chợ.",
+              "Già khụ, cụ vẫn đi chợ."
+            ],
+            [
+              "Cá kho có bỏ cà.",
+              "Cá kho có bỏ cà."
+            ],
+            [
+              "Mẹ kho cá cho cả nhà.",
+              "Mẹ kho cá cho cả nhà."
+            ]
+          ],
+          "words": {
+            "bỏ": "sample3/vl2-p32/words/bỏ.m4a?v=1792897909",
+            "ca": "sample3/vl2-p32/words/ca.m4a?v=1792897906",
+            "cha": "sample3/vl2-p32/words/cha.m4a?v=1792897903",
+            "chi": "sample3/vl2-p32/words/chi.m4a?v=1792897905",
+            "cho": "sample3/vl2-p32/words/cho.m4a?v=1792897904",
+            "chị": "sample3/vl2-p32/words/chị.m4a?v=1792897905",
+            "chợ": "sample3/vl2-p32/words/chợ.m4a?v=1792897908",
+            "cà": "sample3/vl2-p32/words/cà.m4a?v=1792897909",
+            "cá": "sample3/vl2-p32/words/cá.m4a?v=1792897909",
+            "cây": "sample3/vl2-p32/words/cây.m4a?v=1792897907",
+            "có": "sample3/vl2-p32/words/có.m4a?v=1792897905",
+            "cả": "sample3/vl2-p32/words/cả.m4a?v=1792897908",
+            "cụ": "sample3/vl2-p32/words/cụ.m4a?v=1792897908",
+            "cửa": "sample3/vl2-p32/words/cửa.m4a?v=1792897905",
+            "em": "sample3/vl2-p32/words/em.m4a?v=1792897904",
+            "già": "sample3/vl2-p32/words/già.m4a?v=1792897907",
+            "khe": "sample3/vl2-p32/words/khe.m4a?v=1792897906",
+            "kho": "sample3/vl2-p32/words/kho.m4a?v=1792897909",
+            "khó": "sample3/vl2-p32/words/khó.m4a?v=1792897904",
+            "không": "sample3/vl2-p32/words/không.m4a?v=1792897904",
+            "khẽ": "sample3/vl2-p32/words/khẽ.m4a?v=1792897906",
+            "khế": "sample3/vl2-p32/words/khế.m4a?v=1792897907",
+            "khỉ": "sample3/vl2-p32/words/khỉ.m4a?v=1792897906",
+            "khụ": "sample3/vl2-p32/words/khụ.m4a?v=1792897908",
+            "kẻ": "sample3/vl2-p32/words/kẻ.m4a?v=1792897904",
+            "lo": "sample3/vl2-p32/words/lo.m4a?v=1792897904",
+            "mẹ": "sample3/vl2-p32/words/mẹ.m4a?v=1792897903",
+            "nhà": "sample3/vl2-p32/words/nhà.m4a?v=1792897905",
+            "ra": "sample3/vl2-p32/words/ra.m4a?v=1792897906",
+            "trèo": "sample3/vl2-p32/words/trèo.m4a?v=1792897907",
+            "vẫn": "sample3/vl2-p32/words/vẫn.m4a?v=1792897908",
+            "ăn": "sample3/vl2-p32/words/ăn.m4a?v=1792897907",
+            "đi": "sample3/vl2-p32/words/đi.m4a?v=1792897906",
+            "đã": "sample3/vl2-p32/words/đã.m4a?v=1792897908"
           }
         },
         "hw3-p150": {
+          "title": "Bài làm ở nhà #3",
           "sentences": [
-            "sample3/hw3-p150/s01.m4a",
-            "sample3/hw3-p150/s02.m4a",
-            "sample3/hw3-p150/s03.m4a",
-            "sample3/hw3-p150/s04.m4a",
-            "sample3/hw3-p150/s05.m4a",
-            "sample3/hw3-p150/s06.m4a",
-            "sample3/hw3-p150/s07.m4a",
-            "sample3/hw3-p150/s08.m4a",
-            "sample3/hw3-p150/s09.m4a",
-            "sample3/hw3-p150/s10.m4a"
+            "sample3/hw3-p150/s01.m4a?v=1791415788",
+            "sample3/hw3-p150/s02.m4a?v=1791415789",
+            "sample3/hw3-p150/s03.m4a?v=1791415789",
+            "sample3/hw3-p150/s04.m4a?v=1791415789",
+            "sample3/hw3-p150/s05.m4a?v=1791415790",
+            "sample3/hw3-p150/s06.m4a?v=1791415790",
+            "sample3/hw3-p150/s07.m4a?v=1791415791",
+            "sample3/hw3-p150/s08.m4a?v=1791415791",
+            "sample3/hw3-p150/s09.m4a?v=1791415791",
+            "sample3/hw3-p150/s10.m4a?v=1791415792"
+          ],
+          "texts": [
+            [
+              "Ba giờ cha em đi vô sở.",
+              "Ba giờ cha em đi vô sở."
+            ],
+            [
+              "Đã già cha em đi vô sở.",
+              "Đã già cha em đi vô sở."
+            ],
+            [
+              "Xe ô tô cũ cụ già rề.",
+              "Xe ô tô cũ cụ già rề."
+            ],
+            [
+              "Xe ô tô cũ giá rẻ rề.",
+              "Xe ô tô cũ giá rẻ rề."
+            ],
+            [
+              "Em bé giá cả là chú hề.",
+              "Em bé giá cả là chú hề."
+            ],
+            [
+              "Em bé giả bộ là chú hề.",
+              "Em bé giả bộ là chú hề."
+            ],
+            [
+              "Bố em mê ăn chả giò.",
+              "Bố em mê ăn chả giò."
+            ],
+            [
+              "Bố em mê ăn gió to.",
+              "Bố em mê ăn gió to."
+            ],
+            [
+              "Có chó để giỗ tổ.",
+              "Có chó để giỗ tổ."
+            ],
+            [
+              "Có chó để giữ nhà.",
+              "Có chó để giữ nhà."
+            ]
           ],
           "words": {
-            "ba": "sample3/hw3-p150/words/ba.m4a",
-            "bé": "sample3/hw3-p150/words/bé.m4a",
-            "bố": "sample3/hw3-p150/words/bố.m4a",
-            "bộ": "sample3/hw3-p150/words/bộ.m4a",
-            "cha": "sample3/hw3-p150/words/cha.m4a",
-            "chó": "sample3/hw3-p150/words/chó.m4a",
-            "chú": "sample3/hw3-p150/words/chú.m4a",
-            "chả": "sample3/hw3-p150/words/chả.m4a",
-            "có": "sample3/hw3-p150/words/có.m4a",
-            "cũ": "sample3/hw3-p150/words/cũ.m4a",
-            "cả": "sample3/hw3-p150/words/cả.m4a",
-            "cụ": "sample3/hw3-p150/words/cụ.m4a",
-            "em": "sample3/hw3-p150/words/em.m4a",
-            "già": "sample3/hw3-p150/words/già.m4a",
-            "giá": "sample3/hw3-p150/words/giá.m4a",
-            "giò": "sample3/hw3-p150/words/giò.m4a",
-            "gió": "sample3/hw3-p150/words/gió.m4a",
-            "giả": "sample3/hw3-p150/words/giả.m4a",
-            "giỗ": "sample3/hw3-p150/words/giỗ.m4a",
-            "giờ": "sample3/hw3-p150/words/giờ.m4a",
-            "giữ": "sample3/hw3-p150/words/giữ.m4a",
-            "hề": "sample3/hw3-p150/words/hề.m4a",
-            "là": "sample3/hw3-p150/words/là.m4a",
-            "mê": "sample3/hw3-p150/words/mê.m4a",
-            "nhà": "sample3/hw3-p150/words/nhà.m4a",
-            "rẻ": "sample3/hw3-p150/words/rẻ.m4a",
-            "rề": "sample3/hw3-p150/words/rề.m4a",
-            "sở": "sample3/hw3-p150/words/sở.m4a",
-            "to": "sample3/hw3-p150/words/to.m4a",
-            "tô": "sample3/hw3-p150/words/tô.m4a",
-            "tổ": "sample3/hw3-p150/words/tổ.m4a",
-            "vô": "sample3/hw3-p150/words/vô.m4a",
-            "xe": "sample3/hw3-p150/words/xe.m4a",
-            "ô": "sample3/hw3-p150/words/ô.m4a",
-            "ăn": "sample3/hw3-p150/words/ăn.m4a",
-            "đi": "sample3/hw3-p150/words/đi.m4a",
-            "đã": "sample3/hw3-p150/words/đã.m4a",
-            "để": "sample3/hw3-p150/words/để.m4a"
+            "ba": "sample3/hw3-p150/words/ba.m4a?v=1791415792",
+            "bé": "sample3/hw3-p150/words/bé.m4a?v=1791415796",
+            "bố": "sample3/hw3-p150/words/bố.m4a?v=1791415797",
+            "bộ": "sample3/hw3-p150/words/bộ.m4a?v=1791415797",
+            "cha": "sample3/hw3-p150/words/cha.m4a?v=1791415792",
+            "chó": "sample3/hw3-p150/words/chó.m4a?v=1791415799",
+            "chú": "sample3/hw3-p150/words/chú.m4a?v=1791415796",
+            "chả": "sample3/hw3-p150/words/chả.m4a?v=1791415798",
+            "có": "sample3/hw3-p150/words/có.m4a?v=1791415799",
+            "cũ": "sample3/hw3-p150/words/cũ.m4a?v=1791415795",
+            "cả": "sample3/hw3-p150/words/cả.m4a?v=1791415796",
+            "cụ": "sample3/hw3-p150/words/cụ.m4a?v=1791415795",
+            "em": "sample3/hw3-p150/words/em.m4a?v=1791415792",
+            "già": "sample3/hw3-p150/words/già.m4a?v=1791415794",
+            "giá": "sample3/hw3-p150/words/giá.m4a?v=1791415795",
+            "giò": "sample3/hw3-p150/words/giò.m4a?v=1791415798",
+            "gió": "sample3/hw3-p150/words/gió.m4a?v=1791415798",
+            "giả": "sample3/hw3-p150/words/giả.m4a?v=1791415797",
+            "giỗ": "sample3/hw3-p150/words/giỗ.m4a?v=1791415799",
+            "giờ": "sample3/hw3-p150/words/giờ.m4a?v=1791415792",
+            "giữ": "sample3/hw3-p150/words/giữ.m4a?v=1791415799",
+            "hề": "sample3/hw3-p150/words/hề.m4a?v=1791415797",
+            "là": "sample3/hw3-p150/words/là.m4a?v=1791415796",
+            "mê": "sample3/hw3-p150/words/mê.m4a?v=1791415797",
+            "nhà": "sample3/hw3-p150/words/nhà.m4a?v=1791415800",
+            "rẻ": "sample3/hw3-p150/words/rẻ.m4a?v=1791415796",
+            "rề": "sample3/hw3-p150/words/rề.m4a?v=1791415795",
+            "sở": "sample3/hw3-p150/words/sở.m4a?v=1791415793",
+            "to": "sample3/hw3-p150/words/to.m4a?v=1791415798",
+            "tô": "sample3/hw3-p150/words/tô.m4a?v=1791415795",
+            "tổ": "sample3/hw3-p150/words/tổ.m4a?v=1791415799",
+            "vô": "sample3/hw3-p150/words/vô.m4a?v=1791415793",
+            "xe": "sample3/hw3-p150/words/xe.m4a?v=1791415794",
+            "ô": "sample3/hw3-p150/words/ô.m4a?v=1791415795",
+            "ăn": "sample3/hw3-p150/words/ăn.m4a?v=1791415797",
+            "đi": "sample3/hw3-p150/words/đi.m4a?v=1791415793",
+            "đã": "sample3/hw3-p150/words/đã.m4a?v=1791415794",
+            "để": "sample3/hw3-p150/words/để.m4a?v=1791415799"
           }
         },
         "hw4-p154": {
+          "title": "Bài làm ở nhà #4",
           "sentences": [
-            "sample3/hw4-p154/s01.m4a",
-            "sample3/hw4-p154/s02.m4a",
-            "sample3/hw4-p154/s03.m4a",
-            "sample3/hw4-p154/s04.m4a",
-            "sample3/hw4-p154/s05.m4a",
-            "sample3/hw4-p154/s06.m4a",
-            "sample3/hw4-p154/s07.m4a",
-            "sample3/hw4-p154/s08.m4a",
-            "sample3/hw4-p154/s09.m4a",
-            "sample3/hw4-p154/s10.m4a",
-            "sample3/hw4-p154/s11.m4a",
-            "sample3/hw4-p154/s12.m4a",
-            "sample3/hw4-p154/s13.m4a",
-            "sample3/hw4-p154/s14.m4a",
-            "sample3/hw4-p154/s15.m4a",
-            "sample3/hw4-p154/s16.m4a",
-            "sample3/hw4-p154/s17.m4a",
-            "sample3/hw4-p154/s18.m4a",
-            "sample3/hw4-p154/s19.m4a",
-            "sample3/hw4-p154/s20.m4a",
-            "sample3/hw4-p154/s21.m4a",
-            "sample3/hw4-p154/s22.m4a",
-            "sample3/hw4-p154/s23.m4a",
-            "sample3/hw4-p154/s24.m4a",
-            "sample3/hw4-p154/s25.m4a",
-            "sample3/hw4-p154/s26.m4a",
-            "sample3/hw4-p154/s27.m4a",
-            "sample3/hw4-p154/s28.m4a",
-            "sample3/hw4-p154/s29.m4a",
-            "sample3/hw4-p154/s30.m4a"
+            "sample3/hw4-p154/s01.m4a?v=1791825116",
+            "sample3/hw4-p154/s02.m4a?v=1791825117",
+            "sample3/hw4-p154/s03.m4a?v=1791825117",
+            "sample3/hw4-p154/s04.m4a?v=1791825117",
+            "sample3/hw4-p154/s05.m4a?v=1791825118",
+            "sample3/hw4-p154/s06.m4a?v=1791825118",
+            "sample3/hw4-p154/s07.m4a?v=1791825118",
+            "sample3/hw4-p154/s08.m4a?v=1791825119",
+            "sample3/hw4-p154/s09.m4a?v=1791825119",
+            "sample3/hw4-p154/s10.m4a?v=1791825119",
+            "sample3/hw4-p154/s11.m4a?v=1791825120",
+            "sample3/hw4-p154/s12.m4a?v=1791825120",
+            "sample3/hw4-p154/s13.m4a?v=1791825120",
+            "sample3/hw4-p154/s14.m4a?v=1791825121",
+            "sample3/hw4-p154/s15.m4a?v=1791825121",
+            "sample3/hw4-p154/s16.m4a?v=1791825121",
+            "sample3/hw4-p154/s17.m4a?v=1791825122",
+            "sample3/hw4-p154/s18.m4a?v=1791825122",
+            "sample3/hw4-p154/s19.m4a?v=1791825123",
+            "sample3/hw4-p154/s20.m4a?v=1791825123",
+            "sample3/hw4-p154/s21.m4a?v=1791825124",
+            "sample3/hw4-p154/s22.m4a?v=1791825124",
+            "sample3/hw4-p154/s23.m4a?v=1791825124",
+            "sample3/hw4-p154/s24.m4a?v=1791825125",
+            "sample3/hw4-p154/s25.m4a?v=1791825125",
+            "sample3/hw4-p154/s26.m4a?v=1791825125",
+            "sample3/hw4-p154/s27.m4a?v=1791825126",
+            "sample3/hw4-p154/s28.m4a?v=1791825126",
+            "sample3/hw4-p154/s29.m4a?v=1791825126",
+            "sample3/hw4-p154/s30.m4a?v=1791825127"
+          ],
+          "texts": [
+            [
+              "Ghe đò đi chợ.",
+              "Ghe đò đi chợ."
+            ],
+            [
+              "Ghe đò chở ghế.",
+              "Ghe đò chở ghế."
+            ],
+            [
+              "Ghe đò ghẻ lở.",
+              "Ghe đò ghẻ lở."
+            ],
+            [
+              "Chi và mẹ đi chợ.",
+              "Chi và mẹ đi chợ."
+            ],
+            [
+              "Chi và mẹ chở ghế.",
+              "Chi và mẹ chở ghế."
+            ],
+            [
+              "Chi và mẹ ghẻ lở.",
+              "Chi và mẹ ghẻ lở."
+            ],
+            [
+              "Cha mẹ Chi đã già.",
+              "Cha mẹ Chi đã già."
+            ],
+            [
+              "Giá rẻ Chi đã già.",
+              "Giá rẻ Chi đã già."
+            ],
+            [
+              "Ghê sợ Chi đã già.",
+              "Ghê sợ Chi đã già."
+            ],
+            [
+              "Tú cha mẹ hổ dữ.",
+              "Tú cha mẹ hổ dữ."
+            ],
+            [
+              "Tú giá rẻ hổ dữ.",
+              "Tú giá rẻ hổ dữ."
+            ],
+            [
+              "Tú ghê sợ hổ dữ.",
+              "Tú ghê sợ hổ dữ."
+            ],
+            [
+              "Bố và mẹ ăn ghe đò.",
+              "Bố và mẹ ăn ghe đò."
+            ],
+            [
+              "Bố và mẹ ăn chả giò.",
+              "Bố và mẹ ăn chả giò."
+            ],
+            [
+              "Bố và mẹ ăn cụ già.",
+              "Bố và mẹ ăn cụ già."
+            ],
+            [
+              "Ghe đò chở em về quê.",
+              "Ghe đò chở em về quê."
+            ],
+            [
+              "Chả giò chở em về quê.",
+              "Chả giò chở em về quê."
+            ],
+            [
+              "Cụ già chở em về quê.",
+              "Cụ già chở em về quê."
+            ],
+            [
+              "Chả quế gụ, tủ gỗ gõ.",
+              "Chả quế gụ, tủ gỗ gõ."
+            ],
+            [
+              "Đi ghe gụ, tủ gỗ gõ.",
+              "Đi ghe gụ, tủ gỗ gõ."
+            ],
+            [
+              "Ghế gỗ gụ, tủ gỗ gõ.",
+              "Ghế gỗ gụ, tủ gỗ gõ."
+            ],
+            [
+              "Chi và Tú ăn chả quế.",
+              "Chi và Tú ăn chả quế."
+            ],
+            [
+              "Chi và Tú ăn đi ghe.",
+              "Chi và Tú ăn đi ghe."
+            ],
+            [
+              "Chi và Tú ăn ghế gỗ.",
+              "Chi và Tú ăn ghế gỗ."
+            ],
+            [
+              "Đồ cũ giá rẻ rề.",
+              "Đồ cũ giá rẻ rề."
+            ],
+            [
+              "Đồ cũ gió to rẻ rề.",
+              "Đồ cũ gió to rẻ rề."
+            ],
+            [
+              "Đồ cũ che dù rẻ rề.",
+              "Đồ cũ che dù rẻ rề."
+            ],
+            [
+              "Mẹ giá cho bé.",
+              "Mẹ giá cho bé."
+            ],
+            [
+              "Mẹ gió to cho bé.",
+              "Mẹ gió to cho bé."
+            ],
+            [
+              "Mẹ che dù cho bé.",
+              "Mẹ che dù cho bé."
+            ]
           ],
           "words": {
-            "bé": "sample3/hw4-p154/words/bé.m4a",
-            "bố": "sample3/hw4-p154/words/bố.m4a",
-            "cha": "sample3/hw4-p154/words/cha.m4a",
-            "che": "sample3/hw4-p154/words/che.m4a",
-            "chi": "sample3/hw4-p154/words/chi.m4a",
-            "cho": "sample3/hw4-p154/words/cho.m4a",
-            "chả": "sample3/hw4-p154/words/chả.m4a",
-            "chở": "sample3/hw4-p154/words/chở.m4a",
-            "chợ": "sample3/hw4-p154/words/chợ.m4a",
-            "cũ": "sample3/hw4-p154/words/cũ.m4a",
-            "cụ": "sample3/hw4-p154/words/cụ.m4a",
-            "dù": "sample3/hw4-p154/words/dù.m4a",
-            "dữ": "sample3/hw4-p154/words/dữ.m4a",
-            "em": "sample3/hw4-p154/words/em.m4a",
-            "ghe": "sample3/hw4-p154/words/ghe.m4a",
-            "ghê": "sample3/hw4-p154/words/ghê.m4a",
-            "ghẻ": "sample3/hw4-p154/words/ghẻ.m4a",
-            "ghế": "sample3/hw4-p154/words/ghế.m4a",
-            "già": "sample3/hw4-p154/words/già.m4a",
-            "giá": "sample3/hw4-p154/words/giá.m4a",
-            "giò": "sample3/hw4-p154/words/giò.m4a",
-            "gió": "sample3/hw4-p154/words/gió.m4a",
-            "gõ": "sample3/hw4-p154/words/gõ.m4a",
-            "gỗ": "sample3/hw4-p154/words/gỗ.m4a",
-            "gụ": "sample3/hw4-p154/words/gụ.m4a",
-            "hổ": "sample3/hw4-p154/words/hổ.m4a",
-            "lở": "sample3/hw4-p154/words/lở.m4a",
-            "mẹ": "sample3/hw4-p154/words/mẹ.m4a",
-            "quê": "sample3/hw4-p154/words/quê.m4a",
-            "quế": "sample3/hw4-p154/words/quế.m4a",
-            "rẻ": "sample3/hw4-p154/words/rẻ.m4a",
-            "rề": "sample3/hw4-p154/words/rề.m4a",
-            "sợ": "sample3/hw4-p154/words/sợ.m4a",
-            "to": "sample3/hw4-p154/words/to.m4a",
-            "tú": "sample3/hw4-p154/words/tú.m4a",
-            "tủ": "sample3/hw4-p154/words/tủ.m4a",
-            "và": "sample3/hw4-p154/words/và.m4a",
-            "về": "sample3/hw4-p154/words/về.m4a",
-            "ăn": "sample3/hw4-p154/words/ăn.m4a",
-            "đi": "sample3/hw4-p154/words/đi.m4a",
-            "đã": "sample3/hw4-p154/words/đã.m4a",
-            "đò": "sample3/hw4-p154/words/đò.m4a",
-            "đồ": "sample3/hw4-p154/words/đồ.m4a"
+            "bé": "sample3/hw4-p154/words/bé.m4a?v=1791825135",
+            "bố": "sample3/hw4-p154/words/bố.m4a?v=1791825131",
+            "cha": "sample3/hw4-p154/words/cha.m4a?v=1791825129",
+            "che": "sample3/hw4-p154/words/che.m4a?v=1791825135",
+            "chi": "sample3/hw4-p154/words/chi.m4a?v=1791825129",
+            "cho": "sample3/hw4-p154/words/cho.m4a?v=1791825135",
+            "chả": "sample3/hw4-p154/words/chả.m4a?v=1791825131",
+            "chở": "sample3/hw4-p154/words/chở.m4a?v=1791825128",
+            "chợ": "sample3/hw4-p154/words/chợ.m4a?v=1791825128",
+            "cũ": "sample3/hw4-p154/words/cũ.m4a?v=1791825134",
+            "cụ": "sample3/hw4-p154/words/cụ.m4a?v=1791825132",
+            "dù": "sample3/hw4-p154/words/dù.m4a?v=1791825135",
+            "dữ": "sample3/hw4-p154/words/dữ.m4a?v=1791825131",
+            "em": "sample3/hw4-p154/words/em.m4a?v=1791825132",
+            "ghe": "sample3/hw4-p154/words/ghe.m4a?v=1791825127",
+            "ghê": "sample3/hw4-p154/words/ghê.m4a?v=1791825130",
+            "ghẻ": "sample3/hw4-p154/words/ghẻ.m4a?v=1793415095",
+            "ghế": "sample3/hw4-p154/words/ghế.m4a?v=1791825128",
+            "già": "sample3/hw4-p154/words/già.m4a?v=1791825129",
+            "giá": "sample3/hw4-p154/words/giá.m4a?v=1791825130",
+            "giò": "sample3/hw4-p154/words/giò.m4a?v=1791825131",
+            "gió": "sample3/hw4-p154/words/gió.m4a?v=1791825134",
+            "gõ": "sample3/hw4-p154/words/gõ.m4a?v=1791825133",
+            "gỗ": "sample3/hw4-p154/words/gỗ.m4a?v=1791825133",
+            "gụ": "sample3/hw4-p154/words/gụ.m4a?v=1791825133",
+            "hổ": "sample3/hw4-p154/words/hổ.m4a?v=1791825131",
+            "lở": "sample3/hw4-p154/words/lở.m4a?v=1791825128",
+            "mẹ": "sample3/hw4-p154/words/mẹ.m4a?v=1791825129",
+            "quê": "sample3/hw4-p154/words/quê.m4a?v=1791825132",
+            "quế": "sample3/hw4-p154/words/quế.m4a?v=1791825133",
+            "rẻ": "sample3/hw4-p154/words/rẻ.m4a?v=1791825130",
+            "rề": "sample3/hw4-p154/words/rề.m4a?v=1791825134",
+            "sợ": "sample3/hw4-p154/words/sợ.m4a?v=1791825130",
+            "to": "sample3/hw4-p154/words/to.m4a?v=1791825134",
+            "tú": "sample3/hw4-p154/words/tú.m4a?v=1791825130",
+            "tủ": "sample3/hw4-p154/words/tủ.m4a?v=1791825133",
+            "và": "sample3/hw4-p154/words/và.m4a?v=1791825129",
+            "về": "sample3/hw4-p154/words/về.m4a?v=1791825132",
+            "ăn": "sample3/hw4-p154/words/ăn.m4a?v=1791825131",
+            "đi": "sample3/hw4-p154/words/đi.m4a?v=1791825127",
+            "đã": "sample3/hw4-p154/words/đã.m4a?v=1791825129",
+            "đò": "sample3/hw4-p154/words/đò.m4a?v=1791825127",
+            "đồ": "sample3/hw4-p154/words/đồ.m4a?v=1791825133"
           }
         },
         "hw5-p158": {
+          "title": "Bài làm ở nhà #5",
           "sentences": [
-            "sample3/hw5-p158/s01.m4a",
-            "sample3/hw5-p158/s02.m4a",
-            "sample3/hw5-p158/s03.m4a",
-            "sample3/hw5-p158/s04.m4a",
-            "sample3/hw5-p158/s05.m4a",
-            "sample3/hw5-p158/s06.m4a",
-            "sample3/hw5-p158/s07.m4a",
-            "sample3/hw5-p158/s08.m4a",
-            "sample3/hw5-p158/s09.m4a",
-            "sample3/hw5-p158/s10.m4a",
-            "sample3/hw5-p158/s11.m4a",
-            "sample3/hw5-p158/s12.m4a",
-            "sample3/hw5-p158/s13.m4a",
-            "sample3/hw5-p158/s14.m4a",
-            "sample3/hw5-p158/s15.m4a"
+            "sample3/hw5-p158/s01.m4a?v=1792112994",
+            "sample3/hw5-p158/s02.m4a?v=1792112995",
+            "sample3/hw5-p158/s03.m4a?v=1792112995",
+            "sample3/hw5-p158/s04.m4a?v=1792112995",
+            "sample3/hw5-p158/s05.m4a?v=1792112996",
+            "sample3/hw5-p158/s06.m4a?v=1792112996",
+            "sample3/hw5-p158/s07.m4a?v=1792112996",
+            "sample3/hw5-p158/s08.m4a?v=1792112996",
+            "sample3/hw5-p158/s09.m4a?v=1792112997",
+            "sample3/hw5-p158/s10.m4a?v=1792112997",
+            "sample3/hw5-p158/s11.m4a?v=1792112998",
+            "sample3/hw5-p158/s12.m4a?v=1792112998",
+            "sample3/hw5-p158/s13.m4a?v=1792112998",
+            "sample3/hw5-p158/s14.m4a?v=1792112999",
+            "sample3/hw5-p158/s15.m4a?v=1792112999"
+          ],
+          "texts": [
+            [
+              "Cô em ca khe khẽ.",
+              "Cô em ca khe khẽ."
+            ],
+            [
+              "Cô em ca ca sĩ.",
+              "Cô em ca ca sĩ."
+            ],
+            [
+              "Cô em ca khò khè.",
+              "Cô em ca khò khè."
+            ],
+            [
+              "Khù khờ ăn khế.",
+              "Khù khờ ăn khế."
+            ],
+            [
+              "Khỉ già ăn khế.",
+              "Khỉ già ăn khế."
+            ],
+            [
+              "Khò khò ăn khế.",
+              "Khò khò ăn khế."
+            ],
+            [
+              "Cụ già ho to quá.",
+              "Cụ già ho to quá."
+            ],
+            [
+              "Cụ già ho khù khụ.",
+              "Cụ già ho khù khụ."
+            ],
+            [
+              "Cụ già ho bé quá.",
+              "Cụ già ho bé quá."
+            ],
+            [
+              "Em chớ có khi kẻ khó.",
+              "Em chớ có khi kẻ khó."
+            ],
+            [
+              "Em chớ có khi về quê.",
+              "Em chớ có khi về quê."
+            ],
+            [
+              "Em chớ có khi đi chợ.",
+              "Em chớ có khi đi chợ."
+            ],
+            [
+              "Ăn no dễ ho khù khụ.",
+              "Ăn no dễ ho khù khụ."
+            ],
+            [
+              "Ăn no dễ ghê sợ.",
+              "Ăn no dễ ghê sợ."
+            ],
+            [
+              "Ăn no dễ ngủ khò.",
+              "Ăn no dễ ngủ khò."
+            ]
           ],
           "words": {
-            "bé": "sample3/hw5-p158/words/bé.m4a",
-            "ca": "sample3/hw5-p158/words/ca.m4a",
-            "chớ": "sample3/hw5-p158/words/chớ.m4a",
-            "chợ": "sample3/hw5-p158/words/chợ.m4a",
-            "có": "sample3/hw5-p158/words/có.m4a",
-            "cô": "sample3/hw5-p158/words/cô.m4a",
-            "cụ": "sample3/hw5-p158/words/cụ.m4a",
-            "dễ": "sample3/hw5-p158/words/dễ.m4a",
-            "em": "sample3/hw5-p158/words/em.m4a",
-            "ghê": "sample3/hw5-p158/words/ghê.m4a",
-            "già": "sample3/hw5-p158/words/già.m4a",
-            "ho": "sample3/hw5-p158/words/ho.m4a",
-            "khe": "sample3/hw5-p158/words/khe.m4a",
-            "khi": "sample3/hw5-p158/words/khi.m4a",
-            "khè": "sample3/hw5-p158/words/khè.m4a",
-            "khò": "sample3/hw5-p158/words/khò.m4a",
-            "khó": "sample3/hw5-p158/words/khó.m4a",
-            "khù": "sample3/hw5-p158/words/khù.m4a",
-            "khẽ": "sample3/hw5-p158/words/khẽ.m4a",
-            "khế": "sample3/hw5-p158/words/khế.m4a",
-            "khỉ": "sample3/hw5-p158/words/khỉ.m4a",
-            "khờ": "sample3/hw5-p158/words/khờ.m4a",
-            "khụ": "sample3/hw5-p158/words/khụ.m4a",
-            "kẻ": "sample3/hw5-p158/words/kẻ.m4a",
-            "ngủ": "sample3/hw5-p158/words/ngủ.m4a",
-            "no": "sample3/hw5-p158/words/no.m4a",
-            "quá": "sample3/hw5-p158/words/quá.m4a",
-            "quê": "sample3/hw5-p158/words/quê.m4a",
-            "sĩ": "sample3/hw5-p158/words/sĩ.m4a",
-            "sợ": "sample3/hw5-p158/words/sợ.m4a",
-            "to": "sample3/hw5-p158/words/to.m4a",
-            "về": "sample3/hw5-p158/words/về.m4a",
-            "ăn": "sample3/hw5-p158/words/ăn.m4a",
-            "đi": "sample3/hw5-p158/words/đi.m4a"
+            "bé": "sample3/hw5-p158/words/bé.m4a?v=1792113003",
+            "ca": "sample3/hw5-p158/words/ca.m4a?v=1792113000",
+            "chớ": "sample3/hw5-p158/words/chớ.m4a?v=1792113003",
+            "chợ": "sample3/hw5-p158/words/chợ.m4a?v=1792113004",
+            "có": "sample3/hw5-p158/words/có.m4a?v=1792113003",
+            "cô": "sample3/hw5-p158/words/cô.m4a?v=1792112999",
+            "cụ": "sample3/hw5-p158/words/cụ.m4a?v=1792113002",
+            "dễ": "sample3/hw5-p158/words/dễ.m4a?v=1792113005",
+            "em": "sample3/hw5-p158/words/em.m4a?v=1792112999",
+            "ghê": "sample3/hw5-p158/words/ghê.m4a?v=1792113005",
+            "già": "sample3/hw5-p158/words/già.m4a?v=1792113002",
+            "ho": "sample3/hw5-p158/words/ho.m4a?v=1792113002",
+            "khe": "sample3/hw5-p158/words/khe.m4a?v=1792113000",
+            "khi": "sample3/hw5-p158/words/khi.m4a?v=1792113003",
+            "khè": "sample3/hw5-p158/words/khè.m4a?v=1792113001",
+            "khò": "sample3/hw5-p158/words/khò.m4a?v=1792113000",
+            "khó": "sample3/hw5-p158/words/khó.m4a?v=1792113004",
+            "khù": "sample3/hw5-p158/words/khù.m4a?v=1792113001",
+            "khẽ": "sample3/hw5-p158/words/khẽ.m4a?v=1792113000",
+            "khế": "sample3/hw5-p158/words/khế.m4a?v=1792113001",
+            "khỉ": "sample3/hw5-p158/words/khỉ.m4a?v=1792113002",
+            "khờ": "sample3/hw5-p158/words/khờ.m4a?v=1792113001",
+            "khụ": "sample3/hw5-p158/words/khụ.m4a?v=1792113003",
+            "kẻ": "sample3/hw5-p158/words/kẻ.m4a?v=1792113004",
+            "ngủ": "sample3/hw5-p158/words/ngủ.m4a?v=1792113005",
+            "no": "sample3/hw5-p158/words/no.m4a?v=1792113005",
+            "quá": "sample3/hw5-p158/words/quá.m4a?v=1792113002",
+            "quê": "sample3/hw5-p158/words/quê.m4a?v=1792113004",
+            "sĩ": "sample3/hw5-p158/words/sĩ.m4a?v=1792113000",
+            "sợ": "sample3/hw5-p158/words/sợ.m4a?v=1792113005",
+            "to": "sample3/hw5-p158/words/to.m4a?v=1792113002",
+            "về": "sample3/hw5-p158/words/về.m4a?v=1792113004",
+            "ăn": "sample3/hw5-p158/words/ăn.m4a?v=1792113001",
+            "đi": "sample3/hw5-p158/words/đi.m4a?v=1792113004"
           }
         },
         "hw5-p159": {
+          "title": "Bài làm ở nhà #5 · Cột A, Cột B",
           "sentences": [
-            "sample3/hw5-p159/s01.m4a",
-            "sample3/hw5-p159/s02.m4a",
-            "sample3/hw5-p159/s03.m4a",
-            "sample3/hw5-p159/s04.m4a",
-            "sample3/hw5-p159/s05.m4a",
-            "sample3/hw5-p159/s06.m4a",
-            "sample3/hw5-p159/s07.m4a",
-            "sample3/hw5-p159/s08.m4a",
-            "sample3/hw5-p159/s09.m4a",
-            "sample3/hw5-p159/s10.m4a",
-            "sample3/hw5-p159/s11.m4a",
-            "sample3/hw5-p159/s12.m4a",
-            "sample3/hw5-p159/s13.m4a",
-            "sample3/hw5-p159/s14.m4a",
-            "sample3/hw5-p159/s15.m4a",
-            "sample3/hw5-p159/s16.m4a",
-            "sample3/hw5-p159/s17.m4a",
-            "sample3/hw5-p159/s18.m4a"
+            "sample3/hw5-p159/s01.m4a?v=1792113006",
+            "sample3/hw5-p159/s02.m4a?v=1792113006",
+            "sample3/hw5-p159/s03.m4a?v=1792113006",
+            "sample3/hw5-p159/s04.m4a?v=1792113007",
+            "sample3/hw5-p159/s05.m4a?v=1792113007",
+            "sample3/hw5-p159/s06.m4a?v=1792113007",
+            "sample3/hw5-p159/s07.m4a?v=1792113007",
+            "sample3/hw5-p159/s08.m4a?v=1792113008",
+            "sample3/hw5-p159/s09.m4a?v=1792113008",
+            "sample3/hw5-p159/s10.m4a?v=1792113008",
+            "sample3/hw5-p159/s11.m4a?v=1792113009",
+            "sample3/hw5-p159/s12.m4a?v=1792113009",
+            "sample3/hw5-p159/s13.m4a?v=1792113009",
+            "sample3/hw5-p159/s14.m4a?v=1792113010",
+            "sample3/hw5-p159/s15.m4a?v=1792113010",
+            "sample3/hw5-p159/s16.m4a?v=1792113010",
+            "sample3/hw5-p159/s17.m4a?v=1792113011",
+            "sample3/hw5-p159/s18.m4a?v=1792113011"
+          ],
+          "texts": [
+            [
+              "Chi làm bài khá.",
+              "Chi làm bài khá."
+            ],
+            [
+              "Chi làm bài khà.",
+              "Chi làm bài khà."
+            ],
+            [
+              "Chớ khi kẻ khó.",
+              "Chớ khi kẻ khó."
+            ],
+            [
+              "Chớ khỉ kẻ khó.",
+              "Chớ khỉ kẻ khó."
+            ],
+            [
+              "Khỉ già ăn khế.",
+              "Khỉ già ăn khế."
+            ],
+            [
+              "Khỉ già ăn khề.",
+              "Khỉ già ăn khề."
+            ],
+            [
+              "Mẹ bé Tý khỏ cá.",
+              "Mẹ bé Tý khỏ cá."
+            ],
+            [
+              "Mẹ bé Tý kho cá.",
+              "Mẹ bé Tý kho cá."
+            ],
+            [
+              "Chú Tư ăn cá khố.",
+              "Chú Tư ăn cá khố."
+            ],
+            [
+              "Chú Tư ăn cá khô.",
+              "Chú Tư ăn cá khô."
+            ],
+            [
+              "Tủ hư có khê hở.",
+              "Tủ hư có khê hở."
+            ],
+            [
+              "Tủ hư có khe hở.",
+              "Tủ hư có khe hở."
+            ],
+            [
+              "Ăn no dễ ngủ khó.",
+              "Ăn no dễ ngủ khó."
+            ],
+            [
+              "Ăn no dễ ngủ khò.",
+              "Ăn no dễ ngủ khò."
+            ],
+            [
+              "Cô Ba ca khé khẽ.",
+              "Cô Ba ca khé khẽ."
+            ],
+            [
+              "Cô Ba ca khe khẽ.",
+              "Cô Ba ca khe khẽ."
+            ],
+            [
+              "Kẻ khó khổ sở.",
+              "Kẻ khó khổ sở."
+            ],
+            [
+              "Kẻ khó khố sở.",
+              "Kẻ khó khố sở."
+            ]
           ],
           "words": {
-            "ba": "sample3/hw5-p159/words/ba.m4a",
-            "bài": "sample3/hw5-p159/words/bài.m4a",
-            "bé": "sample3/hw5-p159/words/bé.m4a",
-            "ca": "sample3/hw5-p159/words/ca.m4a",
-            "chi": "sample3/hw5-p159/words/chi.m4a",
-            "chú": "sample3/hw5-p159/words/chú.m4a",
-            "chớ": "sample3/hw5-p159/words/chớ.m4a",
-            "cá": "sample3/hw5-p159/words/cá.m4a",
-            "có": "sample3/hw5-p159/words/có.m4a",
-            "cô": "sample3/hw5-p159/words/cô.m4a",
-            "dễ": "sample3/hw5-p159/words/dễ.m4a",
-            "già": "sample3/hw5-p159/words/già.m4a",
-            "hư": "sample3/hw5-p159/words/hư.m4a",
-            "hở": "sample3/hw5-p159/words/hở.m4a",
-            "khe": "sample3/hw5-p159/words/khe.m4a",
-            "khi": "sample3/hw5-p159/words/khi.m4a",
-            "kho": "sample3/hw5-p159/words/kho.m4a",
-            "khà": "sample3/hw5-p159/words/khà.m4a",
-            "khá": "sample3/hw5-p159/words/khá.m4a",
-            "khé": "sample3/hw5-p159/words/khé.m4a",
-            "khê": "sample3/hw5-p159/words/khê.m4a",
-            "khò": "sample3/hw5-p159/words/khò.m4a",
-            "khó": "sample3/hw5-p159/words/khó.m4a",
-            "khô": "sample3/hw5-p159/words/khô.m4a",
-            "khẽ": "sample3/hw5-p159/words/khẽ.m4a",
-            "khế": "sample3/hw5-p159/words/khế.m4a",
-            "khề": "sample3/hw5-p159/words/khề.m4a",
-            "khỉ": "sample3/hw5-p159/words/khỉ.m4a",
-            "khỏ": "sample3/hw5-p159/words/khỏ.m4a",
-            "khố": "sample3/hw5-p159/words/khố.m4a",
-            "khổ": "sample3/hw5-p159/words/khổ.m4a",
-            "kẻ": "sample3/hw5-p159/words/kẻ.m4a",
-            "làm": "sample3/hw5-p159/words/làm.m4a",
-            "mẹ": "sample3/hw5-p159/words/mẹ.m4a",
-            "ngủ": "sample3/hw5-p159/words/ngủ.m4a",
-            "no": "sample3/hw5-p159/words/no.m4a",
-            "sở": "sample3/hw5-p159/words/sở.m4a",
-            "tý": "sample3/hw5-p159/words/tý.m4a",
-            "tư": "sample3/hw5-p159/words/tư.m4a",
-            "tủ": "sample3/hw5-p159/words/tủ.m4a",
-            "ăn": "sample3/hw5-p159/words/ăn.m4a"
+            "ba": "sample3/hw5-p159/words/ba.m4a?v=1792113018",
+            "bài": "sample3/hw5-p159/words/bài.m4a?v=1792113012",
+            "bé": "sample3/hw5-p159/words/bé.m4a?v=1792113014",
+            "ca": "sample3/hw5-p159/words/ca.m4a?v=1792113018",
+            "chi": "sample3/hw5-p159/words/chi.m4a?v=1792113011",
+            "chú": "sample3/hw5-p159/words/chú.m4a?v=1792113015",
+            "chớ": "sample3/hw5-p159/words/chớ.m4a?v=1792113012",
+            "cá": "sample3/hw5-p159/words/cá.m4a?v=1792113015",
+            "có": "sample3/hw5-p159/words/có.m4a?v=1792113016",
+            "cô": "sample3/hw5-p159/words/cô.m4a?v=1792113018",
+            "dễ": "sample3/hw5-p159/words/dễ.m4a?v=1792113017",
+            "già": "sample3/hw5-p159/words/già.m4a?v=1792113013",
+            "hư": "sample3/hw5-p159/words/hư.m4a?v=1792113016",
+            "hở": "sample3/hw5-p159/words/hở.m4a?v=1792113016",
+            "khe": "sample3/hw5-p159/words/khe.m4a?v=1792113017",
+            "khi": "sample3/hw5-p159/words/khi.m4a?v=1792113012",
+            "kho": "sample3/hw5-p159/words/kho.m4a?v=1792113015",
+            "khà": "sample3/hw5-p159/words/khà.m4a?v=1792113012",
+            "khá": "sample3/hw5-p159/words/khá.m4a?v=1792113012",
+            "khé": "sample3/hw5-p159/words/khé.m4a?v=1792113018",
+            "khê": "sample3/hw5-p159/words/khê.m4a?v=1792113016",
+            "khò": "sample3/hw5-p159/words/khò.m4a?v=1792113018",
+            "khó": "sample3/hw5-p159/words/khó.m4a?v=1792113013",
+            "khô": "sample3/hw5-p159/words/khô.m4a?v=1792113015",
+            "khẽ": "sample3/hw5-p159/words/khẽ.m4a?v=1792113019",
+            "khế": "sample3/hw5-p159/words/khế.m4a?v=1792113014",
+            "khề": "sample3/hw5-p159/words/khề.m4a?v=1792113014",
+            "khỉ": "sample3/hw5-p159/words/khỉ.m4a?v=1792113013",
+            "khỏ": "sample3/hw5-p159/words/khỏ.m4a?v=1792113014",
+            "khố": "sample3/hw5-p159/words/khố.m4a?v=1792113015",
+            "khổ": "sample3/hw5-p159/words/khổ.m4a?v=1792113019",
+            "kẻ": "sample3/hw5-p159/words/kẻ.m4a?v=1792113013",
+            "làm": "sample3/hw5-p159/words/làm.m4a?v=1792113011",
+            "mẹ": "sample3/hw5-p159/words/mẹ.m4a?v=1792113014",
+            "ngủ": "sample3/hw5-p159/words/ngủ.m4a?v=1792113017",
+            "no": "sample3/hw5-p159/words/no.m4a?v=1792113017",
+            "sở": "sample3/hw5-p159/words/sở.m4a?v=1792113019",
+            "tý": "sample3/hw5-p159/words/tý.m4a?v=1792113014",
+            "tư": "sample3/hw5-p159/words/tư.m4a?v=1792113015",
+            "tủ": "sample3/hw5-p159/words/tủ.m4a?v=1792113016",
+            "ăn": "sample3/hw5-p159/words/ăn.m4a?v=1792113013"
           }
         },
         "v3-hw4-p117a": {
+          "title": "Điền vào chỗ trống",
           "sentences": [
-            "sample3/v3-hw4-p117a/s01.m4a",
-            "sample3/v3-hw4-p117a/s02.m4a",
-            "sample3/v3-hw4-p117a/s03.m4a",
-            "sample3/v3-hw4-p117a/s04.m4a",
-            "sample3/v3-hw4-p117a/s05.m4a",
-            "sample3/v3-hw4-p117a/s06.m4a",
-            "sample3/v3-hw4-p117a/s07.m4a",
-            "sample3/v3-hw4-p117a/s08.m4a",
-            "sample3/v3-hw4-p117a/s09.m4a",
-            "sample3/v3-hw4-p117a/s10.m4a",
-            "sample3/v3-hw4-p117a/s11.m4a",
-            "sample3/v3-hw4-p117a/s12.m4a",
-            "sample3/v3-hw4-p117a/s13.m4a",
-            "sample3/v3-hw4-p117a/s14.m4a",
-            "sample3/v3-hw4-p117a/s15.m4a",
-            "sample3/v3-hw4-p117a/s16.m4a"
+            "sample3/v3-hw4-p117a/s01.m4a?v=1791825136",
+            "sample3/v3-hw4-p117a/s02.m4a?v=1791825137",
+            "sample3/v3-hw4-p117a/s03.m4a?v=1791825138",
+            "sample3/v3-hw4-p117a/s04.m4a?v=1791825139",
+            "sample3/v3-hw4-p117a/s05.m4a?v=1791825140",
+            "sample3/v3-hw4-p117a/s06.m4a?v=1791825140",
+            "sample3/v3-hw4-p117a/s07.m4a?v=1791825141",
+            "sample3/v3-hw4-p117a/s08.m4a?v=1791825142",
+            "sample3/v3-hw4-p117a/s09.m4a?v=1791825143",
+            "sample3/v3-hw4-p117a/s10.m4a?v=1791825144",
+            "sample3/v3-hw4-p117a/s11.m4a?v=1791825144",
+            "sample3/v3-hw4-p117a/s12.m4a?v=1791825145",
+            "sample3/v3-hw4-p117a/s13.m4a?v=1791825145",
+            "sample3/v3-hw4-p117a/s14.m4a?v=1791825146",
+            "sample3/v3-hw4-p117a/s15.m4a?v=1791825146",
+            "sample3/v3-hw4-p117a/s16.m4a?v=1791825147"
+          ],
+          "texts": [
+            [
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự.",
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự."
+            ],
+            [
+              "Về có thứ nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự.",
+              "Về có thứ nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự."
+            ],
+            [
+              "Về vất vả nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự.",
+              "Về vất vả nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự."
+            ],
+            [
+              "Về mến nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự.",
+              "Về mến nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự."
+            ],
+            [
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật đến tự.",
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật đến tự."
+            ],
+            [
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự.",
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật có thứ tự."
+            ],
+            [
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật vất vả tự.",
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật vất vả tự."
+            ],
+            [
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật mến tự.",
+              "Về đến nhà, mẹ nấu ăn, sắp đặt việc nhà thật mến tự."
+            ],
+            [
+              "Cha mẹ thật đến vì con cái mà vẫn lấy làm vui.",
+              "Cha mẹ thật đến vì con cái mà vẫn lấy làm vui."
+            ],
+            [
+              "Cha mẹ thật có thứ vì con cái mà vẫn lấy làm vui.",
+              "Cha mẹ thật có thứ vì con cái mà vẫn lấy làm vui."
+            ],
+            [
+              "Cha mẹ thật vất vả vì con cái mà vẫn lấy làm vui.",
+              "Cha mẹ thật vất vả vì con cái mà vẫn lấy làm vui."
+            ],
+            [
+              "Cha mẹ thật mến vì con cái mà vẫn lấy làm vui.",
+              "Cha mẹ thật mến vì con cái mà vẫn lấy làm vui."
+            ],
+            [
+              "Em rất quý đến cha mẹ.",
+              "Em rất quý đến cha mẹ."
+            ],
+            [
+              "Em rất quý có thứ cha mẹ.",
+              "Em rất quý có thứ cha mẹ."
+            ],
+            [
+              "Em rất quý vất vả cha mẹ.",
+              "Em rất quý vất vả cha mẹ."
+            ],
+            [
+              "Em rất quý mến cha mẹ.",
+              "Em rất quý mến cha mẹ."
+            ]
           ],
           "words": {
-            "cha": "sample3/v3-hw4-p117a/words/cha.m4a",
-            "con": "sample3/v3-hw4-p117a/words/con.m4a",
-            "cái": "sample3/v3-hw4-p117a/words/cái.m4a",
-            "có": "sample3/v3-hw4-p117a/words/có.m4a",
-            "em": "sample3/v3-hw4-p117a/words/em.m4a",
-            "làm": "sample3/v3-hw4-p117a/words/làm.m4a",
-            "lấy": "sample3/v3-hw4-p117a/words/lấy.m4a",
-            "mà": "sample3/v3-hw4-p117a/words/mà.m4a",
-            "mẹ": "sample3/v3-hw4-p117a/words/mẹ.m4a",
-            "mến": "sample3/v3-hw4-p117a/words/mến.m4a",
-            "nhà": "sample3/v3-hw4-p117a/words/nhà.m4a",
-            "nấu": "sample3/v3-hw4-p117a/words/nấu.m4a",
-            "quý": "sample3/v3-hw4-p117a/words/quý.m4a",
-            "rất": "sample3/v3-hw4-p117a/words/rất.m4a",
-            "sắp": "sample3/v3-hw4-p117a/words/sắp.m4a",
-            "thật": "sample3/v3-hw4-p117a/words/thật.m4a",
-            "thứ": "sample3/v3-hw4-p117a/words/thứ.m4a",
-            "tự": "sample3/v3-hw4-p117a/words/tự.m4a",
-            "việc": "sample3/v3-hw4-p117a/words/việc.m4a",
-            "vui": "sample3/v3-hw4-p117a/words/vui.m4a",
-            "vì": "sample3/v3-hw4-p117a/words/vì.m4a",
-            "vả": "sample3/v3-hw4-p117a/words/vả.m4a",
-            "vất": "sample3/v3-hw4-p117a/words/vất.m4a",
-            "vẫn": "sample3/v3-hw4-p117a/words/vẫn.m4a",
-            "về": "sample3/v3-hw4-p117a/words/về.m4a",
-            "ăn": "sample3/v3-hw4-p117a/words/ăn.m4a",
-            "đặt": "sample3/v3-hw4-p117a/words/đặt.m4a",
-            "đến": "sample3/v3-hw4-p117a/words/đến.m4a"
+            "cha": "sample3/v3-hw4-p117a/words/cha.m4a?v=1791825150",
+            "con": "sample3/v3-hw4-p117a/words/con.m4a?v=1791825150",
+            "cái": "sample3/v3-hw4-p117a/words/cái.m4a?v=1791825151",
+            "có": "sample3/v3-hw4-p117a/words/có.m4a?v=1791825149",
+            "em": "sample3/v3-hw4-p117a/words/em.m4a?v=1791825152",
+            "làm": "sample3/v3-hw4-p117a/words/làm.m4a?v=1791825151",
+            "lấy": "sample3/v3-hw4-p117a/words/lấy.m4a?v=1791825151",
+            "mà": "sample3/v3-hw4-p117a/words/mà.m4a?v=1791825151",
+            "mẹ": "sample3/v3-hw4-p117a/words/mẹ.m4a?v=1791825147",
+            "mến": "sample3/v3-hw4-p117a/words/mến.m4a?v=1791825150",
+            "nhà": "sample3/v3-hw4-p117a/words/nhà.m4a?v=1791825147",
+            "nấu": "sample3/v3-hw4-p117a/words/nấu.m4a?v=1791825148",
+            "quý": "sample3/v3-hw4-p117a/words/quý.m4a?v=1791825152",
+            "rất": "sample3/v3-hw4-p117a/words/rất.m4a?v=1791825152",
+            "sắp": "sample3/v3-hw4-p117a/words/sắp.m4a?v=1791825148",
+            "thật": "sample3/v3-hw4-p117a/words/thật.m4a?v=1791825149",
+            "thứ": "sample3/v3-hw4-p117a/words/thứ.m4a?v=1791825149",
+            "tự": "sample3/v3-hw4-p117a/words/tự.m4a?v=1791825149",
+            "việc": "sample3/v3-hw4-p117a/words/việc.m4a?v=1791825148",
+            "vui": "sample3/v3-hw4-p117a/words/vui.m4a?v=1791825151",
+            "vì": "sample3/v3-hw4-p117a/words/vì.m4a?v=1791825150",
+            "vả": "sample3/v3-hw4-p117a/words/vả.m4a?v=1791825150",
+            "vất": "sample3/v3-hw4-p117a/words/vất.m4a?v=1791825149",
+            "vẫn": "sample3/v3-hw4-p117a/words/vẫn.m4a?v=1791825151",
+            "về": "sample3/v3-hw4-p117a/words/về.m4a?v=1791825147",
+            "ăn": "sample3/v3-hw4-p117a/words/ăn.m4a?v=1791825148",
+            "đặt": "sample3/v3-hw4-p117a/words/đặt.m4a?v=1791825148",
+            "đến": "sample3/v3-hw4-p117a/words/đến.m4a?v=1791825147"
           }
         },
         "v3-hw4-p117b": {
+          "title": "Chọn câu đúng nhất",
           "sentences": [
-            "sample3/v3-hw4-p117b/s01.m4a",
-            "sample3/v3-hw4-p117b/s02.m4a",
-            "sample3/v3-hw4-p117b/s03.m4a",
-            "sample3/v3-hw4-p117b/s04.m4a",
-            "sample3/v3-hw4-p117b/s05.m4a",
-            "sample3/v3-hw4-p117b/s06.m4a",
-            "sample3/v3-hw4-p117b/s07.m4a",
-            "sample3/v3-hw4-p117b/s08.m4a",
-            "sample3/v3-hw4-p117b/s09.m4a"
+            "sample3/v3-hw4-p117b/s01.m4a?v=1791825152",
+            "sample3/v3-hw4-p117b/s02.m4a?v=1791825153",
+            "sample3/v3-hw4-p117b/s03.m4a?v=1791825154",
+            "sample3/v3-hw4-p117b/s04.m4a?v=1791825154",
+            "sample3/v3-hw4-p117b/s05.m4a?v=1791825155",
+            "sample3/v3-hw4-p117b/s06.m4a?v=1791825156",
+            "sample3/v3-hw4-p117b/s07.m4a?v=1791825156",
+            "sample3/v3-hw4-p117b/s08.m4a?v=1791825157",
+            "sample3/v3-hw4-p117b/s09.m4a?v=1791825158"
+          ],
+          "texts": [
+            [
+              "Em còn ngủ, mẹ đi nấu ăn.",
+              "Em còn ngủ, mẹ đi nấu ăn."
+            ],
+            [
+              "Em còn ngủ, mẹ giặt áo quần.",
+              "Em còn ngủ, mẹ giặt áo quần."
+            ],
+            [
+              "Em còn ngủ, cha mẹ đã đi làm từ lâu.",
+              "Em còn ngủ, cha mẹ đã đi làm từ lâu."
+            ],
+            [
+              "Cha còn làm ở sở, mẹ còn làm ở sở.",
+              "Cha còn làm ở sở, mẹ còn làm ở sở."
+            ],
+            [
+              "Cha còn làm ở sở, mẹ về nhà nghỉ mệt.",
+              "Cha còn làm ở sở, mẹ về nhà nghỉ mệt."
+            ],
+            [
+              "Cha còn làm ở sở, mẹ nấu ăn, sắp đặt việc nhà.",
+              "Cha còn làm ở sở, mẹ nấu ăn, sắp đặt việc nhà."
+            ],
+            [
+              "Em quý mến cha mẹ vì cha mẹ đã già.",
+              "Em quý mến cha mẹ vì cha mẹ đã già."
+            ],
+            [
+              "Em quý mến cha mẹ vì cha mẹ làm việc có thứ tự.",
+              "Em quý mến cha mẹ vì cha mẹ làm việc có thứ tự."
+            ],
+            [
+              "Em quý mến cha mẹ vì cha mẹ vất vả, lo cho con.",
+              "Em quý mến cha mẹ vì cha mẹ vất vả, lo cho con."
+            ]
           ],
           "words": {
-            "cha": "sample3/v3-hw4-p117b/words/cha.m4a",
-            "cho": "sample3/v3-hw4-p117b/words/cho.m4a",
-            "con": "sample3/v3-hw4-p117b/words/con.m4a",
-            "còn": "sample3/v3-hw4-p117b/words/còn.m4a",
-            "có": "sample3/v3-hw4-p117b/words/có.m4a",
-            "em": "sample3/v3-hw4-p117b/words/em.m4a",
-            "già": "sample3/v3-hw4-p117b/words/già.m4a",
-            "giặt": "sample3/v3-hw4-p117b/words/giặt.m4a",
-            "lo": "sample3/v3-hw4-p117b/words/lo.m4a",
-            "làm": "sample3/v3-hw4-p117b/words/làm.m4a",
-            "lâu": "sample3/v3-hw4-p117b/words/lâu.m4a",
-            "mẹ": "sample3/v3-hw4-p117b/words/mẹ.m4a",
-            "mến": "sample3/v3-hw4-p117b/words/mến.m4a",
-            "mệt": "sample3/v3-hw4-p117b/words/mệt.m4a",
-            "nghỉ": "sample3/v3-hw4-p117b/words/nghỉ.m4a",
-            "ngủ": "sample3/v3-hw4-p117b/words/ngủ.m4a",
-            "nhà": "sample3/v3-hw4-p117b/words/nhà.m4a",
-            "nấu": "sample3/v3-hw4-p117b/words/nấu.m4a",
-            "quý": "sample3/v3-hw4-p117b/words/quý.m4a",
-            "quần": "sample3/v3-hw4-p117b/words/quần.m4a",
-            "sắp": "sample3/v3-hw4-p117b/words/sắp.m4a",
-            "sở": "sample3/v3-hw4-p117b/words/sở.m4a",
-            "thứ": "sample3/v3-hw4-p117b/words/thứ.m4a",
-            "từ": "sample3/v3-hw4-p117b/words/từ.m4a",
-            "tự": "sample3/v3-hw4-p117b/words/tự.m4a",
-            "việc": "sample3/v3-hw4-p117b/words/việc.m4a",
-            "vì": "sample3/v3-hw4-p117b/words/vì.m4a",
-            "vả": "sample3/v3-hw4-p117b/words/vả.m4a",
-            "vất": "sample3/v3-hw4-p117b/words/vất.m4a",
-            "về": "sample3/v3-hw4-p117b/words/về.m4a",
-            "áo": "sample3/v3-hw4-p117b/words/áo.m4a",
-            "ăn": "sample3/v3-hw4-p117b/words/ăn.m4a",
-            "đi": "sample3/v3-hw4-p117b/words/đi.m4a",
-            "đã": "sample3/v3-hw4-p117b/words/đã.m4a",
-            "đặt": "sample3/v3-hw4-p117b/words/đặt.m4a",
-            "ở": "sample3/v3-hw4-p117b/words/ở.m4a"
+            "cha": "sample3/v3-hw4-p117b/words/cha.m4a?v=1791825160",
+            "cho": "sample3/v3-hw4-p117b/words/cho.m4a?v=1791825164",
+            "con": "sample3/v3-hw4-p117b/words/con.m4a?v=1791825164",
+            "còn": "sample3/v3-hw4-p117b/words/còn.m4a?v=1791825158",
+            "có": "sample3/v3-hw4-p117b/words/có.m4a?v=1791825163",
+            "em": "sample3/v3-hw4-p117b/words/em.m4a?v=1791825158",
+            "già": "sample3/v3-hw4-p117b/words/già.m4a?v=1791825163",
+            "giặt": "sample3/v3-hw4-p117b/words/giặt.m4a?v=1791825159",
+            "lo": "sample3/v3-hw4-p117b/words/lo.m4a?v=1791825164",
+            "làm": "sample3/v3-hw4-p117b/words/làm.m4a?v=1791825160",
+            "lâu": "sample3/v3-hw4-p117b/words/lâu.m4a?v=1791825160",
+            "mẹ": "sample3/v3-hw4-p117b/words/mẹ.m4a?v=1791825158",
+            "mến": "sample3/v3-hw4-p117b/words/mến.m4a?v=1791825162",
+            "mệt": "sample3/v3-hw4-p117b/words/mệt.m4a?v=1791825162",
+            "nghỉ": "sample3/v3-hw4-p117b/words/nghỉ.m4a?v=1791825161",
+            "ngủ": "sample3/v3-hw4-p117b/words/ngủ.m4a?v=1791825158",
+            "nhà": "sample3/v3-hw4-p117b/words/nhà.m4a?v=1791825161",
+            "nấu": "sample3/v3-hw4-p117b/words/nấu.m4a?v=1791825159",
+            "quý": "sample3/v3-hw4-p117b/words/quý.m4a?v=1791825162",
+            "quần": "sample3/v3-hw4-p117b/words/quần.m4a?v=1791825160",
+            "sắp": "sample3/v3-hw4-p117b/words/sắp.m4a?v=1791825162",
+            "sở": "sample3/v3-hw4-p117b/words/sở.m4a?v=1791825161",
+            "thứ": "sample3/v3-hw4-p117b/words/thứ.m4a?v=1791825163",
+            "từ": "sample3/v3-hw4-p117b/words/từ.m4a?v=1791825160",
+            "tự": "sample3/v3-hw4-p117b/words/tự.m4a?v=1791825163",
+            "việc": "sample3/v3-hw4-p117b/words/việc.m4a?v=1791825162",
+            "vì": "sample3/v3-hw4-p117b/words/vì.m4a?v=1791825163",
+            "vả": "sample3/v3-hw4-p117b/words/vả.m4a?v=1791825164",
+            "vất": "sample3/v3-hw4-p117b/words/vất.m4a?v=1791825164",
+            "về": "sample3/v3-hw4-p117b/words/về.m4a?v=1791825161",
+            "áo": "sample3/v3-hw4-p117b/words/áo.m4a?v=1791825159",
+            "ăn": "sample3/v3-hw4-p117b/words/ăn.m4a?v=1791825159",
+            "đi": "sample3/v3-hw4-p117b/words/đi.m4a?v=1791825159",
+            "đã": "sample3/v3-hw4-p117b/words/đã.m4a?v=1791825160",
+            "đặt": "sample3/v3-hw4-p117b/words/đặt.m4a?v=1791825162",
+            "ở": "sample3/v3-hw4-p117b/words/ở.m4a?v=1791825161"
           }
         },
         "poem-em-yeu-men": {
+          "title": "Em Yêu Mến",
           "sentences": [
-            "sample3/poem-em-yeu-men/s01.m4a",
-            "sample3/poem-em-yeu-men/s02.m4a",
-            "sample3/poem-em-yeu-men/s03.m4a",
-            "sample3/poem-em-yeu-men/s04.m4a"
+            "sample3/poem-em-yeu-men/s01.m4a?v=1791556792",
+            "sample3/poem-em-yeu-men/s02.m4a?v=1791556792",
+            "sample3/poem-em-yeu-men/s03.m4a?v=1791556792",
+            "sample3/poem-em-yeu-men/s04.m4a?v=1791556793"
+          ],
+          "texts": [
+            [
+              "Em có ông bà,",
+              "Em có ông bà."
+            ],
+            [
+              "Và có mẹ cha.",
+              "Và có mẹ cha."
+            ],
+            [
+              "Anh chị một nhà,",
+              "Anh chị một nhà."
+            ],
+            [
+              "Yêu mến thiết tha.",
+              "Yêu mến thiết tha."
+            ]
           ],
           "words": {
-            "anhchị": "sample3/poem-em-yeu-men/words/anh chị.m4a",
-            "anh": "sample3/poem-em-yeu-men/words/anh.m4a",
-            "bà": "sample3/poem-em-yeu-men/words/bà.m4a",
-            "cha": "sample3/poem-em-yeu-men/words/cha.m4a",
-            "chị": "sample3/poem-em-yeu-men/words/chị.m4a",
-            "có": "sample3/poem-em-yeu-men/words/có.m4a",
-            "em": "sample3/poem-em-yeu-men/words/em.m4a",
-            "mẹcha": "sample3/poem-em-yeu-men/words/mẹ cha.m4a",
-            "mẹ": "sample3/poem-em-yeu-men/words/mẹ.m4a",
-            "mến": "sample3/poem-em-yeu-men/words/mến.m4a",
-            "mộtnhà": "sample3/poem-em-yeu-men/words/một nhà.m4a",
-            "một": "sample3/poem-em-yeu-men/words/một.m4a",
-            "nhà": "sample3/poem-em-yeu-men/words/nhà.m4a",
-            "tha": "sample3/poem-em-yeu-men/words/tha.m4a",
-            "thiếttha": "sample3/poem-em-yeu-men/words/thiết tha.m4a",
-            "thiết": "sample3/poem-em-yeu-men/words/thiết.m4a",
-            "và": "sample3/poem-em-yeu-men/words/và.m4a",
-            "yêumến": "sample3/poem-em-yeu-men/words/yêu mến.m4a",
-            "yêu": "sample3/poem-em-yeu-men/words/yêu.m4a",
-            "ôngbà": "sample3/poem-em-yeu-men/words/ông bà.m4a",
-            "ông": "sample3/poem-em-yeu-men/words/ông.m4a"
+            "anhchị": "sample3/poem-em-yeu-men/words/anh chị.m4a?v=1792279125",
+            "anh": "sample3/poem-em-yeu-men/words/anh.m4a?v=1791556794",
+            "bà": "sample3/poem-em-yeu-men/words/bà.m4a?v=1791556794",
+            "cha": "sample3/poem-em-yeu-men/words/cha.m4a?v=1791556794",
+            "chị": "sample3/poem-em-yeu-men/words/chị.m4a?v=1791556794",
+            "có": "sample3/poem-em-yeu-men/words/có.m4a?v=1791556793",
+            "em": "sample3/poem-em-yeu-men/words/em.m4a?v=1791556793",
+            "mẹcha": "sample3/poem-em-yeu-men/words/mẹ cha.m4a?v=1792279125",
+            "mẹ": "sample3/poem-em-yeu-men/words/mẹ.m4a?v=1791556794",
+            "mến": "sample3/poem-em-yeu-men/words/mến.m4a?v=1791556795",
+            "mộtnhà": "sample3/poem-em-yeu-men/words/một nhà.m4a?v=1792279125",
+            "một": "sample3/poem-em-yeu-men/words/một.m4a?v=1791556795",
+            "nhà": "sample3/poem-em-yeu-men/words/nhà.m4a?v=1791556795",
+            "tha": "sample3/poem-em-yeu-men/words/tha.m4a?v=1791556796",
+            "thiếttha": "sample3/poem-em-yeu-men/words/thiết tha.m4a?v=1792279126",
+            "thiết": "sample3/poem-em-yeu-men/words/thiết.m4a?v=1791556795",
+            "và": "sample3/poem-em-yeu-men/words/và.m4a?v=1791556794",
+            "yêumến": "sample3/poem-em-yeu-men/words/yêu mến.m4a?v=1792279126",
+            "yêu": "sample3/poem-em-yeu-men/words/yêu.m4a?v=1791556795",
+            "ôngbà": "sample3/poem-em-yeu-men/words/ông bà.m4a?v=1792279125",
+            "ông": "sample3/poem-em-yeu-men/words/ông.m4a?v=1791556793"
           }
         },
         "poem-ga-gay": {
+          "title": "Gà Gáy",
           "sentences": [
-            "sample3/poem-ga-gay/s01.m4a",
-            "sample3/poem-ga-gay/s02.m4a",
-            "sample3/poem-ga-gay/s03.m4a",
-            "sample3/poem-ga-gay/s04.m4a",
-            "sample3/poem-ga-gay/s05.m4a",
-            "sample3/poem-ga-gay/s06.m4a"
+            "sample3/poem-ga-gay/s01.m4a?v=1791505161",
+            "sample3/poem-ga-gay/s02.m4a?v=1791505161",
+            "sample3/poem-ga-gay/s03.m4a?v=1791505161",
+            "sample3/poem-ga-gay/s04.m4a?v=1791505162",
+            "sample3/poem-ga-gay/s05.m4a?v=1791505162",
+            "sample3/poem-ga-gay/s06.m4a?v=1791505162"
+          ],
+          "texts": [
+            [
+              "Gà cồ hay gáy.",
+              "Gà cồ hay gáy."
+            ],
+            [
+              "Gà mái hay la.",
+              "Gà mái hay la."
+            ],
+            [
+              "Gác cửa giữ nhà,",
+              "Gác cửa giữ nhà."
+            ],
+            [
+              "Là con chó mực.",
+              "Là con chó mực."
+            ],
+            [
+              "Ngủ gà ngủ gật,",
+              "Ngủ gà ngủ gật."
+            ],
+            [
+              "Là con mèo mun.",
+              "Là con mèo mun."
+            ]
           ],
           "words": {
-            "chómực": "sample3/poem-ga-gay/words/chó mực.m4a",
-            "chó": "sample3/poem-ga-gay/words/chó.m4a",
-            "con": "sample3/poem-ga-gay/words/con.m4a",
-            "cồ": "sample3/poem-ga-gay/words/cồ.m4a",
-            "cửa": "sample3/poem-ga-gay/words/cửa.m4a",
-            "giữnhà": "sample3/poem-ga-gay/words/giữ nhà.m4a",
-            "giữ": "sample3/poem-ga-gay/words/giữ.m4a",
-            "gàcồ": "sample3/poem-ga-gay/words/gà cồ.m4a",
-            "gàmái": "sample3/poem-ga-gay/words/gà mái.m4a",
-            "gà": "sample3/poem-ga-gay/words/gà.m4a",
-            "gáccửa": "sample3/poem-ga-gay/words/gác cửa.m4a",
-            "gác": "sample3/poem-ga-gay/words/gác.m4a",
-            "gáy": "sample3/poem-ga-gay/words/gáy.m4a",
-            "gật": "sample3/poem-ga-gay/words/gật.m4a",
-            "hay": "sample3/poem-ga-gay/words/hay.m4a",
-            "la": "sample3/poem-ga-gay/words/la.m4a",
-            "là": "sample3/poem-ga-gay/words/là.m4a",
-            "mun": "sample3/poem-ga-gay/words/mun.m4a",
-            "mái": "sample3/poem-ga-gay/words/mái.m4a",
-            "mèomun": "sample3/poem-ga-gay/words/mèo mun.m4a",
-            "mèo": "sample3/poem-ga-gay/words/mèo.m4a",
-            "mực": "sample3/poem-ga-gay/words/mực.m4a",
-            "ngủgật": "sample3/poem-ga-gay/words/ngủ gật.m4a",
-            "ngủ": "sample3/poem-ga-gay/words/ngủ.m4a",
-            "nhà": "sample3/poem-ga-gay/words/nhà.m4a"
+            "chómực": "sample3/poem-ga-gay/words/chó mực.m4a?v=1792279127",
+            "chó": "sample3/poem-ga-gay/words/chó.m4a?v=1791505165",
+            "con": "sample3/poem-ga-gay/words/con.m4a?v=1791505164",
+            "cồ": "sample3/poem-ga-gay/words/cồ.m4a?v=1791505163",
+            "cửa": "sample3/poem-ga-gay/words/cửa.m4a?v=1791505164",
+            "giữnhà": "sample3/poem-ga-gay/words/giữ nhà.m4a?v=1792279127",
+            "giữ": "sample3/poem-ga-gay/words/giữ.m4a?v=1791505164",
+            "gàcồ": "sample3/poem-ga-gay/words/gà cồ.m4a?v=1792279126",
+            "gàmái": "sample3/poem-ga-gay/words/gà mái.m4a?v=1792279126",
+            "gà": "sample3/poem-ga-gay/words/gà.m4a?v=1791505162",
+            "gáccửa": "sample3/poem-ga-gay/words/gác cửa.m4a?v=1792279127",
+            "gác": "sample3/poem-ga-gay/words/gác.m4a?v=1791505164",
+            "gáy": "sample3/poem-ga-gay/words/gáy.m4a?v=1791505163",
+            "gật": "sample3/poem-ga-gay/words/gật.m4a?v=1791505165",
+            "hay": "sample3/poem-ga-gay/words/hay.m4a?v=1791505163",
+            "la": "sample3/poem-ga-gay/words/la.m4a?v=1791505163",
+            "là": "sample3/poem-ga-gay/words/là.m4a?v=1791505164",
+            "mun": "sample3/poem-ga-gay/words/mun.m4a?v=1791505166",
+            "mái": "sample3/poem-ga-gay/words/mái.m4a?v=1791505163",
+            "mèomun": "sample3/poem-ga-gay/words/mèo mun.m4a?v=1792279127",
+            "mèo": "sample3/poem-ga-gay/words/mèo.m4a?v=1791505165",
+            "mực": "sample3/poem-ga-gay/words/mực.m4a?v=1791505165",
+            "ngủgật": "sample3/poem-ga-gay/words/ngủ gật.m4a?v=1792279127",
+            "ngủ": "sample3/poem-ga-gay/words/ngủ.m4a?v=1791505165",
+            "nhà": "sample3/poem-ga-gay/words/nhà.m4a?v=1791505164"
           }
         },
         "poem-ke-kho": {
+          "title": "Kẻ Khó",
           "sentences": [
-            "sample3/poem-ke-kho/s01.m4a",
-            "sample3/poem-ke-kho/s02.m4a",
-            "sample3/poem-ke-kho/s03.m4a",
-            "sample3/poem-ke-kho/s04.m4a",
-            "sample3/poem-ke-kho/s05.m4a",
-            "sample3/poem-ke-kho/s06.m4a"
+            "sample3/poem-ke-kho/s01.m4a?v=1791825772",
+            "sample3/poem-ke-kho/s02.m4a?v=1791825773",
+            "sample3/poem-ke-kho/s03.m4a?v=1791825773",
+            "sample3/poem-ke-kho/s04.m4a?v=1791825773",
+            "sample3/poem-ke-kho/s05.m4a?v=1792279151",
+            "sample3/poem-ke-kho/s06.m4a?v=1791825774"
+          ],
+          "texts": [
+            [
+              "Kẻ khó xót xa,",
+              "Kẻ khó xót xa."
+            ],
+            [
+              "Đâu có cửa nhà!",
+              "Đâu có cửa nhà!"
+            ],
+            [
+              "Ra đường lam lũ.",
+              "Ra đường lam lũ."
+            ],
+            [
+              "Áo quần không đủ.",
+              "Áo quần không đủ."
+            ],
+            [
+              "Lạnh ho khù khụ.",
+              "Lạnh, ho khù khụ."
+            ],
+            [
+              "Ai nhủ lòng thương?",
+              "Ai nhủ lòng thương?"
+            ]
           ],
           "words": {
-            "ai": "sample3/poem-ke-kho/words/ai.m4a",
-            "có": "sample3/poem-ke-kho/words/có.m4a",
-            "cửanhà": "sample3/poem-ke-kho/words/cửa nhà.m4a",
-            "cửa": "sample3/poem-ke-kho/words/cửa.m4a",
-            "ho": "sample3/poem-ke-kho/words/ho.m4a",
-            "khó": "sample3/poem-ke-kho/words/khó.m4a",
-            "không": "sample3/poem-ke-kho/words/không.m4a",
-            "khùkhụ": "sample3/poem-ke-kho/words/khù khụ.m4a",
-            "khù": "sample3/poem-ke-kho/words/khù.m4a",
-            "khụ": "sample3/poem-ke-kho/words/khụ.m4a",
-            "kẻkhó": "sample3/poem-ke-kho/words/kẻ khó.m4a",
-            "kẻ": "sample3/poem-ke-kho/words/kẻ.m4a",
-            "lamlũ": "sample3/poem-ke-kho/words/lam lũ.m4a",
-            "lam": "sample3/poem-ke-kho/words/lam.m4a",
-            "lòng": "sample3/poem-ke-kho/words/lòng.m4a",
-            "lũ": "sample3/poem-ke-kho/words/lũ.m4a",
-            "lạnh": "sample3/poem-ke-kho/words/lạnh.m4a",
-            "nhà": "sample3/poem-ke-kho/words/nhà.m4a",
-            "nhủlòngthương": "sample3/poem-ke-kho/words/nhủ lòng thương.m4a",
-            "nhủ": "sample3/poem-ke-kho/words/nhủ.m4a",
-            "quần": "sample3/poem-ke-kho/words/quần.m4a",
-            "ra": "sample3/poem-ke-kho/words/ra.m4a",
-            "thương": "sample3/poem-ke-kho/words/thương.m4a",
-            "xa": "sample3/poem-ke-kho/words/xa.m4a",
-            "xótxa": "sample3/poem-ke-kho/words/xót xa.m4a",
-            "xót": "sample3/poem-ke-kho/words/xót.m4a",
-            "áoquần": "sample3/poem-ke-kho/words/áo quần.m4a",
-            "áo": "sample3/poem-ke-kho/words/áo.m4a",
-            "đâu": "sample3/poem-ke-kho/words/đâu.m4a",
-            "đường": "sample3/poem-ke-kho/words/đường.m4a",
-            "đủ": "sample3/poem-ke-kho/words/đủ.m4a"
+            "ai": "sample3/poem-ke-kho/words/ai.m4a?v=1791825778",
+            "có": "sample3/poem-ke-kho/words/có.m4a?v=1791825776",
+            "cửanhà": "sample3/poem-ke-kho/words/cửa nhà.m4a?v=1792279128",
+            "cửa": "sample3/poem-ke-kho/words/cửa.m4a?v=1791825776",
+            "ho": "sample3/poem-ke-kho/words/ho.m4a?v=1791825778",
+            "khó": "sample3/poem-ke-kho/words/khó.m4a?v=1791825774",
+            "không": "sample3/poem-ke-kho/words/không.m4a?v=1791825777",
+            "khùkhụ": "sample3/poem-ke-kho/words/khù khụ.m4a?v=1792279129",
+            "khù": "sample3/poem-ke-kho/words/khù.m4a?v=1791825778",
+            "khụ": "sample3/poem-ke-kho/words/khụ.m4a?v=1791825778",
+            "kẻkhó": "sample3/poem-ke-kho/words/kẻ khó.m4a?v=1792279128",
+            "kẻ": "sample3/poem-ke-kho/words/kẻ.m4a?v=1791825774",
+            "lamlũ": "sample3/poem-ke-kho/words/lam lũ.m4a?v=1792279128",
+            "lam": "sample3/poem-ke-kho/words/lam.m4a?v=1791825776",
+            "lòng": "sample3/poem-ke-kho/words/lòng.m4a?v=1791825779",
+            "lũ": "sample3/poem-ke-kho/words/lũ.m4a?v=1791825777",
+            "lạnh": "sample3/poem-ke-kho/words/lạnh.m4a?v=1791825778",
+            "nhà": "sample3/poem-ke-kho/words/nhà.m4a?v=1791825776",
+            "nhủlòngthương": "sample3/poem-ke-kho/words/nhủ lòng thương.m4a?v=1792279129",
+            "nhủ": "sample3/poem-ke-kho/words/nhủ.m4a?v=1791825778",
+            "quần": "sample3/poem-ke-kho/words/quần.m4a?v=1791825777",
+            "ra": "sample3/poem-ke-kho/words/ra.m4a?v=1791825776",
+            "thương": "sample3/poem-ke-kho/words/thương.m4a?v=1791825779",
+            "xa": "sample3/poem-ke-kho/words/xa.m4a?v=1791825775",
+            "xótxa": "sample3/poem-ke-kho/words/xót xa.m4a?v=1792279128",
+            "xót": "sample3/poem-ke-kho/words/xót.m4a?v=1791825775",
+            "áoquần": "sample3/poem-ke-kho/words/áo quần.m4a?v=1792279129",
+            "áo": "sample3/poem-ke-kho/words/áo.m4a?v=1791825777",
+            "đâu": "sample3/poem-ke-kho/words/đâu.m4a?v=1791825775",
+            "đường": "sample3/poem-ke-kho/words/đường.m4a?v=1791825776",
+            "đủ": "sample3/poem-ke-kho/words/đủ.m4a?v=1791825777"
           }
         },
         "v3-poem-quy-men-me-cha": {
+          "title": "Quý Mến Mẹ Cha",
           "sentences": [
-            "sample3/v3-poem-quy-men-me-cha/s01.m4a",
-            "sample3/v3-poem-quy-men-me-cha/s02.m4a",
-            "sample3/v3-poem-quy-men-me-cha/s03.m4a",
-            "sample3/v3-poem-quy-men-me-cha/s04.m4a",
-            "sample3/v3-poem-quy-men-me-cha/s05.m4a"
+            "sample3/v3-poem-quy-men-me-cha/s01.m4a?v=1791825165",
+            "sample3/v3-poem-quy-men-me-cha/s02.m4a?v=1791825166",
+            "sample3/v3-poem-quy-men-me-cha/s03.m4a?v=1791825167",
+            "sample3/v3-poem-quy-men-me-cha/s04.m4a?v=1791825168",
+            "sample3/v3-poem-quy-men-me-cha/s05.m4a?v=1791825168"
+          ],
+          "texts": [
+            [
+              "Từ sáng sớm, cha mẹ Mai đã phải thức dậy đi làm.",
+              "Từ sáng sớm, cha mẹ Mai đã phải thức dậy đi làm."
+            ],
+            [
+              "Chiều về đến nhà, mẹ sắp đặt việc làm có thứ tự.",
+              "Chiều về đến nhà, mẹ sắp đặt việc làm có thứ tự."
+            ],
+            [
+              "Nào nấu ăn, giặt áo quần. Nào nhắc nhở các em làm bài.",
+              "Nào nấu ăn, giặt áo quần. Nào nhắc nhở các em làm bài."
+            ],
+            [
+              "Cha hãy còn ở sở. Vất vả vì con cái mà cha mẹ vẫn vui.",
+              "Cha hãy còn ở sở. Vất vả vì con cái mà cha mẹ vẫn vui."
+            ],
+            [
+              "Em rất quý mến mẹ cha.",
+              "Em rất quý mến mẹ cha."
+            ]
           ],
           "words": {
-            "bài": "sample3/v3-poem-quy-men-me-cha/words/bài.m4a",
-            "chamẹ": "sample3/v3-poem-quy-men-me-cha/words/cha mẹ.m4a",
-            "cha": "sample3/v3-poem-quy-men-me-cha/words/cha.m4a",
-            "chiều": "sample3/v3-poem-quy-men-me-cha/words/chiều.m4a",
-            "concái": "sample3/v3-poem-quy-men-me-cha/words/con cái.m4a",
-            "con": "sample3/v3-poem-quy-men-me-cha/words/con.m4a",
-            "các": "sample3/v3-poem-quy-men-me-cha/words/các.m4a",
-            "cái": "sample3/v3-poem-quy-men-me-cha/words/cái.m4a",
-            "còn": "sample3/v3-poem-quy-men-me-cha/words/còn.m4a",
-            "cóthứtự": "sample3/v3-poem-quy-men-me-cha/words/có thứ tự.m4a",
-            "có": "sample3/v3-poem-quy-men-me-cha/words/có.m4a",
-            "dậy": "sample3/v3-poem-quy-men-me-cha/words/dậy.m4a",
-            "em": "sample3/v3-poem-quy-men-me-cha/words/em.m4a",
-            "giặt": "sample3/v3-poem-quy-men-me-cha/words/giặt.m4a",
-            "hãycòn": "sample3/v3-poem-quy-men-me-cha/words/hãy còn.m4a",
-            "hãy": "sample3/v3-poem-quy-men-me-cha/words/hãy.m4a",
-            "làmbài": "sample3/v3-poem-quy-men-me-cha/words/làm bài.m4a",
-            "làm": "sample3/v3-poem-quy-men-me-cha/words/làm.m4a",
-            "mai": "sample3/v3-poem-quy-men-me-cha/words/mai.m4a",
-            "mà": "sample3/v3-poem-quy-men-me-cha/words/mà.m4a",
-            "mẹcha": "sample3/v3-poem-quy-men-me-cha/words/mẹ cha.m4a",
-            "mẹ": "sample3/v3-poem-quy-men-me-cha/words/mẹ.m4a",
-            "mến": "sample3/v3-poem-quy-men-me-cha/words/mến.m4a",
-            "nhà": "sample3/v3-poem-quy-men-me-cha/words/nhà.m4a",
-            "nhắcnhở": "sample3/v3-poem-quy-men-me-cha/words/nhắc nhở.m4a",
-            "nhắc": "sample3/v3-poem-quy-men-me-cha/words/nhắc.m4a",
-            "nhở": "sample3/v3-poem-quy-men-me-cha/words/nhở.m4a",
-            "nào": "sample3/v3-poem-quy-men-me-cha/words/nào.m4a",
-            "nấuăn": "sample3/v3-poem-quy-men-me-cha/words/nấu ăn.m4a",
-            "nấu": "sample3/v3-poem-quy-men-me-cha/words/nấu.m4a",
-            "phải": "sample3/v3-poem-quy-men-me-cha/words/phải.m4a",
-            "quýmến": "sample3/v3-poem-quy-men-me-cha/words/quý mến.m4a",
-            "quý": "sample3/v3-poem-quy-men-me-cha/words/quý.m4a",
-            "quần": "sample3/v3-poem-quy-men-me-cha/words/quần.m4a",
-            "rất": "sample3/v3-poem-quy-men-me-cha/words/rất.m4a",
-            "sángsớm": "sample3/v3-poem-quy-men-me-cha/words/sáng sớm.m4a",
-            "sáng": "sample3/v3-poem-quy-men-me-cha/words/sáng.m4a",
-            "sắpđặt": "sample3/v3-poem-quy-men-me-cha/words/sắp đặt.m4a",
-            "sắp": "sample3/v3-poem-quy-men-me-cha/words/sắp.m4a",
-            "sớm": "sample3/v3-poem-quy-men-me-cha/words/sớm.m4a",
-            "sở": "sample3/v3-poem-quy-men-me-cha/words/sở.m4a",
-            "thứtự": "sample3/v3-poem-quy-men-me-cha/words/thứ tự.m4a",
-            "thứ": "sample3/v3-poem-quy-men-me-cha/words/thứ.m4a",
-            "thứcdậy": "sample3/v3-poem-quy-men-me-cha/words/thức dậy.m4a",
-            "thức": "sample3/v3-poem-quy-men-me-cha/words/thức.m4a",
-            "từ": "sample3/v3-poem-quy-men-me-cha/words/từ.m4a",
-            "tự": "sample3/v3-poem-quy-men-me-cha/words/tự.m4a",
-            "việc": "sample3/v3-poem-quy-men-me-cha/words/việc.m4a",
-            "vui": "sample3/v3-poem-quy-men-me-cha/words/vui.m4a",
-            "vì": "sample3/v3-poem-quy-men-me-cha/words/vì.m4a",
-            "vả": "sample3/v3-poem-quy-men-me-cha/words/vả.m4a",
-            "vấtvả": "sample3/v3-poem-quy-men-me-cha/words/vất vả.m4a",
-            "vất": "sample3/v3-poem-quy-men-me-cha/words/vất.m4a",
-            "vẫn": "sample3/v3-poem-quy-men-me-cha/words/vẫn.m4a",
-            "về": "sample3/v3-poem-quy-men-me-cha/words/về.m4a",
-            "áoquần": "sample3/v3-poem-quy-men-me-cha/words/áo quần.m4a",
-            "áo": "sample3/v3-poem-quy-men-me-cha/words/áo.m4a",
-            "ăn": "sample3/v3-poem-quy-men-me-cha/words/ăn.m4a",
-            "đilàm": "sample3/v3-poem-quy-men-me-cha/words/đi làm.m4a",
-            "đi": "sample3/v3-poem-quy-men-me-cha/words/đi.m4a",
-            "đã": "sample3/v3-poem-quy-men-me-cha/words/đã.m4a",
-            "đặt": "sample3/v3-poem-quy-men-me-cha/words/đặt.m4a",
-            "đến": "sample3/v3-poem-quy-men-me-cha/words/đến.m4a",
-            "ở": "sample3/v3-poem-quy-men-me-cha/words/ở.m4a"
+            "bài": "sample3/v3-poem-quy-men-me-cha/words/bài.m4a?v=1791825174",
+            "chamẹ": "sample3/v3-poem-quy-men-me-cha/words/cha mẹ.m4a?v=1792279129",
+            "cha": "sample3/v3-poem-quy-men-me-cha/words/cha.m4a?v=1791825169",
+            "chiều": "sample3/v3-poem-quy-men-me-cha/words/chiều.m4a?v=1791825170",
+            "concái": "sample3/v3-poem-quy-men-me-cha/words/con cái.m4a?v=1792279132",
+            "con": "sample3/v3-poem-quy-men-me-cha/words/con.m4a?v=1791825176",
+            "các": "sample3/v3-poem-quy-men-me-cha/words/các.m4a?v=1791825174",
+            "cái": "sample3/v3-poem-quy-men-me-cha/words/cái.m4a?v=1791825176",
+            "còn": "sample3/v3-poem-quy-men-me-cha/words/còn.m4a?v=1791825174",
+            "cóthứtự": "sample3/v3-poem-quy-men-me-cha/words/có thứ tự.m4a?v=1792279131",
+            "có": "sample3/v3-poem-quy-men-me-cha/words/có.m4a?v=1791825172",
+            "dậy": "sample3/v3-poem-quy-men-me-cha/words/dậy.m4a?v=1791825170",
+            "em": "sample3/v3-poem-quy-men-me-cha/words/em.m4a?v=1791825174",
+            "giặt": "sample3/v3-poem-quy-men-me-cha/words/giặt.m4a?v=1791825173",
+            "hãycòn": "sample3/v3-poem-quy-men-me-cha/words/hãy còn.m4a?v=1792279132",
+            "hãy": "sample3/v3-poem-quy-men-me-cha/words/hãy.m4a?v=1791825174",
+            "làmbài": "sample3/v3-poem-quy-men-me-cha/words/làm bài.m4a?v=1792279131",
+            "làm": "sample3/v3-poem-quy-men-me-cha/words/làm.m4a?v=1791825170",
+            "mai": "sample3/v3-poem-quy-men-me-cha/words/mai.m4a?v=1791825169",
+            "mà": "sample3/v3-poem-quy-men-me-cha/words/mà.m4a?v=1791825176",
+            "mẹcha": "sample3/v3-poem-quy-men-me-cha/words/mẹ cha.m4a?v=1792279133",
+            "mẹ": "sample3/v3-poem-quy-men-me-cha/words/mẹ.m4a?v=1791825169",
+            "mến": "sample3/v3-poem-quy-men-me-cha/words/mến.m4a?v=1791825177",
+            "nhà": "sample3/v3-poem-quy-men-me-cha/words/nhà.m4a?v=1791825171",
+            "nhắcnhở": "sample3/v3-poem-quy-men-me-cha/words/nhắc nhở.m4a?v=1792279131",
+            "nhắc": "sample3/v3-poem-quy-men-me-cha/words/nhắc.m4a?v=1791825173",
+            "nhở": "sample3/v3-poem-quy-men-me-cha/words/nhở.m4a?v=1791825174",
+            "nào": "sample3/v3-poem-quy-men-me-cha/words/nào.m4a?v=1791825172",
+            "nấuăn": "sample3/v3-poem-quy-men-me-cha/words/nấu ăn.m4a?v=1792279131",
+            "nấu": "sample3/v3-poem-quy-men-me-cha/words/nấu.m4a?v=1791825172",
+            "phải": "sample3/v3-poem-quy-men-me-cha/words/phải.m4a?v=1791825169",
+            "quýmến": "sample3/v3-poem-quy-men-me-cha/words/quý mến.m4a?v=1792279133",
+            "quý": "sample3/v3-poem-quy-men-me-cha/words/quý.m4a?v=1791825177",
+            "quần": "sample3/v3-poem-quy-men-me-cha/words/quần.m4a?v=1791825173",
+            "rất": "sample3/v3-poem-quy-men-me-cha/words/rất.m4a?v=1791825176",
+            "sángsớm": "sample3/v3-poem-quy-men-me-cha/words/sáng sớm.m4a?v=1792279129",
+            "sáng": "sample3/v3-poem-quy-men-me-cha/words/sáng.m4a?v=1791825168",
+            "sắpđặt": "sample3/v3-poem-quy-men-me-cha/words/sắp đặt.m4a?v=1792279130",
+            "sắp": "sample3/v3-poem-quy-men-me-cha/words/sắp.m4a?v=1791825171",
+            "sớm": "sample3/v3-poem-quy-men-me-cha/words/sớm.m4a?v=1791825168",
+            "sở": "sample3/v3-poem-quy-men-me-cha/words/sở.m4a?v=1791825175",
+            "thứtự": "sample3/v3-poem-quy-men-me-cha/words/thứ tự.m4a?v=1792279130",
+            "thứ": "sample3/v3-poem-quy-men-me-cha/words/thứ.m4a?v=1791825172",
+            "thứcdậy": "sample3/v3-poem-quy-men-me-cha/words/thức dậy.m4a?v=1792279130",
+            "thức": "sample3/v3-poem-quy-men-me-cha/words/thức.m4a?v=1791825170",
+            "từ": "sample3/v3-poem-quy-men-me-cha/words/từ.m4a?v=1791825168",
+            "tự": "sample3/v3-poem-quy-men-me-cha/words/tự.m4a?v=1791825172",
+            "việc": "sample3/v3-poem-quy-men-me-cha/words/việc.m4a?v=1791825171",
+            "vui": "sample3/v3-poem-quy-men-me-cha/words/vui.m4a?v=1791825176",
+            "vì": "sample3/v3-poem-quy-men-me-cha/words/vì.m4a?v=1791825175",
+            "vả": "sample3/v3-poem-quy-men-me-cha/words/vả.m4a?v=1791825175",
+            "vấtvả": "sample3/v3-poem-quy-men-me-cha/words/vất vả.m4a?v=1792279132",
+            "vất": "sample3/v3-poem-quy-men-me-cha/words/vất.m4a?v=1791825175",
+            "vẫn": "sample3/v3-poem-quy-men-me-cha/words/vẫn.m4a?v=1791825176",
+            "về": "sample3/v3-poem-quy-men-me-cha/words/về.m4a?v=1791825171",
+            "áoquần": "sample3/v3-poem-quy-men-me-cha/words/áo quần.m4a?v=1792279131",
+            "áo": "sample3/v3-poem-quy-men-me-cha/words/áo.m4a?v=1791825173",
+            "ăn": "sample3/v3-poem-quy-men-me-cha/words/ăn.m4a?v=1791825173",
+            "đilàm": "sample3/v3-poem-quy-men-me-cha/words/đi làm.m4a?v=1792279130",
+            "đi": "sample3/v3-poem-quy-men-me-cha/words/đi.m4a?v=1791825170",
+            "đã": "sample3/v3-poem-quy-men-me-cha/words/đã.m4a?v=1791825169",
+            "đặt": "sample3/v3-poem-quy-men-me-cha/words/đặt.m4a?v=1791825171",
+            "đến": "sample3/v3-poem-quy-men-me-cha/words/đến.m4a?v=1791825171",
+            "ở": "sample3/v3-poem-quy-men-me-cha/words/ở.m4a?v=1791825175"
           }
         },
         "mean-p155-words": {
+          "title": "Từ ngữ",
           "sentences": [
-            "sample3/mean-p155-words/s01.m4a",
-            "sample3/mean-p155-words/s02.m4a",
-            "sample3/mean-p155-words/s03.m4a",
-            "sample3/mean-p155-words/s04.m4a",
-            "sample3/mean-p155-words/s05.m4a",
-            "sample3/mean-p155-words/s06.m4a",
-            "sample3/mean-p155-words/s07.m4a",
-            "sample3/mean-p155-words/s08.m4a",
-            "sample3/mean-p155-words/s09.m4a",
-            "sample3/mean-p155-words/s10.m4a",
-            "sample3/mean-p155-words/s11.m4a",
-            "sample3/mean-p155-words/s12.m4a",
-            "sample3/mean-p155-words/s13.m4a",
-            "sample3/mean-p155-words/s14.m4a",
-            "sample3/mean-p155-words/s15.m4a",
-            "sample3/mean-p155-words/s16.m4a"
+            "sample3/mean-p155-words/s01.m4a?v=1792113742",
+            "sample3/mean-p155-words/s02.m4a?v=1792113742",
+            "sample3/mean-p155-words/s03.m4a?v=1792113742",
+            "sample3/mean-p155-words/s04.m4a?v=1792113742",
+            "sample3/mean-p155-words/s05.m4a?v=1792113743",
+            "sample3/mean-p155-words/s06.m4a?v=1792113743",
+            "sample3/mean-p155-words/s07.m4a?v=1792113743",
+            "sample3/mean-p155-words/s08.m4a?v=1792113743",
+            "sample3/mean-p155-words/s09.m4a?v=1792113744",
+            "sample3/mean-p155-words/s10.m4a?v=1792113744",
+            "sample3/mean-p155-words/s11.m4a?v=1792113744",
+            "sample3/mean-p155-words/s12.m4a?v=1792113744",
+            "sample3/mean-p155-words/s13.m4a?v=1792113744",
+            "sample3/mean-p155-words/s14.m4a?v=1792113745",
+            "sample3/mean-p155-words/s15.m4a?v=1792113745",
+            "sample3/mean-p155-words/s16.m4a?v=1792113745"
+          ],
+          "texts": [
+            [
+              "Cha mẹ",
+              "Cha mẹ."
+            ],
+            [
+              "Chi và Tú",
+              "Chi và Tú."
+            ],
+            [
+              "Gió to",
+              "Gió to."
+            ],
+            [
+              "Ông bà em",
+              "Ông bà em."
+            ],
+            [
+              "Chó để",
+              "Chó để."
+            ],
+            [
+              "Bé ăn",
+              "Bé ăn."
+            ],
+            [
+              "Mẹ bỏ gà",
+              "Mẹ bỏ gà."
+            ],
+            [
+              "Xe cũ",
+              "Xe cũ."
+            ],
+            [
+              "làm đổ nhà",
+              "làm đổ nhà."
+            ],
+            [
+              "giữ nhà",
+              "giữ nhà."
+            ],
+            [
+              "vào lò",
+              "vào lò."
+            ],
+            [
+              "bán rẻ rề",
+              "bán rẻ rề."
+            ],
+            [
+              "học bài",
+              "học bài."
+            ],
+            [
+              "đi ghe đò",
+              "đi ghe đò."
+            ],
+            [
+              "giỗ tổ",
+              "giỗ tổ."
+            ],
+            [
+              "chả quế",
+              "chả quế."
+            ]
           ],
           "words": {
-            "bà": "sample3/mean-p155-words/words/bà.m4a",
-            "bài": "sample3/mean-p155-words/words/bài.m4a",
-            "bán": "sample3/mean-p155-words/words/bán.m4a",
-            "bé": "sample3/mean-p155-words/words/bé.m4a",
-            "bỏ": "sample3/mean-p155-words/words/bỏ.m4a",
-            "cha": "sample3/mean-p155-words/words/cha.m4a",
-            "chi": "sample3/mean-p155-words/words/chi.m4a",
-            "chó": "sample3/mean-p155-words/words/chó.m4a",
-            "chả": "sample3/mean-p155-words/words/chả.m4a",
-            "cũ": "sample3/mean-p155-words/words/cũ.m4a",
-            "em": "sample3/mean-p155-words/words/em.m4a",
-            "ghe": "sample3/mean-p155-words/words/ghe.m4a",
-            "gió": "sample3/mean-p155-words/words/gió.m4a",
-            "giỗ": "sample3/mean-p155-words/words/giỗ.m4a",
-            "giữ": "sample3/mean-p155-words/words/giữ.m4a",
-            "gà": "sample3/mean-p155-words/words/gà.m4a",
-            "học": "sample3/mean-p155-words/words/học.m4a",
-            "làm": "sample3/mean-p155-words/words/làm.m4a",
-            "lò": "sample3/mean-p155-words/words/lò.m4a",
-            "mẹ": "sample3/mean-p155-words/words/mẹ.m4a",
-            "nhà": "sample3/mean-p155-words/words/nhà.m4a",
-            "quế": "sample3/mean-p155-words/words/quế.m4a",
-            "rẻ": "sample3/mean-p155-words/words/rẻ.m4a",
-            "rề": "sample3/mean-p155-words/words/rề.m4a",
-            "to": "sample3/mean-p155-words/words/to.m4a",
-            "tú": "sample3/mean-p155-words/words/tú.m4a",
-            "tổ": "sample3/mean-p155-words/words/tổ.m4a",
-            "và": "sample3/mean-p155-words/words/và.m4a",
-            "vào": "sample3/mean-p155-words/words/vào.m4a",
-            "xe": "sample3/mean-p155-words/words/xe.m4a",
-            "ông": "sample3/mean-p155-words/words/ông.m4a",
-            "ăn": "sample3/mean-p155-words/words/ăn.m4a",
-            "đi": "sample3/mean-p155-words/words/đi.m4a",
-            "đò": "sample3/mean-p155-words/words/đò.m4a",
-            "để": "sample3/mean-p155-words/words/để.m4a",
-            "đổ": "sample3/mean-p155-words/words/đổ.m4a"
+            "bà": "sample3/mean-p155-words/words/bà.m4a?v=1792113747",
+            "bài": "sample3/mean-p155-words/words/bài.m4a?v=1792113751",
+            "bán": "sample3/mean-p155-words/words/bán.m4a?v=1792113750",
+            "bé": "sample3/mean-p155-words/words/bé.m4a?v=1792113747",
+            "bỏ": "sample3/mean-p155-words/words/bỏ.m4a?v=1792113748",
+            "cha": "sample3/mean-p155-words/words/cha.m4a?v=1792113745",
+            "chi": "sample3/mean-p155-words/words/chi.m4a?v=1792113746",
+            "chó": "sample3/mean-p155-words/words/chó.m4a?v=1792113747",
+            "chả": "sample3/mean-p155-words/words/chả.m4a?v=1792113752",
+            "cũ": "sample3/mean-p155-words/words/cũ.m4a?v=1792113749",
+            "em": "sample3/mean-p155-words/words/em.m4a?v=1792113747",
+            "ghe": "sample3/mean-p155-words/words/ghe.m4a?v=1792113751",
+            "gió": "sample3/mean-p155-words/words/gió.m4a?v=1792113746",
+            "giỗ": "sample3/mean-p155-words/words/giỗ.m4a?v=1792113752",
+            "giữ": "sample3/mean-p155-words/words/giữ.m4a?v=1792113749",
+            "gà": "sample3/mean-p155-words/words/gà.m4a?v=1792113748",
+            "học": "sample3/mean-p155-words/words/học.m4a?v=1792113751",
+            "làm": "sample3/mean-p155-words/words/làm.m4a?v=1792113749",
+            "lò": "sample3/mean-p155-words/words/lò.m4a?v=1792113750",
+            "mẹ": "sample3/mean-p155-words/words/mẹ.m4a?v=1792113746",
+            "nhà": "sample3/mean-p155-words/words/nhà.m4a?v=1792113749",
+            "quế": "sample3/mean-p155-words/words/quế.m4a?v=1792113752",
+            "rẻ": "sample3/mean-p155-words/words/rẻ.m4a?v=1792113750",
+            "rề": "sample3/mean-p155-words/words/rề.m4a?v=1792113751",
+            "to": "sample3/mean-p155-words/words/to.m4a?v=1792113746",
+            "tú": "sample3/mean-p155-words/words/tú.m4a?v=1792113746",
+            "tổ": "sample3/mean-p155-words/words/tổ.m4a?v=1792113752",
+            "và": "sample3/mean-p155-words/words/và.m4a?v=1792113746",
+            "vào": "sample3/mean-p155-words/words/vào.m4a?v=1792113750",
+            "xe": "sample3/mean-p155-words/words/xe.m4a?v=1792113748",
+            "ông": "sample3/mean-p155-words/words/ông.m4a?v=1792113747",
+            "ăn": "sample3/mean-p155-words/words/ăn.m4a?v=1792113748",
+            "đi": "sample3/mean-p155-words/words/đi.m4a?v=1792113751",
+            "đò": "sample3/mean-p155-words/words/đò.m4a?v=1792113751",
+            "để": "sample3/mean-p155-words/words/để.m4a?v=1792113747",
+            "đổ": "sample3/mean-p155-words/words/đổ.m4a?v=1792113749"
           }
         },
         "mean-p155-sentences": {
+          "title": "Cả câu",
           "sentences": [
-            "sample3/mean-p155-sentences/s01.m4a",
-            "sample3/mean-p155-sentences/s02.m4a",
-            "sample3/mean-p155-sentences/s03.m4a",
-            "sample3/mean-p155-sentences/s04.m4a",
-            "sample3/mean-p155-sentences/s05.m4a",
-            "sample3/mean-p155-sentences/s06.m4a",
-            "sample3/mean-p155-sentences/s07.m4a",
-            "sample3/mean-p155-sentences/s08.m4a"
+            "sample3/mean-p155-sentences/s01.m4a?v=1792113753",
+            "sample3/mean-p155-sentences/s02.m4a?v=1792113753",
+            "sample3/mean-p155-sentences/s03.m4a?v=1792113753",
+            "sample3/mean-p155-sentences/s04.m4a?v=1792113754",
+            "sample3/mean-p155-sentences/s05.m4a?v=1792113754",
+            "sample3/mean-p155-sentences/s06.m4a?v=1792113754",
+            "sample3/mean-p155-sentences/s07.m4a?v=1792113754",
+            "sample3/mean-p155-sentences/s08.m4a?v=1792113755"
+          ],
+          "texts": [
+            [
+              "Cha mẹ đi ghe đò.",
+              "Cha mẹ đi ghe đò."
+            ],
+            [
+              "Chi và Tú học bài.",
+              "Chi và Tú học bài."
+            ],
+            [
+              "Gió to làm đổ nhà.",
+              "Gió to làm đổ nhà."
+            ],
+            [
+              "Ông bà em giỗ tổ.",
+              "Ông bà em giỗ tổ."
+            ],
+            [
+              "Chó để giữ nhà.",
+              "Chó để giữ nhà."
+            ],
+            [
+              "Bé ăn chả quế.",
+              "Bé ăn chả quế."
+            ],
+            [
+              "Mẹ bỏ gà vào lò.",
+              "Mẹ bỏ gà vào lò."
+            ],
+            [
+              "Xe cũ bán rẻ rề.",
+              "Xe cũ bán rẻ rề."
+            ]
           ],
           "words": {
-            "bà": "sample3/mean-p155-sentences/words/bà.m4a",
-            "bài": "sample3/mean-p155-sentences/words/bài.m4a",
-            "bán": "sample3/mean-p155-sentences/words/bán.m4a",
-            "bé": "sample3/mean-p155-sentences/words/bé.m4a",
-            "bỏ": "sample3/mean-p155-sentences/words/bỏ.m4a",
-            "cha": "sample3/mean-p155-sentences/words/cha.m4a",
-            "chi": "sample3/mean-p155-sentences/words/chi.m4a",
-            "chó": "sample3/mean-p155-sentences/words/chó.m4a",
-            "chả": "sample3/mean-p155-sentences/words/chả.m4a",
-            "cũ": "sample3/mean-p155-sentences/words/cũ.m4a",
-            "em": "sample3/mean-p155-sentences/words/em.m4a",
-            "ghe": "sample3/mean-p155-sentences/words/ghe.m4a",
-            "gió": "sample3/mean-p155-sentences/words/gió.m4a",
-            "giỗ": "sample3/mean-p155-sentences/words/giỗ.m4a",
-            "giữ": "sample3/mean-p155-sentences/words/giữ.m4a",
-            "gà": "sample3/mean-p155-sentences/words/gà.m4a",
-            "học": "sample3/mean-p155-sentences/words/học.m4a",
-            "làm": "sample3/mean-p155-sentences/words/làm.m4a",
-            "lò": "sample3/mean-p155-sentences/words/lò.m4a",
-            "mẹ": "sample3/mean-p155-sentences/words/mẹ.m4a",
-            "nhà": "sample3/mean-p155-sentences/words/nhà.m4a",
-            "quế": "sample3/mean-p155-sentences/words/quế.m4a",
-            "rẻ": "sample3/mean-p155-sentences/words/rẻ.m4a",
-            "rề": "sample3/mean-p155-sentences/words/rề.m4a",
-            "to": "sample3/mean-p155-sentences/words/to.m4a",
-            "tú": "sample3/mean-p155-sentences/words/tú.m4a",
-            "tổ": "sample3/mean-p155-sentences/words/tổ.m4a",
-            "và": "sample3/mean-p155-sentences/words/và.m4a",
-            "vào": "sample3/mean-p155-sentences/words/vào.m4a",
-            "xe": "sample3/mean-p155-sentences/words/xe.m4a",
-            "ông": "sample3/mean-p155-sentences/words/ông.m4a",
-            "ăn": "sample3/mean-p155-sentences/words/ăn.m4a",
-            "đi": "sample3/mean-p155-sentences/words/đi.m4a",
-            "đò": "sample3/mean-p155-sentences/words/đò.m4a",
-            "để": "sample3/mean-p155-sentences/words/để.m4a",
-            "đổ": "sample3/mean-p155-sentences/words/đổ.m4a"
+            "bà": "sample3/mean-p155-sentences/words/bà.m4a?v=1792113758",
+            "bài": "sample3/mean-p155-sentences/words/bài.m4a?v=1792113757",
+            "bán": "sample3/mean-p155-sentences/words/bán.m4a?v=1792113761",
+            "bé": "sample3/mean-p155-sentences/words/bé.m4a?v=1792113759",
+            "bỏ": "sample3/mean-p155-sentences/words/bỏ.m4a?v=1792113760",
+            "cha": "sample3/mean-p155-sentences/words/cha.m4a?v=1792113755",
+            "chi": "sample3/mean-p155-sentences/words/chi.m4a?v=1792113756",
+            "chó": "sample3/mean-p155-sentences/words/chó.m4a?v=1792113759",
+            "chả": "sample3/mean-p155-sentences/words/chả.m4a?v=1792113759",
+            "cũ": "sample3/mean-p155-sentences/words/cũ.m4a?v=1792113761",
+            "em": "sample3/mean-p155-sentences/words/em.m4a?v=1792113758",
+            "ghe": "sample3/mean-p155-sentences/words/ghe.m4a?v=1792113756",
+            "gió": "sample3/mean-p155-sentences/words/gió.m4a?v=1792113757",
+            "giỗ": "sample3/mean-p155-sentences/words/giỗ.m4a?v=1792113758",
+            "giữ": "sample3/mean-p155-sentences/words/giữ.m4a?v=1792113759",
+            "gà": "sample3/mean-p155-sentences/words/gà.m4a?v=1792113760",
+            "học": "sample3/mean-p155-sentences/words/học.m4a?v=1792113756",
+            "làm": "sample3/mean-p155-sentences/words/làm.m4a?v=1792113757",
+            "lò": "sample3/mean-p155-sentences/words/lò.m4a?v=1792113761",
+            "mẹ": "sample3/mean-p155-sentences/words/mẹ.m4a?v=1792113755",
+            "nhà": "sample3/mean-p155-sentences/words/nhà.m4a?v=1792113758",
+            "quế": "sample3/mean-p155-sentences/words/quế.m4a?v=1792113760",
+            "rẻ": "sample3/mean-p155-sentences/words/rẻ.m4a?v=1792113761",
+            "rề": "sample3/mean-p155-sentences/words/rề.m4a?v=1792113761",
+            "to": "sample3/mean-p155-sentences/words/to.m4a?v=1792113757",
+            "tú": "sample3/mean-p155-sentences/words/tú.m4a?v=1792113756",
+            "tổ": "sample3/mean-p155-sentences/words/tổ.m4a?v=1792113758",
+            "và": "sample3/mean-p155-sentences/words/và.m4a?v=1792113756",
+            "vào": "sample3/mean-p155-sentences/words/vào.m4a?v=1792113760",
+            "xe": "sample3/mean-p155-sentences/words/xe.m4a?v=1792113761",
+            "ông": "sample3/mean-p155-sentences/words/ông.m4a?v=1792113758",
+            "ăn": "sample3/mean-p155-sentences/words/ăn.m4a?v=1792113759",
+            "đi": "sample3/mean-p155-sentences/words/đi.m4a?v=1792113755",
+            "đò": "sample3/mean-p155-sentences/words/đò.m4a?v=1792113756",
+            "để": "sample3/mean-p155-sentences/words/để.m4a?v=1792113759",
+            "đổ": "sample3/mean-p155-sentences/words/đổ.m4a?v=1792113757"
+          }
+        },
+        "ghep-bai-1": {
+          "title": "Bài Một",
+          "sentences": [
+            "sample3/ghep-bai-1/s01.m4a?v=1793413664",
+            "sample3/ghep-bai-1/s02.m4a?v=1793413664",
+            "sample3/ghep-bai-1/s03.m4a?v=1793413664",
+            "sample3/ghep-bai-1/s04.m4a?v=1793413665",
+            "sample3/ghep-bai-1/s05.m4a?v=1793413665",
+            "sample3/ghep-bai-1/s06.m4a?v=1793413665",
+            "sample3/ghep-bai-1/s07.m4a?v=1793413665",
+            "sample3/ghep-bai-1/s08.m4a?v=1793413666",
+            "sample3/ghep-bai-1/s09.m4a?v=1793413666",
+            "sample3/ghep-bai-1/s10.m4a?v=1793413666",
+            "sample3/ghep-bai-1/s11.m4a?v=1793413666"
+          ],
+          "texts": [
+            [
+              "Em yêu mến mẹ cha.",
+              "Em yêu mến mẹ cha."
+            ],
+            [
+              "Ba mua hộp chà là.",
+              "Ba mua hộp chà là."
+            ],
+            [
+              "Chi mua nem mua chả.",
+              "Chi mua nem mua chả."
+            ],
+            [
+              "Nước mưa rơi lã chã.",
+              "Nước mưa rơi lã chã."
+            ],
+            [
+              "Không nên để chung chạ.",
+              "Không nên để chung chạ."
+            ],
+            [
+              "cha",
+              "cha."
+            ],
+            [
+              "chà",
+              "chà."
+            ],
+            [
+              "chả",
+              "chả."
+            ],
+            [
+              "chã",
+              "chã."
+            ],
+            [
+              "chạ",
+              "chạ."
+            ],
+            [
+              "cha",
+              "cha."
+            ]
+          ],
+          "words": {
+            "ba": "sample3/ghep-bai-1/words/ba.m4a?v=1793413667",
+            "cha": "sample3/ghep-bai-1/words/cha.m4a?v=1793413667",
+            "chi": "sample3/ghep-bai-1/words/chi.m4a?v=1793413668",
+            "chung": "sample3/ghep-bai-1/words/chung.m4a?v=1793413670",
+            "chà": "sample3/ghep-bai-1/words/chà.m4a?v=1793413668",
+            "chã": "sample3/ghep-bai-1/words/chã.m4a?v=1793413669",
+            "chạ": "sample3/ghep-bai-1/words/chạ.m4a?v=1793413670",
+            "chả": "sample3/ghep-bai-1/words/chả.m4a?v=1793413668",
+            "em": "sample3/ghep-bai-1/words/em.m4a?v=1793413666",
+            "hộp": "sample3/ghep-bai-1/words/hộp.m4a?v=1793413668",
+            "không": "sample3/ghep-bai-1/words/không.m4a?v=1793413670",
+            "là": "sample3/ghep-bai-1/words/là.m4a?v=1793413668",
+            "lã": "sample3/ghep-bai-1/words/lã.m4a?v=1793413669",
+            "mua": "sample3/ghep-bai-1/words/mua.m4a?v=1793413667",
+            "mưa": "sample3/ghep-bai-1/words/mưa.m4a?v=1793413669",
+            "mẹ": "sample3/ghep-bai-1/words/mẹ.m4a?v=1793413667",
+            "mến": "sample3/ghep-bai-1/words/mến.m4a?v=1793413667",
+            "nem": "sample3/ghep-bai-1/words/nem.m4a?v=1793413668",
+            "nên": "sample3/ghep-bai-1/words/nên.m4a?v=1793413670",
+            "nước": "sample3/ghep-bai-1/words/nước.m4a?v=1793413669",
+            "rơi": "sample3/ghep-bai-1/words/rơi.m4a?v=1793413669",
+            "yêu": "sample3/ghep-bai-1/words/yêu.m4a?v=1793413666",
+            "để": "sample3/ghep-bai-1/words/để.m4a?v=1793413670"
+          }
+        },
+        "ghep-bai-2": {
+          "title": "Bài Hai",
+          "sentences": [
+            "sample3/ghep-bai-2/s01.m4a?v=1793413671",
+            "sample3/ghep-bai-2/s02.m4a?v=1793413671",
+            "sample3/ghep-bai-2/s03.m4a?v=1793415095",
+            "sample3/ghep-bai-2/s04.m4a?v=1793415095",
+            "sample3/ghep-bai-2/s05.m4a?v=1793413672",
+            "sample3/ghep-bai-2/s06.m4a?v=1793413672",
+            "sample3/ghep-bai-2/s07.m4a?v=1793413672",
+            "sample3/ghep-bai-2/s08.m4a?v=1793415096",
+            "sample3/ghep-bai-2/s09.m4a?v=1793415096",
+            "sample3/ghep-bai-2/s10.m4a?v=1793413673",
+            "sample3/ghep-bai-2/s11.m4a?v=1793415096"
+          ],
+          "texts": [
+            [
+              "Ba em đi trên ghe.",
+              "Ba em đi trên ghe."
+            ],
+            [
+              "Ghe đã ghé vô bờ.",
+              "Ghe đã ghé vô bờ."
+            ],
+            [
+              "Ở dơ dễ bị ghẻ.",
+              "Ở dơ dễ bị ghẻ."
+            ],
+            [
+              "Hãy xếp đặt gọn ghẽ.",
+              "Hãy xếp đặt gọn ghẽ."
+            ],
+            [
+              "Mẹ đi chợ mua ghẹ.",
+              "Mẹ đi chợ mua ghẹ."
+            ],
+            [
+              "ghe",
+              "ghe."
+            ],
+            [
+              "ghé",
+              "ghé."
+            ],
+            [
+              "ghẻ",
+              "ghẻ."
+            ],
+            [
+              "ghẽ",
+              "ghẽ."
+            ],
+            [
+              "ghẹ",
+              "ghẹ."
+            ],
+            [
+              "ghe",
+              "ghe."
+            ]
+          ],
+          "words": {
+            "ba": "sample3/ghep-bai-2/words/ba.m4a?v=1793413673",
+            "bị": "sample3/ghep-bai-2/words/bị.m4a?v=1793413676",
+            "bờ": "sample3/ghep-bai-2/words/bờ.m4a?v=1793413675",
+            "chợ": "sample3/ghep-bai-2/words/chợ.m4a?v=1793413677",
+            "dơ": "sample3/ghep-bai-2/words/dơ.m4a?v=1793413675",
+            "dễ": "sample3/ghep-bai-2/words/dễ.m4a?v=1793413676",
+            "em": "sample3/ghep-bai-2/words/em.m4a?v=1793413674",
+            "ghe": "sample3/ghep-bai-2/words/ghe.m4a?v=1793413674",
+            "ghé": "sample3/ghep-bai-2/words/ghé.m4a?v=1793413674",
+            "ghẹ": "sample3/ghep-bai-2/words/ghẹ.m4a?v=1793413678",
+            "ghẻ": "sample3/ghep-bai-2/words/ghẻ.m4a?v=1793415096",
+            "ghẽ": "sample3/ghep-bai-2/words/ghẽ.m4a?v=1793415096",
+            "gọn": "sample3/ghep-bai-2/words/gọn.m4a?v=1793413677",
+            "hãy": "sample3/ghep-bai-2/words/hãy.m4a?v=1793413676",
+            "mua": "sample3/ghep-bai-2/words/mua.m4a?v=1793413678",
+            "mẹ": "sample3/ghep-bai-2/words/mẹ.m4a?v=1793413677",
+            "trên": "sample3/ghep-bai-2/words/trên.m4a?v=1793413674",
+            "vô": "sample3/ghep-bai-2/words/vô.m4a?v=1793413675",
+            "xếp": "sample3/ghep-bai-2/words/xếp.m4a?v=1793413676",
+            "đi": "sample3/ghep-bai-2/words/đi.m4a?v=1793413674",
+            "đã": "sample3/ghep-bai-2/words/đã.m4a?v=1793413674",
+            "đặt": "sample3/ghep-bai-2/words/đặt.m4a?v=1793413676",
+            "ở": "sample3/ghep-bai-2/words/ở.m4a?v=1793413675"
+          }
+        },
+        "ghep-bai-3": {
+          "title": "Bài Ba",
+          "sentences": [
+            "sample3/ghep-bai-3/s01.m4a?v=1793413678",
+            "sample3/ghep-bai-3/s02.m4a?v=1793413678",
+            "sample3/ghep-bai-3/s03.m4a?v=1793413679",
+            "sample3/ghep-bai-3/s04.m4a?v=1793413679",
+            "sample3/ghep-bai-3/s05.m4a?v=1793413679",
+            "sample3/ghep-bai-3/s06.m4a?v=1793413680",
+            "sample3/ghep-bai-3/s07.m4a?v=1793413680",
+            "sample3/ghep-bai-3/s08.m4a?v=1793413680",
+            "sample3/ghep-bai-3/s09.m4a?v=1793413680",
+            "sample3/ghep-bai-3/s10.m4a?v=1793413681",
+            "sample3/ghep-bai-3/s11.m4a?v=1793413681",
+            "sample3/ghep-bai-3/s12.m4a?v=1793413681",
+            "sample3/ghep-bai-3/s13.m4a?v=1793413681"
+          ],
+          "texts": [
+            [
+              "Chú em là sử gia.",
+              "Chú em là sử gia."
+            ],
+            [
+              "Giá nhà lên cao quá.",
+              "Giá nhà lên cao quá."
+            ],
+            [
+              "Ông bà em đã già.",
+              "Ông bà em đã già."
+            ],
+            [
+              "Chớ mua lầm đồ giả.",
+              "Chớ mua lầm đồ giả."
+            ],
+            [
+              "Lấy chày để giã gạo.",
+              "Lấy chày để giã gạo."
+            ],
+            [
+              "Cái giạ để đong lúa.",
+              "Cái giạ để đong lúa."
+            ],
+            [
+              "gia",
+              "gia."
+            ],
+            [
+              "giá",
+              "giá."
+            ],
+            [
+              "già",
+              "già."
+            ],
+            [
+              "giả",
+              "giả."
+            ],
+            [
+              "giã",
+              "giã."
+            ],
+            [
+              "giạ",
+              "giạ."
+            ],
+            [
+              "gia",
+              "gia."
+            ]
+          ],
+          "words": {
+            "bà": "sample3/ghep-bai-3/words/bà.m4a?v=1793413684",
+            "cao": "sample3/ghep-bai-3/words/cao.m4a?v=1793413683",
+            "chày": "sample3/ghep-bai-3/words/chày.m4a?v=1793413685",
+            "chú": "sample3/ghep-bai-3/words/chú.m4a?v=1793413681",
+            "chớ": "sample3/ghep-bai-3/words/chớ.m4a?v=1793413684",
+            "cái": "sample3/ghep-bai-3/words/cái.m4a?v=1793413686",
+            "em": "sample3/ghep-bai-3/words/em.m4a?v=1793413682",
+            "gia": "sample3/ghep-bai-3/words/gia.m4a?v=1793413682",
+            "già": "sample3/ghep-bai-3/words/già.m4a?v=1793413684",
+            "giá": "sample3/ghep-bai-3/words/giá.m4a?v=1793413683",
+            "giã": "sample3/ghep-bai-3/words/giã.m4a?v=1793413686",
+            "giạ": "sample3/ghep-bai-3/words/giạ.m4a?v=1793413686",
+            "giả": "sample3/ghep-bai-3/words/giả.m4a?v=1793413685",
+            "gạo": "sample3/ghep-bai-3/words/gạo.m4a?v=1793413686",
+            "là": "sample3/ghep-bai-3/words/là.m4a?v=1793413682",
+            "lên": "sample3/ghep-bai-3/words/lên.m4a?v=1793413683",
+            "lúa": "sample3/ghep-bai-3/words/lúa.m4a?v=1793413687",
+            "lấy": "sample3/ghep-bai-3/words/lấy.m4a?v=1793413685",
+            "lầm": "sample3/ghep-bai-3/words/lầm.m4a?v=1793413684",
+            "mua": "sample3/ghep-bai-3/words/mua.m4a?v=1793413684",
+            "nhà": "sample3/ghep-bai-3/words/nhà.m4a?v=1793413683",
+            "quá": "sample3/ghep-bai-3/words/quá.m4a?v=1793413683",
+            "sử": "sample3/ghep-bai-3/words/sử.m4a?v=1793413682",
+            "ông": "sample3/ghep-bai-3/words/ông.m4a?v=1793413683",
+            "đong": "sample3/ghep-bai-3/words/đong.m4a?v=1793413686",
+            "đã": "sample3/ghep-bai-3/words/đã.m4a?v=1793413684",
+            "để": "sample3/ghep-bai-3/words/để.m4a?v=1793413685",
+            "đồ": "sample3/ghep-bai-3/words/đồ.m4a?v=1793413685"
+          }
+        },
+        "ghep-bai-4": {
+          "title": "Bài Bốn",
+          "sentences": [
+            "sample3/ghep-bai-4/s01.m4a?v=1793413687",
+            "sample3/ghep-bai-4/s02.m4a?v=1793413687",
+            "sample3/ghep-bai-4/s03.m4a?v=1793413687",
+            "sample3/ghep-bai-4/s04.m4a?v=1793413688",
+            "sample3/ghep-bai-4/s05.m4a?v=1793413688",
+            "sample3/ghep-bai-4/s06.m4a?v=1793413688",
+            "sample3/ghep-bai-4/s07.m4a?v=1793413688",
+            "sample3/ghep-bai-4/s08.m4a?v=1793413689",
+            "sample3/ghep-bai-4/s09.m4a?v=1793413689",
+            "sample3/ghep-bai-4/s10.m4a?v=1793413689",
+            "sample3/ghep-bai-4/s11.m4a?v=1793413689"
+          ],
+          "texts": [
+            [
+              "cha mẹ em đi",
+              "Cha mẹ em đi."
+            ],
+            [
+              "mẹ che dù cho",
+              "Mẹ che dù cho."
+            ],
+            [
+              "chị em có",
+              "Chị em có."
+            ],
+            [
+              "em đi chợ với",
+              "Em đi chợ với."
+            ],
+            [
+              "chú Tư cho em",
+              "Chú Tư cho em."
+            ],
+            [
+              "cha mẹ",
+              "cha mẹ."
+            ],
+            [
+              "che dù",
+              "che dù."
+            ],
+            [
+              "chị em",
+              "chị em."
+            ],
+            [
+              "đi chợ",
+              "đi chợ."
+            ],
+            [
+              "chú Tư",
+              "chú Tư."
+            ],
+            [
+              "chờ",
+              "chờ."
+            ]
+          ],
+          "words": {
+            "cha": "sample3/ghep-bai-4/words/cha.m4a?v=1793413689",
+            "che": "sample3/ghep-bai-4/words/che.m4a?v=1793413690",
+            "cho": "sample3/ghep-bai-4/words/cho.m4a?v=1793413691",
+            "chú": "sample3/ghep-bai-4/words/chú.m4a?v=1793413692",
+            "chị": "sample3/ghep-bai-4/words/chị.m4a?v=1793413691",
+            "chờ": "sample3/ghep-bai-4/words/chờ.m4a?v=1793413692",
+            "chợ": "sample3/ghep-bai-4/words/chợ.m4a?v=1793413691",
+            "có": "sample3/ghep-bai-4/words/có.m4a?v=1793413691",
+            "dù": "sample3/ghep-bai-4/words/dù.m4a?v=1793413690",
+            "em": "sample3/ghep-bai-4/words/em.m4a?v=1793413690",
+            "mẹ": "sample3/ghep-bai-4/words/mẹ.m4a?v=1793413690",
+            "tư": "sample3/ghep-bai-4/words/tư.m4a?v=1793413692",
+            "với": "sample3/ghep-bai-4/words/với.m4a?v=1793413691",
+            "đi": "sample3/ghep-bai-4/words/đi.m4a?v=1793413690"
+          }
+        },
+        "ghep-bai-5": {
+          "title": "Bài Năm",
+          "sentences": [
+            "sample3/ghep-bai-5/s01.m4a?v=1793413692",
+            "sample3/ghep-bai-5/s02.m4a?v=1793413693",
+            "sample3/ghep-bai-5/s03.m4a?v=1793413693",
+            "sample3/ghep-bai-5/s04.m4a?v=1793413693",
+            "sample3/ghep-bai-5/s05.m4a?v=1793413693",
+            "sample3/ghep-bai-5/s06.m4a?v=1793413694",
+            "sample3/ghep-bai-5/s07.m4a?v=1793413694",
+            "sample3/ghep-bai-5/s08.m4a?v=1793413694",
+            "sample3/ghep-bai-5/s09.m4a?v=1793413694"
+          ],
+          "texts": [
+            [
+              "Đức hạnh là kho tàng.",
+              "Đức hạnh là kho tàng."
+            ],
+            [
+              "Hãy an ủi kẻ khó.",
+              "Hãy an ủi kẻ khó."
+            ],
+            [
+              "Ăn no dễ ngủ khò.",
+              "Ăn no dễ ngủ khò."
+            ],
+            [
+              "Đánh nhẹ gọi là khỏ.",
+              "Đánh nhẹ gọi là khỏ."
+            ],
+            [
+              "kho",
+              "kho."
+            ],
+            [
+              "khó",
+              "khó."
+            ],
+            [
+              "khò",
+              "khò."
+            ],
+            [
+              "khỏ",
+              "khỏ."
+            ],
+            [
+              "kho",
+              "kho."
+            ]
+          ],
+          "words": {
+            "an": "sample3/ghep-bai-5/words/an.m4a?v=1793413696",
+            "dễ": "sample3/ghep-bai-5/words/dễ.m4a?v=1793413697",
+            "gọi": "sample3/ghep-bai-5/words/gọi.m4a?v=1793413698",
+            "hãy": "sample3/ghep-bai-5/words/hãy.m4a?v=1793413695",
+            "hạnh": "sample3/ghep-bai-5/words/hạnh.m4a?v=1793413695",
+            "kho": "sample3/ghep-bai-5/words/kho.m4a?v=1793413695",
+            "khò": "sample3/ghep-bai-5/words/khò.m4a?v=1793413697",
+            "khó": "sample3/ghep-bai-5/words/khó.m4a?v=1793413696",
+            "khỏ": "sample3/ghep-bai-5/words/khỏ.m4a?v=1793413698",
+            "kẻ": "sample3/ghep-bai-5/words/kẻ.m4a?v=1793413696",
+            "là": "sample3/ghep-bai-5/words/là.m4a?v=1793413695",
+            "ngủ": "sample3/ghep-bai-5/words/ngủ.m4a?v=1793413697",
+            "nhẹ": "sample3/ghep-bai-5/words/nhẹ.m4a?v=1793413697",
+            "no": "sample3/ghep-bai-5/words/no.m4a?v=1793413696",
+            "tàng": "sample3/ghep-bai-5/words/tàng.m4a?v=1793413695",
+            "ăn": "sample3/ghep-bai-5/words/ăn.m4a?v=1793413696",
+            "đánh": "sample3/ghep-bai-5/words/đánh.m4a?v=1793413697",
+            "đức": "sample3/ghep-bai-5/words/đức.m4a?v=1793413695",
+            "ủi": "sample3/ghep-bai-5/words/ủi.m4a?v=1793413696"
           }
         }
       }

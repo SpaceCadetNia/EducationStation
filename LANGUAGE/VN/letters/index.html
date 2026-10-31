@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ghép Chữ - Language Garden</title>
+    <link rel="stylesheet" href="../../../shared/retro.css?v=63">
+    <link rel="stylesheet" href="../../shared/language.css?v=3">
+    <link rel="stylesheet" href="../choose/choose.css?v=9">
+    <link rel="stylesheet" href="letters.css?v=5">
+  </head>
+  <body class="language-theme" data-game="vn-letters">
+    <main class="screen choose-screen letters-screen">
+      <nav class="top-nav" aria-label="Primary">
+        <a href="../../index.html#vn">Tiếng Việt 2</a>
+      </nav>
+
+      <header class="choose-header">
+        <div>
+          <p class="system-line" id="lt-page">BÀI MỘT // TRANG 5</p>
+          <h1>Ghép Chữ</h1>
+        </div>
+        <div class="choose-tools">
+          <label class="tool-chip">Bài
+            <select id="lt-unit" aria-label="Unit"></select>
+          </label>
+          <div class="mode-toggle" role="group" aria-label="Mode" hidden>
+            <button type="button" class="mode-btn" data-mode="learn" aria-pressed="true"><span class="bi-vi">Học</span><span class="bi-en">Learn</span></button>
+            <button type="button" class="mode-btn" data-mode="quiz" aria-pressed="false"><span class="bi-vi">Đố vui</span><span class="bi-en">Quiz</span></button>
+          </div>
+          <span class="score-chip" id="lt-score" hidden>Đúng <strong id="lt-correct">0</strong>/<strong id="lt-total">0</strong></span>
+        </div>
+      </header>
+
+      <div class="lt-build" id="lt-build"></div>
+
+      <section class="choose-card lt-card" aria-live="polite">
+        <span class="choose-num" id="lt-num" hidden>1/6</span>
+        <button type="button" class="hear-btn" id="lt-hear" aria-label="Hear the sentence" hidden>🔊</button>
+        <p class="lt-box" id="lt-box"></p>
+        <div class="lt-sentence" id="lt-sentence"></div>
+        <p class="choose-en" id="lt-en"></p>
+        <p class="choose-verdict" id="lt-verdict" hidden></p>
+        <p class="lt-note" id="lt-note" hidden></p>
+      </section>
+
+      <div class="lt-choices" id="lt-choices"></div>
+
+      <div class="choose-nav">
+        <button type="button" class="ctl" id="lt-prev" aria-label="Previous">◀</button>
+        <p class="choose-prompt" id="lt-prompt"></p>
+        <button type="button" class="ctl ctl-main" id="lt-next"><span class="bi-vi">Tiếp ▶</span><span class="bi-en">Next</span></button>
+      </div>
+
+      <div class="choose-done" id="lt-done" hidden>
+        <h2 class="bi"><span class="bi-vi">Xong rồi!</span><span class="bi-en">Done!</span></h2>
+        <p class="done-score"><span class="bi-vi"><strong id="lt-done-correct">0</strong> / <strong id="lt-done-total">0</strong> đúng</span><span class="bi-en">correct</span></p>
+        <div class="meaning-missed" id="lt-missed" hidden></div>
+        <button type="button" class="ctl ctl-main" id="lt-again"><span class="bi-vi">Chơi lại</span><span class="bi-en">Play again</span></button>
+      </div>
+    </main>
+
+    <script src="../../../shared/stage.js?v=2"></script>
+    <script src="../../../shared/sounds.js?v=19"></script>
+    <script src="../lessons/letters.js?v=7"></script>
+    <script src="../lessons/glossary.js?v=14"></script>
+    <!-- manifest changes whenever ./vt makes new clips: always fetch a fresh copy -->
+    <script>document.write('<script src="../audio/manifest.js?t=' + Date.now() + '"><\/script>');</script>
+    <script src="../shared/vn-voice.js?v=3"></script>
+    <script src="../shared/vn-book.js?v=1"></script>
+    <script src="letters.js?v=10"></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Voice check</title>
+<!-- Unlisted page for grown-ups: not linked from any menu.
+     Play each recorded clip, mark it right or wrong, copy the results. -->
+<style>
+  :root { --ink: #2f2a24; --soft: #6b6157; --paper: #fbf4e4; --card: #fffaf0; --jade: #2e7d5b; --bad: #b8432f; --gold: #e3a52e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; font-family: -apple-system, system-ui, sans-serif; color: var(--ink); background: var(--paper); }
+  h1 { margin: 0 0 4px; font-size: 1.5rem; }
+  .hint { margin: 0 0 12px; color: var(--soft); font-size: 0.95rem; }
+  .bar { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px; margin: 0 -16px 12px; background: var(--paper); border-bottom: 2px solid #e2d6bd; }
+  select, input[type=search], button { font: inherit; font-size: 1rem; }
+  select, input[type=search] { padding: 6px 8px; border: 2px solid var(--ink); border-radius: 10px; background: var(--card); }
+  input[type=search] { width: 150px; }
+  .btn { padding: 6px 12px; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); cursor: pointer; }
+  .btn.main { color: #fff; background: var(--jade); }
+  .count { color: var(--soft); font-size: 0.9rem; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: grid; grid-template-columns: 52px 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; margin-bottom: 6px; border: 2px solid #e2d6bd; border-radius: 12px; background: var(--card); }
+  li.ok { border-color: var(--jade); background: #e6f4ec; }
+  li.bad { border-color: var(--bad); background: #fbe5df; }
+  li.playing { box-shadow: 0 0 0 3px var(--gold); }
+  .play { width: 48px; height: 48px; border: 2px solid var(--ink); border-radius: 50%; background: #fff; font-size: 1.2rem; cursor: pointer; }
+  .txt { font-family: Georgia, serif; font-size: 1.35rem; line-height: 1.25; }
+  .meta { font-size: 0.8rem; color: var(--soft); }
+  .said { font-size: 0.85rem; color: var(--bad); }
+  .marks { display: flex; gap: 6px; }
+  .mark { width: 46px; height: 42px; border: 2px solid var(--ink); border-radius: 10px; background: #fff; font-size: 1.2rem; cursor: pointer; }
+  li.ok .mark.m-ok { background: var(--jade); color: #fff; }
+  li.bad .mark.m-bad { background: var(--bad); color: #fff; }
+  .note { grid-column: 2 / 4; width: 100%; padding: 6px 8px; border: 2px solid var(--bad); border-radius: 8px; font-size: 0.95rem; }
+  .out { margin-top: 16px; padding: 12px; border: 2px dashed var(--soft); border-radius: 12px; background: var(--card); }
+  .out textarea { width: 100%; min-height: 160px; font-family: ui-monospace, Menlo, monospace; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <h1>Voice check</h1>
+  <p class="hint">Tap ▶ to hear a clip, then ✓ if it's right or ✗ if it's wrong (add a note: what did it say?). Your marks are kept on this device. When done, tap “Copy results” and paste them to Claude.</p>
+
+  <div class="bar">
+    <select id="lesson" aria-label="Lesson"></select>
+    <select id="kind" aria-label="Kind">
+      <option value="all">Sentences + words</option>
+      <option value="s">Sentences only</option>
+      <option value="w">Words only</option>
+    </select>
+    <input type="search" id="q" placeholder="Find (e.g. gh)" aria-label="Find">
+    <label class="count"><input type="checkbox" id="unmarked"> only unmarked</label>
+    <button class="btn" id="next">▶ Next unmarked</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <ul id="list"></ul>
+
+  <div class="out">
+    <button class="btn main" id="copy">Copy results</button>
+    <button class="btn" id="clear">Clear marks shown</button>
+    <span class="count" id="copied"></span>
+    <p class="hint">Results (✗ wrong ones first, then a count of ✓):</p>
+    <textarea id="results" readonly></textarea>
+  </div>
+
+  <script>document.write('<script src="../audio/manifest.js?t=' + Date.now() + '"><\/script>');</script>
+  <script>
+  (function () {
+    var voice = ((window.VN_AUDIO && window.VN_AUDIO.voices) || [])[0];
+    var $ = function (id) { return document.getElementById(id); };
+    var player = new Audio();
+    var clips = [];   // {id, lesson, title, kind, label, text, said, path}
+    var playingLi = null;
+
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem("vncal:" + k) || "null"); if (v === null) localStorage.removeItem("vncal:" + k); else localStorage.setItem("vncal:" + k, JSON.stringify(v)); } catch (e) { return null; } }
+    function nameOf(path) { var f = decodeURIComponent(path.split("?")[0].split("/").pop()); return f.replace(/\.(m4a|wav)$/, "").normalize("NFC"); }
+
+    if (!voice) { $("list").innerHTML = "<li>No recordings yet (run ./vt).</li>"; return; }
+    Object.keys(voice.lessons).forEach(function (id) {
+      var L = voice.lessons[id];
+      (L.sentences || []).forEach(function (path, i) {
+        if (!path) return;
+        var t = (L.texts && L.texts[i]) || ["", ""];
+        clips.push({ id: id + ":s" + String(i + 1).padStart(2, "0"), lesson: id, title: L.title || id, kind: "s",
+          text: t[0] || nameOf(path), said: t[1] && t[1].replace(/\.$/, "") !== t[0].replace(/\.$/, "") ? t[1] : "", path: path });
+      });
+      Object.keys(L.words || {}).forEach(function (k) {
+        var path = L.words[k];
+        clips.push({ id: id + ":w:" + nameOf(path), lesson: id, title: L.title || id, kind: "w", text: nameOf(path), said: "", path: path });
+      });
+    });
+
+    var lessons = [];
+    clips.forEach(function (c) { if (lessons.indexOf(c.lesson) === -1) lessons.push(c.lesson); });
+    $("lesson").innerHTML = '<option value="">All lessons</option>' + lessons.map(function (id) {
+      var c = clips.find(function (x) { return x.lesson === id; });
+      return '<option value="' + esc(id) + '">' + esc(c.title + " · " + id) + "</option>";
+    }).join("");
+    var params = new URLSearchParams(location.search);
+    if (params.get("q")) $("q").value = params.get("q");
+    if (params.get("lesson")) $("lesson").value = params.get("lesson");
+
+    function shown() {
+      var lesson = $("lesson").value, kind = $("kind").value, q = $("q").value.trim().toLowerCase().normalize("NFC");
+      var only = $("unmarked").checked;
+      return clips.filter(function (c) {
+        if (lesson && c.lesson !== lesson) return false;
+        if (kind !== "all" && c.kind !== kind) return false;
+        if (q && (c.text + " " + c.said).toLowerCase().normalize("NFC").indexOf(q) === -1) return false;
+        if (only && store(c.path)) return false;
+        return true;
+      });
+    }
+
+    function render() {
+      var list = shown();
+      $("count").textContent = list.length + " clips";
+      $("list").innerHTML = list.map(function (c, n) {
+        var m = store(c.path) || {};
+        return '<li class="' + (m.v || "") + '" data-n="' + n + '">' +
+          '<button class="play" aria-label="Play">▶</button>' +
+          '<div><div class="txt">' + esc(c.text) + "</div>" +
+          (c.said ? '<div class="said">voice was given: ' + esc(c.said) + "</div>" : "") +
+          '<div class="meta">' + esc(c.id) + (c.kind === "w" ? " · word" : " · sentence") + "</div></div>" +
+          '<div class="marks"><button class="mark m-ok" aria-label="Right">✓</button><button class="mark m-bad" aria-label="Wrong">✗</button></div>' +
+          (m.v === "bad" ? '<input class="note" placeholder="What did it say? (optional)" value="' + esc(m.note || "") + '">' : "") +
+          "</li>";
+      }).join("");
+      $("list")._items = list;
+      results();
+    }
+
+    function play(li) {
+      var c = $("list")._items[Number(li.dataset.n)];
+      if (playingLi) playingLi.classList.remove("playing");
+      playingLi = li; li.classList.add("playing");
+      var q = c.path.indexOf("?") >= 0 ? c.path.slice(c.path.indexOf("?")) : "";
+      player.src = "../audio/" + c.path.split("?")[0].split("/").map(encodeURIComponent).join("/") + q;
+      player.onended = function () { li.classList.remove("playing"); };
+      var p = player.play(); if (p && p.catch) p.catch(function () {});
+    }
+
+    function results() {
+      var bad = [], ok = 0;
+      clips.forEach(function (c) {
+        var m = store(c.path); if (!m) return;
+        if (m.v === "ok") ok++;
+        else bad.push("✗ " + c.id + "  “" + c.text + "”" + (c.said ? "  (voice given: " + c.said + ")" : "") + (m.note ? "  — " + m.note : ""));
+      });
+      $("results").value = (bad.length ? bad.join("\n") + "\n" : "No wrong clips marked.\n") + "✓ " + ok + " marked right";
+    }
+
+    $("list").addEventListener("click", function (e) {
+      var li = e.target.closest("li"); if (!li || li.dataset.n === undefined) return;
+      var c = $("list")._items[Number(li.dataset.n)];
+      if (e.target.closest(".play") || e.target.closest(".txt")) { play(li); return; }
+      if (e.target.closest(".m-ok")) { store(c.path, { v: "ok" }); render(); return; }
+      if (e.target.closest(".m-bad")) { var m = store(c.path) || {}; store(c.path, { v: "bad", note: m.note || "" }); render();
+        var input = $("list").querySelector('li[data-n="' + li.dataset.n + '"] .note'); if (input) input.focus(); }
+    });
+    $("list").addEventListener("input", function (e) {
+      if (!e.target.classList.contains("note")) return;
+      var li = e.target.closest("li"); var c = $("list")._items[Number(li.dataset.n)];
+      store(c.path, { v: "bad", note: e.target.value }); results();
+    });
+    $("next").addEventListener("click", function () {
+      var items = $("list")._items || [];
+      for (var i = 0; i < items.length; i++) {
+        if (!store(items[i].path)) { var li = $("list").querySelector('li[data-n="' + i + '"]'); li.scrollIntoView({ block: "center" }); play(li); return; }
+      }
+    });
+    $("copy").addEventListener("click", function () {
+      var t = $("results");
+      var done = function () { $("copied").textContent = "Copied ✓"; setTimeout(function () { $("copied").textContent = ""; }, 2000); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t.value).then(done, function () { t.select(); document.execCommand("copy"); done(); });
+      else { t.select(); document.execCommand("copy"); done(); }
+    });
+    $("clear").addEventListener("click", function () {
+      if (!window.confirm("Clear the marks on the clips shown?")) return;
+      shown().forEach(function (c) { store(c.path, null); }); render();
+    });
+    ["lesson", "kind", "unmarked"].forEach(function (id) { $(id).addEventListener("change", render); });
+    $("q").addEventListener("input", render);
+    render();
+  })();
+  </script>
+</body>
+</html>

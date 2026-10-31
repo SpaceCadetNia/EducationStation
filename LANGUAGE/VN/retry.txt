@@ -1,0 +1,14 @@
+✗ bai-1:w:ghê  “ghê”  — Gher (incomplete sound)
+✗ bai-1:w:ghẻ  “ghẻ”  — Den (black)
+✗ bai-1:w:ghế  “ghế”  — ghé
+✗ vl2-p31:w:nghèo  “nghèo”  — nghẹo
+✗ hw3-p151:w:ghê  “ghê”  — Almost "ghe"
+✗ hw4-p154:w:ghẻ  “ghẻ”  — em nghẹ
+✗ ghep-bai-2:s03  “Ở dơ dễ bị ghẻ.”  — Ở dơ dễ bị gan nghẻ
+✗ ghep-bai-2:s04  “Hãy xếp đặt gọn ghẽ.”  — Hãy xếp đặt gọn đếnh
+✗ ghep-bai-2:s08  “ghẻ”  — uong eh??
+✗ ghep-bai-2:s09  “ghẽ”  — đang eh
+✗ ghep-bai-2:s11  “ghe”  — ghé
+✗ ghep-bai-2:w:ghẻ  “ghẻ”  — đếnh nghẻ
+✗ ghep-bai-2:w:ghẽ  “ghẽ”  — đon nghẻ
+✓ 49 marked right

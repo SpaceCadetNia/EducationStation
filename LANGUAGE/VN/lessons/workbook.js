@@ -39,6 +39,146 @@ window.VN_WORKBOOK = [
     ]
   },
   {
+    "id": "vl2-p32",
+    "title": "Em tập đặt câu",
+    "page": 32,
+    "pdfPage": 48,
+    "instructions": "Câu a: Dùng từ cho sẵn đầu dòng điền vào chỗ trống. Câu b: Dùng từ cho sẵn để đặt câu bằng miệng.",
+    "instructionsEn": "Sentence a: fill the blank with the given words. Sentence b: make up a sentence out loud with the given words (a sample is shown).",
+    "items": [
+      {
+        "kind": "a",
+        "sentence": "Cha mẹ em lo cho ___.",
+        "options": [
+          {
+            "vi": "kẻ khó",
+            "en": "poor people",
+            "result": "My parents take care of poor people.",
+            "hl": "poor people",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "b",
+        "sentence": "___ không có cửa nhà.",
+        "options": [
+          {
+            "vi": "kẻ khó",
+            "en": "poor people",
+            "result": "Poor people have no home.",
+            "hl": "Poor people",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "a",
+        "sentence": "Chị Chi ca ___.",
+        "options": [
+          {
+            "vi": "khe khẽ",
+            "en": "softly",
+            "result": "Big sister Chi sings softly.",
+            "hl": "softly",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "b",
+        "sentence": "___, em đi ra cửa.",
+        "options": [
+          {
+            "vi": "khe khẽ",
+            "en": "softly",
+            "result": "Softly, I walk out the door.",
+            "hl": "Softly",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "a",
+        "sentence": "___ ăn khế.",
+        "options": [
+          {
+            "vi": "Khỉ già",
+            "en": "the old monkey",
+            "result": "The old monkey eats starfruit.",
+            "hl": "The old monkey",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "b",
+        "sentence": "___ trèo cây.",
+        "options": [
+          {
+            "vi": "Khỉ già",
+            "en": "the old monkey",
+            "result": "The old monkey climbs the tree.",
+            "hl": "The old monkey",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "a",
+        "sentence": "Cụ Cả đã ___.",
+        "options": [
+          {
+            "vi": "già khụ",
+            "en": "very old",
+            "result": "Old Mr. Cả is already very old.",
+            "hl": "very old",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "b",
+        "sentence": "___, cụ vẫn đi chợ.",
+        "options": [
+          {
+            "vi": "già khụ",
+            "en": "very old",
+            "result": "Very old as he is, the old man still goes to the market.",
+            "hl": "Very old",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "a",
+        "sentence": "___ có bỏ cà.",
+        "options": [
+          {
+            "vi": "Cá kho",
+            "en": "braised fish",
+            "result": "The braised fish has eggplant in it.",
+            "hl": "The braised fish",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "kind": "b",
+        "sentence": "Mẹ ___ cho cả nhà.",
+        "options": [
+          {
+            "vi": "kho cá",
+            "en": "braise fish",
+            "result": "Mom braises fish for the whole family.",
+            "hl": "braises fish",
+            "correct": true
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "hw3-p150",
     "title": "Bài làm ở nhà #3",
     "page": 150,

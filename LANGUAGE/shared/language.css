@@ -252,3 +252,22 @@ body.language-theme::after {
 .language-theme .program-card.locked:hover {
   outline: none;
 }
+
+/* Book screens (Tiếng Việt 2/3): smaller title and tighter cards so five or
+   more games fit above the lanterns. The home screen keeps the big layout. */
+.language-menu[data-screen="vn"] .masthead h1,
+.language-menu[data-screen="vn3"] .masthead h1 { font-size: 3rem; margin: 0; line-height: 1.1; }
+.language-menu[data-screen="vn"] .masthead .tagline,
+.language-menu[data-screen="vn3"] .masthead .tagline { margin: 2px 0 0; font-size: 1.05rem; }
+.language-menu[data-screen="vn"] .program-grid,
+.language-menu[data-screen="vn3"] .program-grid { gap: 12px 16px; }
+.language-menu[data-screen="vn"] .program-card,
+.language-menu[data-screen="vn3"] .program-card {
+  min-height: 0; padding: 10px 14px; column-gap: 12px; row-gap: 2px; grid-template-columns: 46px minmax(0, 1fr);
+}
+.language-menu[data-screen="vn"] .program-code,
+.language-menu[data-screen="vn3"] .program-code { width: 46px; height: 46px; font-size: 1.15rem; grid-row: span 2; align-self: center; }
+.language-menu[data-screen="vn"] .program-title,
+.language-menu[data-screen="vn3"] .program-title { font-size: 1.5rem; }
+.language-menu[data-screen="vn"] .program-meta,
+.language-menu[data-screen="vn3"] .program-meta { font-size: 0.9rem; line-height: 1.25; }

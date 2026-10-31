@@ -31,6 +31,7 @@ LESSONS_JS = VN / "lessons" / "lessons.js"
 WORKBOOK_JS = VN / "lessons" / "workbook.js"
 POEMS_JS = VN / "lessons" / "poems.js"
 MEANINGS_JS = VN / "lessons" / "meanings.js"
+LETTERS_JS = VN / "lessons" / "letters.js"
 SAMPLE_EXT = {".m4a", ".wav", ".mp3", ".aiff", ".aif", ".caf"}
 # Built-in Southern (miền Nam) voices: (id, preset name, label)
 PRESETS = []
@@ -48,7 +49,7 @@ def load_lessons():
     body = text[text.index("[") : text.rindex("]") + 1]
     body = re.sub(r"(\{|,)\s*([A-Za-z_]\w*)\s*:", r'\1 "\2":', body)  # quote keys
     body = re.sub(r",\s*([\]}])", r"\1", body)  # trailing commas
-    return json.loads(body) + workbook_as_lessons() + poems_as_lessons() + meanings_as_lessons()
+    return json.loads(body) + workbook_as_lessons() + poems_as_lessons() + meanings_as_lessons() + letters_as_lessons()
 
 
 def fill_blank(sentence, option):
@@ -82,6 +83,27 @@ def meanings_as_lessons():
              "sentences": [[nfc(t["vi"]), t.get("en", "")] + ([nfc(t["say"])] if t.get("say") else [])
                            for t in s["terms"]]}
             for s in sets]
+
+
+def letters_as_lessons():
+    """Each Ghép Chữ unit becomes a pseudo-lesson: the card sentences, then the
+    card words, then one clip per letter-pair sound (the game uses the same order)."""
+    if not LETTERS_JS.exists():
+        return []
+    text = LETTERS_JS.read_text(encoding="utf-8")
+    text = "\n".join(l for l in text.splitlines() if not l.strip().startswith("//"))
+    units = json.loads(text[text.index("[") : text.rindex("]") + 1])
+    out = []
+    for u in units:
+        cards = u["cards"]
+        sents = [[nfc(c["sentence"].replace("…", "").strip()), c.get("en", "")] + ([nfc(c["say"])] if c.get("say") else [])
+                 for c in cards]
+        for c in cards:
+            sents.append([nfc(c["word"]), ""])
+        for b in u.get("build", []):
+            sents.append([nfc(b.get("say") or b["sound"]), ""])
+        out.append({"id": u["id"], "title": u.get("title", u["id"]), "sentences": sents})
+    return out
 
 
 def workbook_as_lessons():
@@ -217,6 +239,15 @@ def main():
     ap.add_argument("--temperature", type=float, default=None,
                     help="sampling temperature (model default 0.8); lower, e.g. 0.3-0.5, is steadier")
     ap.add_argument("--say", help="with --sentence: text to speak instead of the lesson text (try respellings/punctuation)")
+    ap.add_argument("--retry", nargs="?", const=str(VN / "retry.txt"), default=None,
+                    help="redo only the clips listed in retry.txt (paste the voice check results there), "
+                         "with a spoken lead-in and silence before the word")
+    ap.add_argument("--lead", default="… ",
+                    help="with --retry: text spoken before each clip so the model settles (default '… ')")
+    ap.add_argument("--lead-silence", type=float, default=0.3,
+                    help="with --retry: seconds of silence added at the start of each clip (default 0.3)")
+    ap.add_argument("--recordings", action="store_true",
+                    help="only copy hand recordings from recordings/ into place and refresh the manifest (no model)")
     args = ap.parse_args()
 
     lessons = load_lessons()
@@ -245,6 +276,11 @@ def main():
         if not voices:
             sys.exit("No voice with id " + args.only)
 
+    apply_recordings(lessons, [v[0] for v in voices])
+    if args.recordings:
+        write_manifest(lessons)
+        return
+
     print("Loading VieNeu-TTS (first run downloads the model, a few hundred MB)...", flush=True)
     from vieneu import Vieneu
 
@@ -268,6 +304,11 @@ def main():
     if args.temperature is not None:
         voices = [(vid, label, dict(kw, temperature=args.temperature)) for vid, label, kw in voices]
 
+    if args.retry:
+        retry_clips(tts, lessons, voices, args)
+        write_manifest(lessons)
+        return
+
     if args.sentence:
         one_sentence(tts, lessons, voices, args)
         write_manifest(lessons)
@@ -288,7 +329,7 @@ def main():
                     if w not in seen:
                         seen.append(w)
             for w in seen:
-                jobs.append((out / "words", w, w + "."))
+                jobs.append((out / "words", w, respell(w) + "."))
             # multi-word glossary phrases (the red entries in Đọc Thơ's word list)
             for ph in (phrases_in(lesson, phrases) if lesson.get("poem") else []):
                 jobs.append((out / "words", ph, ph + "."))
@@ -382,10 +423,76 @@ def check_existing(lessons):
     return bad
 
 
+# Words the voice model gets wrong, spoken with a spelling it reads correctly.
+# (Tried ghẻ → gẻ, ghẽ → gẽ: it made them worse, so those are hand-recorded
+# instead; see recordings/.)
+RESPELL = {}
+
+
+def respell(text):
+    def fix(m):
+        w = m.group(0)
+        r = RESPELL.get(nfc(w.lower()))
+        if not r:
+            return w
+        return r[:1].upper() + r[1:] if w[:1].isupper() else r
+    return re.sub(r"\w+", fix, nfc(text))
+
+
+RECORDINGS = VN / "recordings"
+REC_EXT = (".m4a", ".wav")
+
+
+def rec_key(text):
+    """Match key for a hand recording: lowercase, no punctuation, single spaces."""
+    return " ".join(re.sub(r"[^\w\s]", " ", nfc(text).lower()).split())
+
+
+def apply_recordings(lessons, voice_ids):
+    """Hand recordings in recordings/ replace generated clips everywhere they fit:
+    a file named after a word (ghẻ.m4a) becomes that word's clip in every lesson
+    (and any clip that is just that word); a file named after a sentence
+    (Ở dơ dễ bị ghẻ.m4a) replaces every clip of that sentence."""
+    if not RECORDINGS.is_dir():
+        return
+    recs = {}
+    for f in sorted(RECORDINGS.iterdir()):
+        if f.suffix.lower() in REC_EXT:
+            recs[rec_key(f.stem)] = f
+    if not recs:
+        return
+    import filecmp
+    placed = 0
+    for vid in voice_ids:
+        for lesson in lessons:
+            out = AUDIO / vid / lesson["id"]
+            targets = []
+            for i, sent in enumerate(lesson["sentences"], 1):
+                r = recs.get(rec_key(sent[0]))
+                if r:
+                    targets.append((r, out, f"s{i:02d}"))
+            for w in {w for sent in lesson["sentences"] for w in words_of(sent[0])}:
+                r = recs.get(rec_key(w))
+                if r:
+                    targets.append((r, out / "words", w))
+            for r, folder, stem in targets:
+                dst = folder / (stem + r.suffix.lower())
+                if dst.exists() and filecmp.cmp(r, dst, shallow=False):
+                    continue
+                folder.mkdir(parents=True, exist_ok=True)
+                for ext in REC_EXT:  # the recording wins over any generated clip
+                    old = folder / (stem + ext)
+                    if old.exists():
+                        old.unlink()
+                shutil.copyfile(r, dst)
+                placed += 1
+    print(f"Hand recordings: {len(recs)} file(s), {placed} clip(s) updated", flush=True)
+
+
 def spoken_text(sent):
     """Text sent to the TTS: optional 3rd item in a lesson sentence overrides the shown text."""
     text = nfc((sent[2] if len(sent) > 2 and sent[2] else sent[0]).strip())
-    text = text.rstrip(",;:")  # poem lines ending in a comma are spoken as a full stop
+    text = respell(text.rstrip(",;:"))  # poem lines ending in a comma are spoken as a full stop
     return text if text[-1:] in ".!?" else text + "."
 
 
@@ -433,6 +540,59 @@ def one_sentence(tts, lessons, voices, args):
               f"<voice>/{lesson_id}/{stem}.m4a, then rerun with no options to refresh the manifest.")
 
 
+def retry_clips(tts, lessons, voices, args):
+    """Redo the clips named in the voice check results (lines like
+    '✗ bai-1:w:ghê ...' or '✗ ghep-bai-2:s03 ...'), each with a spoken lead-in
+    and a little silence first: short single words come out steadier that way."""
+    import numpy as np
+    path = Path(args.retry)
+    if not path.exists():
+        sys.exit(f"No {path.name}: paste the voice check results into {path}")
+    ids = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"\s*(?:✗\s*)?([\w-]+:(?:s\d+|w:\S+))", nfc(line))
+        if m and m.group(1) not in ids and not line.strip().startswith("✓"):
+            ids.append(m.group(1))
+    by_id = {l["id"]: l for l in lessons}
+    jobs = []
+    for cid in ids:
+        lid, rest = cid.split(":", 1)
+        lesson = by_id.get(lid)
+        if not lesson:
+            print(f"  skip {cid}: no lesson {lid}")
+            continue
+        if rest.startswith("w:"):
+            w = nfc(rest[2:])
+            jobs.append((cid, "words", w, respell(w) + "."))
+        else:
+            i = int(rest[1:])
+            if not 1 <= i <= len(lesson["sentences"]):
+                print(f"  skip {cid}: no clip {i}")
+                continue
+            jobs.append((cid, "", f"s{i:02d}", spoken_text(lesson["sentences"][i - 1])))
+    print(f"Retrying {len(jobs)} clip(s) with lead-in {args.lead!r} and {args.lead_silence}s of silence", flush=True)
+    lead = nfc(args.lead)
+    for vid, label, kw in voices:
+        for cid, sub, stem, text in jobs:
+            folder = AUDIO / vid / cid.split(":", 1)[0] / sub if sub else AUDIO / vid / cid.split(":", 1)[0]
+            if any(RECORDINGS.is_dir() and (RECORDINGS / (stem + e)).exists() for e in REC_EXT):
+                print(f"  {cid}: hand recording exists, kept")
+                continue
+            folder.mkdir(parents=True, exist_ok=True)
+            spoken = lead + text if lead else text
+            wav, note = synth(tts, spoken, kw)
+            sil = np.zeros(int(args.lead_silence * tts.sample_rate), dtype=np.asarray(wav).dtype)
+            wav = np.concatenate([sil, np.asarray(wav).reshape(-1)])
+            for ext in (".m4a", ".wav"):
+                old = folder / (stem + ext)
+                if old.exists():
+                    old.unlink()
+            out = folder / (stem + ".wav")
+            tts.save(wav, str(out))
+            print(f"  {cid:<32} said: {spoken}  -> {compress(out).relative_to(AUDIO)}{note}", flush=True)
+    print("Done. Check them again on the voice check page (calibrate/?q=gh).")
+
+
 def write_manifest(lessons):
     """List every voice folder that has clips, so the reader can offer it."""
     labels = {vid: label for vid, _n, label in PRESETS}
@@ -448,7 +608,8 @@ def write_manifest(lessons):
             ldir = vdir / lesson["id"]
             if not ldir.is_dir():
                 continue
-            rel = lambda p: p.relative_to(AUDIO).as_posix()
+            # ?v=<file time>: a re-made clip gets a new address, so browsers don't replay the old one
+            rel = lambda p: p.relative_to(AUDIO).as_posix() + "?v=" + str(int(p.stat().st_mtime))
             sentences = []
             for i in range(1, len(lesson["sentences"]) + 1):
                 c = find_clip(ldir, f"s{i:02d}")
@@ -457,7 +618,10 @@ def write_manifest(lessons):
             for c in sorted((ldir / "words").glob("*")):
                 if c.suffix in (".m4a", ".wav"):
                     words[word_key(c.stem)] = rel(c)
-            entry["lessons"][lesson["id"]] = {"sentences": sentences, "words": words}
+            # what each clip shows and what the voice was asked to say (calibration page)
+            texts = [[nfc(sent[0]), spoken_text(sent)] for sent in lesson["sentences"]]
+            entry["lessons"][lesson["id"]] = {"title": lesson.get("title", lesson["id"]),
+                                              "sentences": sentences, "texts": texts, "words": words}
         if entry["lessons"]:
             voices.append(entry)
     js = "// Generated by tools/make_voices.py. Paths are relative to VN/audio/.\nwindow.VN_AUDIO = " + json.dumps(

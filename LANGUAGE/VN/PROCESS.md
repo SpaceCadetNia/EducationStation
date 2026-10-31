@@ -114,6 +114,19 @@ answering, the term is broken into glossary words/phrases, or into its own
 `parts` when given (whole sentences use the page's two halves). `./vt` records a
 clip per term; `tools/glossary.py` checks the words.
 
+### Letter pairs (Ghép Chữ)
+
+`lessons/letters.js`: the "Em ráp vần" page after each "Em học ghép chữ" unit
+(Bài 1–5 → pages 6, 12, 18, 24, 30). The picture-box page itself is only for
+finding letters; the goal is on the next page. Each unit has the pair
+(`build`: ch + a = cha), every word the page builds (`pool`, the quiz's choices)
+and one card per vowel choice: `vowel`, the `word` it makes, the page's sample
+`sentence` with English (`en`, `wordsEn`), `target` (where the word sits),
+`spell` (đánh vần), footnote `note`. Bài Bốn is a table (ch + a → cha mẹ, chả
+giò), so its cards keep both words (`words`) and use the phrase from the
+sentence (`targetLen`, `targetEn`). Learn: tap a vowel → hear the word, see the
+sentence. Quiz: the word is missing; pick 1 of 6 from `pool`.
+
 ### Books (Tiếng Việt 2 / Tiếng Việt 3)
 
 Every lesson, workbook set and poem belongs to one book. No `book` field means
@@ -213,6 +226,11 @@ never breaks the game.
 
 ## 5. Fixing pronunciation
 
+Voice check page (unlinked, for grown-ups): `VN/calibrate/` (add `?q=gh` or
+`?lesson=ghep-bai-2` to filter). Play each clip, mark ✓/✗ with a note, then
+"Copy results" and paste them to Claude. It lists what the voice was given when
+that differs from the shown text.
+
 The model can occasionally get a tone or word wrong. In order of effort:
 
 0. If a sentence ends abruptly or repeats a word, it was probably cut off:
@@ -233,6 +251,18 @@ The model can occasionally get a tone or word wrong. In order of effort:
    The game still shows the first item; only the audio uses the third.
    Poem lines and Nghĩa Là Gì? terms take a `"say"` field for the same thing
    (e.g. Kẻ Khó line 5 is spoken as "Lạnh, ho khù khụ." so "Lạnh" isn't misread).
+   Retry specific clips: paste the voice check results into `retry.txt` and run
+   `./vt --retry` (add `--fixes` too). Each listed clip is re-made with a spoken
+   lead-in ("… ghẻ.") and 0.3 s of silence first; change them with `--lead` and
+   `--lead-silence`. Check again on the voice check page; repeat for what's left.
+   Words or sentences the model can't say (found with the voice check page): record
+   them by hand into `recordings/` named after what they say (`ghẻ.m4a`,
+   `Ở dơ dễ bị ghẻ.m4a`) and run `./vt --recordings`. Each recording replaces that
+   word/sentence in every lesson and is never overwritten. See recordings/README.md.
+   A word the model always gets wrong can go in `RESPELL` in `tools/make_voices.py`
+   (ghẻ → gẻ, ghẽ → gẽ: gh before e sounds like g). It applies to every clip.
+   `./vt` only makes clips that are missing, so after changing spoken text move the
+   old clips aside (e.g. into `audio/.retired/`) and run `./vt` again.
 3. If single words are right but the sentence is wrong, the model is slipping on
    context: try steadier takes, `./vt --sentence bai-1:8 --takes 3 --temperature 0.4`.
 4. Try another voice for comparison (`--only <voice>`).

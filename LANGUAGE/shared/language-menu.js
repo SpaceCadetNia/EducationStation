@@ -81,6 +81,13 @@
           meta: "What does it mean? Pick the English meaning",
           href: "VN/meaning/index.html",
           launch: true
+        },
+        {
+          code: "05",
+          title: "Ghép Chữ",
+          meta: "Letter pairs ch, gh, gi, kh: find the vowel",
+          href: "VN/letters/index.html",
+          launch: true
         }
       ]
     },
